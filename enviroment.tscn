@@ -1,0 +1,71 @@
+[gd_scene load_steps=5 format=3 uid="uid://bnppgiphfgo5q"]
+
+[ext_resource type="Texture2D" uid="uid://cma5kmw10jghr" path="res://white_sq.png" id="1_p6kxc"]
+[ext_resource type="PackedScene" uid="uid://cxiu2kws8f1xm" path="res://staticBlock.tscn" id="2_apuo0"]
+[ext_resource type="PackedScene" uid="uid://cv46bl48bc1fk" path="res://movingBlock.tscn" id="2_xuxhp"]
+[ext_resource type="PackedScene" uid="uid://dsldmk2ksjn2m" path="res://lowMovingBlock.tscn" id="4_2iq2g"]
+
+[node name="Enviroment" type="Node2D"]
+position = Vector2(150, 50)
+
+[node name="Static" type="Node2D" parent="."]
+use_parent_material = true
+
+[node name="Floor" type="Sprite2D" parent="Static"]
+self_modulate = Color(0.596078, 0.411765, 0.27451, 1)
+z_index = -2
+use_parent_material = true
+position = Vector2(142.5, 67.1458)
+scale = Vector2(25.3594, 17.9421)
+texture = ExtResource("1_p6kxc")
+
+[node name="StaticBody2D" parent="Static" instance=ExtResource("2_apuo0")]
+position = Vector2(543, 81)
+scale = Vector2(6.16, 0.48)
+
+[node name="StaticBody2D8" parent="Static" instance=ExtResource("2_apuo0")]
+position = Vector2(360, 44)
+rotation = 1.5822
+scale = Vector2(1.59939, 0.48)
+
+[node name="StaticBody2D9" parent="Static" instance=ExtResource("2_apuo0")]
+position = Vector2(-175, 36)
+rotation = 1.5822
+scale = Vector2(1.59939, 0.48)
+
+[node name="StaticBody2D7" parent="Static" instance=ExtResource("2_apuo0")]
+position = Vector2(97, -165)
+scale = Vector2(6.16, 0.48)
+
+[node name="StaticBody2D3" parent="Static" instance=ExtResource("2_apuo0")]
+position = Vector2(541, -308)
+scale = Vector2(6.16, 0.48)
+
+[node name="StaticBody2D2" parent="Static" instance=ExtResource("2_apuo0")]
+position = Vector2(724, -129)
+rotation = 1.57118
+scale = Vector2(6.16, 0.48)
+
+[node name="StaticBody2D4" parent="Static" instance=ExtResource("2_apuo0")]
+position = Vector2(-355, 73)
+scale = Vector2(6.16, 0.48)
+
+[node name="StaticBody2D5" parent="Static" instance=ExtResource("2_apuo0")]
+position = Vector2(-357, -316)
+scale = Vector2(6.16, 0.48)
+
+[node name="StaticBody2D6" parent="Static" instance=ExtResource("2_apuo0")]
+position = Vector2(-538, -115)
+rotation = 1.57118
+scale = Vector2(6.16, 0.48)
+
+[node name="RigidBody2D" parent="." instance=ExtResource("2_xuxhp")]
+position = Vector2(-160, 331)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+use_parent_material = true
+position = Vector2(387, 67)
+color = Color(0.568627, 0.568627, 0.568627, 1)
+
+[node name="MovingBlock" parent="." instance=ExtResource("4_2iq2g")]
+position = Vector2(-151, 262)

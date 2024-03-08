@@ -1,0 +1,155 @@
+[gd_scene load_steps=14 format=3 uid="uid://dbs8dbmepbxnh"]
+
+[ext_resource type="Shader" path="res://maskView.gdshader" id="2_hpucc"]
+[ext_resource type="PackedScene" uid="uid://d1oul8y1hqgln" path="res://level.tscn" id="2_n2174"]
+[ext_resource type="PackedScene" uid="uid://bnppgiphfgo5q" path="res://enviroment.tscn" id="3_uc7v4"]
+[ext_resource type="Texture2D" uid="uid://dv1g3h6sswoha" path="res://view_cone.png" id="3_wk82u"]
+[ext_resource type="Shader" path="res://visibilityMapShader.gdshader" id="4_thh5m"]
+[ext_resource type="Texture2D" uid="uid://b5ugqtcggs4u2" path="res://light.png" id="4_u01jm"]
+
+[sub_resource type="GDScript" id="GDScript_qaxqa"]
+script/source = "extends Node2D
+
+"
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_urhso"]
+viewport_path = NodePath("VisionConeViewport/VisibilityViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_nggp3"]
+viewport_path = NodePath("FadeoutViewport/SubViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qgts6"]
+resource_local_to_scene = true
+shader = ExtResource("2_hpucc")
+shader_parameter/mask_texture = SubResource("ViewportTexture_urhso")
+shader_parameter/unseen = SubResource("ViewportTexture_nggp3")
+
+[sub_resource type="GDScript" id="GDScript_5b4rk"]
+script/source = "extends Node2D
+
+@export var linked_position_node: Node2D 
+
+func _process(_delta):
+	if linked_position_node != null:
+		linked_position_node.transform = self.transform
+		#linked_position_node.position = self.position
+		#linked_position_node.rotation = self.rotation
+"
+
+[sub_resource type="GDScript" id="GDScript_qadc0"]
+script/source = "extends Camera2D
+
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o7gsa"]
+shader = ExtResource("4_thh5m")
+
+[node name="World" type="Node2D"]
+position = Vector2(1, 2)
+script = SubResource("GDScript_qaxqa")
+
+[node name="MainLevelViewport" type="SubViewportContainer" parent="."]
+material = SubResource("ShaderMaterial_qgts6")
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="SubViewport" type="SubViewport" parent="MainLevelViewport"]
+transparent_bg = true
+handle_input_locally = false
+audio_listener_enable_2d = true
+canvas_cull_mask = 4294966399
+size = Vector2i(576, 648)
+render_target_update_mode = 4
+
+[node name="Level" parent="MainLevelViewport/SubViewport" instance=ExtResource("2_n2174")]
+light_mask = 897
+visibility_layer = 897
+
+[node name="Enviroment" parent="MainLevelViewport/SubViewport/Level" index="0" node_paths=PackedStringArray("linked_position_node")]
+light_mask = 897
+visibility_layer = 897
+script = SubResource("GDScript_5b4rk")
+linked_position_node = NodePath("../../../../VisionConeViewport/VisibilityViewport/Enviroment")
+
+[node name="Static" parent="MainLevelViewport/SubViewport/Level/Enviroment" index="0"]
+light_mask = 897
+visibility_layer = 897
+
+[node name="Floor" parent="MainLevelViewport/SubViewport/Level/Enviroment/Static" index="0"]
+light_mask = 897
+visibility_layer = 897
+
+[node name="RigidBody2D" parent="MainLevelViewport/SubViewport/Level/Enviroment" index="1" node_paths=PackedStringArray("linkedView", "linkedFog")]
+linkedView = NodePath("../../../../../VisionConeViewport/VisibilityViewport/Enviroment/RigidBody2D")
+linkedFog = NodePath("../../../../../FadeoutViewport/SubViewport/Enviroment/RigidBody2D")
+
+[node name="MovingBlock" parent="MainLevelViewport/SubViewport/Level/Enviroment" index="3" node_paths=PackedStringArray("linkedFog")]
+linkedFog = NodePath("../../../../../FadeoutViewport/SubViewport/Enviroment/MovingBlock")
+
+[node name="Player" parent="MainLevelViewport/SubViewport/Level" index="1" node_paths=PackedStringArray("view_camera", "camera", "fog")]
+light_mask = 897
+visibility_layer = 897
+view_camera = NodePath("../../../../VisionConeViewport/VisibilityViewport/ViewLight")
+camera = NodePath("../PlayerCamera")
+fog = NodePath("../../../../FadeoutViewport/SubViewport/FollowPositionNode/Camera2D")
+
+[node name="CanvasModulate" parent="MainLevelViewport/SubViewport/Level" index="7"]
+light_mask = 897
+visibility_layer = 897
+
+[node name="PlayerCamera" type="Camera2D" parent="MainLevelViewport/SubViewport/Level"]
+
+[node name="FadeoutViewport" type="SubViewportContainer" parent="."]
+offset_left = 581.0
+offset_right = 1157.0
+offset_bottom = 648.0
+
+[node name="SubViewport" type="SubViewport" parent="FadeoutViewport"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(576, 648)
+render_target_update_mode = 4
+
+[node name="CanvasModulate" type="CanvasModulate" parent="FadeoutViewport/SubViewport"]
+visible = false
+color = Color(0.12549, 0.12549, 0.12549, 1)
+
+[node name="FollowPositionNode" type="Node2D" parent="FadeoutViewport/SubViewport"]
+
+[node name="Camera2D" type="Camera2D" parent="FadeoutViewport/SubViewport/FollowPositionNode"]
+script = SubResource("GDScript_qadc0")
+
+[node name="Enviroment" parent="FadeoutViewport/SubViewport" instance=ExtResource("3_uc7v4")]
+
+[node name="VisionConeViewport" type="SubViewportContainer" parent="."]
+offset_left = 577.0
+offset_right = 1153.0
+offset_bottom = 648.0
+
+[node name="VisibilityViewport" type="SubViewport" parent="VisionConeViewport"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(576, 648)
+render_target_update_mode = 4
+
+[node name="ViewLight" type="PointLight2D" parent="VisionConeViewport/VisibilityViewport"]
+blend_mode = 1
+shadow_enabled = true
+texture = ExtResource("3_wk82u")
+texture_scale = 2.0
+
+[node name="Camera2D" type="Camera2D" parent="VisionConeViewport/VisibilityViewport/ViewLight"]
+
+[node name="PointLight2D" type="PointLight2D" parent="VisionConeViewport/VisibilityViewport/ViewLight"]
+blend_mode = 1
+shadow_enabled = true
+texture = ExtResource("4_u01jm")
+texture_scale = 0.7
+
+[node name="Enviroment" parent="VisionConeViewport/VisibilityViewport" instance=ExtResource("3_uc7v4")]
+material = SubResource("ShaderMaterial_o7gsa")
+
+[editable path="MainLevelViewport/SubViewport/Level"]
+[editable path="MainLevelViewport/SubViewport/Level/Enviroment"]
+[editable path="FadeoutViewport/SubViewport/Enviroment"]
+[editable path="VisionConeViewport/VisibilityViewport/Enviroment"]

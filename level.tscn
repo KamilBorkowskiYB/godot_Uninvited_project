@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://d1oul8y1hqgln"]
+
+[ext_resource type="PackedScene" uid="uid://bnppgiphfgo5q" path="res://enviroment.tscn" id="1_aqhqd"]
+[ext_resource type="PackedScene" uid="uid://c8bitsc7ybbya" path="res://player.tscn" id="2_klocm"]
+[ext_resource type="PackedScene" uid="uid://dss4qi31e3k2u" path="res://zombie.tscn" id="3_7x6e1"]
+[ext_resource type="PackedScene" uid="uid://shqgwjseluto" path="res://light_source.tscn" id="4_n3l4b"]
+
+[node name="Level" type="Node2D"]
+position = Vector2(150, 50)
+
+[node name="Enviroment" parent="." instance=ExtResource("1_aqhqd")]
+
+[node name="Player" parent="." instance=ExtResource("2_klocm")]
+position = Vector2(261, 354)
+
+[node name="Zombie" parent="." instance=ExtResource("3_7x6e1")]
+position = Vector2(687, 11)
+
+[node name="Zombie2" parent="." instance=ExtResource("3_7x6e1")]
+position = Vector2(-310, 34)
+
+[node name="Zombie3" parent="." instance=ExtResource("3_7x6e1")]
+position = Vector2(-189, 382)
+
+[node name="Zombie4" parent="." instance=ExtResource("3_7x6e1")]
+position = Vector2(253, -203)
+
+[node name="torch" parent="." instance=ExtResource("4_n3l4b")]
+z_index = -1
+position = Vector2(-131.5, -69.5)
+scale = Vector2(0.945313, 0.945313)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
+position = Vector2(387, 67)
+color = Color(0.568627, 0.568627, 0.568627, 1)

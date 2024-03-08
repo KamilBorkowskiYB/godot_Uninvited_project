@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://shqgwjseluto"]
+
+[ext_resource type="Texture2D" uid="uid://cdfvsilgf65en" path="res://icon.svg" id="1_yo7yb"]
+[ext_resource type="Texture2D" uid="uid://b5ugqtcggs4u2" path="res://light.png" id="2_wvohu"]
+
+[node name="Sprite2D" type="Sprite2D"]
+texture = ExtResource("1_yo7yb")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+light_mask = 0
+visibility_layer = 0
+shadow_enabled = true
+texture = ExtResource("2_wvohu")
+texture_scale = 2.9
