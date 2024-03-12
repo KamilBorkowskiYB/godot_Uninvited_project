@@ -1,30 +1,96 @@
-[gd_scene load_steps=10 format=3 uid="uid://c8bitsc7ybbya"]
+[gd_scene load_steps=14 format=3 uid="uid://c8bitsc7ybbya"]
 
-[ext_resource type="Texture2D" uid="uid://j4xmyho5fjf3" path="res://shooter.png" id="1_a31eh"]
 [ext_resource type="Script" path="res://player.gd" id="1_bf8ru"]
 [ext_resource type="Texture2D" uid="uid://bkm43cnbgvxrn" path="res://dead_body.png" id="2_jeb3d"]
+[ext_resource type="Texture2D" uid="uid://dp05qdlei2vkx" path="res://aim_sheet.png" id="2_nqjd4"]
 [ext_resource type="Texture2D" uid="uid://cx53kc3c1yvij" path="res://blood_splatter.png" id="3_e6kif"]
 [ext_resource type="AudioStream" uid="uid://bomrfapdkjghu" path="res://death_noise1.wav" id="5_847sy"]
 [ext_resource type="AudioStream" uid="uid://b0ptr56jwws0u" path="res://shotgun_shot1.wav" id="6_rvs7j"]
 [ext_resource type="Texture2D" uid="uid://yvb8nqnn0ejw" path="res://muzzle_flash.png" id="7_m1bfy"]
-[ext_resource type="Texture2D" uid="uid://c3w16ai42o30f" path="res://light_view.png" id="8_xru3m"]
+[ext_resource type="Texture2D" uid="uid://b5ugqtcggs4u2" path="res://light.png" id="8_vdcls"]
+[ext_resource type="Texture2D" uid="uid://dv1g3h6sswoha" path="res://view_cone.png" id="9_ogqfr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_f7cyc"]
 radius = 27.2947
+
+[sub_resource type="Animation" id="Animation_oo00o"]
+resource_name = "aim"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Alive:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:can_shoot")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_syd44"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Alive:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:can_shoot")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2yjhd"]
+_data = {
+"RESET": SubResource("Animation_syd44"),
+"aim": SubResource("Animation_oo00o")
+}
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_layer = 2
 collision_mask = 7
 script = ExtResource("1_bf8ru")
+can_shoot = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-3, 19)
+position = Vector2(-3, 5)
 shape = SubResource("CircleShape2D_f7cyc")
 
 [node name="Graphics" type="Node2D" parent="."]
+position = Vector2(0, -14)
 
 [node name="Alive" type="Sprite2D" parent="Graphics"]
-texture = ExtResource("1_a31eh")
+texture = ExtResource("2_nqjd4")
+hframes = 5
+frame = 1
 
 [node name="Dead" type="Sprite2D" parent="Graphics"]
 visible = false
@@ -38,7 +104,7 @@ rotation = 1.42139
 texture = ExtResource("3_e6kif")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
-position = Vector2(3, 9)
+position = Vector2(3, -5)
 target_position = Vector2(0, -1000)
 collision_mask = 3
 
@@ -50,10 +116,17 @@ bus = &"sfx"
 stream = ExtResource("6_rvs7j")
 bus = &"sfx"
 
+[node name="FlashLight" type="PointLight2D" parent="."]
+visible = false
+position = Vector2(0, -66)
+color = Color(1, 1, 0.141176, 0.690196)
+shadow_enabled = true
+texture = ExtResource("9_ogqfr")
+
 [node name="MuzzleFlash" type="Sprite2D" parent="."]
 visible = false
 self_modulate = Color(1, 1, 0.172549, 1)
-position = Vector2(1, -66)
+position = Vector2(1, -81)
 texture = ExtResource("7_m1bfy")
 
 [node name="Timer" type="Timer" parent="MuzzleFlash"]
@@ -122,14 +195,19 @@ grow_vertical = 0
 text = "Restart
 "
 
-[node name="Light_View" type="PointLight2D" parent="."]
-visible = false
+[node name="zone_light" type="PointLight2D" parent="."]
 light_mask = 3
-energy = 0.15
+position = Vector2(0, -14)
 shadow_enabled = true
 shadow_item_cull_mask = 3
-texture = ExtResource("8_xru3m")
-texture_scale = 1.96
+texture = ExtResource("8_vdcls")
+texture_scale = 0.7
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_2yjhd")
+}
 
 [connection signal="timeout" from="MuzzleFlash/Timer" to="MuzzleFlash" method="hide"]
+[connection signal="timeout" from="MuzzleFlash/Timer" to="FlashLight" method="hide"]
 [connection signal="button_up" from="CanvasLayer/DeathScreen/Panel/Button" to="." method="restart"]

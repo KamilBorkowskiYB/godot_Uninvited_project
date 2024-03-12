@@ -25,12 +25,13 @@ position = Vector2(-189, 382)
 [node name="Zombie4" parent="." instance=ExtResource("3_7x6e1")]
 position = Vector2(253, -203)
 
-[node name="torch" parent="." instance=ExtResource("4_n3l4b")]
-z_index = -1
-position = Vector2(-131.5, -69.5)
-scale = Vector2(0.945313, 0.945313)
-
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 visible = false
 position = Vector2(387, 67)
 color = Color(0.568627, 0.568627, 0.568627, 1)
+
+[node name="LightSource" parent="." instance=ExtResource("4_n3l4b")]
+position = Vector2(-190, -57)
+
+[node name="LightSource2" parent="." instance=ExtResource("4_n3l4b")]
+position = Vector2(584, 346)

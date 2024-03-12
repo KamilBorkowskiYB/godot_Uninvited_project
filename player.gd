@@ -5,9 +5,12 @@ extends CharacterBody2D
 @export var fog: Node2D #viewPorty
 
 @onready var ray_cast_2d = $RayCast2D
+@onready var animation_player = $AnimationPlayer
 @export var move_speed = 200
 var dead = false
-
+@export var can_shoot = false
+func _ready():
+	can_shoot = false
 func _process(_delta):
 	if camera != null:
 		camera.position = self.position
@@ -27,7 +30,13 @@ func _process(_delta):
 	
 	if Input.is_action_just_pressed("shoot"):
 		shoot()
-		
+	
+	if Input.is_action_just_pressed("Aim"):
+		animation_player.play("aim")
+		move_speed = 100
+	if Input.is_action_just_released("Aim"):
+		animation_player.play_backwards("aim")
+		move_speed = 200
 func _physics_process(_delta):
 	if dead:
 		return
@@ -49,8 +58,10 @@ func restart():
 	get_tree().reload_current_scene()
 
 func shoot():
-	$MuzzleFlash.show()
-	$MuzzleFlash/Timer.start()
-	$ShootSound.play()
-	if ray_cast_2d.is_colliding() and ray_cast_2d.get_collider().has_method("kill"):
-		ray_cast_2d.get_collider().kill()
+	if can_shoot == true:
+		$MuzzleFlash.show()
+		$FlashLight.show()
+		$MuzzleFlash/Timer.start()
+		$ShootSound.play()
+		if ray_cast_2d.is_colliding() and ray_cast_2d.get_collider().has_method("kill"):
+			ray_cast_2d.get_collider().kill()

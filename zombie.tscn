@@ -37,7 +37,7 @@ rotation = 1.42139
 texture = ExtResource("3_yexlo")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
-target_position = Vector2(0, -70)
+target_position = Vector2(0, -45)
 collision_mask = 3
 
 [node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
