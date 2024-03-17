@@ -65,7 +65,7 @@ position = Vector2(-160, 331)
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 use_parent_material = true
 position = Vector2(387, 67)
-color = Color(0.0235294, 0.0235294, 0.0235294, 1)
+color = Color(0.392157, 0.392157, 0.392157, 1)
 
 [node name="MovingBlock" parent="." instance=ExtResource("4_2iq2g")]
 position = Vector2(-151, 262)

@@ -1,13 +1,172 @@
-[gd_scene load_steps=7 format=3 uid="uid://dss4qi31e3k2u"]
+[gd_scene load_steps=11 format=3 uid="uid://dss4qi31e3k2u"]
 
 [ext_resource type="Script" path="res://zombie.gd" id="1_1cn3m"]
 [ext_resource type="Texture2D" uid="uid://pwysuw541pyh" path="res://zombie.png" id="1_cahy7"]
 [ext_resource type="Texture2D" uid="uid://bkm43cnbgvxrn" path="res://dead_body.png" id="2_cmdel"]
+[ext_resource type="Texture2D" uid="uid://f5sx516ofsyb" path="res://legs.png" id="2_ol6pp"]
 [ext_resource type="Texture2D" uid="uid://cx53kc3c1yvij" path="res://blood_splatter.png" id="3_yexlo"]
 [ext_resource type="AudioStream" uid="uid://71k1d45tql15" path="res://monster_die.wav" id="4_5l2fy"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gcysg"]
 radius = 32.0156
+
+[sub_resource type="Animation" id="Animation_m1ajx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Legs/LegL/thighL:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-17, 29)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Graphics/Legs/LegL/calfL:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-17, 26)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Graphics/Legs/LegL/footL:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-17, 17)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Graphics/Legs/LegR/thighR:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(5, 44)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Graphics/Legs/LegR/calfR:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(7, 57)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Graphics/Legs/LegR/footR:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(5, 69)]
+}
+
+[sub_resource type="Animation" id="Animation_hhe2l"]
+resource_name = "walk"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Legs/LegL/thighL:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 1, 1.1, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-16, 15), Vector2(-16, 15), Vector2(-16, 46), Vector2(-16, 46), Vector2(-16, 15)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Graphics/Legs/LegL/calfL:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 1, 1.1, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-17, 7), Vector2(-17, 7), Vector2(-17, 59), Vector2(-17, 59), Vector2(-17, 7)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Graphics/Legs/LegL/footL:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 1, 1.1, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-16, -6), Vector2(-16, -6), Vector2(-17, 69), Vector2(-17, 69), Vector2(-16, -6)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Graphics/Legs/LegR/thighR:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 1, 1.1, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(5, 44), Vector2(5, 44), Vector2(4, 17), Vector2(4, 17), Vector2(5, 44)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Graphics/Legs/LegR/calfR:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1, 1, 1.1, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(7, 57), Vector2(7, 57), Vector2(6, 7), Vector2(6, 7), Vector2(7, 57)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Graphics/Legs/LegR/footR:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.1, 1, 1.1, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(5, 69), Vector2(5, 69), Vector2(4, -4), Vector2(4, -4), Vector2(5, 69)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mqaf6"]
+_data = {
+"RESET": SubResource("Animation_m1ajx"),
+"walk": SubResource("Animation_hhe2l")
+}
 
 [node name="Zombie" type="CharacterBody2D"]
 collision_layer = 2
@@ -19,6 +178,48 @@ position = Vector2(-6, 17)
 shape = SubResource("CircleShape2D_gcysg")
 
 [node name="Graphics" type="Node2D" parent="."]
+
+[node name="Legs" type="Node2D" parent="Graphics"]
+
+[node name="LegL" type="Node2D" parent="Graphics/Legs"]
+
+[node name="thighL" type="Sprite2D" parent="Graphics/Legs/LegL"]
+position = Vector2(-17, 29)
+texture = ExtResource("2_ol6pp")
+region_enabled = true
+region_rect = Rect2(24.562, 81.231, 31.4573, 31.0616)
+
+[node name="calfL" type="Sprite2D" parent="Graphics/Legs/LegL"]
+position = Vector2(-17, 26)
+texture = ExtResource("2_ol6pp")
+region_enabled = true
+region_rect = Rect2(26.0138, 43.4239, 27.5004, 33.4357)
+
+[node name="footL" type="Sprite2D" parent="Graphics/Legs/LegL"]
+position = Vector2(-17, 17)
+texture = ExtResource("2_ol6pp")
+region_enabled = true
+region_rect = Rect2(29.9481, 11.6814, 18.2017, 23.9392)
+
+[node name="LegR" type="Node2D" parent="Graphics/Legs"]
+
+[node name="thighR" type="Sprite2D" parent="Graphics/Legs/LegR"]
+position = Vector2(5, 44)
+texture = ExtResource("2_ol6pp")
+region_enabled = true
+region_rect = Rect2(71.7159, 78.2445, 34.8209, 35.4139)
+
+[node name="calfR" type="Sprite2D" parent="Graphics/Legs/LegR"]
+position = Vector2(7, 57)
+texture = ExtResource("2_ol6pp")
+region_enabled = true
+region_rect = Rect2(77.2555, 41.8411, 26.9069, 33.8314)
+
+[node name="footR" type="Sprite2D" parent="Graphics/Legs/LegR"]
+position = Vector2(5, 69)
+texture = ExtResource("2_ol6pp")
+region_enabled = true
+region_rect = Rect2(81.2127, 13.5487, 16.8168, 20.7737)
 
 [node name="Alive" type="Sprite2D" parent="Graphics"]
 texture = ExtResource("1_cahy7")
@@ -43,3 +244,8 @@ collision_mask = 3
 [node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_5l2fy")
 bus = &"sfx"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_mqaf6")
+}

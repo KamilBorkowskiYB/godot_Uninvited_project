@@ -1,6 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://c8bitsc7ybbya"]
+[gd_scene load_steps=18 format=3 uid="uid://c8bitsc7ybbya"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_bf8ru"]
+[ext_resource type="Texture2D" uid="uid://f5sx516ofsyb" path="res://legs.png" id="2_0vcl7"]
 [ext_resource type="Texture2D" uid="uid://bkm43cnbgvxrn" path="res://dead_body.png" id="2_jeb3d"]
 [ext_resource type="Texture2D" uid="uid://dp05qdlei2vkx" path="res://aim_sheet.png" id="2_nqjd4"]
 [ext_resource type="Texture2D" uid="uid://cx53kc3c1yvij" path="res://blood_splatter.png" id="3_e6kif"]
@@ -12,6 +13,105 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_f7cyc"]
 radius = 27.2947
+
+[sub_resource type="Animation" id="Animation_syd44"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Alive:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:can_shoot")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Graphics/Legs/LegL/thighL:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-16, 15.697)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Graphics/Legs/LegL/calfL:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-17, 8.1691)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Graphics/Legs/LegL/footL:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-16.0225, -4.3138)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Graphics/Legs/LegR/thighR:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(4.92384, 41.9436)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Graphics/Legs/LegR/calfR:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(6.92384, 53.1919)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Graphics/Legs/LegR/footR:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(4.92384, 63.4402)]
+}
 
 [sub_resource type="Animation" id="Animation_oo00o"]
 resource_name = "aim"
@@ -41,37 +141,168 @@ tracks/1/keys = {
 "values": [false, true]
 }
 
-[sub_resource type="Animation" id="Animation_syd44"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2yjhd"]
+_data = {
+"RESET": SubResource("Animation_syd44"),
+"aim": SubResource("Animation_oo00o")
+}
+
+[sub_resource type="Animation" id="Animation_fmsm1"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Graphics/Alive:frame")
+tracks/0/path = NodePath("Graphics/Legs/LegL/thighL:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [1]
+"update": 0,
+"values": [Vector2(-16, 15.697)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".:can_shoot")
+tracks/1/path = NodePath("Graphics/Legs/LegL/calfL:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
+"update": 0,
+"values": [Vector2(-17, 8.1691)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Graphics/Legs/LegL/footL:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-16.0225, -4.3138)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Graphics/Legs/LegR/thighR:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(4.92384, 41.9436)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Graphics/Legs/LegR/calfR:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(6.92384, 53.1919)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Graphics/Legs/LegR/footR:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(4.92384, 63.4402)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_2yjhd"]
+[sub_resource type="Animation" id="Animation_22tvm"]
+resource_name = "walk"
+length = 1.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Graphics/Legs/LegL/thighL:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.7, 0.8, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-16, 15.697), Vector2(-16, 15.697), Vector2(-16, 39), Vector2(-16, 39), Vector2(-16, 15.697)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Graphics/Legs/LegL/calfL:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.7, 0.8, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-17, 8.1691), Vector2(-17, 8.1691), Vector2(-17, 51), Vector2(-17, 51), Vector2(-17, 8.1691)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Graphics/Legs/LegL/footL:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.7, 0.8, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-16.0225, -4.3138), Vector2(-16.0225, -4.3138), Vector2(-17, 62), Vector2(-17, 62), Vector2(-16.0225, -4.3138)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Graphics/Legs/LegR/thighR:position")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.7, 0.8, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(4.92384, 41.9436), Vector2(4.92384, 41.9436), Vector2(5, 22), Vector2(5, 22), Vector2(4.92384, 41.9436)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Graphics/Legs/LegR/calfR:position")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.7, 0.8, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(6.92384, 53.1919), Vector2(6.92384, 53.1919), Vector2(9, 7), Vector2(9, 7), Vector2(6.92384, 53.1919)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Graphics/Legs/LegR/footR:position")
+tracks/5/interp = 2
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.7, 0.8, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(4.92384, 63.4402), Vector2(4.92384, 63.4402), Vector2(7, -3), Vector2(7, -3), Vector2(4.92384, 63.4402)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tr807"]
 _data = {
-"RESET": SubResource("Animation_syd44"),
-"aim": SubResource("Animation_oo00o")
+"RESET": SubResource("Animation_fmsm1"),
+"walk": SubResource("Animation_22tvm")
 }
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
@@ -87,10 +318,57 @@ shape = SubResource("CircleShape2D_f7cyc")
 [node name="Graphics" type="Node2D" parent="."]
 position = Vector2(0, -14)
 
+[node name="Legs" type="Node2D" parent="Graphics"]
+position = Vector2(0, 26)
+rotation = -6.28319
+
+[node name="LegL" type="Node2D" parent="Graphics/Legs"]
+position = Vector2(2.00001, -28)
+
+[node name="thighL" type="Sprite2D" parent="Graphics/Legs/LegL"]
+position = Vector2(-16, 15.697)
+texture = ExtResource("2_0vcl7")
+region_enabled = true
+region_rect = Rect2(24.562, 81.231, 31.4573, 31.0616)
+
+[node name="calfL" type="Sprite2D" parent="Graphics/Legs/LegL"]
+position = Vector2(-17, 8.1691)
+texture = ExtResource("2_0vcl7")
+region_enabled = true
+region_rect = Rect2(26.0138, 43.4239, 27.5004, 33.4357)
+
+[node name="footL" type="Sprite2D" parent="Graphics/Legs/LegL"]
+position = Vector2(-16.0225, -4.3138)
+texture = ExtResource("2_0vcl7")
+region_enabled = true
+region_rect = Rect2(29.9481, 11.6814, 18.2017, 23.9392)
+
+[node name="LegR" type="Node2D" parent="Graphics/Legs"]
+position = Vector2(2.00001, -28)
+
+[node name="thighR" type="Sprite2D" parent="Graphics/Legs/LegR"]
+position = Vector2(4.92384, 41.9436)
+texture = ExtResource("2_0vcl7")
+region_enabled = true
+region_rect = Rect2(71.7159, 78.2445, 34.8209, 35.4139)
+
+[node name="calfR" type="Sprite2D" parent="Graphics/Legs/LegR"]
+position = Vector2(6.92384, 53.1919)
+texture = ExtResource("2_0vcl7")
+region_enabled = true
+region_rect = Rect2(77.2555, 41.8411, 26.9069, 33.8314)
+
+[node name="footR" type="Sprite2D" parent="Graphics/Legs/LegR"]
+position = Vector2(4.92384, 63.4402)
+texture = ExtResource("2_0vcl7")
+region_enabled = true
+region_rect = Rect2(81.2127, 13.5487, 16.8168, 20.7737)
+
 [node name="Alive" type="Sprite2D" parent="Graphics"]
+position = Vector2(0, 14)
 texture = ExtResource("2_nqjd4")
+offset = Vector2(0, -14)
 hframes = 5
-frame = 1
 
 [node name="Dead" type="Sprite2D" parent="Graphics"]
 visible = false
@@ -203,11 +481,16 @@ shadow_item_cull_mask = 3
 texture = ExtResource("8_vdcls")
 texture_scale = 0.7
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayerTOP" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_2yjhd")
 }
 
-[connection signal="timeout" from="MuzzleFlash/Timer" to="MuzzleFlash" method="hide"]
+[node name="AnimationPlayerLEGS" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_tr807")
+}
+
 [connection signal="timeout" from="MuzzleFlash/Timer" to="FlashLight" method="hide"]
+[connection signal="timeout" from="MuzzleFlash/Timer" to="MuzzleFlash" method="hide"]
 [connection signal="button_up" from="CanvasLayer/DeathScreen/Panel/Button" to="." method="restart"]

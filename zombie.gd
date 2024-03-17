@@ -4,7 +4,7 @@ extends CharacterBody2D
 
 @export var move_speed = 100
 @onready var player: CharacterBody2D = get_tree().get_first_node_in_group("player")
-
+@onready var animation_player = $AnimationPlayer
 var dead = false
 
 func _physics_process(_delta):
@@ -13,6 +13,7 @@ func _physics_process(_delta):
 	var dir_to_player = global_position.direction_to(player.global_position)
 	velocity = move_speed * dir_to_player
 	move_and_slide()
+	animation_player.play("walk")
 	
 	global_rotation = dir_to_player.angle() + PI/2.0
 	
@@ -26,6 +27,7 @@ func kill():
 	$DeathSound.play()
 	$Graphics/Dead.show()
 	$Graphics/Alive.hide()
+	$Graphics/Legs.hide()
 	$CollisionShape2D.disabled = true
 	z_index = -1
 	
