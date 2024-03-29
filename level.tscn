@@ -31,7 +31,7 @@ position = Vector2(387, 67)
 color = Color(0.568627, 0.568627, 0.568627, 1)
 
 [node name="LightSource" parent="." instance=ExtResource("4_n3l4b")]
-position = Vector2(-190, -57)
+position = Vector2(109, 51)
 
 [node name="LightSource2" parent="." instance=ExtResource("4_n3l4b")]
-position = Vector2(584, 346)
+position = Vector2(403, 35)

@@ -11,6 +11,7 @@ texture = ExtResource("1_m2mnc")
 [node name="PointLight2D" type="PointLight2D" parent="."]
 light_mask = 0
 visibility_layer = 0
+blend_mode = 2
 shadow_enabled = true
 texture = ExtResource("2_wvohu")
 texture_scale = 2.9

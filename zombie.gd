@@ -6,14 +6,21 @@ extends CharacterBody2D
 @onready var player: CharacterBody2D = get_tree().get_first_node_in_group("player")
 @onready var animation_player = $AnimationPlayer
 var dead = false
+@export var push_force = 10.0
 
+func _ready():
+	animation_player.play("walk")
 func _physics_process(_delta):
 	if dead:
 		return
 	var dir_to_player = global_position.direction_to(player.global_position)
 	velocity = move_speed * dir_to_player
 	move_and_slide()
-	animation_player.play("walk")
+	for i in get_slide_collision_count():
+		var c = get_slide_collision(i)
+		if c.get_collider() is RigidBody2D:
+			c.get_collider().apply_central_impulse(-c.get_normal() * push_force)
+	#animation_player.play("walk")
 	
 	global_rotation = dir_to_player.angle() + PI/2.0
 	

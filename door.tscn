@@ -1,0 +1,74 @@
+[gd_scene load_steps=10 format=3 uid="uid://cng2o48wdswvk"]
+
+[ext_resource type="Script" path="res://door.gd" id="1_3c7ij"]
+[ext_resource type="Texture2D" uid="uid://cma5kmw10jghr" path="res://white_sq.png" id="1_g7tnn"]
+[ext_resource type="Script" path="res://Door_interact.gd" id="2_als6e"]
+[ext_resource type="PackedScene" uid="uid://dtfqvqygnxp8r" path="res://InteractionArea.tscn" id="3_p2c8p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oivjw"]
+size = Vector2(87.4998, 10)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_rejhh"]
+polygon = PackedVector2Array(98, -5, 98, 5, 0, 5, 0, -5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_weep1"]
+size = Vector2(27.4374, 36.0623)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1cxt7"]
+size = Vector2(14, 14)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_v140c"]
+polygon = PackedVector2Array(-1.237, 0.0205062, -1.237, -0.0205062, 1.237, -0.0205062, 1.237, 0.0205062)
+
+[node name="Door" type="Node2D"]
+use_parent_material = true
+script = ExtResource("1_3c7ij")
+
+[node name="Door" type="RigidBody2D" parent="."]
+use_parent_material = true
+gravity_scale = 0.0
+linear_damp = 5.0
+angular_damp = 5.0
+script = ExtResource("2_als6e")
+
+[node name="Sprite2D" type="Sprite2D" parent="Door"]
+use_parent_material = true
+position = Vector2(49, 0)
+scale = Vector2(1.53, 0.15)
+texture = ExtResource("1_g7tnn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Door"]
+position = Vector2(49, 0)
+scale = Vector2(1.12, 1)
+shape = SubResource("RectangleShape2D_oivjw")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Door"]
+occluder = SubResource("OccluderPolygon2D_rejhh")
+
+[node name="interaction_area" parent="Door" instance=ExtResource("3_p2c8p")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Door/interaction_area"]
+position = Vector2(73.5, 1.28346e-06)
+rotation = -3.14159
+scale = Vector2(5.35766, -2.93936)
+shape = SubResource("RectangleShape2D_weep1")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="."]
+node_a = NodePath("../Door")
+node_b = NodePath("../hindge")
+
+[node name="hindge" type="StaticBody2D" parent="."]
+use_parent_material = true
+
+[node name="Sprite2D" type="Sprite2D" parent="hindge"]
+self_modulate = Color(0, 0, 0, 1)
+use_parent_material = true
+scale = Vector2(0.21875, 0.21875)
+texture = ExtResource("1_g7tnn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hindge"]
+shape = SubResource("RectangleShape2D_1cxt7")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="hindge"]
+scale = Vector2(5.65883, -341.361)
+occluder = SubResource("OccluderPolygon2D_v140c")

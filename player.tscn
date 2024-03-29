@@ -19,7 +19,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Graphics/Alive:frame")
+tracks/0/path = NodePath("Top/Alive:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -43,7 +43,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Graphics/Legs/LegL/thighL:position")
+tracks/2/path = NodePath("Legs/LegL/thighL:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -55,7 +55,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Graphics/Legs/LegL/calfL:position")
+tracks/3/path = NodePath("Legs/LegL/calfL:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -67,7 +67,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Graphics/Legs/LegL/footL:position")
+tracks/4/path = NodePath("Legs/LegL/footL:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -79,7 +79,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Graphics/Legs/LegR/thighR:position")
+tracks/5/path = NodePath("Legs/LegR/thighR:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -91,7 +91,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Graphics/Legs/LegR/calfR:position")
+tracks/6/path = NodePath("Legs/LegR/calfR:position")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -103,7 +103,7 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("Graphics/Legs/LegR/footR:position")
+tracks/7/path = NodePath("Legs/LegR/footR:position")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -119,7 +119,7 @@ length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Graphics/Alive:frame")
+tracks/0/path = NodePath("Top/Alive:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -152,74 +152,74 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Graphics/Legs/LegL/thighL:position")
+tracks/0/path = NodePath("Legs/LegL/thighL:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-16, 15.697)]
+"values": [Vector2(-10, -4.46638e-05)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Graphics/Legs/LegL/calfL:position")
+tracks/1/path = NodePath("Legs/LegL/calfL:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-17, 8.1691)]
+"values": [Vector2(-10, -4.57764e-05)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Graphics/Legs/LegL/footL:position")
+tracks/2/path = NodePath("Legs/LegL/footL:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-16.0225, -4.3138)]
+"values": [Vector2(-10, -4.46478e-05)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Graphics/Legs/LegR/thighR:position")
+tracks/3/path = NodePath("Legs/LegR/thighR:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(4.92384, 41.9436)]
+"values": [Vector2(10, 0)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Graphics/Legs/LegR/calfR:position")
+tracks/4/path = NodePath("Legs/LegR/calfR:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(6.92384, 53.1919)]
+"values": [Vector2(10, 0)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Graphics/Legs/LegR/footR:position")
+tracks/5/path = NodePath("Legs/LegR/footR:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(4.92384, 63.4402)]
+"values": [Vector2(10, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_22tvm"]
@@ -229,74 +229,74 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Graphics/Legs/LegL/thighL:position")
+tracks/0/path = NodePath("Legs/LegL/thighL:position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.7, 0.8, 1.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.3, 0.4, 0.7, 1, 1.1, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(-16, 15.697), Vector2(-16, 15.697), Vector2(-16, 39), Vector2(-16, 39), Vector2(-16, 15.697)]
+"values": [Vector2(-10, -4.46638e-05), Vector2(-9.99996, -10), Vector2(-9.99996, -10), Vector2(-10, -4.46638e-05), Vector2(-10, 10), Vector2(-10, 10), Vector2(-10, -4.46638e-05)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Graphics/Legs/LegL/calfL:position")
+tracks/1/path = NodePath("Legs/LegL/calfL:position")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.7, 0.8, 1.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.3, 0.4, 0.7, 1, 1.1, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(-17, 8.1691), Vector2(-17, 8.1691), Vector2(-17, 51), Vector2(-17, 51), Vector2(-17, 8.1691)]
+"values": [Vector2(-10, -4.57764e-05), Vector2(-10, -20), Vector2(-10, -20), Vector2(-10, -4.57764e-05), Vector2(-10, 20), Vector2(-10, 20), Vector2(-10, -4.57764e-05)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Graphics/Legs/LegL/footL:position")
+tracks/2/path = NodePath("Legs/LegL/footL:position")
 tracks/2/interp = 2
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.7, 0.8, 1.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.3, 0.4, 0.7, 1, 1.1, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(-16.0225, -4.3138), Vector2(-16.0225, -4.3138), Vector2(-17, 62), Vector2(-17, 62), Vector2(-16.0225, -4.3138)]
+"values": [Vector2(-10, -4.46478e-05), Vector2(-8.99987, -30), Vector2(-8.99987, -30), Vector2(-10, -4.46478e-05), Vector2(-10, 30), Vector2(-10, 30), Vector2(-10, -4.46478e-05)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Graphics/Legs/LegR/thighR:position")
+tracks/3/path = NodePath("Legs/LegR/thighR:position")
 tracks/3/interp = 2
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.7, 0.8, 1.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.3, 0.4, 0.7, 1, 1.1, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(4.92384, 41.9436), Vector2(4.92384, 41.9436), Vector2(5, 22), Vector2(5, 22), Vector2(4.92384, 41.9436)]
+"values": [Vector2(10, 0), Vector2(10, 10), Vector2(10, 10), Vector2(10, 0), Vector2(10, -10), Vector2(10, -10), Vector2(10, 0)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Graphics/Legs/LegR/calfR:position")
+tracks/4/path = NodePath("Legs/LegR/calfR:position")
 tracks/4/interp = 2
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.7, 0.8, 1.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.3, 0.4, 0.7, 1, 1.1, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(6.92384, 53.1919), Vector2(6.92384, 53.1919), Vector2(9, 7), Vector2(9, 7), Vector2(6.92384, 53.1919)]
+"values": [Vector2(10, 0), Vector2(10, 20), Vector2(10, 20), Vector2(10, 0), Vector2(10, -20), Vector2(10, -20), Vector2(10, 0)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Graphics/Legs/LegR/footR:position")
+tracks/5/path = NodePath("Legs/LegR/footR:position")
 tracks/5/interp = 2
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.7, 0.8, 1.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.3, 0.4, 0.7, 1, 1.1, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(4.92384, 63.4402), Vector2(4.92384, 63.4402), Vector2(7, -3), Vector2(7, -3), Vector2(4.92384, 63.4402)]
+"values": [Vector2(10, 0), Vector2(7.99987, 30), Vector2(7.99987, 30), Vector2(10, 0), Vector2(8.00014, -31), Vector2(8.00014, -31), Vector2(10, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tr807"]
@@ -308,83 +308,97 @@ _data = {
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_layer = 2
 collision_mask = 7
+motion_mode = 1
 script = ExtResource("1_bf8ru")
 can_shoot = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-3, 5)
 shape = SubResource("CircleShape2D_f7cyc")
 
-[node name="Graphics" type="Node2D" parent="."]
-position = Vector2(0, -14)
+[node name="Legs" type="Node2D" parent="."]
 
-[node name="Legs" type="Node2D" parent="Graphics"]
-position = Vector2(0, 26)
-rotation = -6.28319
+[node name="LegL" type="Node2D" parent="Legs"]
 
-[node name="LegL" type="Node2D" parent="Graphics/Legs"]
-position = Vector2(2.00001, -28)
-
-[node name="thighL" type="Sprite2D" parent="Graphics/Legs/LegL"]
-position = Vector2(-16, 15.697)
+[node name="thighL" type="Sprite2D" parent="Legs/LegL"]
+position = Vector2(-10, -4.46638e-05)
 texture = ExtResource("2_0vcl7")
 region_enabled = true
 region_rect = Rect2(24.562, 81.231, 31.4573, 31.0616)
 
-[node name="calfL" type="Sprite2D" parent="Graphics/Legs/LegL"]
-position = Vector2(-17, 8.1691)
+[node name="calfL" type="Sprite2D" parent="Legs/LegL"]
+position = Vector2(-10, -4.57764e-05)
 texture = ExtResource("2_0vcl7")
 region_enabled = true
 region_rect = Rect2(26.0138, 43.4239, 27.5004, 33.4357)
 
-[node name="footL" type="Sprite2D" parent="Graphics/Legs/LegL"]
-position = Vector2(-16.0225, -4.3138)
+[node name="footL" type="Sprite2D" parent="Legs/LegL"]
+position = Vector2(-10, -4.46478e-05)
 texture = ExtResource("2_0vcl7")
 region_enabled = true
 region_rect = Rect2(29.9481, 11.6814, 18.2017, 23.9392)
 
-[node name="LegR" type="Node2D" parent="Graphics/Legs"]
-position = Vector2(2.00001, -28)
+[node name="LegR" type="Node2D" parent="Legs"]
 
-[node name="thighR" type="Sprite2D" parent="Graphics/Legs/LegR"]
-position = Vector2(4.92384, 41.9436)
+[node name="thighR" type="Sprite2D" parent="Legs/LegR"]
+position = Vector2(10, 0)
 texture = ExtResource("2_0vcl7")
 region_enabled = true
 region_rect = Rect2(71.7159, 78.2445, 34.8209, 35.4139)
 
-[node name="calfR" type="Sprite2D" parent="Graphics/Legs/LegR"]
-position = Vector2(6.92384, 53.1919)
+[node name="calfR" type="Sprite2D" parent="Legs/LegR"]
+position = Vector2(10, 0)
 texture = ExtResource("2_0vcl7")
 region_enabled = true
 region_rect = Rect2(77.2555, 41.8411, 26.9069, 33.8314)
 
-[node name="footR" type="Sprite2D" parent="Graphics/Legs/LegR"]
-position = Vector2(4.92384, 63.4402)
+[node name="footR" type="Sprite2D" parent="Legs/LegR"]
+position = Vector2(10, 0)
 texture = ExtResource("2_0vcl7")
 region_enabled = true
 region_rect = Rect2(81.2127, 13.5487, 16.8168, 20.7737)
 
-[node name="Alive" type="Sprite2D" parent="Graphics"]
-position = Vector2(0, 14)
+[node name="Top" type="Node2D" parent="."]
+
+[node name="Alive" type="Sprite2D" parent="Top"]
 texture = ExtResource("2_nqjd4")
-offset = Vector2(0, -14)
 hframes = 5
 
-[node name="Dead" type="Sprite2D" parent="Graphics"]
+[node name="Dead" type="Sprite2D" parent="Top"]
 visible = false
 z_index = -1
+position = Vector2(0, -14)
 texture = ExtResource("2_jeb3d")
 
-[node name="BloodSplatter" type="Sprite2D" parent="Graphics/Dead"]
+[node name="BloodSplatter" type="Sprite2D" parent="Top/Dead"]
 self_modulate = Color(0.615686, 0.184314, 0.207843, 1)
 position = Vector2(-1, 0)
 rotation = 1.42139
 texture = ExtResource("3_e6kif")
 
-[node name="RayCast2D" type="RayCast2D" parent="."]
+[node name="RayCast2D" type="RayCast2D" parent="Top"]
 position = Vector2(3, -5)
 target_position = Vector2(0, -1000)
 collision_mask = 3
+
+[node name="FlashLight" type="PointLight2D" parent="Top"]
+visible = false
+position = Vector2(0, -66)
+color = Color(1, 1, 0.141176, 0.690196)
+shadow_enabled = true
+texture = ExtResource("9_ogqfr")
+
+[node name="MuzzleFlash" type="Sprite2D" parent="Top"]
+visible = false
+self_modulate = Color(1, 1, 0.172549, 1)
+position = Vector2(1, -81)
+texture = ExtResource("7_m1bfy")
+
+[node name="Timer" type="Timer" parent="Top/MuzzleFlash"]
+wait_time = 0.05
+one_shot = true
+
+[node name="Graphics" type="Node2D" parent="."]
+position = Vector2(0, -14)
 
 [node name="DeafSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_847sy")
@@ -393,23 +407,6 @@ bus = &"sfx"
 [node name="ShootSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_rvs7j")
 bus = &"sfx"
-
-[node name="FlashLight" type="PointLight2D" parent="."]
-visible = false
-position = Vector2(0, -66)
-color = Color(1, 1, 0.141176, 0.690196)
-shadow_enabled = true
-texture = ExtResource("9_ogqfr")
-
-[node name="MuzzleFlash" type="Sprite2D" parent="."]
-visible = false
-self_modulate = Color(1, 1, 0.172549, 1)
-position = Vector2(1, -81)
-texture = ExtResource("7_m1bfy")
-
-[node name="Timer" type="Timer" parent="MuzzleFlash"]
-wait_time = 0.05
-one_shot = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -475,11 +472,10 @@ text = "Restart
 
 [node name="zone_light" type="PointLight2D" parent="."]
 light_mask = 3
-position = Vector2(0, -14)
+blend_mode = 2
 shadow_enabled = true
 shadow_item_cull_mask = 3
 texture = ExtResource("8_vdcls")
-texture_scale = 0.7
 
 [node name="AnimationPlayerTOP" type="AnimationPlayer" parent="."]
 libraries = {
@@ -491,6 +487,6 @@ libraries = {
 "": SubResource("AnimationLibrary_tr807")
 }
 
-[connection signal="timeout" from="MuzzleFlash/Timer" to="FlashLight" method="hide"]
-[connection signal="timeout" from="MuzzleFlash/Timer" to="MuzzleFlash" method="hide"]
+[connection signal="timeout" from="Top/MuzzleFlash/Timer" to="Top/FlashLight" method="hide"]
+[connection signal="timeout" from="Top/MuzzleFlash/Timer" to="Top/MuzzleFlash" method="hide"]
 [connection signal="button_up" from="CanvasLayer/DeathScreen/Panel/Button" to="." method="restart"]

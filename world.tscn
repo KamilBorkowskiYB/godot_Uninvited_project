@@ -86,6 +86,10 @@ linkedFog = NodePath("../../../../../FadeoutViewport/SubViewport/Enviroment/Rigi
 [node name="MovingBlock" parent="MainLevelViewport/SubViewport/Level/Enviroment" index="3" node_paths=PackedStringArray("linkedFog")]
 linkedFog = NodePath("../../../../../FadeoutViewport/SubViewport/Enviroment/MovingBlock")
 
+[node name="Door" parent="MainLevelViewport/SubViewport/Level/Enviroment" index="5" node_paths=PackedStringArray("linkedView", "linkedFog")]
+linkedView = NodePath("../../../../../VisionConeViewport/VisibilityViewport/Enviroment/Door")
+linkedFog = NodePath("../../../../../FadeoutViewport/SubViewport/Enviroment/Door")
+
 [node name="Player" parent="MainLevelViewport/SubViewport/Level" index="1" node_paths=PackedStringArray("view_camera", "camera", "fog")]
 light_mask = 897
 visibility_layer = 897
@@ -150,6 +154,9 @@ texture_scale = 0.7
 material = SubResource("ShaderMaterial_o7gsa")
 
 [node name="CanvasModulate" parent="VisionConeViewport/VisibilityViewport/Enviroment" index="2"]
+visible = false
+
+[node name="AmbientDark" parent="VisionConeViewport/VisibilityViewport/Enviroment" index="4"]
 visible = false
 
 [node name="DeathScreen" type="CanvasLayer" parent="."]

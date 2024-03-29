@@ -4,12 +4,14 @@ extends CharacterBody2D
 @export var camera: Node2D #viewPorty
 @export var fog: Node2D #viewPorty
 
-@onready var ray_cast_2d = $RayCast2D
+@onready var ray_cast_2d = $Top/RayCast2D
 @onready var animation_player = $AnimationPlayerTOP
 @onready var animation_playerLegs = $AnimationPlayerLEGS
 @export var move_speed = 200
+@export var push_force = 20.0
 var dead = false
 var target_angle = 0
+
 @export var can_shoot = false
 func _ready():
 	can_shoot = false
@@ -20,8 +22,8 @@ func _process(_delta):
 	if fog != null:
 		fog.position = self.position
 	if view_camera != null:      #viewPorty
+		view_camera.rotation = $Top.rotation
 		view_camera.position = self.position
-		view_camera.rotation = self.rotation
 	if Input.is_action_just_pressed("exit"):
 		get_tree().quit()
 	if Input.is_action_just_pressed("restart"):
@@ -29,13 +31,13 @@ func _process(_delta):
 	if dead:
 		return
 	
-	global_rotation = global_position.direction_to(get_global_mouse_position()).angle() + PI/2
-	#$Graphics/Alive.rotation = global_position.direction_to(get_global_mouse_position()).angle() + PI/2
+	#global_rotation = global_position.direction_to(get_global_mouse_position()).angle() + PI/2
+	$Top.rotation = global_position.direction_to(get_global_mouse_position()).angle() + PI/2
 	var move_direction = Input.get_vector("move_left","move_right","move_down","move_up")
-	$Graphics/Legs.rotation = target_angle
+	$Legs.rotation = target_angle
 	
 	if move_direction.length_squared() > 0:
-		target_angle = move_direction.angle_to(Vector2(1, 0)) - PI/2
+		target_angle = move_direction.angle() + PI/2
 	
 	if velocity.length() > 0:
 		animation_playerLegs.play("walk")
@@ -56,14 +58,18 @@ func _physics_process(_delta):
 	var move_dir = Input.get_vector("move_left","move_right","move_down","move_up")
 	velocity = move_dir * move_speed
 	move_and_slide()
+	for i in get_slide_collision_count():
+		var c = get_slide_collision(i)
+		if c.get_collider() is RigidBody2D:
+			c.get_collider().apply_central_impulse(-c.get_normal() * push_force)
 	
 func kill():
 	if dead:
 		return
 	dead = true
 	$DeafSound.play()
-	$Graphics/Dead.show()
-	$Graphics/Alive.hide()
+	$Top/Dead.show()
+	$Top/Alive.hide()
 	$CanvasLayer/DeathScreen.show()
 	z_index = -1
 	
@@ -72,9 +78,9 @@ func restart():
 
 func shoot():
 	if can_shoot == true:
-		$MuzzleFlash.show()
-		$FlashLight.show()
-		$MuzzleFlash/Timer.start()
+		$Top/MuzzleFlash.show()
+		$Top/FlashLight.show()
+		$Top/MuzzleFlash/Timer.start()
 		$ShootSound.play()
 		if ray_cast_2d.is_colliding() and ray_cast_2d.get_collider().has_method("kill"):
 			ray_cast_2d.get_collider().kill()
