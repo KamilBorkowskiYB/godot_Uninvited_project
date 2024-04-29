@@ -1,16 +1,23 @@
-[gd_scene load_steps=14 format=3 uid="uid://dbs8dbmepbxnh"]
+[gd_scene load_steps=17 format=3 uid="uid://dbs8dbmepbxnh"]
 
+[ext_resource type="Shader" path="res://grayscale.gdshader" id="1_fgecg"]
 [ext_resource type="Shader" path="res://maskView.gdshader" id="2_hpucc"]
 [ext_resource type="PackedScene" uid="uid://d1oul8y1hqgln" path="res://level.tscn" id="2_n2174"]
 [ext_resource type="PackedScene" uid="uid://bnppgiphfgo5q" path="res://enviroment.tscn" id="3_uc7v4"]
 [ext_resource type="Texture2D" uid="uid://dv1g3h6sswoha" path="res://view_cone.png" id="3_wk82u"]
 [ext_resource type="Shader" path="res://visibilityMapShader.gdshader" id="4_thh5m"]
-[ext_resource type="Texture2D" uid="uid://b5ugqtcggs4u2" path="res://light.png" id="4_u01jm"]
+[ext_resource type="Texture2D" uid="uid://c81efo3urc6nt" path="res://view_cone_redo.png" id="6_87we7"]
 
 [sub_resource type="GDScript" id="GDScript_qaxqa"]
 script/source = "extends Node2D
 
 "
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_23xho"]
+shader = ExtResource("1_fgecg")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_shxwe"]
+viewport_path = NodePath("FadeoutViewport/SubViewport")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_urhso"]
 viewport_path = NodePath("VisionConeViewport/VisibilityViewport")
@@ -47,6 +54,11 @@ shader = ExtResource("4_thh5m")
 [node name="World" type="Node2D"]
 position = Vector2(1, 2)
 script = SubResource("GDScript_qaxqa")
+
+[node name="FadeOutView" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_23xho")
+texture = SubResource("ViewportTexture_shxwe")
+centered = false
 
 [node name="MainLevelViewport" type="SubViewportContainer" parent="."]
 material = SubResource("ShaderMaterial_qgts6")
@@ -147,8 +159,8 @@ texture_scale = 2.0
 [node name="PointLight2D" type="PointLight2D" parent="VisionConeViewport/VisibilityViewport/ViewLight"]
 blend_mode = 1
 shadow_enabled = true
-texture = ExtResource("4_u01jm")
-texture_scale = 0.7
+texture = ExtResource("6_87we7")
+texture_scale = 1.3
 
 [node name="Enviroment" parent="VisionConeViewport/VisibilityViewport" instance=ExtResource("3_uc7v4")]
 material = SubResource("ShaderMaterial_o7gsa")

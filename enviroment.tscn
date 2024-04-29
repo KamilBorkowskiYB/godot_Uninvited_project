@@ -23,7 +23,7 @@ use_parent_material = true
 
 [node name="Floor" type="Sprite2D" parent="Static"]
 self_modulate = Color(0.596078, 0.411765, 0.27451, 1)
-z_index = -3
+z_index = -5
 use_parent_material = true
 position = Vector2(142.5, 67.1458)
 scale = Vector2(25.3594, 17.9421)

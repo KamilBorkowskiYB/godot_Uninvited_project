@@ -1,11 +1,8 @@
 shader_type canvas_item;
-render_mode unshaded;
-
-uniform sampler2D fadeOutView;
 
 void fragment() {
-	//COLOR = texture(fadeOutView, UV);
-	//float lumi = (COLOR.r + COLOR.g + COLOR.b) / 3.0;
-	//COLOR.rgb = vec3(lumi);
+	vec4 color = texture(TEXTURE, UV);
+	float lumi = (color.r + color.g + color.b) / 3.0;
+	color.rgb = vec3(lumi);
+	COLOR = color;
 }
-
