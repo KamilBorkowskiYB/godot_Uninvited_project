@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dsldmk2ksjn2m"]
 
-[ext_resource type="Script" path="res://movingBlock.gd" id="1_h6xkt"]
+[ext_resource type="Script" path="res://objects/movingBlock.gd" id="1_h6xkt"]
 [ext_resource type="Texture2D" uid="uid://cma5kmw10jghr" path="res://white_sq.png" id="2_cyvtc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_10kxg"]

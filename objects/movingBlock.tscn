@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cv46bl48bc1fk"]
 
 [ext_resource type="Texture2D" uid="uid://cma5kmw10jghr" path="res://white_sq.png" id="1_8184v"]
-[ext_resource type="Script" path="res://movingBlock.gd" id="1_eecgp"]
+[ext_resource type="Script" path="res://objects/movingBlock.gd" id="1_eecgp"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_k200j"]
 polygon = PackedVector2Array(32, -32, -32, -32, -32, 32, 32, 32)

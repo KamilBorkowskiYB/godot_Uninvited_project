@@ -1,6 +1,7 @@
 extends RigidBody2D
 
 @onready var interaction_area: InteractionArea = $interaction_area
+@onready var player: CharacterBody2D = get_tree().get_first_node_in_group("player")
 var transform_to
 var isClosed = true
 
@@ -11,7 +12,14 @@ func _on_interact():
 	if(isClosed):
 		isClosed = false
 		$".".mass = 1.0
-		apply_central_impulse(Vector2(0,-300000))
+		if(player.global_position.y > self.global_position.y):
+			apply_central_impulse(Vector2(0,-450000))
+		else:
+			apply_central_impulse(Vector2(0,450000))
+		if(player.global_position.x > self.global_position.x):
+			apply_central_impulse(Vector2(-450000,0))
+		else:
+			apply_central_impulse(Vector2(450000,0))
 	else:
 		isClosed = true
 		$".".set_linear_velocity(Vector2.ZERO)

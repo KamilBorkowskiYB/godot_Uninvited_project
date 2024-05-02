@@ -1,11 +1,11 @@
 [gd_scene load_steps=11 format=3 uid="uid://dss4qi31e3k2u"]
 
-[ext_resource type="Script" path="res://zombie.gd" id="1_1cn3m"]
-[ext_resource type="Texture2D" uid="uid://pwysuw541pyh" path="res://zombie.png" id="1_cahy7"]
-[ext_resource type="Texture2D" uid="uid://bkm43cnbgvxrn" path="res://dead_body.png" id="2_cmdel"]
-[ext_resource type="Texture2D" uid="uid://f5sx516ofsyb" path="res://legs.png" id="2_ol6pp"]
-[ext_resource type="Texture2D" uid="uid://cx53kc3c1yvij" path="res://blood_splatter.png" id="3_yexlo"]
-[ext_resource type="AudioStream" uid="uid://71k1d45tql15" path="res://monster_die.wav" id="4_5l2fy"]
+[ext_resource type="Script" path="res://characters/zombie/zombie.gd" id="1_hlqbi"]
+[ext_resource type="Texture2D" uid="uid://f5sx516ofsyb" path="res://characters/player/legs.png" id="2_66hwr"]
+[ext_resource type="Texture2D" uid="uid://pwysuw541pyh" path="res://characters/zombie/zombie.png" id="3_8ck50"]
+[ext_resource type="Texture2D" uid="uid://bkm43cnbgvxrn" path="res://characters/zombie/dead_body.png" id="4_hxr4a"]
+[ext_resource type="Texture2D" uid="uid://cx53kc3c1yvij" path="res://characters/zombie/blood_splatter.png" id="5_2t6mw"]
+[ext_resource type="AudioStream" uid="uid://71k1d45tql15" path="res://characters/zombie/monster_die.wav" id="6_5uw5y"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gcysg"]
 radius = 32.0156
@@ -172,7 +172,7 @@ _data = {
 collision_layer = 2
 collision_mask = 7
 motion_mode = 1
-script = ExtResource("1_1cn3m")
+script = ExtResource("1_hlqbi")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-6, 17)
@@ -186,19 +186,19 @@ shape = SubResource("CircleShape2D_gcysg")
 
 [node name="thighL" type="Sprite2D" parent="Graphics/Legs/LegL"]
 position = Vector2(-17, 29)
-texture = ExtResource("2_ol6pp")
+texture = ExtResource("2_66hwr")
 region_enabled = true
 region_rect = Rect2(24.562, 81.231, 31.4573, 31.0616)
 
 [node name="calfL" type="Sprite2D" parent="Graphics/Legs/LegL"]
 position = Vector2(-17, 26)
-texture = ExtResource("2_ol6pp")
+texture = ExtResource("2_66hwr")
 region_enabled = true
 region_rect = Rect2(26.0138, 43.4239, 27.5004, 33.4357)
 
 [node name="footL" type="Sprite2D" parent="Graphics/Legs/LegL"]
 position = Vector2(-17, 17)
-texture = ExtResource("2_ol6pp")
+texture = ExtResource("2_66hwr")
 region_enabled = true
 region_rect = Rect2(29.9481, 11.6814, 18.2017, 23.9392)
 
@@ -206,44 +206,44 @@ region_rect = Rect2(29.9481, 11.6814, 18.2017, 23.9392)
 
 [node name="thighR" type="Sprite2D" parent="Graphics/Legs/LegR"]
 position = Vector2(5, 44)
-texture = ExtResource("2_ol6pp")
+texture = ExtResource("2_66hwr")
 region_enabled = true
 region_rect = Rect2(71.7159, 78.2445, 34.8209, 35.4139)
 
 [node name="calfR" type="Sprite2D" parent="Graphics/Legs/LegR"]
 position = Vector2(7, 57)
-texture = ExtResource("2_ol6pp")
+texture = ExtResource("2_66hwr")
 region_enabled = true
 region_rect = Rect2(77.2555, 41.8411, 26.9069, 33.8314)
 
 [node name="footR" type="Sprite2D" parent="Graphics/Legs/LegR"]
 position = Vector2(5, 69)
-texture = ExtResource("2_ol6pp")
+texture = ExtResource("2_66hwr")
 region_enabled = true
 region_rect = Rect2(81.2127, 13.5487, 16.8168, 20.7737)
 
 [node name="Alive" type="Sprite2D" parent="Graphics"]
-texture = ExtResource("1_cahy7")
+texture = ExtResource("3_8ck50")
 
 [node name="Dead" type="Sprite2D" parent="Graphics"]
 visible = false
 z_index = -1
 use_parent_material = true
-texture = ExtResource("2_cmdel")
+texture = ExtResource("4_hxr4a")
 
 [node name="BloodSplatter" type="Sprite2D" parent="Graphics/Dead"]
 self_modulate = Color(0.615686, 0.184314, 0.207843, 1)
 use_parent_material = true
 position = Vector2(-1, 0)
 rotation = 1.42139
-texture = ExtResource("3_yexlo")
+texture = ExtResource("5_2t6mw")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 target_position = Vector2(0, -45)
 collision_mask = 3
 
 [node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("4_5l2fy")
+stream = ExtResource("6_5uw5y")
 bus = &"sfx"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

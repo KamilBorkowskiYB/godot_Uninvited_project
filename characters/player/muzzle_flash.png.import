@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bkm43cnbgvxrn"
-path="res://.godot/imported/dead_body.png-ce5f8cc4ec64ae23e647180f04dc568e.ctex"
+uid="uid://yvb8nqnn0ejw"
+path="res://.godot/imported/muzzle_flash.png-be581242c3fe6128e500096433231cc2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://dead_body.png"
-dest_files=["res://.godot/imported/dead_body.png-ce5f8cc4ec64ae23e647180f04dc568e.ctex"]
+source_file="res://characters/player/muzzle_flash.png"
+dest_files=["res://.godot/imported/muzzle_flash.png-be581242c3fe6128e500096433231cc2.ctex"]
 
 [params]
 

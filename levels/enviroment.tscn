@@ -1,10 +1,10 @@
 [gd_scene load_steps=8 format=3 uid="uid://bnppgiphfgo5q"]
 
 [ext_resource type="Texture2D" uid="uid://cma5kmw10jghr" path="res://white_sq.png" id="1_p6kxc"]
-[ext_resource type="PackedScene" uid="uid://cxiu2kws8f1xm" path="res://staticBlock.tscn" id="2_apuo0"]
-[ext_resource type="PackedScene" uid="uid://cv46bl48bc1fk" path="res://movingBlock.tscn" id="2_xuxhp"]
-[ext_resource type="PackedScene" uid="uid://dsldmk2ksjn2m" path="res://lowMovingBlock.tscn" id="4_2iq2g"]
-[ext_resource type="PackedScene" uid="uid://cng2o48wdswvk" path="res://door.tscn" id="5_pvela"]
+[ext_resource type="PackedScene" uid="uid://cxiu2kws8f1xm" path="res://objects/staticBlock.tscn" id="2_apuo0"]
+[ext_resource type="PackedScene" uid="uid://cv46bl48bc1fk" path="res://objects/movingBlock.tscn" id="2_xuxhp"]
+[ext_resource type="PackedScene" uid="uid://dsldmk2ksjn2m" path="res://objects/lowMovingBlock.tscn" id="4_2iq2g"]
+[ext_resource type="PackedScene" uid="uid://cng2o48wdswvk" path="res://objects/door/door.tscn" id="5_0xv4k"]
 
 [sub_resource type="Gradient" id="Gradient_06coe"]
 offsets = PackedFloat32Array(0.987013, 0.993506, 1)
@@ -50,7 +50,7 @@ scale = Vector2(1.59939, 0.48)
 [node name="StaticBody2D7" parent="Static" instance=ExtResource("2_apuo0")]
 position = Vector2(-176, -222)
 rotation = 1.5708
-scale = Vector2(3.28, 0.48)
+scale = Vector2(3.08, 0.48)
 
 [node name="StaticBody2D3" parent="Static" instance=ExtResource("2_apuo0")]
 position = Vector2(541, -308)
@@ -117,5 +117,9 @@ blend_mode = 1
 texture = SubResource("GradientTexture2D_c1o86")
 texture_scale = 14.18
 
-[node name="Door" parent="." instance=ExtResource("5_pvela")]
+[node name="Door" parent="." instance=ExtResource("5_0xv4k")]
 position = Vector2(79, 72)
+
+[node name="Door2" parent="." instance=ExtResource("5_0xv4k")]
+position = Vector2(-175, -23)
+rotation = -1.5708

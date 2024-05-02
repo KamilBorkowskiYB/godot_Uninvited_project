@@ -1,12 +1,12 @@
 [gd_scene load_steps=17 format=3 uid="uid://dbs8dbmepbxnh"]
 
-[ext_resource type="Shader" path="res://grayscale.gdshader" id="1_fgecg"]
-[ext_resource type="Shader" path="res://maskView.gdshader" id="2_hpucc"]
-[ext_resource type="PackedScene" uid="uid://d1oul8y1hqgln" path="res://level.tscn" id="2_n2174"]
-[ext_resource type="PackedScene" uid="uid://bnppgiphfgo5q" path="res://enviroment.tscn" id="3_uc7v4"]
-[ext_resource type="Texture2D" uid="uid://dv1g3h6sswoha" path="res://view_cone.png" id="3_wk82u"]
-[ext_resource type="Shader" path="res://visibilityMapShader.gdshader" id="4_thh5m"]
-[ext_resource type="Texture2D" uid="uid://c81efo3urc6nt" path="res://view_cone_redo.png" id="6_87we7"]
+[ext_resource type="Shader" path="res://shaders/grayscale.gdshader" id="1_fgecg"]
+[ext_resource type="Shader" path="res://shaders/maskView.gdshader" id="2_hpucc"]
+[ext_resource type="PackedScene" uid="uid://d1oul8y1hqgln" path="res://levels/level.tscn" id="2_n2174"]
+[ext_resource type="PackedScene" uid="uid://bnppgiphfgo5q" path="res://levels/enviroment.tscn" id="3_uc7v4"]
+[ext_resource type="Texture2D" uid="uid://dv1g3h6sswoha" path="res://characters/player/view_cone.png" id="3_wk82u"]
+[ext_resource type="Shader" path="res://shaders/visibilityMapShader.gdshader" id="4_thh5m"]
+[ext_resource type="Texture2D" uid="uid://c81efo3urc6nt" path="res://characters/player/view_cone_redo.png" id="6_c31t0"]
 
 [sub_resource type="GDScript" id="GDScript_qaxqa"]
 script/source = "extends Node2D
@@ -102,6 +102,10 @@ linkedFog = NodePath("../../../../../FadeoutViewport/SubViewport/Enviroment/Movi
 linkedView = NodePath("../../../../../VisionConeViewport/VisibilityViewport/Enviroment/Door")
 linkedFog = NodePath("../../../../../FadeoutViewport/SubViewport/Enviroment/Door")
 
+[node name="Door2" parent="MainLevelViewport/SubViewport/Level/Enviroment" index="6" node_paths=PackedStringArray("linkedView", "linkedFog")]
+linkedView = NodePath("../../../../../VisionConeViewport/VisibilityViewport/Enviroment/Door2")
+linkedFog = NodePath("../../../../../FadeoutViewport/SubViewport/Enviroment/Door2")
+
 [node name="Player" parent="MainLevelViewport/SubViewport/Level" index="1" node_paths=PackedStringArray("view_camera", "camera", "fog")]
 light_mask = 897
 visibility_layer = 897
@@ -159,8 +163,8 @@ texture_scale = 2.0
 [node name="PointLight2D" type="PointLight2D" parent="VisionConeViewport/VisibilityViewport/ViewLight"]
 blend_mode = 1
 shadow_enabled = true
-texture = ExtResource("6_87we7")
-texture_scale = 1.3
+texture = ExtResource("6_c31t0")
+texture_scale = 0.4
 
 [node name="Enviroment" parent="VisionConeViewport/VisibilityViewport" instance=ExtResource("3_uc7v4")]
 material = SubResource("ShaderMaterial_o7gsa")
@@ -172,6 +176,7 @@ visible = false
 visible = false
 
 [node name="DeathScreen" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="DeathScreen" type="Control" parent="DeathScreen"]
 visible = false

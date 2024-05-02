@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://71k1d45tql15"
-path="res://.godot/imported/monster_die.wav-856960e31cbdb61d4bba3af94dca4c67.sample"
+path="res://.godot/imported/monster_die.wav-71058b16f28cf90c6a0769eb7f2eeddb.sample"
 
 [deps]
 
-source_file="res://monster_die.wav"
-dest_files=["res://.godot/imported/monster_die.wav-856960e31cbdb61d4bba3af94dca4c67.sample"]
+source_file="res://characters/zombie/monster_die.wav"
+dest_files=["res://.godot/imported/monster_die.wav-71058b16f28cf90c6a0769eb7f2eeddb.sample"]
 
 [params]
 

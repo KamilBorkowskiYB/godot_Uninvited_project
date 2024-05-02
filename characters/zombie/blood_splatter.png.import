@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c81efo3urc6nt"
-path="res://.godot/imported/view_cone_redo.png-f6fe5364e1c2f25b1fb52a771a045217.ctex"
+uid="uid://cx53kc3c1yvij"
+path="res://.godot/imported/blood_splatter.png-1c81e340c884f29dcf7b964955d69b5c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://view_cone_redo.png"
-dest_files=["res://.godot/imported/view_cone_redo.png-f6fe5364e1c2f25b1fb52a771a045217.ctex"]
+source_file="res://characters/zombie/blood_splatter.png"
+dest_files=["res://.godot/imported/blood_splatter.png-1c81e340c884f29dcf7b964955d69b5c.ctex"]
 
 [params]
 

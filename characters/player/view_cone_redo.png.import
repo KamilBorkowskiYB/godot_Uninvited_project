@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cx53kc3c1yvij"
-path="res://.godot/imported/blood_splatter.png-60bad9eb5f2da270b408b6ccf2fac9c5.ctex"
+uid="uid://c81efo3urc6nt"
+path="res://.godot/imported/view_cone_redo.png-af9738e1f5ef477b1e09e4931cb0f02f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://blood_splatter.png"
-dest_files=["res://.godot/imported/blood_splatter.png-60bad9eb5f2da270b408b6ccf2fac9c5.ctex"]
+source_file="res://characters/player/view_cone_redo.png"
+dest_files=["res://.godot/imported/view_cone_redo.png-af9738e1f5ef477b1e09e4931cb0f02f.ctex"]
 
 [params]
 
