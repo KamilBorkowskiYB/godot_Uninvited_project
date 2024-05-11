@@ -6,6 +6,11 @@ class_name InteractionArea
 var interact: Callable = func():
 	pass
 
+func _mouse_in():
+	InteractionManager.register_in_mouse_range(self)
+
+func _mouse_out():
+	InteractionManager.unregister_in_mouse_range(self)
 
 func _on_body_entered(_body):
 	if _body == player:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dbs8dbmepbxnh"]
+[gd_scene load_steps=16 format=3 uid="uid://dbs8dbmepbxnh"]
 
 [ext_resource type="Shader" path="res://shaders/grayscale.gdshader" id="1_fgecg"]
 [ext_resource type="Shader" path="res://shaders/maskView.gdshader" id="2_hpucc"]
@@ -7,11 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://dv1g3h6sswoha" path="res://characters/player/view_cone.png" id="3_wk82u"]
 [ext_resource type="Shader" path="res://shaders/visibilityMapShader.gdshader" id="4_thh5m"]
 [ext_resource type="Texture2D" uid="uid://c81efo3urc6nt" path="res://characters/player/view_cone_redo.png" id="6_c31t0"]
-
-[sub_resource type="GDScript" id="GDScript_qaxqa"]
-script/source = "extends Node2D
-
-"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_23xho"]
 shader = ExtResource("1_fgecg")
@@ -53,7 +48,6 @@ shader = ExtResource("4_thh5m")
 
 [node name="World" type="Node2D"]
 position = Vector2(1, 2)
-script = SubResource("GDScript_qaxqa")
 
 [node name="FadeOutView" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_23xho")
@@ -69,6 +63,7 @@ offset_bottom = 648.0
 transparent_bg = true
 handle_input_locally = false
 audio_listener_enable_2d = true
+physics_object_picking = true
 canvas_cull_mask = 4294966399
 size = Vector2i(576, 648)
 render_target_update_mode = 4
@@ -179,7 +174,6 @@ visible = false
 visible = false
 
 [node name="DeathScreen" type="Control" parent="DeathScreen"]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
