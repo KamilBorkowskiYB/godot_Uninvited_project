@@ -1,5 +1,6 @@
-[gd_scene load_steps=16 format=3 uid="uid://dbs8dbmepbxnh"]
+[gd_scene load_steps=17 format=3 uid="uid://dbs8dbmepbxnh"]
 
+[ext_resource type="Script" path="res://world.gd" id="1_eb6ap"]
 [ext_resource type="Shader" path="res://shaders/grayscale.gdshader" id="1_fgecg"]
 [ext_resource type="Shader" path="res://shaders/maskView.gdshader" id="2_hpucc"]
 [ext_resource type="PackedScene" uid="uid://d1oul8y1hqgln" path="res://levels/level.tscn" id="2_n2174"]
@@ -48,6 +49,7 @@ shader = ExtResource("4_thh5m")
 
 [node name="World" type="Node2D"]
 position = Vector2(1, 2)
+script = ExtResource("1_eb6ap")
 
 [node name="FadeOutView" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_23xho")
@@ -86,18 +88,11 @@ visibility_layer = 897
 light_mask = 897
 visibility_layer = 897
 
-[node name="RigidBody2D" parent="MainLevelViewport/SubViewport/Level/Enviroment" index="1" node_paths=PackedStringArray("linkedView", "linkedFog")]
-linkedView = NodePath("../../../../../VisionConeViewport/VisibilityViewport/Enviroment/RigidBody2D")
-linkedFog = NodePath("../../../../../FadeoutViewport/SubViewport/Enviroment/RigidBody2D")
-
-[node name="MovingBlock" parent="MainLevelViewport/SubViewport/Level/Enviroment" index="3" node_paths=PackedStringArray("linkedFog")]
-linkedFog = NodePath("../../../../../FadeoutViewport/SubViewport/Enviroment/MovingBlock")
-
-[node name="Door" parent="MainLevelViewport/SubViewport/Level/Enviroment" index="5" node_paths=PackedStringArray("linkedView", "linkedFog")]
+[node name="Door" parent="MainLevelViewport/SubViewport/Level/Enviroment" index="3" node_paths=PackedStringArray("linkedView", "linkedFog")]
 linkedView = NodePath("../../../../../VisionConeViewport/VisibilityViewport/Enviroment/Door")
 linkedFog = NodePath("../../../../../FadeoutViewport/SubViewport/Enviroment/Door")
 
-[node name="Door2" parent="MainLevelViewport/SubViewport/Level/Enviroment" index="6" node_paths=PackedStringArray("linkedView", "linkedFog")]
+[node name="Door2" parent="MainLevelViewport/SubViewport/Level/Enviroment" index="4" node_paths=PackedStringArray("linkedView", "linkedFog")]
 linkedView = NodePath("../../../../../VisionConeViewport/VisibilityViewport/Enviroment/Door2")
 linkedFog = NodePath("../../../../../FadeoutViewport/SubViewport/Enviroment/Door2")
 
@@ -124,10 +119,6 @@ transparent_bg = true
 handle_input_locally = false
 size = Vector2i(576, 648)
 render_target_update_mode = 4
-
-[node name="CanvasModulate" type="CanvasModulate" parent="FadeoutViewport/SubViewport"]
-visible = false
-color = Color(0.12549, 0.12549, 0.12549, 1)
 
 [node name="FollowPositionNode" type="Node2D" parent="FadeoutViewport/SubViewport"]
 
@@ -164,10 +155,10 @@ texture_scale = 0.4
 [node name="Enviroment" parent="VisionConeViewport/VisibilityViewport" instance=ExtResource("3_uc7v4")]
 material = SubResource("ShaderMaterial_o7gsa")
 
-[node name="CanvasModulate" parent="VisionConeViewport/VisibilityViewport/Enviroment" index="2"]
+[node name="CanvasModulate" parent="VisionConeViewport/VisibilityViewport/Enviroment" index="1"]
 visible = false
 
-[node name="AmbientDark" parent="VisionConeViewport/VisibilityViewport/Enviroment" index="4"]
+[node name="AmbientDark" parent="VisionConeViewport/VisibilityViewport/Enviroment" index="2"]
 visible = false
 
 [node name="DeathScreen" type="CanvasLayer" parent="."]
@@ -234,5 +225,4 @@ text = "Restart
 
 [editable path="MainLevelViewport/SubViewport/Level"]
 [editable path="MainLevelViewport/SubViewport/Level/Enviroment"]
-[editable path="FadeoutViewport/SubViewport/Enviroment"]
 [editable path="VisionConeViewport/VisibilityViewport/Enviroment"]

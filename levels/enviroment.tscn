@@ -87,16 +87,10 @@ position = Vector2(359, -198)
 rotation = 1.57118
 scale = Vector2(3.71968, 0.48)
 
-[node name="RigidBody2D" parent="." instance=ExtResource("2_xuxhp")]
-position = Vector2(-149, 324)
-
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 use_parent_material = true
 position = Vector2(387, 67)
 color = Color(0.47451, 0.47451, 0.47451, 1)
-
-[node name="MovingBlock" parent="." instance=ExtResource("4_2iq2g")]
-position = Vector2(-148, 245)
 
 [node name="AmbientDark" type="Node2D" parent="."]
 position = Vector2(84, -115)
@@ -123,3 +117,9 @@ position = Vector2(79, 72)
 [node name="Door2" parent="." instance=ExtResource("5_0xv4k")]
 position = Vector2(-175, -23)
 rotation = -1.5708
+
+[node name="MovingBlock2" parent="." instance=ExtResource("2_xuxhp")]
+position = Vector2(-148, 316)
+
+[node name="lowMovingBlock" parent="." instance=ExtResource("4_2iq2g")]
+position = Vector2(-144, 231)

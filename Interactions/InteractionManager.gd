@@ -43,8 +43,8 @@ func _sort_by_distance_to_player(area1, area2):
 	return area1_to_player < area2_to_player
 	
 func _input(event):
-	#if event.is_action_pressed("interact") && can_interact:
-	if event.is_action_pressed("shoot") && can_interact && !player.can_shoot:
+	var player_help = get_tree().get_first_node_in_group("player") #after restart player is freed 
+	if event.is_action_pressed("shoot") && can_interact && !player_help.can_shoot:
 		if active_areas.size() > 0:
 			if mouse_range.find(active_areas[0]) != -1:
 				can_interact = false
