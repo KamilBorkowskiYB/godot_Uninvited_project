@@ -7,6 +7,7 @@ extends CharacterBody2D
 @onready var ray_cast_2d = $Top/RayCast2D
 @onready var animation_player = $AnimationPlayerTOP
 @onready var animation_playerLegs = $AnimationPlayerLEGS
+@onready var bullet_trail = load("res://shot_trail.tscn")
 @export var move_speed = 200
 @export var push_force = 20.0
 var dead = false
@@ -15,7 +16,7 @@ var target_angle = 0
 @export var can_shoot = false
 func _ready():
 	can_shoot = false
-	
+
 func _process(_delta):
 	if camera != null:
 		camera.position = self.position
@@ -82,5 +83,21 @@ func shoot():
 		$Top/FlashLight.show()
 		$Top/MuzzleFlash/Timer.start()
 		$ShootSound.play()
+		var shot_trail = bullet_trail.instantiate()
+		
+		#offset
+		var direction = ray_cast_2d.global_position - get_global_mouse_position()
+		direction = direction.normalized()
+		var offset = direction * 70
+
+		#setting bullet trail points
+		shot_trail.add_point(get_parent().to_local(ray_cast_2d.global_position) - offset)
+		if ray_cast_2d.is_colliding():
+			shot_trail.add_point(get_parent().to_local(ray_cast_2d.get_collision_point()))
+		else:
+			shot_trail.add_point(get_parent().to_local(ray_cast_2d.global_position) - 100 * offset)
+		get_parent().add_child(shot_trail)
+		
+		#killing
 		if ray_cast_2d.is_colliding() and ray_cast_2d.get_collider().has_method("kill"):
 			ray_cast_2d.get_collider().kill()

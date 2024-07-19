@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://de6nsvkv7qhj4"]
+
+[ext_resource type="Script" path="res://shot_trail.gd" id="1_llc7a"]
+
+[node name="shot_trail" type="Line2D"]
+z_index = -1
+width = 4.0
+default_color = Color(1, 1, 1, 0.772549)
+script = ExtResource("1_llc7a")
