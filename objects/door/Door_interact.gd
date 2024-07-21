@@ -24,6 +24,6 @@ func _on_interact():
 		isClosed = true
 		$".".set_linear_velocity(Vector2.ZERO)
 		$".".set_angular_velocity(0)
-		await get_tree().create_timer(0.01).timeout
+		await get_tree().create_timer(0.01).timeout #huh why
 		self.transform = transform_to
 		$".".mass = 1000.0

@@ -12,6 +12,9 @@ extends CharacterBody2D
 @export var push_force = 20.0
 var dead = false
 var target_angle = 0
+var recoil = 10.0
+var max_recoil = 15.0
+var recoil_deg = randf_range(-recoil, recoil)
 
 @export var can_shoot = false
 func _ready():
@@ -32,7 +35,6 @@ func _process(_delta):
 	if dead:
 		return
 	
-	#global_rotation = global_position.direction_to(get_global_mouse_position()).angle() + PI/2
 	$Top.rotation = global_position.direction_to(get_global_mouse_position()).angle() + PI/2
 	var move_direction = Input.get_vector("move_left","move_right","move_down","move_up")
 	$Legs.rotation = target_angle
@@ -50,6 +52,13 @@ func _process(_delta):
 	if Input.is_action_just_pressed("Aim"):
 		animation_player.play("aim")
 		move_speed = 100
+	if Input.is_action_pressed("Aim"):
+		recoil = max(recoil - 0.1,0)
+	else:
+		recoil = min(recoil + 0.1,max_recoil)
+	if recoil != 0:
+		recoil_deg = randf_range(-recoil, recoil)
+	ray_cast_2d.rotation_degrees = recoil_deg
 	if Input.is_action_just_released("Aim"):
 		animation_player.play_backwards("aim")
 		move_speed = 200
@@ -85,11 +94,13 @@ func shoot():
 		$ShootSound.play()
 		var shot_trail = bullet_trail.instantiate()
 		
+		recoil = min(max_recoil, recoil + max_recoil * 0.7)
+		
 		#offset
 		var direction = ray_cast_2d.global_position - get_global_mouse_position()
 		direction = direction.normalized()
 		var offset = direction * 70
-
+		
 		#setting bullet trail points
 		shot_trail.add_point(get_parent().to_local(ray_cast_2d.global_position) - offset)
 		if ray_cast_2d.is_colliding():
@@ -98,6 +109,8 @@ func shoot():
 			shot_trail.add_point(get_parent().to_local(ray_cast_2d.global_position) - 100 * offset)
 		get_parent().add_child(shot_trail)
 		
+		#var end_position = ray_cast_2d.global_position + ray_cast_2d.cast_to.normalized() * 500
 		#killing
 		if ray_cast_2d.is_colliding() and ray_cast_2d.get_collider().has_method("kill"):
 			ray_cast_2d.get_collider().kill()
+		

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dbs8dbmepbxnh"]
+[gd_scene load_steps=18 format=3 uid="uid://dbs8dbmepbxnh"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_eb6ap"]
 [ext_resource type="Shader" path="res://shaders/grayscale.gdshader" id="1_fgecg"]
@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://bnppgiphfgo5q" path="res://levels/enviroment.tscn" id="3_uc7v4"]
 [ext_resource type="Texture2D" uid="uid://dv1g3h6sswoha" path="res://characters/player/view_cone.png" id="3_wk82u"]
 [ext_resource type="Shader" path="res://shaders/visibilityMapShader.gdshader" id="4_thh5m"]
-[ext_resource type="Texture2D" uid="uid://c81efo3urc6nt" path="res://characters/player/view_cone_redo.png" id="6_c31t0"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_23xho"]
 shader = ExtResource("1_fgecg")
@@ -43,6 +42,19 @@ func _process(_delta):
 script/source = "extends Camera2D
 
 "
+
+[sub_resource type="Gradient" id="Gradient_wei4d"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0.675325, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ifk28"]
+gradient = SubResource("Gradient_wei4d")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.862385, 0.178899)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_o7gsa"]
 shader = ExtResource("4_thh5m")
@@ -149,8 +161,8 @@ texture_scale = 2.0
 [node name="PointLight2D" type="PointLight2D" parent="VisionConeViewport/VisibilityViewport/ViewLight"]
 blend_mode = 1
 shadow_enabled = true
-texture = ExtResource("6_c31t0")
-texture_scale = 0.4
+texture = SubResource("GradientTexture2D_ifk28")
+texture_scale = 0.7
 
 [node name="Enviroment" parent="VisionConeViewport/VisibilityViewport" instance=ExtResource("3_uc7v4")]
 material = SubResource("ShaderMaterial_o7gsa")
