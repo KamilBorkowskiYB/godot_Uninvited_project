@@ -7,6 +7,8 @@ extends CharacterBody2D
 @onready var ray_cast_2d = $Top/RayCast2D
 @onready var animation_player = $AnimationPlayerTOP
 @onready var animation_playerLegs = $AnimationPlayerLEGS
+@onready var RIGHT_aim_assitst = $Top/AimAssistR
+@onready var LEFT_aim_assitst = $Top/AimAssistL
 @onready var bullet_trail = load("res://shot_trail.tscn")
 @export var move_speed = 200
 @export var push_force = 20.0
@@ -14,6 +16,7 @@ var dead = false
 var target_angle = 0
 var recoil = 10.0
 var max_recoil = 15.0
+var min_recoil = 3.0
 var recoil_deg = randf_range(-recoil, recoil)
 
 @export var can_shoot = false
@@ -44,16 +47,24 @@ func _process(_delta):
 	
 	if velocity.length() > 0:
 		animation_playerLegs.play("walk")
+		min_recoil = 6.0
+		if(recoil < 6.0):
+			recoil = 6.0
 	else:
 		animation_playerLegs.stop()
+		min_recoil = 3.0
 	if Input.is_action_just_pressed("shoot"):
 		shoot()
 	
 	if Input.is_action_just_pressed("Aim"):
 		animation_player.play("aim")
+		RIGHT_aim_assitst.show()
+		LEFT_aim_assitst.show()
 		move_speed = 100
 	if Input.is_action_pressed("Aim"):
-		recoil = max(recoil - 0.1,0)
+		recoil = max(recoil - 0.1,min_recoil)
+		RIGHT_aim_assitst.rotation_degrees = recoil
+		LEFT_aim_assitst.rotation_degrees = -recoil
 	else:
 		recoil = min(recoil + 0.1,max_recoil)
 	if recoil != 0:
@@ -61,6 +72,8 @@ func _process(_delta):
 	ray_cast_2d.rotation_degrees = recoil_deg
 	if Input.is_action_just_released("Aim"):
 		animation_player.play_backwards("aim")
+		RIGHT_aim_assitst.hide()
+		LEFT_aim_assitst.hide()
 		move_speed = 200
 func _physics_process(_delta):
 	if dead:
@@ -109,8 +122,10 @@ func shoot():
 			shot_trail.add_point(get_parent().to_local(ray_cast_2d.global_position) - 100 * offset)
 		get_parent().add_child(shot_trail)
 		
-		#var end_position = ray_cast_2d.global_position + ray_cast_2d.cast_to.normalized() * 500
 		#killing
-		if ray_cast_2d.is_colliding() and ray_cast_2d.get_collider().has_method("kill"):
-			ray_cast_2d.get_collider().kill()
+		if ray_cast_2d.is_colliding():
+			if ray_cast_2d.get_collider().has_method("kill"):
+				ray_cast_2d.get_collider().kill()
+			if ray_cast_2d.get_collider().has_method("shot_reaction"):
+				ray_cast_2d.get_collider().shot_reaction(direction)
 		

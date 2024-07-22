@@ -33,6 +33,24 @@ texture = ExtResource("1_p6kxc")
 position = Vector2(543, 81)
 scale = Vector2(6.16, 0.48)
 
+[node name="StaticBody2D14" parent="Static" instance=ExtResource("2_apuo0")]
+position = Vector2(144, 642)
+scale = Vector2(25.72, 0.48)
+
+[node name="StaticBody2D15" parent="Static" instance=ExtResource("2_apuo0")]
+position = Vector2(135, -492)
+scale = Vector2(25.72, 0.48)
+
+[node name="StaticBody2D16" parent="Static" instance=ExtResource("2_apuo0")]
+position = Vector2(966, 81)
+rotation = -1.57104
+scale = Vector2(18.24, 0.48)
+
+[node name="StaticBody2D17" parent="Static" instance=ExtResource("2_apuo0")]
+position = Vector2(-674, 73)
+rotation = -1.57104
+scale = Vector2(18.24, 0.48)
+
 [node name="StaticBody2D13" parent="Static" instance=ExtResource("2_apuo0")]
 position = Vector2(121, -121)
 scale = Vector2(0.920322, 0.64)

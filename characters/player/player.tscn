@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://c8bitsc7ybbya"]
+[gd_scene load_steps=18 format=3 uid="uid://c8bitsc7ybbya"]
 
 [ext_resource type="Script" path="res://characters/player/player.gd" id="1_bf8ru"]
 [ext_resource type="Texture2D" uid="uid://f5sx516ofsyb" path="res://characters/player/legs.png" id="2_qgy1a"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cx53kc3c1yvij" path="res://characters/zombie/blood_splatter.png" id="5_ilehf"]
 [ext_resource type="Texture2D" uid="uid://b5ugqtcggs4u2" path="res://characters/player/light.png" id="6_f1jbg"]
 [ext_resource type="Texture2D" uid="uid://yvb8nqnn0ejw" path="res://characters/player/muzzle_flash.png" id="7_pvwq1"]
+[ext_resource type="Texture2D" uid="uid://cgkk6a01eg81t" path="res://aim_assinst_line.png" id="8_wp4qy"]
 [ext_resource type="AudioStream" uid="uid://bomrfapdkjghu" path="res://characters/zombie/death_noise1.wav" id="8_xyryx"]
 [ext_resource type="AudioStream" uid="uid://b0ptr56jwws0u" path="res://characters/player/shotgun_shot1.wav" id="9_xtgcm"]
 
@@ -376,7 +377,7 @@ texture = ExtResource("5_ilehf")
 
 [node name="RayCast2D" type="RayCast2D" parent="Top"]
 position = Vector2(3, -5)
-target_position = Vector2(0, -1000)
+target_position = Vector2(0, -3000)
 collision_mask = 3
 
 [node name="FlashLight" type="PointLight2D" parent="Top"]
@@ -397,8 +398,17 @@ texture = ExtResource("7_pvwq1")
 wait_time = 0.05
 one_shot = true
 
-[node name="Graphics" type="Node2D" parent="."]
-position = Vector2(0, -14)
+[node name="AimAssistR" type="Sprite2D" parent="Top"]
+visible = false
+scale = Vector2(0.5, 0.8)
+texture = ExtResource("8_wp4qy")
+offset = Vector2(0, -300)
+
+[node name="AimAssistL" type="Sprite2D" parent="Top"]
+visible = false
+scale = Vector2(0.5, 0.8)
+texture = ExtResource("8_wp4qy")
+offset = Vector2(0, -300)
 
 [node name="DeafSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_xyryx")

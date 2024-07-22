@@ -8,6 +8,7 @@ var isClosed = true
 func _ready():
 	interaction_area.interact = Callable(self,"_on_interact")
 	transform_to = self.transform
+
 func _on_interact():
 	if(isClosed):
 		isClosed = false
@@ -27,3 +28,10 @@ func _on_interact():
 		await get_tree().create_timer(0.01).timeout #huh why
 		self.transform = transform_to
 		$".".mass = 1000.0
+func shot_reaction(direction):
+	if isClosed:
+		isClosed = false
+		$".".mass = 1.0
+		apply_central_impulse(-direction * 500000)
+	else:#huh why
+		apply_central_impulse(-direction * 500)
