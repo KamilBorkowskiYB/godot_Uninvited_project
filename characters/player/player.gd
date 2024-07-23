@@ -20,8 +20,10 @@ var min_recoil = 3.0
 var recoil_deg = randf_range(-recoil, recoil)
 
 @export var can_shoot = false
+@export var can_interact = true
 func _ready():
 	can_shoot = false
+	can_interact = true
 
 func _process(_delta):
 	if camera != null:
@@ -70,6 +72,8 @@ func _process(_delta):
 	if recoil != 0:
 		recoil_deg = randf_range(-recoil, recoil)
 	ray_cast_2d.rotation_degrees = recoil_deg
+	
+	
 	if Input.is_action_just_released("Aim"):
 		animation_player.play_backwards("aim")
 		RIGHT_aim_assitst.hide()
