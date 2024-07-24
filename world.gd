@@ -2,9 +2,27 @@ extends Node2D
 
 
 func _ready():
-	var viewport1 = get_node("MainLevelViewport/SubViewport/Level/Enviroment")
-	var viewport2 = get_node("FadeoutViewport/SubViewport/Enviroment")
-	var viewport3 = get_node("VisionConeViewport/VisibilityViewport/Enviroment")
+	var viewport1 = get_node("MainLevelViewport/SubViewport/Level")
+	var viewport2 = get_node("FogViewport")
+	var viewport3 = get_node("VisibilityViewport")
+	
+	#connecting viewport cameras
+	var cam_main = viewport1.get_node_or_null("PlayerCamera")
+	var cam_fog = viewport2.get_node_or_null("Camera2D")
+	var cam_view = viewport3.get_node_or_null("Camera2D")
+	if(cam_main and cam_fog and cam_view):
+		cam_main.vision_camera = cam_view
+		cam_main.fog_camera = cam_fog
+	
+	#connecting VisionViewport lights to player
+	var player = viewport1.get_node_or_null("Player")
+	var view_light = viewport3.get_node_or_null("ViewLight")
+	if(player and view_light):
+		player.view_light = view_light
+	
+	viewport1 = get_node("MainLevelViewport/SubViewport/Level/Enviroment")
+	viewport2 = get_node("FogViewport/Enviroment")
+	viewport3 = get_node("VisibilityViewport/Enviroment")
 	
 	for i in range(4):#connecting doors
 		if(i==0):

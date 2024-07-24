@@ -1,12 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://d1oul8y1hqgln"]
+[gd_scene load_steps=7 format=3 uid="uid://d1oul8y1hqgln"]
 
+[ext_resource type="Script" path="res://levels/camera_control.gd" id="1_4f817"]
 [ext_resource type="PackedScene" uid="uid://bnppgiphfgo5q" path="res://levels/enviroment.tscn" id="1_aqhqd"]
 [ext_resource type="PackedScene" uid="uid://c8bitsc7ybbya" path="res://characters/player/player.tscn" id="2_klocm"]
 [ext_resource type="PackedScene" uid="uid://dss4qi31e3k2u" path="res://characters/zombie/zombie.tscn" id="3_7x6e1"]
 [ext_resource type="PackedScene" uid="uid://shqgwjseluto" path="res://objects/light_source.tscn" id="4_n3l4b"]
+[ext_resource type="Script" path="res://characters/player/Camera2D.gd" id="5_ccx42"]
 
 [node name="Level" type="Node2D"]
 position = Vector2(150, 50)
+script = ExtResource("1_4f817")
 
 [node name="Enviroment" parent="." instance=ExtResource("1_aqhqd")]
 
@@ -25,13 +28,11 @@ position = Vector2(-189, 382)
 [node name="Zombie4" parent="." instance=ExtResource("3_7x6e1")]
 position = Vector2(253, -203)
 
-[node name="CanvasModulate" type="CanvasModulate" parent="."]
-visible = false
-position = Vector2(387, 67)
-color = Color(0.568627, 0.568627, 0.568627, 1)
-
 [node name="LightSource" parent="." instance=ExtResource("4_n3l4b")]
 position = Vector2(109, 51)
 
 [node name="LightSource2" parent="." instance=ExtResource("4_n3l4b")]
 position = Vector2(403, 35)
+
+[node name="PlayerCamera" type="Camera2D" parent="."]
+script = ExtResource("5_ccx42")

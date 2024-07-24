@@ -1,8 +1,7 @@
 extends CharacterBody2D
 
-@export var view_camera: Node2D #viewPorty
+@export var view_light: Node2D #viewPorty
 @export var camera: Node2D #viewPorty
-@export var fog: Node2D #viewPorty
 
 @onready var ray_cast_2d = $Top/RayCast2D
 @onready var animation_player = $AnimationPlayerTOP
@@ -21,6 +20,7 @@ var recoil_deg = randf_range(-recoil, recoil)
 
 @export var can_shoot = false
 @export var can_interact = true
+
 func _ready():
 	can_shoot = false
 	can_interact = true
@@ -28,11 +28,9 @@ func _ready():
 func _process(_delta):
 	if camera != null:
 		camera.position = self.position
-	if fog != null:
-		fog.position = self.position
-	if view_camera != null:      #viewPorty
-		view_camera.rotation = $Top.rotation
-		view_camera.position = self.position
+	if view_light != null:      #viewPorty
+		view_light.rotation = $Top.rotation
+		view_light.position = self.position
 	if Input.is_action_just_pressed("exit"):
 		get_tree().quit()
 	if Input.is_action_just_pressed("restart"):
