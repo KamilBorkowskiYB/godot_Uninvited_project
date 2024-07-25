@@ -20,6 +20,9 @@ func _ready():
 	if(player and view_light):
 		player.view_light = view_light
 	
+	#connecting signals from player
+	player.player_has_died.connect(player_dead)
+	
 	viewport1 = get_node("MainLevelViewport/SubViewport/Level/Enviroment")
 	viewport2 = get_node("FogViewport/Enviroment")
 	viewport3 = get_node("VisibilityViewport/Enviroment")
@@ -71,3 +74,11 @@ func _ready():
 			if(node1 and node2 and node3):
 				node1.linkedView = node2
 				node1.linkedFog = node3
+
+func _process(delta):
+	if Input.is_action_just_pressed("restart"):
+		restart()
+func restart():
+	get_tree().reload_current_scene()
+func player_dead():
+	$DeathScreen/DeathScreen.show()

@@ -26,13 +26,13 @@ shader = ExtResource("2_hpucc")
 shader_parameter/mask_texture = SubResource("ViewportTexture_urhso")
 shader_parameter/unseen = SubResource("ViewportTexture_nggp3")
 
-[sub_resource type="Gradient" id="Gradient_wei4d"]
+[sub_resource type="Gradient" id="Gradient_qum5l"]
 interpolation_mode = 2
 offsets = PackedFloat32Array(0.675325, 1)
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_ifk28"]
-gradient = SubResource("Gradient_wei4d")
+gradient = SubResource("Gradient_qum5l")
 width = 256
 height = 256
 fill = 1
@@ -109,9 +109,9 @@ visible = false
 [node name="Camera2D" type="Camera2D" parent="VisibilityViewport"]
 
 [node name="DeathScreen" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="DeathScreen" type="Control" parent="DeathScreen"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -169,5 +169,7 @@ grow_horizontal = 2
 grow_vertical = 0
 text = "Restart
 "
+
+[connection signal="pressed" from="DeathScreen/DeathScreen/Panel/Button" to="." method="restart"]
 
 [editable path="VisibilityViewport/Enviroment"]

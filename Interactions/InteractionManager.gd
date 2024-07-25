@@ -37,19 +37,17 @@ func _process(_delta):
 		label.global_position = active_areas[0].global_position
 		var mouse_pos = get_viewport().get_mouse_position()
 		label.global_position.y = mouse_pos.y + 30
-		label.global_position.x = mouse_pos.x - 60
-		if player_help.can_interact:
+		label.global_position.x = mouse_pos.x - 75
+		if player_help.cursor_current != cursor_aim:
 			label.show()
 			Input.set_custom_mouse_cursor(cursor_interact,Input.CURSOR_ARROW,Vector2(24,24))
 		else:
 			label.hide()
-			Input.set_custom_mouse_cursor(cursor_aim,Input.CURSOR_ARROW,Vector2(24,24))
 	else:
 		label.hide()
-		if !player_help.can_interact:
-			Input.set_custom_mouse_cursor(cursor_aim,Input.CURSOR_ARROW,Vector2(24,24))
-		else:
+		if player_help != null and player_help.cursor_current != cursor_aim:
 			Input.set_custom_mouse_cursor(cursor_normal,Input.CURSOR_ARROW,Vector2(24,24))
+
 
 func _sort_by_distance_to_player(area1, area2):
 	var area1_to_player = player.global_position.distance_to(area1.global_position)

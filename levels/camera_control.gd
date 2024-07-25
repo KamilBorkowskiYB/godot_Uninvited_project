@@ -3,6 +3,8 @@ extends Node2D
 @onready var player: CharacterBody2D = get_tree().get_first_node_in_group("player")
 var DEAD_ZONE = 160
 var max_view_distance = 600
+var shake_amount = 0
+var shake_timer = 0
 
 func _process(_delta):
 	var mouse_position = get_global_mouse_position()
@@ -16,3 +18,13 @@ func _process(_delta):
 		target_position = player_position + direction * (clamped_distance - DEAD_ZONE) * 0.5
 	
 	$PlayerCamera.global_position = target_position
+	
+	if shake_timer > 0:
+		shake_timer -= _delta
+		$PlayerCamera.offset = Vector2(randi_range(-shake_amount, shake_amount), randi_range(-shake_amount, shake_amount))
+	else:
+		$PlayerCamera.offset = Vector2.ZERO
+
+func start_shake(amount, duration):
+	shake_amount = amount
+	shake_timer = duration
