@@ -20,6 +20,16 @@ func _ready():
 	if(player and view_light):
 		player.view_light = view_light
 	
+	
+	#connecting aim assist to player 
+	var aim = viewport2.get_node_or_null("AimAssist")
+	var aimL = viewport2.get_node_or_null("AimAssist/AimAssistL")
+	var aimR = viewport2.get_node_or_null("AimAssist/AimAssistR")
+	if(player and aim and aimL and aimR):
+		player.aim_assist = aim
+		player.aim_assistR = aimR
+		player.aim_assistL = aimL
+	
 	#connecting signals from player
 	player.player_has_died.connect(player_dead)
 	

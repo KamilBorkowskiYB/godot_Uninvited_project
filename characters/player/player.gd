@@ -2,8 +2,10 @@ extends CharacterBody2D
 
 signal player_has_died
 
-@export var view_light: Node2D #Connects view with player
-@export var camera: Node2D #not used
+var view_light: Node2D #Connects view with player
+var aim_assist: Node2D 
+var aim_assistR: Node2D 
+var aim_assistL: Node2D 
 
 ##########        CURSORS        ##########
 @onready var cursor_interact = load("res://cursor/cursor_interact.png")
@@ -23,7 +25,7 @@ var cursor_current = null
 var dead = false
 var leg_direction_angle = 0
 @export var can_shoot = false
-@export var can_interact = true
+@export var can_interact = true #not used at the moment
 
 ##########        SHOOTING RECOIL         ##########
 var recoil = 10.0
@@ -37,8 +39,13 @@ func _ready():
 
 func _process(_delta):
 	##########        CONNECTING NODES FROM VIEWPORTS         ##########
-	if camera != null:
-		camera.position = self.position
+	if aim_assist != null:
+		aim_assist.position = self.position
+		aim_assist.rotation = $Top.rotation
+		aim_assistR.rotation = $Top/AimAssistR.rotation
+		aim_assistL.rotation = $Top/AimAssistL.rotation
+		aim_assistR.visible = $Top/AimAssistR.visible
+		aim_assistL.visible = $Top/AimAssistL.visible
 	if view_light != null:      #viewPorty
 		view_light.rotation = $Top.rotation
 		view_light.position = self.position

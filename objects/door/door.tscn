@@ -48,6 +48,7 @@ shape = SubResource("RectangleShape2D_oivjw")
 occluder = SubResource("OccluderPolygon2D_rejhh")
 
 [node name="interaction_area" parent="Door" instance=ExtResource("4_k0qj8")]
+action_name = "Open"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Door/interaction_area"]
 position = Vector2(73.5, 1.28346e-06)

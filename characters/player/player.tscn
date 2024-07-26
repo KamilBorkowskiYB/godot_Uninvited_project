@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://c8bitsc7ybbya"]
+[gd_scene load_steps=22 format=3 uid="uid://c8bitsc7ybbya"]
 
 [ext_resource type="Script" path="res://characters/player/player.gd" id="1_bf8ru"]
 [ext_resource type="Texture2D" uid="uid://f5sx516ofsyb" path="res://characters/player/legs.png" id="2_qgy1a"]
@@ -13,6 +13,12 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_f7cyc"]
 radius = 27.2947
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_iro56"]
+light_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ppqp4"]
+light_mode = 1
 
 [sub_resource type="Animation" id="Animation_syd44"]
 length = 0.001
@@ -438,12 +444,16 @@ one_shot = true
 
 [node name="AimAssistR" type="Sprite2D" parent="Top"]
 visible = false
+z_index = 5
+material = SubResource("CanvasItemMaterial_iro56")
 scale = Vector2(0.5, 0.8)
 texture = ExtResource("8_wp4qy")
 offset = Vector2(0, -300)
 
 [node name="AimAssistL" type="Sprite2D" parent="Top"]
 visible = false
+z_index = 5
+material = SubResource("CanvasItemMaterial_ppqp4")
 scale = Vector2(0.5, 0.8)
 texture = ExtResource("8_wp4qy")
 offset = Vector2(0, -300)

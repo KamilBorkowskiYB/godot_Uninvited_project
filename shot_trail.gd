@@ -1,6 +1,6 @@
 extends Line2D
 
-@export var ANIMATION_DURATION = 0.5
+@export var ANIMATION_DURATION = 0.1
 var elapsed_time = 0.0
 
 func _process(delta):

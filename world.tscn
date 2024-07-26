@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dbs8dbmepbxnh"]
+[gd_scene load_steps=19 format=3 uid="uid://dbs8dbmepbxnh"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_eb6ap"]
 [ext_resource type="Shader" path="res://shaders/grayscale.gdshader" id="1_fgecg"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bnppgiphfgo5q" path="res://levels/enviroment.tscn" id="3_uc7v4"]
 [ext_resource type="Texture2D" uid="uid://dv1g3h6sswoha" path="res://characters/player/view_cone.png" id="3_wk82u"]
 [ext_resource type="Shader" path="res://shaders/visibilityMapShader.gdshader" id="4_thh5m"]
+[ext_resource type="Texture2D" uid="uid://cgkk6a01eg81t" path="res://aim_assinst_line.png" id="6_6svyg"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_23xho"]
 shader = ExtResource("1_fgecg")
@@ -25,6 +26,12 @@ resource_local_to_scene = true
 shader = ExtResource("2_hpucc")
 shader_parameter/mask_texture = SubResource("ViewportTexture_urhso")
 shader_parameter/unseen = SubResource("ViewportTexture_nggp3")
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_rrk16"]
+light_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_voyp2"]
+light_mode = 1
 
 [sub_resource type="Gradient" id="Gradient_qum5l"]
 interpolation_mode = 2
@@ -78,6 +85,22 @@ render_target_update_mode = 4
 [node name="Enviroment" parent="FogViewport" instance=ExtResource("3_uc7v4")]
 
 [node name="Camera2D" type="Camera2D" parent="FogViewport"]
+
+[node name="AimAssist" type="Node2D" parent="FogViewport"]
+
+[node name="AimAssistR" type="Sprite2D" parent="FogViewport/AimAssist"]
+z_index = 5
+material = SubResource("CanvasItemMaterial_rrk16")
+scale = Vector2(0.5, 0.8)
+texture = ExtResource("6_6svyg")
+offset = Vector2(0, -300)
+
+[node name="AimAssistL" type="Sprite2D" parent="FogViewport/AimAssist"]
+z_index = 5
+material = SubResource("CanvasItemMaterial_voyp2")
+scale = Vector2(0.5, 0.8)
+texture = ExtResource("6_6svyg")
+offset = Vector2(0, -300)
 
 [node name="VisibilityViewport" type="SubViewport" parent="."]
 transparent_bg = true

@@ -1,7 +1,7 @@
 extends Node2D
 #should be added to parent of player and camera
 @onready var player: CharacterBody2D = get_tree().get_first_node_in_group("player")
-var DEAD_ZONE = 160
+var DEAD_ZONE = 200
 var max_view_distance = 600
 var shake_amount = 0
 var shake_timer = 0

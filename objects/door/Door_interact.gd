@@ -12,6 +12,7 @@ func _ready():
 func _on_interact():
 	if(isClosed):
 		isClosed = false
+		$interaction_area.action_name = "Close"
 		$".".mass = 1.0
 		if(player.global_position.y > self.global_position.y):
 			apply_central_impulse(Vector2(0,-450000))
@@ -23,6 +24,7 @@ func _on_interact():
 			apply_central_impulse(Vector2(450000,0))
 	else:
 		isClosed = true
+		$interaction_area.action_name = "Open"
 		$".".set_linear_velocity(Vector2.ZERO)
 		$".".set_angular_velocity(0)
 		await get_tree().create_timer(0.01).timeout #huh why
