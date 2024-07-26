@@ -14,7 +14,10 @@ var aim_assistL: Node2D
 var cursor_current = null
 
 ##########        PLAYER NODES        ##########
-@onready var ray_cast_2d = $Top/RayCast2D
+@onready var ray_cast1 = $Top/RayCasts/RayCast2D
+@onready var ray_cast2 = $Top/RayCasts/RayCast2D2
+@onready var ray_cast3 = $Top/RayCasts/RayCast2D3
+@onready var ray_cast4 = $Top/RayCasts/RayCast2D4
 @onready var animation_player = $AnimationPlayerTOP
 @onready var animation_playerLegs = $AnimationPlayerLEGS
 @onready var RIGHT_aim_assitst = $Top/AimAssistR
@@ -24,14 +27,25 @@ var cursor_current = null
 @export var push_force = 20.0
 var dead = false
 var leg_direction_angle = 0
+var weapon_selected = 0 #0-rifle	1-shotgun
 @export var can_shoot = false
 @export var can_interact = true #not used at the moment
 
 ##########        SHOOTING RECOIL         ##########
+const RIFLE_MAX_RECOIL = 15.0
+const RIFLE_MIN_RECOIL = 3.0
+const SHOTGUN_MAX_RECOIL = 40.0
+const SHOTGUN_MIN_RECOIL = 10.0
+var floor_min_recoil = 3.0 #static min recoil based of weapon
+var animation_aim = "aim"
+var recoil_focus_speed = 0.1
 var recoil = 10.0
-var max_recoil = 15.0
-var min_recoil = 3.0
+var max_recoil = RIFLE_MAX_RECOIL
+var min_recoil = RIFLE_MIN_RECOIL#dynamic min recoil based of walking, etc.
 var recoil_deg = randf_range(-recoil, recoil)
+var recoil_deg2 = randf_range(-recoil, recoil)
+var recoil_deg3 = randf_range(-recoil, recoil)
+var recoil_deg4 = randf_range(-recoil, recoil)
 
 func _ready():
 	can_shoot = false
@@ -64,19 +78,28 @@ func _process(_delta):
 	if velocity.length() > 0:
 		animation_playerLegs.play("walk")
 		leg_direction_angle = move_direction.angle() + PI/2
-		min_recoil = 6.0
-		if(recoil < 6.0):
-			recoil = 6.0
+		min_recoil = floor_min_recoil * 2
+		if(recoil < min_recoil):
+			recoil = min_recoil
 	else:
 		animation_playerLegs.stop()
-		min_recoil = 3.0
+		min_recoil = floor_min_recoil
 		
 	##########        INPUTS         ##########
 	if Input.is_action_just_pressed("shoot"):
-		shoot()
-		
+		if weapon_selected == 0:
+			shoot([ray_cast1])
+		elif weapon_selected == 1:
+			shoot([ray_cast1,ray_cast2,ray_cast3,ray_cast4])
+	
+	if Input.is_action_just_pressed("weapon_1"):
+		change_weapon(0,RIFLE_MAX_RECOIL,RIFLE_MIN_RECOIL,0.1,0,"aim")
+	
+	if Input.is_action_just_pressed("weapon_2"):
+		change_weapon(5,SHOTGUN_MAX_RECOIL,SHOTGUN_MIN_RECOIL,0.4,1,"aim_shotgun")
+	
 	if Input.is_action_just_pressed("Aim"):
-		animation_player.play("aim")
+		animation_player.play(animation_aim)
 		animation_playerLegs.speed_scale = 0.7
 		RIGHT_aim_assitst.show()
 		LEFT_aim_assitst.show()
@@ -84,17 +107,23 @@ func _process(_delta):
 		cursor_current = cursor_aim
 		move_speed = 100
 	if Input.is_action_pressed("Aim"):
-		recoil = max(recoil - 0.1,min_recoil)
+		recoil = max(recoil - recoil_focus_speed,min_recoil)
 		RIGHT_aim_assitst.rotation_degrees = recoil
 		LEFT_aim_assitst.rotation_degrees = -recoil
 	else:
 		recoil = min(recoil + 0.1,max_recoil)
 	if recoil != 0:
 		recoil_deg = randf_range(-recoil, recoil)
-	ray_cast_2d.rotation_degrees = recoil_deg
+		recoil_deg2 = randf_range(-recoil, recoil)
+		recoil_deg3 = randf_range(-recoil, recoil)
+		recoil_deg4 = randf_range(-recoil, recoil)
+	ray_cast1.rotation_degrees = recoil_deg
+	ray_cast2.rotation_degrees = recoil_deg2
+	ray_cast3.rotation_degrees = recoil_deg3
+	ray_cast4.rotation_degrees = recoil_deg4
 	
 	if Input.is_action_just_released("Aim"):
-		animation_player.play_backwards("aim")
+		animation_player.play_backwards(animation_aim)
 		animation_playerLegs.speed_scale = 1
 		RIGHT_aim_assitst.hide()
 		LEFT_aim_assitst.hide()
@@ -126,33 +155,46 @@ func kill():
 	z_index = -1
 	emit_signal("player_has_died")
 
-func shoot():
+func shoot(ray_casts):
 	if can_shoot == true:
 		$Top/MuzzleFlash.show()
 		$Top/FlashLight.show()
 		$Top/MuzzleFlash/Timer.start()
 		$Sounds/ShootSound.play()
-		var shot_trail = bullet_trail.instantiate()
 		get_parent().start_shake(10, 0.1) 
 		recoil = min(max_recoil, recoil + max_recoil * 0.7)
 		
-		#bullet trail offset
-		var direction = ray_cast_2d.global_position - get_global_mouse_position()
-		direction = direction.normalized()
-		var offset = direction * 70
-		
-		#setting bullet trail points
-		shot_trail.add_point(get_parent().to_local(ray_cast_2d.global_position) - offset)
-		if ray_cast_2d.is_colliding():
-			shot_trail.add_point(get_parent().to_local(ray_cast_2d.get_collision_point()))
-		else:
-			shot_trail.add_point(get_parent().to_local(ray_cast_2d.global_position) - 100 * offset)
-		get_parent().add_child(shot_trail)
-		
-		#killing
-		if ray_cast_2d.is_colliding():
-			if ray_cast_2d.get_collider().has_method("kill"):
-				ray_cast_2d.get_collider().kill()
-			if ray_cast_2d.get_collider().has_method("shot_reaction"):
-				ray_cast_2d.get_collider().shot_reaction(direction)
-		
+		# Iterate through all RayCast2D
+		for ray_cast in ray_casts:
+			var direction = ray_cast.global_position - get_global_mouse_position()
+			direction = direction.normalized()
+			var offset = direction * 70
+			
+			var shot_trail = bullet_trail.instantiate()
+			
+			# Setting bullet trail points
+			shot_trail.add_point(get_parent().to_local(ray_cast.global_position) - offset)
+			if ray_cast.is_colliding():
+				shot_trail.add_point(get_parent().to_local(ray_cast.get_collision_point()))
+			else:
+				shot_trail.add_point(get_parent().to_local(ray_cast.global_position) - 100 * offset)
+			get_parent().add_child(shot_trail)
+			
+			# Killing
+			if ray_cast.is_colliding():
+				if ray_cast.get_collider().has_method("kill"):
+					ray_cast.get_collider().kill()
+				if ray_cast.get_collider().has_method("shot_reaction"):
+					ray_cast.get_collider().shot_reaction(direction)
+
+func change_weapon(frame,max_rec,min_rec,rec_sped,wep_num,anim_aim):
+	if cursor_current != cursor_aim:
+		$Top/Alive.frame = frame
+		max_recoil = max_rec
+		min_recoil = min_rec
+		recoil_focus_speed = rec_sped
+		weapon_selected = wep_num
+		floor_min_recoil = min_rec
+		animation_aim = anim_aim
+		recoil = max_rec * 0.7
+
