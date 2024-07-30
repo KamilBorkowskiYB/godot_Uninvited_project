@@ -31,17 +31,30 @@ var weapon_selected = 0 #0-rifle	1-shotgun
 @export var can_shoot = false
 @export var can_interact = true #not used at the moment
 
-##########        SHOOTING RECOIL         ##########
+##########        WEAPON STATS         ##########
+#rifle
 const RIFLE_MAX_RECOIL = 15.0
 const RIFLE_MIN_RECOIL = 3.0
+const RIFLE_BASE_RECOIL = 10.0
+const RIFLE_FOCUS_SPEED = 0.1
+const RIFLE_DMG = 30.0
+const RIFLE_AIM_ANIM = "aim"
+#shotgun
 const SHOTGUN_MAX_RECOIL = 40.0
 const SHOTGUN_MIN_RECOIL = 10.0
-var floor_min_recoil = 3.0 #static min recoil based of weapon
-var animation_aim = "aim"
-var recoil_focus_speed = 0.1
-var recoil = 10.0
+const SHOTGUN_FOCUS_SPEED = 0.4
+const SHOTGUN_DMG = 15
+const SHOTGUN_AIM_ANIM = "aim_shotgun"
+#defalut
 var max_recoil = RIFLE_MAX_RECOIL
 var min_recoil = RIFLE_MIN_RECOIL#dynamic min recoil based of walking, etc.
+var recoil = RIFLE_BASE_RECOIL
+var recoil_focus_speed = RIFLE_FOCUS_SPEED
+var floor_min_recoil = RIFLE_MIN_RECOIL #static min recoil based of weapon
+var damage = RIFLE_DMG
+var animation_aim = RIFLE_AIM_ANIM
+
+##########        CALCULATIN RAYCAST ROTATION        ##########
 var recoil_deg = randf_range(-recoil, recoil)
 var recoil_deg2 = randf_range(-recoil, recoil)
 var recoil_deg3 = randf_range(-recoil, recoil)
@@ -93,10 +106,10 @@ func _process(_delta):
 			shoot([ray_cast1,ray_cast2,ray_cast3,ray_cast4])
 	
 	if Input.is_action_just_pressed("weapon_1"):
-		change_weapon(0,RIFLE_MAX_RECOIL,RIFLE_MIN_RECOIL,0.1,0,"aim")
+		change_weapon(0,0,RIFLE_MAX_RECOIL,RIFLE_MIN_RECOIL,RIFLE_DMG,RIFLE_FOCUS_SPEED,RIFLE_AIM_ANIM)
 	
 	if Input.is_action_just_pressed("weapon_2"):
-		change_weapon(5,SHOTGUN_MAX_RECOIL,SHOTGUN_MIN_RECOIL,0.4,1,"aim_shotgun")
+		change_weapon(5,1,SHOTGUN_MAX_RECOIL,SHOTGUN_MIN_RECOIL,SHOTGUN_DMG,SHOTGUN_FOCUS_SPEED,SHOTGUN_AIM_ANIM)
 	
 	if Input.is_action_just_pressed("Aim"):
 		animation_player.play(animation_aim)
@@ -176,22 +189,30 @@ func shoot(ray_casts):
 			shot_trail.add_point(get_parent().to_local(ray_cast.global_position) - offset)
 			if ray_cast.is_colliding():
 				shot_trail.add_point(get_parent().to_local(ray_cast.get_collision_point()))
-			else:
-				shot_trail.add_point(get_parent().to_local(ray_cast.global_position) - 100 * offset)
+			#else:
+				#var offset_x = cos(ray_cast.rotation_degrees) * 700
+				#var offset_y = sin(ray_cast.rotation_degrees) * 700
+				#var end_point = Vector2(offset_x,offset_y)
+				#print(ray_cast.rotation_degrees)
+				#ray_cast.position += end_point
+				#shot_trail.add_point(get_parent().to_local(ray_cast.global_position))
+				#shot_trail.add_point(get_parent().to_local(ray_cast.global_position) - 100 * offset)
 			get_parent().add_child(shot_trail)
 			
 			# Killing
 			if ray_cast.is_colliding():
 				if ray_cast.get_collider().has_method("kill"):
-					ray_cast.get_collider().kill()
-				if ray_cast.get_collider().has_method("shot_reaction"):
-					ray_cast.get_collider().shot_reaction(direction)
+					var attack = Attack.new()
+					attack.attack_damage = 50.0
+					attack.attack_direction = direction
+					ray_cast.get_collider().kill(attack)
 
-func change_weapon(frame,max_rec,min_rec,rec_sped,wep_num,anim_aim):
+func change_weapon(frame,wep_num,max_rec,min_rec,dmg,rec_sped,anim_aim):
 	if cursor_current != cursor_aim:
 		$Top/Alive.frame = frame
 		max_recoil = max_rec
 		min_recoil = min_rec
+		damage = dmg
 		recoil_focus_speed = rec_sped
 		weapon_selected = wep_num
 		floor_min_recoil = min_rec

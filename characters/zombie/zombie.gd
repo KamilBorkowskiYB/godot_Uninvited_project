@@ -20,14 +20,13 @@ func _physics_process(_delta):
 		var c = get_slide_collision(i)
 		if c.get_collider() is RigidBody2D:
 			c.get_collider().apply_central_impulse(-c.get_normal() * push_force)
-	#animation_player.play("walk")
 	
 	global_rotation = dir_to_player.angle() + PI/2.0
 	
 	if ray_cast_2d.is_colliding() and ray_cast_2d.get_collider() == player:
 		player.kill()
 		
-func kill():
+func kill(attack: Attack):
 	if dead:
 		return
 	dead = true
