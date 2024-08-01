@@ -504,23 +504,23 @@ offset = Vector2(0, -300)
 [node name="RayCasts" type="Node2D" parent="Top"]
 
 [node name="RayCast2D" type="RayCast2D" parent="Top/RayCasts"]
-position = Vector2(3, -5)
-target_position = Vector2(0, -700)
+position = Vector2(3, -4)
+target_position = Vector2(0, -1400)
 collision_mask = 3
 
 [node name="RayCast2D2" type="RayCast2D" parent="Top/RayCasts"]
 position = Vector2(3, -5)
-target_position = Vector2(0, -3000)
+target_position = Vector2(0, -1400)
 collision_mask = 3
 
 [node name="RayCast2D3" type="RayCast2D" parent="Top/RayCasts"]
 position = Vector2(3, -5)
-target_position = Vector2(0, -3000)
+target_position = Vector2(0, -1400)
 collision_mask = 3
 
 [node name="RayCast2D4" type="RayCast2D" parent="Top/RayCasts"]
 position = Vector2(3, -5)
-target_position = Vector2(0, -3000)
+target_position = Vector2(0, -1400)
 collision_mask = 3
 
 [node name="AnimationPlayerTOP" type="AnimationPlayer" parent="."]
@@ -535,8 +535,8 @@ libraries = {
 
 [node name="zone_light" type="PointLight2D" parent="."]
 light_mask = 3
+color = Color(1, 1, 1, 0.333333)
 energy = 0.5
-blend_mode = 2
 shadow_enabled = true
 shadow_item_cull_mask = 3
 texture = SubResource("GradientTexture2D_0f7kp")

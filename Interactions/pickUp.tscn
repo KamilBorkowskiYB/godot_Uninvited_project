@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://bhvgcymlk0ibj"]
+
+[ext_resource type="Script" path="res://Interactions/pickUp.gd" id="1_2hpch"]
+[ext_resource type="Script" path="res://Interactions/interaction_area.gd" id="1_ind0n"]
+
+[sub_resource type="Curve" id="Curve_5lc43"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_jnhq6"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hd0jl"]
+size = Vector2(88, 80)
+
+[node name="PickUp" type="CPUParticles2D"]
+z_index = -1
+position = Vector2(457, 345)
+amount = 80
+emission_shape = 1
+emission_sphere_radius = 20.0
+gravity = Vector2(0, 0)
+scale_amount_min = 5.0
+scale_amount_max = 15.0
+scale_amount_curve = SubResource("Curve_5lc43")
+color_ramp = SubResource("Gradient_jnhq6")
+hue_variation_max = 1.0
+script = ExtResource("1_2hpch")
+
+[node name="InteractionArea" type="Area2D" parent="."]
+collision_layer = 128
+collision_mask = 2
+script = ExtResource("1_ind0n")
+action_name = "Pick up"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+shape = SubResource("RectangleShape2D_hd0jl")
+
+[connection signal="body_entered" from="InteractionArea" to="InteractionArea" method="_on_body_entered"]
+[connection signal="body_exited" from="InteractionArea" to="InteractionArea" method="_on_body_exited"]
+[connection signal="mouse_entered" from="InteractionArea" to="InteractionArea" method="_mouse_in"]
+[connection signal="mouse_exited" from="InteractionArea" to="InteractionArea" method="_mouse_out"]

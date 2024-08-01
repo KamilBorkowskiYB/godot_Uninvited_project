@@ -123,10 +123,7 @@ texture_scale = 0.7
 [node name="Enviroment" parent="VisibilityViewport" instance=ExtResource("3_uc7v4")]
 material = SubResource("ShaderMaterial_o7gsa")
 
-[node name="CanvasModulate" parent="VisibilityViewport/Enviroment" index="1"]
-visible = false
-
-[node name="AmbientDark" parent="VisibilityViewport/Enviroment" index="2"]
+[node name="AmbientDark" parent="VisibilityViewport/Enviroment" index="1"]
 visible = false
 
 [node name="Camera2D" type="Camera2D" parent="VisibilityViewport"]
@@ -192,6 +189,52 @@ grow_horizontal = 2
 grow_vertical = 0
 text = "Restart
 "
+
+[node name="ItemsObtained" type="CanvasLayer" parent="."]
+
+[node name="UI" type="Control" parent="ItemsObtained"]
+visible = false
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="ColorRect" type="ColorRect" parent="ItemsObtained/UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -210.0
+offset_top = -100.0
+offset_right = -110.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(4.56, 1)
+color = Color(0.294118, 0.054902, 0.356863, 0.803922)
+
+[node name="Panel" type="Panel" parent="ItemsObtained/UI"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -68.0
+offset_right = -20.0
+offset_bottom = -68.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="ItemsObtained/UI/Panel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Acquired :"
 
 [connection signal="pressed" from="DeathScreen/DeathScreen/Panel/Button" to="." method="restart"]
 

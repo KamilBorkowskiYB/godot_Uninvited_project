@@ -33,6 +33,12 @@ func _ready():
 	#connecting signals from player
 	player.player_has_died.connect(player_dead)
 	
+	#connecting signals from pickUps
+	viewport1 = get_node("MainLevelViewport/SubViewport/Level/PickUps")
+	for child in viewport1.get_children():
+		if child.has_signal("item_picked_up"):
+			child.item_picked_up.connect(item_picked_up)
+	
 	viewport1 = get_node("MainLevelViewport/SubViewport/Level/Enviroment")
 	viewport2 = get_node("FogViewport/Enviroment")
 	viewport3 = get_node("VisibilityViewport/Enviroment")
@@ -92,3 +98,5 @@ func restart():
 	get_tree().reload_current_scene()
 func player_dead():
 	$DeathScreen/DeathScreen.show()
+func item_picked_up():
+	$ItemsObtained/UI.show()
