@@ -13,6 +13,10 @@ var aim_assistL: Node2D
 @onready var cursor_normal = load("res://cursor/cursor_normal.png")
 var cursor_current = null
 
+##########        FOOTSTEPS        ##########
+enum FloorMaterial {Grass, Concrete, Water}
+var stands_on := FloorMaterial.Concrete #floor changes this on ready()
+
 ##########        PLAYER NODES        ##########
 @onready var ray_cast1 = $Top/RayCasts/RayCast2D
 @onready var ray_cast2 = $Top/RayCasts/RayCast2D2
@@ -189,21 +193,13 @@ func shoot(ray_casts):
 			shot_trail.add_point(get_parent().to_local(ray_cast.global_position) - offset)
 			if ray_cast.is_colliding():
 				shot_trail.add_point(get_parent().to_local(ray_cast.get_collision_point()))
-			#else:
-				#var offset_x = cos(ray_cast.rotation_degrees) * 700
-				#var offset_y = sin(ray_cast.rotation_degrees) * 700
-				#var end_point = Vector2(offset_x,offset_y)
-				#print(ray_cast.rotation_degrees)
-				#ray_cast.position += end_point
-				#shot_trail.add_point(get_parent().to_local(ray_cast.global_position))
-				#shot_trail.add_point(get_parent().to_local(ray_cast.global_position) - 100 * offset)
 			get_parent().add_child(shot_trail)
 			
 			# Killing
 			if ray_cast.is_colliding():
 				if ray_cast.get_collider().has_method("kill"):
 					var attack = Attack.new()
-					attack.attack_damage = 50.0
+					attack.attack_damage = damage
 					attack.attack_direction = direction
 					ray_cast.get_collider().kill(attack)
 
@@ -219,3 +215,10 @@ func change_weapon(frame,wep_num,max_rec,min_rec,dmg,rec_sped,anim_aim):
 		animation_aim = anim_aim
 		recoil = max_rec * 0.7
 
+func step():
+	if stands_on == FloorMaterial.Concrete:
+		$Sounds/ConcreteFootstep.pitch_scale = randf_range(0.8, 1.2)
+		$Sounds/ConcreteFootstep.play()
+	if stands_on == FloorMaterial.Grass:
+		$Sounds/GrassFootstep.pitch_scale = randf_range(0.8, 1.2)
+		$Sounds/GrassFootstep.play()

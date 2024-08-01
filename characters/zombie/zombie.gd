@@ -8,10 +8,15 @@ extends CharacterBody2D
 var dead = false
 @export var push_force = 10.0
 
+enum FloorMaterial {Grass, Concrete, Water}
+var stands_on := FloorMaterial.Grass
+
+
 func _ready():
 	animation_player.play("walk")
 func _physics_process(_delta):
 	if dead:
+		animation_player.stop()
 		return
 	var dir_to_player = global_position.direction_to(player.global_position)
 	velocity = move_speed * dir_to_player
@@ -37,4 +42,10 @@ func kill(attack: Attack):
 	$CollisionShape2D.disabled = true
 	z_index = -1
 	
-	
+func step():
+	if stands_on == FloorMaterial.Concrete:
+		$ConcreteFootstep.pitch_scale = randf_range(0.8, 1.2)
+		$ConcreteFootstep.play()
+	if stands_on == FloorMaterial.Grass:
+		$GrassFootstep.pitch_scale = randf_range(0.8, 1.2)
+		$GrassFootstep.play()

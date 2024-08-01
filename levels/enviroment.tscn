@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://bnppgiphfgo5q"]
 
-[ext_resource type="Texture2D" uid="uid://cma5kmw10jghr" path="res://white_sq.png" id="1_p6kxc"]
 [ext_resource type="PackedScene" uid="uid://cxiu2kws8f1xm" path="res://objects/staticBlock.tscn" id="2_apuo0"]
+[ext_resource type="PackedScene" uid="uid://d32q58d334dfd" path="res://objects/floor/floor.tscn" id="2_k58xi"]
 [ext_resource type="PackedScene" uid="uid://cv46bl48bc1fk" path="res://objects/movingBlock.tscn" id="2_xuxhp"]
 [ext_resource type="PackedScene" uid="uid://dsldmk2ksjn2m" path="res://objects/lowMovingBlock.tscn" id="4_2iq2g"]
 [ext_resource type="PackedScene" uid="uid://cng2o48wdswvk" path="res://objects/door/door.tscn" id="5_0xv4k"]
@@ -21,86 +21,120 @@ position = Vector2(150, 50)
 [node name="Static" type="Node2D" parent="."]
 use_parent_material = true
 
-[node name="Floor" type="Sprite2D" parent="Static"]
-self_modulate = Color(0.596078, 0.411765, 0.27451, 1)
-z_index = -5
+[node name="Floors" type="Node2D" parent="Static"]
 use_parent_material = true
-position = Vector2(142.5, 67.1458)
-scale = Vector2(25.3594, 17.9421)
-texture = ExtResource("1_p6kxc")
 
-[node name="StaticBody2D" parent="Static" instance=ExtResource("2_apuo0")]
+[node name="Grass" parent="Static/Floors" instance=ExtResource("2_k58xi")]
+modulate = Color(0.0865663, 0.377463, 4.81308e-08, 1)
+use_parent_material = true
+position = Vector2(139, 347)
+scale = Vector2(25.308, 8.60762)
+floor_material = 0
+
+[node name="Grass2" parent="Static/Floors" instance=ExtResource("2_k58xi")]
+modulate = Color(0.0865663, 0.377463, 4.81308e-08, 1)
+use_parent_material = true
+position = Vector2(156, -408)
+scale = Vector2(25.588, 2.96762)
+floor_material = 0
+
+[node name="Grass3" parent="Static/Floors" instance=ExtResource("2_k58xi")]
+modulate = Color(0.0865663, 0.377463, 4.81308e-08, 1)
+use_parent_material = true
+position = Vector2(845, 111)
+rotation = 1.5708
+scale = Vector2(16.868, 3.52819)
+floor_material = 0
+
+[node name="Grass4" parent="Static/Floors" instance=ExtResource("2_k58xi")]
+modulate = Color(0.0865663, 0.377463, 4.81308e-08, 1)
+use_parent_material = true
+position = Vector2(-604, 111)
+rotation = 1.5708
+scale = Vector2(16.868, 1.88819)
+floor_material = 0
+
+[node name="Concrete" parent="Static/Floors" instance=ExtResource("2_k58xi")]
+modulate = Color(0.596078, 0.411765, 0.27451, 1)
+use_parent_material = true
+position = Vector2(90, -113)
+scale = Vector2(19.3188, 5.79915)
+
+[node name="Walls" type="Node2D" parent="Static"]
+use_parent_material = true
+
+[node name="StaticBody2D" parent="Static/Walls" instance=ExtResource("2_apuo0")]
 position = Vector2(543, 81)
 scale = Vector2(6.16, 0.48)
 
-[node name="StaticBody2D14" parent="Static" instance=ExtResource("2_apuo0")]
+[node name="StaticBody2D14" parent="Static/Walls" instance=ExtResource("2_apuo0")]
 position = Vector2(144, 642)
 scale = Vector2(25.72, 0.48)
 
-[node name="StaticBody2D15" parent="Static" instance=ExtResource("2_apuo0")]
+[node name="StaticBody2D15" parent="Static/Walls" instance=ExtResource("2_apuo0")]
 position = Vector2(135, -492)
 scale = Vector2(25.72, 0.48)
 
-[node name="StaticBody2D16" parent="Static" instance=ExtResource("2_apuo0")]
+[node name="StaticBody2D16" parent="Static/Walls" instance=ExtResource("2_apuo0")]
 position = Vector2(966, 81)
 rotation = -1.57104
 scale = Vector2(18.24, 0.48)
 
-[node name="StaticBody2D17" parent="Static" instance=ExtResource("2_apuo0")]
+[node name="StaticBody2D17" parent="Static/Walls" instance=ExtResource("2_apuo0")]
 position = Vector2(-674, 73)
 rotation = -1.57104
 scale = Vector2(18.24, 0.48)
 
-[node name="StaticBody2D13" parent="Static" instance=ExtResource("2_apuo0")]
+[node name="StaticBody2D13" parent="Static/Walls" instance=ExtResource("2_apuo0")]
 position = Vector2(121, -121)
 scale = Vector2(0.920322, 0.64)
 
-[node name="StaticBody2D8" parent="Static" instance=ExtResource("2_apuo0")]
+[node name="StaticBody2D8" parent="Static/Walls" instance=ExtResource("2_apuo0")]
 position = Vector2(360, 44)
 rotation = 1.5822
 scale = Vector2(1.59939, 0.48)
 
-[node name="StaticBody2D9" parent="Static" instance=ExtResource("2_apuo0")]
+[node name="StaticBody2D9" parent="Static/Walls" instance=ExtResource("2_apuo0")]
 position = Vector2(-175, 36)
 rotation = 1.5822
 scale = Vector2(1.59939, 0.48)
 
-[node name="StaticBody2D7" parent="Static" instance=ExtResource("2_apuo0")]
+[node name="StaticBody2D7" parent="Static/Walls" instance=ExtResource("2_apuo0")]
 position = Vector2(-176, -222)
 rotation = 1.5708
 scale = Vector2(3.08, 0.48)
 
-[node name="StaticBody2D3" parent="Static" instance=ExtResource("2_apuo0")]
+[node name="StaticBody2D3" parent="Static/Walls" instance=ExtResource("2_apuo0")]
 position = Vector2(541, -308)
 scale = Vector2(6.16, 0.48)
 
-[node name="StaticBody2D2" parent="Static" instance=ExtResource("2_apuo0")]
+[node name="StaticBody2D2" parent="Static/Walls" instance=ExtResource("2_apuo0")]
 position = Vector2(724, -129)
 rotation = 1.57118
 scale = Vector2(6.16, 0.48)
 
-[node name="StaticBody2D4" parent="Static" instance=ExtResource("2_apuo0")]
+[node name="StaticBody2D4" parent="Static/Walls" instance=ExtResource("2_apuo0")]
 position = Vector2(-355, 73)
 scale = Vector2(6.16, 0.48)
 
-[node name="StaticBody2D5" parent="Static" instance=ExtResource("2_apuo0")]
+[node name="StaticBody2D5" parent="Static/Walls" instance=ExtResource("2_apuo0")]
 position = Vector2(91, -310)
 scale = Vector2(20.52, 0.48)
 
-[node name="StaticBody2D11" parent="Static" instance=ExtResource("2_apuo0")]
+[node name="StaticBody2D11" parent="Static/Walls" instance=ExtResource("2_apuo0")]
 position = Vector2(327, 76)
 scale = Vector2(4.64, 0.48)
 
-[node name="StaticBody2D12" parent="Static" instance=ExtResource("2_apuo0")]
+[node name="StaticBody2D12" parent="Static/Walls" instance=ExtResource("2_apuo0")]
 position = Vector2(-71, 72)
 scale = Vector2(4.48, 0.48)
 
-[node name="StaticBody2D6" parent="Static" instance=ExtResource("2_apuo0")]
+[node name="StaticBody2D6" parent="Static/Walls" instance=ExtResource("2_apuo0")]
 position = Vector2(-538, -115)
 rotation = 1.57118
 scale = Vector2(6.16, 0.48)
 
-[node name="StaticBody2D10" parent="Static" instance=ExtResource("2_apuo0")]
+[node name="StaticBody2D10" parent="Static/Walls" instance=ExtResource("2_apuo0")]
 position = Vector2(359, -198)
 rotation = 1.57118
 scale = Vector2(3.71968, 0.48)
@@ -116,7 +150,7 @@ scale = Vector2(1.36722, 0.411714)
 
 [node name="PointLight2D" type="PointLight2D" parent="AmbientDark"]
 position = Vector2(-128.728, -9.71547)
-scale = Vector2(0.736692, 1)
+scale = Vector2(0.73, 1.087)
 energy = 0.35
 blend_mode = 1
 texture = SubResource("GradientTexture2D_c1o86")
@@ -124,7 +158,7 @@ texture_scale = 14.18
 
 [node name="Rroom" type="PointLight2D" parent="AmbientDark"]
 position = Vector2(333.524, 2.09808e-05)
-scale = Vector2(0.298642, 1.1484)
+scale = Vector2(0.31, 0.997)
 blend_mode = 1
 texture = SubResource("GradientTexture2D_c1o86")
 texture_scale = 14.18
