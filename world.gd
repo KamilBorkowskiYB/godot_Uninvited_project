@@ -98,5 +98,8 @@ func restart():
 	get_tree().reload_current_scene()
 func player_dead():
 	$DeathScreen/DeathScreen.show()
-func item_picked_up():
+func item_picked_up(item_name):
+	var acquired = "Acquired: "
+	$ItemsObtained/UI/Panel/Label.text = acquired + item_name
 	$ItemsObtained/UI.show()
+	$ItemsObtained/UI/PickUpTimer.start()

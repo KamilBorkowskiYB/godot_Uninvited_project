@@ -17,6 +17,12 @@ var cursor_current = null
 enum FloorMaterial {Grass, Concrete, Water}
 var stands_on := FloorMaterial.Concrete #floor changes this on ready()
 
+##########        PICK UPS        ##########
+var rifle_unlock = 1 #remember to update pickUp.gd with every new pick up
+var rifle_ammo = 5
+var shotgun_unlock = 0
+var shotgun_shells = 0
+
 ##########        PLAYER NODES        ##########
 @onready var ray_cast1 = $Top/RayCasts/RayCast2D
 @onready var ray_cast2 = $Top/RayCasts/RayCast2D2
@@ -104,16 +110,18 @@ func _process(_delta):
 		
 	##########        INPUTS         ##########
 	if Input.is_action_just_pressed("shoot"):
-		if weapon_selected == 0:
-			shoot([ray_cast1])
-		elif weapon_selected == 1:
-			shoot([ray_cast1,ray_cast2,ray_cast3,ray_cast4])
+		if weapon_selected == 0 and rifle_ammo > 0:
+			rifle_ammo = shoot([ray_cast1], rifle_ammo)
+		elif weapon_selected == 1 and shotgun_shells > 0:
+			shotgun_shells = shoot([ray_cast1,ray_cast2,ray_cast3,ray_cast4], shotgun_shells)
 	
 	if Input.is_action_just_pressed("weapon_1"):
-		change_weapon(0,0,RIFLE_MAX_RECOIL,RIFLE_MIN_RECOIL,RIFLE_DMG,RIFLE_FOCUS_SPEED,RIFLE_AIM_ANIM)
+		if rifle_unlock > 0:
+			change_weapon(0,0,RIFLE_MAX_RECOIL,RIFLE_MIN_RECOIL,RIFLE_DMG,RIFLE_FOCUS_SPEED,RIFLE_AIM_ANIM)
 	
 	if Input.is_action_just_pressed("weapon_2"):
-		change_weapon(5,1,SHOTGUN_MAX_RECOIL,SHOTGUN_MIN_RECOIL,SHOTGUN_DMG,SHOTGUN_FOCUS_SPEED,SHOTGUN_AIM_ANIM)
+		if shotgun_unlock > 0:
+			change_weapon(5,1,SHOTGUN_MAX_RECOIL,SHOTGUN_MIN_RECOIL,SHOTGUN_DMG,SHOTGUN_FOCUS_SPEED,SHOTGUN_AIM_ANIM)
 	
 	if Input.is_action_just_pressed("Aim"):
 		animation_player.play(animation_aim)
@@ -172,7 +180,7 @@ func kill():
 	z_index = -1
 	emit_signal("player_has_died")
 
-func shoot(ray_casts):
+func shoot(ray_casts,ammo_type):
 	if can_shoot == true:
 		$Top/MuzzleFlash.show()
 		$Top/FlashLight.show()
@@ -180,7 +188,7 @@ func shoot(ray_casts):
 		$Sounds/ShootSound.play()
 		get_parent().start_shake(10, 0.1) 
 		recoil = min(max_recoil, recoil + max_recoil * 0.7)
-		
+		ammo_type -= 1
 		# Iterate through all RayCast2D
 		for ray_cast in ray_casts:
 			var direction = ray_cast.global_position - get_global_mouse_position()
@@ -202,9 +210,10 @@ func shoot(ray_casts):
 					attack.attack_damage = damage
 					attack.attack_direction = direction
 					ray_cast.get_collider().kill(attack)
+	return ammo_type
 
 func change_weapon(frame,wep_num,max_rec,min_rec,dmg,rec_sped,anim_aim):
-	if cursor_current != cursor_aim:
+	if cursor_current != cursor_aim and !animation_player.is_playing():
 		$Top/Alive.frame = frame
 		max_recoil = max_rec
 		min_recoil = min_rec

@@ -41,6 +41,8 @@ script = ExtResource("5_ccx42")
 [node name="PickUps" type="Node2D" parent="."]
 
 [node name="PickUp" parent="PickUps" instance=ExtResource("7_0crg7")]
+item_selected = 3
 
 [node name="PickUp2" parent="PickUps" instance=ExtResource("7_0crg7")]
 position = Vector2(581, -183)
+item_selected = 1
