@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://c8bitsc7ybbya"]
+[gd_scene load_steps=28 format=3 uid="uid://c8bitsc7ybbya"]
 
 [ext_resource type="Script" path="res://characters/player/player.gd" id="1_bf8ru"]
 [ext_resource type="Texture2D" uid="uid://f5sx516ofsyb" path="res://characters/player/legs.png" id="2_qgy1a"]
@@ -15,6 +15,13 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_f7cyc"]
 radius = 27.2947
+
+[sub_resource type="Curve" id="Curve_mf3wi"]
+_data = [Vector2(0, 0.252747), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_grm7f"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_iro56"]
 light_mode = 1
@@ -173,6 +180,34 @@ tracks/2/keys = {
 "values": [true, false]
 }
 
+[sub_resource type="Animation" id="Animation_v1ppr"]
+resource_name = "aim_pistol"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Top/Alive:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [10, 11, 12, 13, 14]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:can_shoot")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
 [sub_resource type="Animation" id="Animation_qgrw2"]
 resource_name = "aim_shotgun"
 length = 0.4
@@ -205,6 +240,7 @@ tracks/1/keys = {
 _data = {
 "RESET": SubResource("Animation_syd44"),
 "aim": SubResource("Animation_oo00o"),
+"aim_pistol": SubResource("Animation_v1ppr"),
 "aim_shotgun": SubResource("Animation_qgrw2")
 }
 
@@ -453,6 +489,7 @@ region_rect = Rect2(81.2127, 13.5487, 16.8168, 20.7737)
 [node name="Alive" type="Sprite2D" parent="Top"]
 texture = ExtResource("3_wpnqy")
 hframes = 10
+vframes = 2
 
 [node name="Dead" type="Sprite2D" parent="Top"]
 visible = false
@@ -474,6 +511,22 @@ blend_mode = 2
 shadow_enabled = true
 texture = ExtResource("6_f1jbg")
 texture_scale = 10.05
+
+[node name="SmokeShot" type="CPUParticles2D" parent="Top"]
+visible = false
+position = Vector2(2, -77)
+emitting = false
+amount = 60
+speed_scale = 0.8
+gravity = Vector2(100, -200)
+scale_amount_min = 7.0
+scale_amount_max = 10.0
+scale_amount_curve = SubResource("Curve_mf3wi")
+color_ramp = SubResource("Gradient_grm7f")
+
+[node name="Timer" type="Timer" parent="Top/SmokeShot"]
+wait_time = 1.5
+one_shot = true
 
 [node name="MuzzleFlash" type="Sprite2D" parent="Top"]
 visible = false
@@ -536,7 +589,7 @@ libraries = {
 [node name="zone_light" type="PointLight2D" parent="."]
 light_mask = 3
 color = Color(1, 1, 1, 0.333333)
-energy = 0.5
+blend_mode = 2
 shadow_enabled = true
 shadow_item_cull_mask = 3
 texture = SubResource("GradientTexture2D_0f7kp")
@@ -560,5 +613,6 @@ bus = &"sfx"
 stream = ExtResource("12_c85ol")
 bus = &"sfx"
 
+[connection signal="timeout" from="Top/SmokeShot/Timer" to="Top/SmokeShot" method="hide"]
 [connection signal="timeout" from="Top/MuzzleFlash/Timer" to="Top/FlashLight" method="hide"]
 [connection signal="timeout" from="Top/MuzzleFlash/Timer" to="Top/MuzzleFlash" method="hide"]

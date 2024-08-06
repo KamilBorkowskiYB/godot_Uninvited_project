@@ -35,6 +35,9 @@ position = Vector2(109, 51)
 [node name="LightSource2" parent="." instance=ExtResource("4_n3l4b")]
 position = Vector2(403, 35)
 
+[node name="LightSource3" parent="." instance=ExtResource("4_n3l4b")]
+position = Vector2(100, 450)
+
 [node name="PlayerCamera" type="Camera2D" parent="."]
 script = ExtResource("5_ccx42")
 

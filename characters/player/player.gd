@@ -18,6 +18,8 @@ enum FloorMaterial {Grass, Concrete, Water}
 var stands_on := FloorMaterial.Concrete #floor changes this on ready()
 
 ##########        PICK UPS        ##########
+var pistol_unlock = 1
+var pistol_ammo = 20
 var rifle_unlock = 1 #remember to update pickUp.gd with every new pick up
 var rifle_ammo = 5
 var shotgun_unlock = 0
@@ -42,10 +44,15 @@ var weapon_selected = 0 #0-rifle	1-shotgun
 @export var can_interact = true #not used at the moment
 
 ##########        WEAPON STATS         ##########
+#pistol
+const PISTOL_MAX_RECOIL = 20.0
+const PISTOL_MIN_RECOIL = 6.0
+const PISTOL_FOCUS_SPEED = 0.2
+const PISTOL_DMG = 10.0
+const PISTOL_AIM_ANIM = "aim_pistol"
 #rifle
 const RIFLE_MAX_RECOIL = 15.0
 const RIFLE_MIN_RECOIL = 3.0
-const RIFLE_BASE_RECOIL = 10.0
 const RIFLE_FOCUS_SPEED = 0.1
 const RIFLE_DMG = 30.0
 const RIFLE_AIM_ANIM = "aim"
@@ -58,7 +65,7 @@ const SHOTGUN_AIM_ANIM = "aim_shotgun"
 #defalut
 var max_recoil = RIFLE_MAX_RECOIL
 var min_recoil = RIFLE_MIN_RECOIL#dynamic min recoil based of walking, etc.
-var recoil = RIFLE_BASE_RECOIL
+var recoil = max_recoil * 0.7
 var recoil_focus_speed = RIFLE_FOCUS_SPEED
 var floor_min_recoil = RIFLE_MIN_RECOIL #static min recoil based of weapon
 var damage = RIFLE_DMG
@@ -105,6 +112,7 @@ func _process(_delta):
 		if(recoil < min_recoil):
 			recoil = min_recoil
 	else:
+		$Legs.rotation = $Top.rotation
 		animation_playerLegs.stop()
 		min_recoil = floor_min_recoil
 		
@@ -114,6 +122,8 @@ func _process(_delta):
 			rifle_ammo = shoot([ray_cast1], rifle_ammo)
 		elif weapon_selected == 1 and shotgun_shells > 0:
 			shotgun_shells = shoot([ray_cast1,ray_cast2,ray_cast3,ray_cast4], shotgun_shells)
+		elif weapon_selected == 2 and pistol_ammo > 0:
+			pistol_ammo = shoot([ray_cast1], rifle_ammo)
 	
 	if Input.is_action_just_pressed("weapon_1"):
 		if rifle_unlock > 0:
@@ -122,6 +132,10 @@ func _process(_delta):
 	if Input.is_action_just_pressed("weapon_2"):
 		if shotgun_unlock > 0:
 			change_weapon(5,1,SHOTGUN_MAX_RECOIL,SHOTGUN_MIN_RECOIL,SHOTGUN_DMG,SHOTGUN_FOCUS_SPEED,SHOTGUN_AIM_ANIM)
+	
+	if Input.is_action_just_pressed("weapon_3"):
+		if pistol_unlock > 0:
+			change_weapon(10,2,PISTOL_MAX_RECOIL,PISTOL_MIN_RECOIL,PISTOL_DMG,PISTOL_FOCUS_SPEED,PISTOL_AIM_ANIM)
 	
 	if Input.is_action_just_pressed("Aim"):
 		animation_player.play(animation_aim)
@@ -184,6 +198,8 @@ func shoot(ray_casts,ammo_type):
 	if can_shoot == true:
 		$Top/MuzzleFlash.show()
 		$Top/FlashLight.show()
+		#$Top/SmokeShot.emitting = true
+		#$Top/SmokeShot/Timer.start()
 		$Top/MuzzleFlash/Timer.start()
 		$Sounds/ShootSound.play()
 		get_parent().start_shake(10, 0.1) 
