@@ -123,7 +123,7 @@ func _process(_delta):
 		elif weapon_selected == 1 and shotgun_shells > 0:
 			shotgun_shells = shoot([ray_cast1,ray_cast2,ray_cast3,ray_cast4], shotgun_shells)
 		elif weapon_selected == 2 and pistol_ammo > 0:
-			pistol_ammo = shoot([ray_cast1], rifle_ammo)
+			pistol_ammo = shoot([ray_cast1], pistol_ammo)
 	
 	if Input.is_action_just_pressed("weapon_1"):
 		if rifle_unlock > 0:
@@ -198,8 +198,6 @@ func shoot(ray_casts,ammo_type):
 	if can_shoot == true:
 		$Top/MuzzleFlash.show()
 		$Top/FlashLight.show()
-		#$Top/SmokeShot.emitting = true
-		#$Top/SmokeShot/Timer.start()
 		$Top/MuzzleFlash/Timer.start()
 		$Sounds/ShootSound.play()
 		get_parent().start_shake(10, 0.1) 

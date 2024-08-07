@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://c8bitsc7ybbya"]
+[gd_scene load_steps=26 format=3 uid="uid://c8bitsc7ybbya"]
 
 [ext_resource type="Script" path="res://characters/player/player.gd" id="1_bf8ru"]
 [ext_resource type="Texture2D" uid="uid://f5sx516ofsyb" path="res://characters/player/legs.png" id="2_qgy1a"]
@@ -15,13 +15,6 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_f7cyc"]
 radius = 27.2947
-
-[sub_resource type="Curve" id="Curve_mf3wi"]
-_data = [Vector2(0, 0.252747), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="Gradient" id="Gradient_grm7f"]
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_iro56"]
 light_mode = 1
@@ -443,6 +436,7 @@ can_shoot = true
 shape = SubResource("CircleShape2D_f7cyc")
 
 [node name="Legs" type="Node2D" parent="."]
+visible = false
 
 [node name="LegL" type="Node2D" parent="Legs"]
 
@@ -512,26 +506,10 @@ shadow_enabled = true
 texture = ExtResource("6_f1jbg")
 texture_scale = 10.05
 
-[node name="SmokeShot" type="CPUParticles2D" parent="Top"]
-visible = false
-position = Vector2(2, -77)
-emitting = false
-amount = 60
-speed_scale = 0.8
-gravity = Vector2(100, -200)
-scale_amount_min = 7.0
-scale_amount_max = 10.0
-scale_amount_curve = SubResource("Curve_mf3wi")
-color_ramp = SubResource("Gradient_grm7f")
-
-[node name="Timer" type="Timer" parent="Top/SmokeShot"]
-wait_time = 1.5
-one_shot = true
-
 [node name="MuzzleFlash" type="Sprite2D" parent="Top"]
 visible = false
 self_modulate = Color(1, 1, 0.172549, 1)
-position = Vector2(1, -90)
+position = Vector2(0, -91)
 texture = ExtResource("7_pvwq1")
 
 [node name="Timer" type="Timer" parent="Top/MuzzleFlash"]
@@ -557,22 +535,18 @@ offset = Vector2(0, -300)
 [node name="RayCasts" type="Node2D" parent="Top"]
 
 [node name="RayCast2D" type="RayCast2D" parent="Top/RayCasts"]
-position = Vector2(3, -4)
 target_position = Vector2(0, -1400)
 collision_mask = 3
 
 [node name="RayCast2D2" type="RayCast2D" parent="Top/RayCasts"]
-position = Vector2(3, -5)
 target_position = Vector2(0, -1400)
 collision_mask = 3
 
 [node name="RayCast2D3" type="RayCast2D" parent="Top/RayCasts"]
-position = Vector2(3, -5)
 target_position = Vector2(0, -1400)
 collision_mask = 3
 
 [node name="RayCast2D4" type="RayCast2D" parent="Top/RayCasts"]
-position = Vector2(3, -5)
 target_position = Vector2(0, -1400)
 collision_mask = 3
 
@@ -613,6 +587,5 @@ bus = &"sfx"
 stream = ExtResource("12_c85ol")
 bus = &"sfx"
 
-[connection signal="timeout" from="Top/SmokeShot/Timer" to="Top/SmokeShot" method="hide"]
 [connection signal="timeout" from="Top/MuzzleFlash/Timer" to="Top/FlashLight" method="hide"]
 [connection signal="timeout" from="Top/MuzzleFlash/Timer" to="Top/MuzzleFlash" method="hide"]
