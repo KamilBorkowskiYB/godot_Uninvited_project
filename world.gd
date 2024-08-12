@@ -1,5 +1,6 @@
 extends Node2D
 
+@onready var player: CharacterBody2D = get_tree().get_first_node_in_group("player")
 
 func _ready():
 	var viewport1 = get_node("MainLevelViewport/SubViewport/Level")
@@ -32,6 +33,7 @@ func _ready():
 	
 	#connecting signals from player
 	player.player_has_died.connect(player_dead)
+	player.weapon_info_on.connect(weapon_info_visible)
 	
 	#connecting signals from pickUps
 	viewport1 = get_node("MainLevelViewport/SubViewport/Level/PickUps")
@@ -94,12 +96,17 @@ func _ready():
 func _process(delta):
 	if Input.is_action_just_pressed("restart"):
 		restart()
+	$WeaponSelected/Control/Label.text = str(player.magazine) +"/"+ str(player.ammo)
 func restart():
 	get_tree().reload_current_scene()
 func player_dead():
 	$DeathScreen/DeathScreen.show()
-func item_picked_up(item_name):
-	var acquired = "Acquired: "
-	$ItemsObtained/UI/Panel/Label.text = acquired + item_name
+func item_picked_up(is_space,item_name):
+	if is_space == 1:
+		$ItemsObtained/UI/Panel/Label.text = "Acquired: " + item_name
+	else:
+		$ItemsObtained/UI/Panel/Label.text = "No more space: " + item_name
 	$ItemsObtained/UI.show()
 	$ItemsObtained/UI/PickUpTimer.start()
+func weapon_info_visible():
+	$WeaponSelected/Control.show()

@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 signal player_has_died
+signal weapon_info_on
 
 var view_light: Node2D #Connects view with player
 var aim_assist: Node2D 
@@ -86,6 +87,8 @@ var damage = RIFLE_DMG
 var animation_aim = RIFLE_AIM_ANIM
 var animation_aimed = RIFLE_AIMED_ANIM
 var animation_reload = RIFLE_RELOAD_ANIM
+var magazine = rifle_cur_mag
+var ammo = rifle_ammo
 
 func _ready():
 	can_shoot = false
@@ -124,7 +127,8 @@ func _process(_delta):
 		$Legs.rotation = $Top.rotation
 		animation_playerLegs.stop()
 		min_recoil = floor_min_recoil
-		
+	
+	update_ammo_numbers()
 	##########        INPUTS         ##########
 	if Input.is_action_just_pressed("shoot"):
 		if weapon_selected == 0 and rifle_cur_mag > 0:
@@ -138,16 +142,19 @@ func _process(_delta):
 		if rifle_unlock > 0:
 			change_weapon(39,0,RIFLE_MAX_RECOIL,RIFLE_MIN_RECOIL,
 			RIFLE_DMG,RIFLE_FOCUS_SPEED,RIFLE_AIM_ANIM,RIFLE_AIMED_ANIM,RIFLE_RELOAD_ANIM)
-	
+			weapon_info_on.emit()
+			
 	if Input.is_action_just_pressed("weapon_2"):
 		if shotgun_unlock > 0:
 			change_weapon(52,1,SHOTGUN_MAX_RECOIL,SHOTGUN_MIN_RECOIL,
 			SHOTGUN_DMG,SHOTGUN_FOCUS_SPEED,SHOTGUN_AIM_ANIM,SHOTGUN_AIMED_ANIM,SHOTGUN_RELOAD_ANIM)
+			weapon_info_on.emit()
 	
 	if Input.is_action_just_pressed("weapon_3"):
 		if pistol_unlock > 0:
 			change_weapon(13,2,PISTOL_MAX_RECOIL,PISTOL_MIN_RECOIL,
 			PISTOL_DMG,PISTOL_FOCUS_SPEED,PISTOL_AIM_ANIM,PISTOL_AIMED_ANIM,PISTOL_RELOAD_ANIM)
+			weapon_info_on.emit()
 	
 	if Input.is_action_just_pressed("Aim"):
 		if weapon_selected == null:
@@ -288,6 +295,19 @@ func change_weapon(frame,wep_num,max_rec,min_rec,dmg,rec_sped,anim_aim,anim_aime
 		animation_aimed = anim_aimed
 		animation_reload = anim_rel
 		recoil = max_rec * 0.7
+
+func update_ammo_numbers():
+	if weapon_selected == null:
+		return
+	elif weapon_selected == 0:	
+		magazine = rifle_cur_mag
+		ammo = rifle_ammo
+	elif weapon_selected == 1:	
+		magazine = shotgun_cur_mag
+		ammo = shotgun_shells
+	elif weapon_selected == 2:	
+		magazine = pistol_cur_mag
+		ammo = pistol_ammo
 
 func step():
 	if stands_on == FloorMaterial.Concrete:

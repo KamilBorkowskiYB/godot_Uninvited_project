@@ -41,8 +41,45 @@ script = ExtResource("5_ccx42")
 [node name="PickUps" type="Node2D" parent="."]
 
 [node name="PickUp" parent="PickUps" instance=ExtResource("7_0crg7")]
-item_selected = 3
+item_selected = 4
 
 [node name="PickUp2" parent="PickUps" instance=ExtResource("7_0crg7")]
 position = Vector2(581, -183)
 item_selected = 1
+
+[node name="PickUp3" parent="PickUps" instance=ExtResource("7_0crg7")]
+position = Vector2(356, 485)
+
+[node name="PickUp4" parent="PickUps" instance=ExtResource("7_0crg7")]
+position = Vector2(356, 485)
+
+[node name="PickUp5" parent="PickUps" instance=ExtResource("7_0crg7")]
+position = Vector2(356, 485)
+
+[node name="PickUp6" parent="PickUps" instance=ExtResource("7_0crg7")]
+position = Vector2(356, 485)
+
+[node name="PickUp7" parent="PickUps" instance=ExtResource("7_0crg7")]
+position = Vector2(356, 485)
+
+[node name="PickUp8" parent="PickUps" instance=ExtResource("7_0crg7")]
+position = Vector2(356, 485)
+
+[node name="PickUp9" parent="PickUps" instance=ExtResource("7_0crg7")]
+position = Vector2(356, 485)
+
+[node name="PickUp10" parent="PickUps" instance=ExtResource("7_0crg7")]
+position = Vector2(356, 485)
+
+[node name="PickUp11" parent="PickUps" instance=ExtResource("7_0crg7")]
+position = Vector2(356, 485)
+
+[node name="PickUp12" parent="PickUps" instance=ExtResource("7_0crg7")]
+position = Vector2(356, 485)
+
+[node name="PickUp13" parent="PickUps" instance=ExtResource("7_0crg7")]
+position = Vector2(356, 485)
+
+[node name="PickUp14" parent="PickUps" instance=ExtResource("7_0crg7")]
+position = Vector2(501, 477)
+item_selected = 2
