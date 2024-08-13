@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://drjtbe7lus5v0"]
+
+[node name="test_level2_low" type="Node2D"]
+
+[node name="Static" type="Node2D" parent="."]
+
+[node name="Floors" type="Node2D" parent="Static"]
+
+[node name="Walls" type="Node2D" parent="Static"]
+
+[node name="Doors" type="Node2D" parent="."]
+
+[node name="MovingBlocks" type="Node2D" parent="."]

@@ -1,18 +1,18 @@
 [gd_scene load_steps=33 format=3 uid="uid://c8bitsc7ybbya"]
 
 [ext_resource type="Script" path="res://characters/player/player.gd" id="1_bf8ru"]
-[ext_resource type="Texture2D" uid="uid://f5sx516ofsyb" path="res://characters/player/legs.png" id="2_qgy1a"]
-[ext_resource type="Texture2D" uid="uid://c52fuv8m14np1" path="res://characters/player/pelvis.png" id="3_0tow6"]
-[ext_resource type="Texture2D" uid="uid://dp05qdlei2vkx" path="res://characters/player/aim_sheet.png" id="3_wpnqy"]
+[ext_resource type="Texture2D" uid="uid://f5sx516ofsyb" path="res://characters/player/graphic/legs.png" id="2_qgy1a"]
+[ext_resource type="Texture2D" uid="uid://c52fuv8m14np1" path="res://characters/player/graphic/pelvis.png" id="3_0tow6"]
+[ext_resource type="Texture2D" uid="uid://dp05qdlei2vkx" path="res://characters/player/graphic/aim_sheet.png" id="3_wpnqy"]
 [ext_resource type="Texture2D" uid="uid://bkm43cnbgvxrn" path="res://characters/zombie/dead_body.png" id="4_kohlt"]
 [ext_resource type="Texture2D" uid="uid://cx53kc3c1yvij" path="res://characters/zombie/blood_splatter.png" id="5_ilehf"]
-[ext_resource type="Texture2D" uid="uid://b5ugqtcggs4u2" path="res://characters/player/light.png" id="6_f1jbg"]
-[ext_resource type="Texture2D" uid="uid://yvb8nqnn0ejw" path="res://characters/player/muzzle_flash.png" id="7_pvwq1"]
-[ext_resource type="Texture2D" uid="uid://cgkk6a01eg81t" path="res://aim_assinst_line.png" id="8_wp4qy"]
+[ext_resource type="Texture2D" uid="uid://b5ugqtcggs4u2" path="res://characters/player/graphic/light.png" id="6_f1jbg"]
+[ext_resource type="Texture2D" uid="uid://yvb8nqnn0ejw" path="res://characters/player/graphic/muzzle_flash.png" id="7_pvwq1"]
 [ext_resource type="AudioStream" uid="uid://bomrfapdkjghu" path="res://characters/zombie/death_noise1.wav" id="8_xyryx"]
-[ext_resource type="AudioStream" uid="uid://b0ptr56jwws0u" path="res://characters/player/shotgun_shot1.wav" id="9_xtgcm"]
-[ext_resource type="AudioStream" uid="uid://6pn5lbj8i2ch" path="res://concrete_footstep.mp3" id="11_emhi4"]
-[ext_resource type="AudioStream" uid="uid://baanxyc2vjxhr" path="res://grass_footsteps.mp3" id="12_c85ol"]
+[ext_resource type="Texture2D" uid="uid://cgkk6a01eg81t" path="res://characters/player/graphic/aim_assinst_line.png" id="9_4hpk5"]
+[ext_resource type="AudioStream" uid="uid://b0ptr56jwws0u" path="res://characters/player/sounds/shotgun_shot1.wav" id="11_gs5cp"]
+[ext_resource type="AudioStream" uid="uid://6pn5lbj8i2ch" path="res://characters/player/sounds/concrete_footstep.mp3" id="12_qa0mu"]
+[ext_resource type="AudioStream" uid="uid://baanxyc2vjxhr" path="res://characters/player/sounds/grass_footsteps.mp3" id="13_1127d"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_f7cyc"]
 radius = 27.2947
@@ -681,7 +681,7 @@ visible = false
 z_index = 5
 material = SubResource("CanvasItemMaterial_iro56")
 scale = Vector2(0.5, 0.8)
-texture = ExtResource("8_wp4qy")
+texture = ExtResource("9_4hpk5")
 offset = Vector2(0, -300)
 
 [node name="AimAssistL" type="Sprite2D" parent="Top"]
@@ -689,7 +689,7 @@ visible = false
 z_index = 5
 material = SubResource("CanvasItemMaterial_ppqp4")
 scale = Vector2(0.5, 0.8)
-texture = ExtResource("8_wp4qy")
+texture = ExtResource("9_4hpk5")
 offset = Vector2(0, -300)
 
 [node name="RayCasts" type="Node2D" parent="Top"]
@@ -736,15 +736,15 @@ stream = ExtResource("8_xyryx")
 bus = &"sfx"
 
 [node name="ShootSound" type="AudioStreamPlayer" parent="Sounds"]
-stream = ExtResource("9_xtgcm")
+stream = ExtResource("11_gs5cp")
 bus = &"sfx"
 
 [node name="ConcreteFootstep" type="AudioStreamPlayer" parent="Sounds"]
-stream = ExtResource("11_emhi4")
+stream = ExtResource("12_qa0mu")
 bus = &"sfx"
 
 [node name="GrassFootstep" type="AudioStreamPlayer" parent="Sounds"]
-stream = ExtResource("12_c85ol")
+stream = ExtResource("13_1127d")
 bus = &"sfx"
 
 [connection signal="timeout" from="Top/MuzzleFlash/Timer" to="Top/FlashLight" method="hide"]

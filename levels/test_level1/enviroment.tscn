@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=3 uid="uid://bnppgiphfgo5q"]
+
+[ext_resource type="PackedScene" uid="uid://b7iklrlyc5m55" path="res://levels/test_level1/test_level_1_low.tscn" id="1_4so2i"]
+
+[sub_resource type="Gradient" id="Gradient_spnc3"]
+offsets = PackedFloat32Array(0.987013, 0.993506, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1, 0.12987, 0.12987, 0.12987, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_c1o86"]
+gradient = SubResource("Gradient_spnc3")
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+
+[node name="Enviroment" type="Node2D"]
+position = Vector2(150, 50)
+
+[node name="test_level1_low" parent="." instance=ExtResource("1_4so2i")]
+position = Vector2(0, 0)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+use_parent_material = true
+color = Color(0.439049, 0.439049, 0.439049, 1)
+
+[node name="AmbientDark" type="Node2D" parent="."]
+position = Vector2(84, -115)
+scale = Vector2(1.36722, 0.411714)
+
+[node name="PointLight2D" type="PointLight2D" parent="AmbientDark"]
+position = Vector2(-128.728, -9.71547)
+scale = Vector2(0.73, 1.087)
+energy = 0.2
+blend_mode = 1
+texture = SubResource("GradientTexture2D_c1o86")
+texture_scale = 14.18
+
+[node name="Rroom" type="PointLight2D" parent="AmbientDark"]
+position = Vector2(333.524, 2.09808e-05)
+scale = Vector2(0.31, 0.997)
+blend_mode = 1
+texture = SubResource("GradientTexture2D_c1o86")
+texture_scale = 14.18

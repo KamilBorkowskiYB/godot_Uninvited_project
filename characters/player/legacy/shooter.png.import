@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c81efo3urc6nt"
-path="res://.godot/imported/view_cone_redo.png-af9738e1f5ef477b1e09e4931cb0f02f.ctex"
+uid="uid://j4xmyho5fjf3"
+path="res://.godot/imported/shooter.png-b681f3cd67f24ca175ce718a1f7cf697.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://characters/player/view_cone_redo.png"
-dest_files=["res://.godot/imported/view_cone_redo.png-af9738e1f5ef477b1e09e4931cb0f02f.ctex"]
+source_file="res://characters/player/legacy/shooter.png"
+dest_files=["res://.godot/imported/shooter.png-b681f3cd67f24ca175ce718a1f7cf697.ctex"]
 
 [params]
 

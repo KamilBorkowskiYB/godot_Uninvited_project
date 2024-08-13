@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://bbmb7rfl6hr0t"]
+
+[ext_resource type="PackedScene" uid="uid://drjtbe7lus5v0" path="res://levels/test_level2/test_level_2_low.tscn" id="1_4yrox"]
+
+[node name="test_level2_mid" type="Node2D"]
+
+[node name="test_level2_low" parent="." instance=ExtResource("1_4yrox")]
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+
+[node name="AmbientDark" type="Node2D" parent="."]

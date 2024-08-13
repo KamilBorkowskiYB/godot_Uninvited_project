@@ -271,16 +271,16 @@ func animation_end_reload():
 		pistol_cur_mag = resoult[0]
 		pistol_ammo = resoult[1]
 
-func reload(curr_mag,mag_size,ammo):
+func reload(curr_mag,mag_size,amo):
 	var needed_ammo = mag_size - curr_mag
 	var ammo_taken
-	if needed_ammo <= ammo:
+	if needed_ammo <= amo:
 		ammo_taken = needed_ammo
 	else:
-		ammo_taken = ammo
+		ammo_taken = amo
 	curr_mag = curr_mag + ammo_taken
-	ammo = ammo - ammo_taken
-	return [curr_mag, ammo]
+	amo = amo - ammo_taken
+	return [curr_mag, amo]
 
 func change_weapon(frame,wep_num,max_rec,min_rec,dmg,rec_sped,anim_aim,anim_aimed,anim_rel):
 	if cursor_current != cursor_aim and !animation_player.is_playing():

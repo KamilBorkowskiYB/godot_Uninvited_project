@@ -1,0 +1,148 @@
+[gd_scene load_steps=6 format=3 uid="uid://b7iklrlyc5m55"]
+
+[ext_resource type="PackedScene" uid="uid://d32q58d334dfd" path="res://objects/floor/floor.tscn" id="1_s2rjp"]
+[ext_resource type="PackedScene" uid="uid://cxiu2kws8f1xm" path="res://objects/staticBlock.tscn" id="2_p8rs4"]
+[ext_resource type="PackedScene" uid="uid://cng2o48wdswvk" path="res://objects/door/door.tscn" id="3_44mhx"]
+[ext_resource type="PackedScene" uid="uid://cv46bl48bc1fk" path="res://objects/movingBlock.tscn" id="4_c60oe"]
+[ext_resource type="PackedScene" uid="uid://dsldmk2ksjn2m" path="res://objects/lowMovingBlock.tscn" id="5_qlbnc"]
+
+[node name="test_level1_low" type="Node2D" groups=["level_low"]]
+position = Vector2(150, 50)
+
+[node name="Static" type="Node2D" parent="."]
+use_parent_material = true
+
+[node name="Floors" type="Node2D" parent="Static"]
+use_parent_material = true
+
+[node name="Grass" parent="Static/Floors" instance=ExtResource("1_s2rjp")]
+modulate = Color(0.0862745, 0.219608, 0, 1)
+use_parent_material = true
+position = Vector2(139, 347)
+scale = Vector2(25.308, 8.60762)
+floor_material = 0
+
+[node name="Grass2" parent="Static/Floors" instance=ExtResource("1_s2rjp")]
+modulate = Color(0.0862745, 0.219608, 0, 1)
+use_parent_material = true
+position = Vector2(156, -408)
+scale = Vector2(25.588, 2.96762)
+floor_material = 0
+
+[node name="Grass3" parent="Static/Floors" instance=ExtResource("1_s2rjp")]
+modulate = Color(0.0862745, 0.219608, 0, 1)
+use_parent_material = true
+position = Vector2(845, 111)
+rotation = 1.5708
+scale = Vector2(16.868, 3.52819)
+floor_material = 0
+
+[node name="Grass4" parent="Static/Floors" instance=ExtResource("1_s2rjp")]
+modulate = Color(0.0862745, 0.219608, 0, 1)
+use_parent_material = true
+position = Vector2(-604, 111)
+rotation = 1.5708
+scale = Vector2(16.868, 1.88819)
+floor_material = 0
+
+[node name="Concrete" parent="Static/Floors" instance=ExtResource("1_s2rjp")]
+modulate = Color(0.370789, 0.245634, 0.151719, 1)
+use_parent_material = true
+position = Vector2(90, -113)
+scale = Vector2(19.3188, 5.79915)
+
+[node name="Walls" type="Node2D" parent="Static"]
+use_parent_material = true
+
+[node name="StaticBody2D" parent="Static/Walls" instance=ExtResource("2_p8rs4")]
+position = Vector2(543, 81)
+scale = Vector2(6.16, 0.48)
+
+[node name="StaticBody2D14" parent="Static/Walls" instance=ExtResource("2_p8rs4")]
+position = Vector2(144, 642)
+scale = Vector2(25.72, 0.48)
+
+[node name="StaticBody2D15" parent="Static/Walls" instance=ExtResource("2_p8rs4")]
+position = Vector2(135, -492)
+scale = Vector2(25.72, 0.48)
+
+[node name="StaticBody2D16" parent="Static/Walls" instance=ExtResource("2_p8rs4")]
+position = Vector2(966, 81)
+rotation = -1.57104
+scale = Vector2(18.24, 0.48)
+
+[node name="StaticBody2D17" parent="Static/Walls" instance=ExtResource("2_p8rs4")]
+position = Vector2(-674, 73)
+rotation = -1.57104
+scale = Vector2(18.24, 0.48)
+
+[node name="StaticBody2D13" parent="Static/Walls" instance=ExtResource("2_p8rs4")]
+position = Vector2(121, -121)
+scale = Vector2(0.920322, 0.64)
+
+[node name="StaticBody2D8" parent="Static/Walls" instance=ExtResource("2_p8rs4")]
+position = Vector2(360, 44)
+rotation = 1.5822
+scale = Vector2(1.59939, 0.48)
+
+[node name="StaticBody2D9" parent="Static/Walls" instance=ExtResource("2_p8rs4")]
+position = Vector2(-175, 36)
+rotation = 1.5822
+scale = Vector2(1.59939, 0.48)
+
+[node name="StaticBody2D7" parent="Static/Walls" instance=ExtResource("2_p8rs4")]
+position = Vector2(-176, -222)
+rotation = 1.5708
+scale = Vector2(3.08, 0.48)
+
+[node name="StaticBody2D3" parent="Static/Walls" instance=ExtResource("2_p8rs4")]
+position = Vector2(541, -308)
+scale = Vector2(6.16, 0.48)
+
+[node name="StaticBody2D2" parent="Static/Walls" instance=ExtResource("2_p8rs4")]
+position = Vector2(724, -129)
+rotation = 1.57118
+scale = Vector2(6.16, 0.48)
+
+[node name="StaticBody2D4" parent="Static/Walls" instance=ExtResource("2_p8rs4")]
+position = Vector2(-355, 73)
+scale = Vector2(6.16, 0.48)
+
+[node name="StaticBody2D5" parent="Static/Walls" instance=ExtResource("2_p8rs4")]
+position = Vector2(91, -310)
+scale = Vector2(20.52, 0.48)
+
+[node name="StaticBody2D11" parent="Static/Walls" instance=ExtResource("2_p8rs4")]
+position = Vector2(327, 76)
+scale = Vector2(4.64, 0.48)
+
+[node name="StaticBody2D12" parent="Static/Walls" instance=ExtResource("2_p8rs4")]
+position = Vector2(-71, 72)
+scale = Vector2(4.48, 0.48)
+
+[node name="StaticBody2D6" parent="Static/Walls" instance=ExtResource("2_p8rs4")]
+position = Vector2(-538, -115)
+rotation = 1.57118
+scale = Vector2(6.16, 0.48)
+
+[node name="StaticBody2D10" parent="Static/Walls" instance=ExtResource("2_p8rs4")]
+position = Vector2(359, -198)
+rotation = 1.57118
+scale = Vector2(3.71968, 0.48)
+
+[node name="Doors" type="Node2D" parent="."]
+
+[node name="Door" parent="Doors" instance=ExtResource("3_44mhx")]
+position = Vector2(79, 72)
+
+[node name="Door2" parent="Doors" instance=ExtResource("3_44mhx")]
+position = Vector2(-175, -23)
+rotation = -1.5708
+
+[node name="MovingBlocks" type="Node2D" parent="."]
+
+[node name="MovingBlock2" parent="MovingBlocks" instance=ExtResource("4_c60oe")]
+position = Vector2(-148, 316)
+
+[node name="lowMovingBlock" parent="MovingBlocks" instance=ExtResource("5_qlbnc")]
+position = Vector2(-144, 231)

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cgkk6a01eg81t"
-path="res://.godot/imported/aim_assinst_line.png-e4528de3403aa0b1097c62181667ffdc.ctex"
+uid="uid://c81efo3urc6nt"
+path="res://.godot/imported/view_cone_redo.png-6c963550d92f3da53fad403ed5cd41b6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://aim_assinst_line.png"
-dest_files=["res://.godot/imported/aim_assinst_line.png-e4528de3403aa0b1097c62181667ffdc.ctex"]
+source_file="res://characters/player/legacy/view_cone_redo.png"
+dest_files=["res://.godot/imported/view_cone_redo.png-6c963550d92f3da53fad403ed5cd41b6.ctex"]
 
 [params]
 

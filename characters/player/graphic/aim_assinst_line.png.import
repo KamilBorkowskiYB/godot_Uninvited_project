@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dp05qdlei2vkx"
-path="res://.godot/imported/aim_sheet.png-c0a512413d4374d0028bd4d6fdc20c91.ctex"
+uid="uid://cgkk6a01eg81t"
+path="res://.godot/imported/aim_assinst_line.png-5dfe9b2e5ec2f37df4f418deecc0e0cc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://characters/player/aim_sheet.png"
-dest_files=["res://.godot/imported/aim_sheet.png-c0a512413d4374d0028bd4d6fdc20c91.ctex"]
+source_file="res://characters/player/graphic/aim_assinst_line.png"
+dest_files=["res://.godot/imported/aim_assinst_line.png-5dfe9b2e5ec2f37df4f418deecc0e0cc.ctex"]
 
 [params]
 

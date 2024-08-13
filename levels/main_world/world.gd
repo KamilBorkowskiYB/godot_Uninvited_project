@@ -3,7 +3,7 @@ extends Node2D
 @onready var player: CharacterBody2D = get_tree().get_first_node_in_group("player")
 
 func _ready():
-	var viewport1 = get_node("MainLevelViewport/SubViewport/Level")
+	var viewport1 = get_node("MainLevelViewport/SubViewport").get_child(0)
 	var viewport2 = get_node("FogViewport")
 	var viewport3 = get_node("VisibilityViewport")
 	
@@ -16,7 +16,6 @@ func _ready():
 		cam_main.fog_camera = cam_fog
 	
 	#connecting VisionViewport lights to player
-	var player = viewport1.get_node_or_null("Player")
 	var view_light = viewport3.get_node_or_null("ViewLight")
 	if(player and view_light):
 		player.view_light = view_light
@@ -36,14 +35,14 @@ func _ready():
 	player.weapon_info_on.connect(weapon_info_visible)
 	
 	#connecting signals from pickUps
-	viewport1 = get_node("MainLevelViewport/SubViewport/Level/PickUps")
+	viewport1 = get_node("MainLevelViewport/SubViewport").get_child(0).get_node("PickUps")
 	for child in viewport1.get_children():
 		if child.has_signal("item_picked_up"):
 			child.item_picked_up.connect(item_picked_up)
 	
-	viewport1 = get_node("MainLevelViewport/SubViewport/Level/Enviroment")
-	viewport2 = get_node("FogViewport/Enviroment")
-	viewport3 = get_node("VisibilityViewport/Enviroment")
+	viewport1 = get_node("MainLevelViewport/SubViewport").get_child(0).get_child(0).get_child(0).get_node("Doors")
+	viewport2 = get_node("FogViewport").get_child(0).get_child(0).get_node("Doors")
+	viewport3 = get_node("VisibilityViewport").get_child(0).get_node("Doors")
 	
 	for i in range(4):#connecting doors
 		if(i==0):
@@ -60,6 +59,10 @@ func _ready():
 			if(node1 and node2 and node3):
 				node1.linkedView = node2
 				node1.linkedFog = node3
+	
+	viewport1 = get_node("MainLevelViewport/SubViewport").get_child(0).get_child(0).get_child(0).get_node("MovingBlocks")
+	viewport2 = get_node("FogViewport").get_child(0).get_child(0).get_node("MovingBlocks")
+	viewport3 = get_node("VisibilityViewport").get_child(0).get_node("MovingBlocks")
 	
 	for i in range(4):#connecting Moving block
 		if(i==0):

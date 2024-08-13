@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://j4xmyho5fjf3"
-path="res://.godot/imported/shooter.png-e4609e152d87de03c41c170dea124397.ctex"
+uid="uid://c52fuv8m14np1"
+path="res://.godot/imported/pelvis.png-c8ff6dd94700bc900bc58e8a08ab6543.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://characters/player/shooter.png"
-dest_files=["res://.godot/imported/shooter.png-e4609e152d87de03c41c170dea124397.ctex"]
+source_file="res://characters/player/graphic/pelvis.png"
+dest_files=["res://.godot/imported/pelvis.png-c8ff6dd94700bc900bc58e8a08ab6543.ctex"]
 
 [params]
 

@@ -1,13 +1,14 @@
-[gd_scene load_steps=20 format=3 uid="uid://dbs8dbmepbxnh"]
+[gd_scene load_steps=21 format=3 uid="uid://dbs8dbmepbxnh"]
 
-[ext_resource type="Script" path="res://world.gd" id="1_eb6ap"]
+[ext_resource type="Script" path="res://levels/main_world/world.gd" id="1_eb6ap"]
 [ext_resource type="Shader" path="res://shaders/grayscale.gdshader" id="1_fgecg"]
 [ext_resource type="Shader" path="res://shaders/maskView.gdshader" id="2_hpucc"]
-[ext_resource type="PackedScene" uid="uid://d1oul8y1hqgln" path="res://levels/level.tscn" id="2_n2174"]
-[ext_resource type="PackedScene" uid="uid://bnppgiphfgo5q" path="res://levels/enviroment.tscn" id="3_uc7v4"]
-[ext_resource type="Texture2D" uid="uid://dv1g3h6sswoha" path="res://characters/player/view_cone.png" id="3_wk82u"]
+[ext_resource type="PackedScene" uid="uid://d1oul8y1hqgln" path="res://levels/test_level1/level.tscn" id="2_n2174"]
+[ext_resource type="PackedScene" uid="uid://bnppgiphfgo5q" path="res://levels/test_level1/enviroment.tscn" id="3_uc7v4"]
+[ext_resource type="Texture2D" uid="uid://dv1g3h6sswoha" path="res://characters/player/graphic/view_cone.png" id="3_wk82u"]
 [ext_resource type="Shader" path="res://shaders/visibilityMapShader.gdshader" id="4_thh5m"]
-[ext_resource type="Texture2D" uid="uid://cgkk6a01eg81t" path="res://aim_assinst_line.png" id="6_6svyg"]
+[ext_resource type="Texture2D" uid="uid://cgkk6a01eg81t" path="res://characters/player/graphic/aim_assinst_line.png" id="6_6svyg"]
+[ext_resource type="PackedScene" uid="uid://b7iklrlyc5m55" path="res://levels/test_level1/test_level_1_low.tscn" id="8_apxvq"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_23xho"]
 shader = ExtResource("1_fgecg")
@@ -33,6 +34,9 @@ light_mode = 1
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_voyp2"]
 light_mode = 1
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nmqhj"]
+shader = ExtResource("4_thh5m")
+
 [sub_resource type="Gradient" id="Gradient_qum5l"]
 interpolation_mode = 2
 offsets = PackedFloat32Array(0.675325, 1)
@@ -45,9 +49,6 @@ height = 256
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.862385, 0.178899)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_o7gsa"]
-shader = ExtResource("4_thh5m")
 
 [sub_resource type="Theme" id="Theme_1ss4e"]
 default_font_size = 26
@@ -112,6 +113,9 @@ handle_input_locally = false
 size = Vector2i(1152, 648)
 render_target_update_mode = 4
 
+[node name="test_level1_low" parent="VisibilityViewport" instance=ExtResource("8_apxvq")]
+material = SubResource("ShaderMaterial_nmqhj")
+
 [node name="ViewLight" type="PointLight2D" parent="VisibilityViewport"]
 blend_mode = 1
 shadow_enabled = true
@@ -123,15 +127,6 @@ blend_mode = 1
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_ifk28")
 texture_scale = 0.7
-
-[node name="Enviroment" parent="VisibilityViewport" instance=ExtResource("3_uc7v4")]
-material = SubResource("ShaderMaterial_o7gsa")
-
-[node name="CanvasModulate" parent="VisibilityViewport/Enviroment" index="1"]
-visible = false
-
-[node name="AmbientDark" parent="VisibilityViewport/Enviroment" index="2"]
-visible = false
 
 [node name="Camera2D" type="Camera2D" parent="VisibilityViewport"]
 
@@ -274,5 +269,3 @@ offset_bottom = 23.0
 
 [connection signal="timeout" from="ItemsObtained/UI/PickUpTimer" to="ItemsObtained/UI" method="hide"]
 [connection signal="pressed" from="DeathScreen/DeathScreen/Panel/Button" to="." method="restart"]
-
-[editable path="VisibilityViewport/Enviroment"]

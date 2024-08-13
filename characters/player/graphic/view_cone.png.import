@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b5ugqtcggs4u2"
-path="res://.godot/imported/light.png-b7fc6eae2ca364746339bf82bf5856b4.ctex"
+uid="uid://dv1g3h6sswoha"
+path="res://.godot/imported/view_cone.png-177c4068c5ea70e0db37d221eeade1e6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://characters/player/light.png"
-dest_files=["res://.godot/imported/light.png-b7fc6eae2ca364746339bf82bf5856b4.ctex"]
+source_file="res://characters/player/graphic/view_cone.png"
+dest_files=["res://.godot/imported/view_cone.png-177c4068c5ea70e0db37d221eeade1e6.ctex"]
 
 [params]
 
