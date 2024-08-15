@@ -36,6 +36,7 @@ texture_scale = 14.18
 [node name="Rroom" type="PointLight2D" parent="AmbientDark"]
 position = Vector2(333.524, 2.09808e-05)
 scale = Vector2(0.31, 0.997)
+energy = 0.5
 blend_mode = 1
 texture = SubResource("GradientTexture2D_c1o86")
 texture_scale = 14.18

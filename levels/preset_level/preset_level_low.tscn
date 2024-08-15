@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://drjtbe7lus5v0"]
 
-[node name="test_level2_low" type="Node2D"]
+[node name="preset_level_low" type="Node2D"]
 
 [node name="Static" type="Node2D" parent="."]
 

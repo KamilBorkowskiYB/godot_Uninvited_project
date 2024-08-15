@@ -1,14 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://ns4xmysl2wm"]
+[gd_scene load_steps=4 format=3 uid="uid://ns4xmysl2wm"]
 
 [ext_resource type="Script" path="res://levels/camera_control.gd" id="1_8jas4"]
-[ext_resource type="PackedScene" uid="uid://bbmb7rfl6hr0t" path="res://levels/test_level2/test_level_2_mid.tscn" id="2_gk6pf"]
 [ext_resource type="PackedScene" uid="uid://c8bitsc7ybbya" path="res://characters/player/player.tscn" id="3_3yajp"]
 [ext_resource type="Script" path="res://characters/player/Camera2D.gd" id="4_y767o"]
 
-[node name="test_level2_high" type="Node2D"]
+[node name="preset_level_high" type="Node2D"]
 script = ExtResource("1_8jas4")
-
-[node name="test_level2_mid" parent="." instance=ExtResource("2_gk6pf")]
 
 [node name="Player" parent="." instance=ExtResource("3_3yajp")]
 

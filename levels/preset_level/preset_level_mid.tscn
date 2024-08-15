@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://bbmb7rfl6hr0t"]
+
+[node name="preset_level_mid" type="Node2D"]
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.439216, 0.439216, 0.439216, 1)
+
+[node name="AmbientDark" type="Node2D" parent="."]
