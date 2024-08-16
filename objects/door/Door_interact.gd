@@ -1,7 +1,6 @@
 extends RigidBody2D
 
 @onready var interaction_area: InteractionArea = $interaction_area
-@onready var player: CharacterBody2D = get_tree().get_first_node_in_group("player")
 var transform_to
 var isClosed = true
 var health = 100
@@ -16,6 +15,7 @@ func _process(delta):
 	else:
 		$interaction_area.action_name = "Open"
 func _on_interact():
+	var player: CharacterBody2D = get_tree().get_first_node_in_group("player")
 	if(isClosed):
 		isClosed = false
 		$".".mass = 1.0

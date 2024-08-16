@@ -1,12 +1,12 @@
 extends Node2D
 
-@onready var player: CharacterBody2D = get_tree().get_first_node_in_group("player")
+#@onready var player: CharacterBody2D = get_tree().get_first_node_in_group("player")
 
 func _ready():
 	var viewport1 = get_node("MainLevelViewport/SubViewport").get_child(0)
 	var viewport2 = get_node("FogViewport")
 	var viewport3 = get_node("VisibilityViewport")
-	
+	var player: CharacterBody2D = get_tree().get_first_node_in_group("player")
 	#connecting viewport cameras
 	var cam_main = viewport1.get_node_or_null("PlayerCamera")
 	var cam_fog = viewport2.get_node_or_null("Camera2D")
@@ -39,6 +39,12 @@ func _ready():
 	for child in viewport1.get_children():
 		if child.has_signal("item_picked_up"):
 			child.item_picked_up.connect(item_picked_up)
+	
+	#connecting signals from LevelExits
+	viewport1 = get_node("MainLevelViewport/SubViewport").get_child(0).get_node("LevelExits")
+	for child in viewport1.get_children():
+		if child.has_signal("change_level"):
+			child.change_level.connect(change_level)
 	
 	viewport1 = get_node("MainLevelViewport/SubViewport").get_child(0).get_child(0).get_child(0).get_node("Doors")
 	viewport2 = get_node("FogViewport").get_child(0).get_child(0).get_node("Doors")
@@ -99,7 +105,9 @@ func _ready():
 func _process(delta):
 	if Input.is_action_just_pressed("restart"):
 		restart()
-	$WeaponSelected/Control/Label.text = str(player.magazine) +"/"+ str(player.ammo)
+	var player: CharacterBody2D = get_tree().get_first_node_in_group("player")
+	if player != null:
+		$WeaponSelected/Control/Label.text = str(player.magazine) +"/"+ str(player.ammo)
 func restart():
 	get_tree().reload_current_scene()
 func player_dead():
@@ -113,3 +121,33 @@ func item_picked_up(is_space,item_name):
 	$ItemsObtained/UI/PickUpTimer.start()
 func weapon_info_visible():
 	$WeaponSelected/Control.show()
+func change_level(lvl_high,lvl_mid,lvl_low,player_pos):
+	get_node("MainLevelViewport/SubViewport").get_child(0).queue_free()
+	get_node("FogViewport").get_child(0).queue_free()
+	get_node("VisibilityViewport").get_child(0).queue_free()
+	
+	var viewport1 = get_node("MainLevelViewport/SubViewport")
+	var viewport2 = get_node("FogViewport")
+	var viewport3 = get_node("VisibilityViewport")
+	
+	var instance_high = lvl_high.instantiate()
+	var instance_mid = lvl_mid.instantiate()
+	var instance_low = lvl_low.instantiate()
+	
+	var shader_material = ShaderMaterial.new()
+	shader_material.shader = preload("res://shaders/visibilityMapShader.gdshader")
+	instance_low.material = shader_material
+	
+	viewport1.add_child(instance_high)
+	viewport2.add_child(instance_mid)
+	viewport3.add_child(instance_low)
+	
+	viewport1.move_child(instance_high,0)
+	viewport2.move_child(instance_mid,0)
+	viewport3.move_child(instance_low,0)
+	
+	var player: CharacterBody2D = get_tree().get_first_node_in_group("player")
+	player.position = player_pos
+	_ready()
+	InteractionManager.active_areas = []
+	InteractionManager.mouse_range = []

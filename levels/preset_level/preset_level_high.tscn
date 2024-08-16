@@ -17,3 +17,5 @@ script = ExtResource("4_y767o")
 [node name="Enemies" type="Node2D" parent="."]
 
 [node name="LightSources" type="Node2D" parent="."]
+
+[node name="LevelExits" type="Node2D" parent="."]
