@@ -1,6 +1,5 @@
 extends Node2D
 
-@onready var player: CharacterBody2D = get_tree().get_first_node_in_group("player")
 @export var floor_material := FloorType.Concrete
 enum FloorType {Grass, Concrete, Water}
 

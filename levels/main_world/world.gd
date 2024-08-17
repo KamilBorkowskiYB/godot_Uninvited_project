@@ -121,7 +121,7 @@ func item_picked_up(is_space,item_name):
 	$ItemsObtained/UI/PickUpTimer.start()
 func weapon_info_visible():
 	$WeaponSelected/Control.show()
-func change_level(lvl_high,lvl_mid,lvl_low,player_pos):
+func change_level(player_pos,level_high,level_mid,level_low):
 	get_node("MainLevelViewport/SubViewport").get_child(0).queue_free()
 	get_node("FogViewport").get_child(0).queue_free()
 	get_node("VisibilityViewport").get_child(0).queue_free()
@@ -130,9 +130,9 @@ func change_level(lvl_high,lvl_mid,lvl_low,player_pos):
 	var viewport2 = get_node("FogViewport")
 	var viewport3 = get_node("VisibilityViewport")
 	
-	var instance_high = lvl_high.instantiate()
-	var instance_mid = lvl_mid.instantiate()
-	var instance_low = lvl_low.instantiate()
+	var instance_high = load(level_high).instantiate()
+	var instance_mid = load(level_mid).instantiate()
+	var instance_low = load(level_low).instantiate()
 	
 	var shader_material = ShaderMaterial.new()
 	shader_material.shader = preload("res://shaders/visibilityMapShader.gdshader")

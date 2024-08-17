@@ -1,13 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://byrjyaoq4f520"]
+[gd_scene load_steps=5 format=3 uid="uid://byrjyaoq4f520"]
 
 [ext_resource type="PackedScene" uid="uid://ns4xmysl2wm" path="res://levels/preset_level/preset_level_high.tscn" id="1_b3o5g"]
 [ext_resource type="PackedScene" uid="uid://c75nbwovmfxni" path="res://levels/test_level2/forest_lvl_mid.tscn" id="2_cvxue"]
 [ext_resource type="PackedScene" uid="uid://shqgwjseluto" path="res://objects/light_source.tscn" id="3_j13ns"]
 [ext_resource type="PackedScene" uid="uid://bkwqhd3tr21xb" path="res://Interactions/SceneChange/change_scene.tscn" id="4_05syw"]
-[ext_resource type="PackedScene" uid="uid://d1oul8y1hqgln" path="res://levels/test_level1/level.tscn" id="5_j1lot"]
-[ext_resource type="PackedScene" uid="uid://bnppgiphfgo5q" path="res://levels/test_level1/enviroment.tscn" id="6_ehswa"]
-[ext_resource type="PackedScene" uid="uid://b7iklrlyc5m55" path="res://levels/test_level1/test_level_1_low.tscn" id="7_rq23s"]
-[ext_resource type="PackedScene" uid="uid://bgviwme3dklaa" path="res://levels/test_level2/forest_lvl_low.tscn" id="8_oy7gc"]
 
 [node name="forest_lvl_high" instance=ExtResource("1_b3o5g")]
 
@@ -26,17 +22,10 @@ position = Vector2(758, -13)
 position = Vector2(1070, -344)
 
 [node name="change_scene" parent="LevelExits" index="0" instance=ExtResource("4_05syw")]
-position = Vector2(492, -1330)
-level_high = ExtResource("5_j1lot")
-level_mid = ExtResource("6_ehswa")
-level_low = ExtResource("7_rq23s")
-level_name = "Szopa"
-
-[node name="change_scene2" parent="LevelExits" index="1" instance=ExtResource("4_05syw")]
-position = Vector2(391, 385)
-scale = Vector2(1, 4.2)
-level_high = null
-level_mid = ExtResource("2_cvxue")
-level_low = ExtResource("8_oy7gc")
-player_position = Vector2(5, 420)
-level_name = "Woods"
+position = Vector2(514, -1356)
+scale = Vector2(2.32, 1.88)
+level_high = "res://levels/test_level1/level.tscn"
+level_mid = "res://levels/test_level1/enviroment.tscn"
+level_low = "res://levels/test_level1/test_level_1_low.tscn"
+player_position = Vector2(800, 350)
+level_name = "Cottage"

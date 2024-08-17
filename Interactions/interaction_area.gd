@@ -2,7 +2,6 @@ extends Area2D
 class_name InteractionArea
 
 @export var action_name: String = "Open/Close"
-@onready var player: CharacterBody2D = get_tree().get_first_node_in_group("player")
 var interact: Callable = func():
 	pass
 

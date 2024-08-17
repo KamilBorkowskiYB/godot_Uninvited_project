@@ -3,7 +3,6 @@ extends CharacterBody2D
 @onready var ray_cast_2d = $RayCast2D
 
 @export var move_speed = 100
-@onready var player: CharacterBody2D = get_tree().get_first_node_in_group("player")
 @onready var animation_player = $AnimationPlayer
 var dead = false
 @export var push_force = 10.0
@@ -18,6 +17,7 @@ func _physics_process(_delta):
 	if dead:
 		animation_player.stop()
 		return
+	var player: CharacterBody2D = get_tree().get_first_node_in_group("player")
 	var dir_to_player = global_position.direction_to(player.global_position)
 	velocity = move_speed * dir_to_player
 	move_and_slide()
