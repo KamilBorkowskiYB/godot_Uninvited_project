@@ -103,11 +103,11 @@ func _ready():
 				node1.linkedFog = node3
 
 func _process(delta):
-	if Input.is_action_just_pressed("restart"):
-		restart()
 	var player: CharacterBody2D = get_tree().get_first_node_in_group("player")
 	if player != null:
 		$WeaponSelected/Control/Label.text = str(player.magazine) +"/"+ str(player.ammo)
+	if Input.is_action_just_pressed("restart"):
+		restart()
 func restart():
 	get_tree().reload_current_scene()
 func player_dead():
