@@ -98,6 +98,7 @@ reload={
 2d_physics/layer_1="Enviroment"
 2d_physics/layer_2="Characters"
 2d_physics/layer_3="LowBlocks"
+2d_physics/layer_7="Footsteps"
 2d_physics/layer_8="Interaction"
 
 [rendering]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://c8bitsc7ybbya"]
+[gd_scene load_steps=34 format=3 uid="uid://c8bitsc7ybbya"]
 
 [ext_resource type="Script" path="res://characters/player/player.gd" id="1_bf8ru"]
 [ext_resource type="Texture2D" uid="uid://f5sx516ofsyb" path="res://characters/player/graphic/legs.png" id="2_qgy1a"]
@@ -585,6 +585,9 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.798165, 0.201835)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_fhelc"]
+radius = 2.0
+
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_layer = 2
 collision_mask = 7
@@ -746,6 +749,13 @@ bus = &"sfx"
 [node name="GrassFootstep" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("13_1127d")
 bus = &"sfx"
+
+[node name="Footsteps" type="Area2D" parent="."]
+collision_layer = 64
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Footsteps"]
+shape = SubResource("CircleShape2D_fhelc")
 
 [connection signal="timeout" from="Top/MuzzleFlash/Timer" to="Top/FlashLight" method="hide"]
 [connection signal="timeout" from="Top/MuzzleFlash/Timer" to="Top/MuzzleFlash" method="hide"]

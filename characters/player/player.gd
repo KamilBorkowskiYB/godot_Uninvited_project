@@ -15,7 +15,7 @@ var aim_assistL: Node2D
 var cursor_current = null
 
 ##########        FOOTSTEPS        ##########
-enum FloorMaterial {Grass, Concrete, Water}
+enum FloorMaterial {Grass, Concrete, Water}#should be same as in floor script
 var stands_on := FloorMaterial.Concrete #floor changes this on ready()
 
 ##########        PICK UPS        ##########
