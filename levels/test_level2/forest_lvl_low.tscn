@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bgviwme3dklaa"]
+[gd_scene load_steps=10 format=3 uid="uid://bgviwme3dklaa"]
 
 [ext_resource type="PackedScene" uid="uid://drjtbe7lus5v0" path="res://levels/preset_level/preset_level_low.tscn" id="1_svwaw"]
 [ext_resource type="PackedScene" uid="uid://d32q58d334dfd" path="res://objects/floor/floor.tscn" id="2_qgqjp"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://c81efo3urc6nt" path="res://characters/player/legacy/view_cone_redo.png" id="4_hwgbk"]
 [ext_resource type="PackedScene" uid="uid://cng2o48wdswvk" path="res://objects/door/door.tscn" id="5_dcpon"]
 [ext_resource type="PackedScene" uid="uid://cv46bl48bc1fk" path="res://objects/movingBlock.tscn" id="6_sf8n3"]
+[ext_resource type="PackedScene" uid="uid://c33j86e6f8mi7" path="res://levels/atlases/atlas_one.tscn" id="7_kdcdf"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_osc3k"]
 radius = 26.0192
@@ -55,7 +56,7 @@ floor_material = 0
 [node name="Grass14" parent="Static/Floors" index="4" instance=ExtResource("2_qgqjp")]
 modulate = Color(0.0862745, 0.219608, 0, 1)
 use_parent_material = true
-position = Vector2(1297, -432)
+position = Vector2(1310, -1126)
 scale = Vector2(23.12, 35.32)
 floor_material = 0
 
@@ -1164,3 +1165,7 @@ use_parent_material = true
 
 [node name="MovingBlock" parent="MovingBlocks" index="0" instance=ExtResource("6_sf8n3")]
 position = Vector2(-209, 53)
+
+[node name="Atlas_one" parent="." index="3" instance=ExtResource("7_kdcdf")]
+use_parent_material = true
+position = Vector2(1349, 200)
