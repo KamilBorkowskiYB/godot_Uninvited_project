@@ -21,6 +21,12 @@ func _ready():
 		player.view_light = view_light
 	
 	
+	#connecting tilemap to player footsteps
+	var tilemap = viewport1.get_child(0).get_child(0).get_node("Tilemap").get_child(0)
+	var footnode = player.get_node("Footsteps")
+	if(footnode and tilemap):
+		footnode.tilemap = tilemap
+	
 	#connecting aim assist to player 
 	var aim = viewport2.get_node_or_null("AimAssist")
 	var aimL = viewport2.get_node_or_null("AimAssist/AimAssistL")

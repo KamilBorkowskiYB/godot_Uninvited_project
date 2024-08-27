@@ -146,3 +146,5 @@ position = Vector2(-148, 316)
 
 [node name="lowMovingBlock" parent="MovingBlocks" instance=ExtResource("5_qlbnc")]
 position = Vector2(-144, 231)
+
+[node name="Tilemap" type="Node2D" parent="."]

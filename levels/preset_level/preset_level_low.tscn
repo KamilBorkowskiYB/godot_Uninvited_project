@@ -11,3 +11,5 @@
 [node name="Doors" type="Node2D" parent="."]
 
 [node name="MovingBlocks" type="Node2D" parent="."]
+
+[node name="Tilemap" type="Node2D" parent="."]

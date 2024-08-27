@@ -1166,6 +1166,9 @@ use_parent_material = true
 [node name="MovingBlock" parent="MovingBlocks" index="0" instance=ExtResource("6_sf8n3")]
 position = Vector2(-209, 53)
 
-[node name="Atlas_one" parent="." index="3" instance=ExtResource("7_kdcdf")]
+[node name="Tilemap" parent="." index="3"]
+use_parent_material = true
+
+[node name="Atlas_one" parent="Tilemap" index="0" instance=ExtResource("7_kdcdf")]
 use_parent_material = true
 position = Vector2(1349, 200)
