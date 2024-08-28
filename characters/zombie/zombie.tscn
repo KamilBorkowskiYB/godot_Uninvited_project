@@ -8,6 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://71k1d45tql15" path="res://characters/zombie/monster_die.wav" id="6_5uw5y"]
 [ext_resource type="AudioStream" uid="uid://6pn5lbj8i2ch" path="res://characters/player/sounds/concrete_footstep.mp3" id="7_blsuw"]
 [ext_resource type="AudioStream" uid="uid://baanxyc2vjxhr" path="res://characters/player/sounds/grass_footsteps.mp3" id="8_cmydd"]
+[ext_resource type="PackedScene" uid="uid://cjgla4gkbb8u2" path="res://Interactions/footsteps.tscn" id="9_2ev7t"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gcysg"]
 radius = 32.0156
@@ -187,9 +188,6 @@ _data = {
 "walk": SubResource("Animation_hhe2l")
 }
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_bk6xl"]
-radius = 3.0
-
 [node name="Zombie" type="CharacterBody2D" groups=["enemy"]]
 collision_layer = 2
 collision_mask = 7
@@ -283,10 +281,5 @@ libraries = {
 "": SubResource("AnimationLibrary_mqaf6")
 }
 
-[node name="Footsteps" type="Area2D" parent="."]
-position = Vector2(-7, 20)
-collision_layer = 64
-collision_mask = 64
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Footsteps"]
-shape = SubResource("CircleShape2D_bk6xl")
+[node name="Footsteps" parent="." instance=ExtResource("9_2ev7t")]
+position = Vector2(-7, 27)

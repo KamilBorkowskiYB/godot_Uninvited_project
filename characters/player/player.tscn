@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://c8bitsc7ybbya"]
+[gd_scene load_steps=34 format=3 uid="uid://c8bitsc7ybbya"]
 
 [ext_resource type="Script" path="res://characters/player/player.gd" id="1_bf8ru"]
 [ext_resource type="Texture2D" uid="uid://f5sx516ofsyb" path="res://characters/player/graphic/legs.png" id="2_qgy1a"]
@@ -13,7 +13,7 @@
 [ext_resource type="AudioStream" uid="uid://b0ptr56jwws0u" path="res://characters/player/sounds/shotgun_shot1.wav" id="11_gs5cp"]
 [ext_resource type="AudioStream" uid="uid://6pn5lbj8i2ch" path="res://characters/player/sounds/concrete_footstep.mp3" id="12_qa0mu"]
 [ext_resource type="AudioStream" uid="uid://baanxyc2vjxhr" path="res://characters/player/sounds/grass_footsteps.mp3" id="13_1127d"]
-[ext_resource type="Script" path="res://Interactions/Footsteps.gd" id="14_cmnxa"]
+[ext_resource type="PackedScene" uid="uid://cjgla4gkbb8u2" path="res://Interactions/footsteps.tscn" id="14_xbjs0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_f7cyc"]
 radius = 27.2947
@@ -586,9 +586,6 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.798165, 0.201835)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_fhelc"]
-radius = 2.0
-
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_layer = 2
 collision_mask = 7
@@ -751,15 +748,7 @@ bus = &"sfx"
 stream = ExtResource("13_1127d")
 bus = &"sfx"
 
-[node name="Footsteps" type="Area2D" parent="."]
-collision_layer = 64
-collision_mask = 64
-script = ExtResource("14_cmnxa")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Footsteps"]
-shape = SubResource("CircleShape2D_fhelc")
+[node name="Footsteps" parent="." instance=ExtResource("14_xbjs0")]
 
 [connection signal="timeout" from="Top/MuzzleFlash/Timer" to="Top/FlashLight" method="hide"]
 [connection signal="timeout" from="Top/MuzzleFlash/Timer" to="Top/MuzzleFlash" method="hide"]
-[connection signal="area_entered" from="Footsteps" to="Footsteps" method="_on_area_entered"]
-[connection signal="body_entered" from="Footsteps" to="Footsteps" method="_on_Area2D_body_entered"]

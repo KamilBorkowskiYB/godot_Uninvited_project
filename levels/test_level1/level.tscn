@@ -18,13 +18,16 @@ script = ExtResource("1_4f817")
 [node name="Player" parent="." instance=ExtResource("2_klocm")]
 position = Vector2(261, 354)
 
-[node name="Zombie" parent="." instance=ExtResource("3_7x6e1")]
+[node name="Enemies" type="Node2D" parent="."]
+position = Vector2(4, 5)
+
+[node name="Zombie" parent="Enemies" instance=ExtResource("3_7x6e1")]
 position = Vector2(687, 11)
 
-[node name="Zombie2" parent="." instance=ExtResource("3_7x6e1")]
+[node name="Zombie2" parent="Enemies" instance=ExtResource("3_7x6e1")]
 position = Vector2(-310, 34)
 
-[node name="Zombie4" parent="." instance=ExtResource("3_7x6e1")]
+[node name="Zombie4" parent="Enemies" instance=ExtResource("3_7x6e1")]
 position = Vector2(253, -203)
 
 [node name="LightSource" parent="." instance=ExtResource("4_n3l4b")]

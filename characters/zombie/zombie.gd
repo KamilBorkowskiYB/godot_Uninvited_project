@@ -9,6 +9,7 @@ var dead = false
 
 enum FloorMaterial {Grass, Concrete, Water}
 var stands_on := FloorMaterial.Grass
+var standing_on :String = "grass"
 
 
 func _ready():
@@ -43,9 +44,15 @@ func kill(attack: Attack):
 	z_index = -1
 	
 func step():
-	if stands_on == FloorMaterial.Concrete:
+#	if stands_on == FloorMaterial.Concrete:
+#		$ConcreteFootstep.pitch_scale = randf_range(0.8, 1.2)
+#		$ConcreteFootstep.play()
+#	if stands_on == FloorMaterial.Grass:
+#		$GrassFootstep.pitch_scale = randf_range(0.8, 1.2)
+#		$GrassFootstep.play()
+	if standing_on == "brick":
 		$ConcreteFootstep.pitch_scale = randf_range(0.8, 1.2)
 		$ConcreteFootstep.play()
-	if stands_on == FloorMaterial.Grass:
+	if standing_on == "grass":
 		$GrassFootstep.pitch_scale = randf_range(0.8, 1.2)
 		$GrassFootstep.play()

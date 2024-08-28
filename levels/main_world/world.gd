@@ -27,6 +27,13 @@ func _ready():
 	if(footnode and tilemap):
 		footnode.tilemap = tilemap
 	
+	#connecting tilemap to zombies footsteps
+	viewport1 = get_node("MainLevelViewport/SubViewport").get_child(0).get_node("Enemies")
+	for child in viewport1.get_children():
+		if(child and tilemap):
+			child.get_node_or_null("Footsteps").tilemap = tilemap
+	
+	
 	#connecting aim assist to player 
 	var aim = viewport2.get_node_or_null("AimAssist")
 	var aimL = viewport2.get_node_or_null("AimAssist/AimAssistL")

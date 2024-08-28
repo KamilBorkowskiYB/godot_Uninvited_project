@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://cjgla4gkbb8u2"]
+
+[ext_resource type="Script" path="res://Interactions/Footsteps.gd" id="1_hubsx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fhelc"]
+radius = 2.0
+
+[node name="Footsteps" type="Area2D"]
+collision_layer = 64
+collision_mask = 64
+script = ExtResource("1_hubsx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_fhelc")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_Area2D_body_entered"]

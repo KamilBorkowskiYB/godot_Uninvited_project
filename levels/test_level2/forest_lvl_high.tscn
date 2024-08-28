@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://byrjyaoq4f520"]
+[gd_scene load_steps=6 format=3 uid="uid://byrjyaoq4f520"]
 
 [ext_resource type="PackedScene" uid="uid://ns4xmysl2wm" path="res://levels/preset_level/preset_level_high.tscn" id="1_b3o5g"]
 [ext_resource type="PackedScene" uid="uid://c75nbwovmfxni" path="res://levels/test_level2/forest_lvl_mid.tscn" id="2_cvxue"]
 [ext_resource type="PackedScene" uid="uid://shqgwjseluto" path="res://objects/light_source.tscn" id="3_j13ns"]
 [ext_resource type="PackedScene" uid="uid://bkwqhd3tr21xb" path="res://Interactions/SceneChange/change_scene.tscn" id="4_05syw"]
+[ext_resource type="PackedScene" uid="uid://dss4qi31e3k2u" path="res://characters/zombie/zombie.tscn" id="5_e8msc"]
 
 [node name="forest_lvl_high" instance=ExtResource("1_b3o5g")]
 
@@ -11,6 +12,9 @@
 
 [node name="Player" parent="." index="1"]
 position = Vector2(1377, -698)
+
+[node name="Zombie" parent="Enemies" index="0" instance=ExtResource("5_e8msc")]
+position = Vector2(1271, 186)
 
 [node name="LightSource" parent="LightSources" index="0" instance=ExtResource("3_j13ns")]
 position = Vector2(678, -470)

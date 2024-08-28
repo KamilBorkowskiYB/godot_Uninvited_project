@@ -1170,5 +1170,6 @@ position = Vector2(-209, 53)
 use_parent_material = true
 
 [node name="Atlas_one" parent="Tilemap" index="0" instance=ExtResource("7_kdcdf")]
+z_index = -2
 use_parent_material = true
 position = Vector2(1349, 200)

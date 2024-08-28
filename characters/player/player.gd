@@ -17,6 +17,7 @@ var cursor_current = null
 ##########        FOOTSTEPS        ##########
 enum FloorMaterial {Grass, Concrete, Water}#should be same as in floor script
 var stands_on := FloorMaterial.Concrete #floor changes this on ready()
+var standing_on :String = "grass"
 
 ##########        PICK UPS        ##########
 var pistol_unlock = 1
@@ -310,9 +311,15 @@ func update_ammo_numbers():
 		ammo = pistol_ammo
 
 func step():
-	if stands_on == FloorMaterial.Concrete:
+#	if stands_on == FloorMaterial.Concrete:
+#		$Sounds/ConcreteFootstep.pitch_scale = randf_range(0.8, 1.2)
+#		$Sounds/ConcreteFootstep.play()
+#	if stands_on == FloorMaterial.Grass:
+#		$Sounds/GrassFootstep.pitch_scale = randf_range(0.8, 1.2)
+#		$Sounds/GrassFootstep.play()
+	if standing_on == "brick":
 		$Sounds/ConcreteFootstep.pitch_scale = randf_range(0.8, 1.2)
 		$Sounds/ConcreteFootstep.play()
-	if stands_on == FloorMaterial.Grass:
+	if standing_on == "grass":
 		$Sounds/GrassFootstep.pitch_scale = randf_range(0.8, 1.2)
 		$Sounds/GrassFootstep.play()
