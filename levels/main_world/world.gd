@@ -3,10 +3,20 @@ extends Node2D
 #@onready var player: CharacterBody2D = get_tree().get_first_node_in_group("player")
 
 func _ready():
-	var viewport1 = get_node("MainLevelViewport/SubViewport").get_child(0)
+	var viewport1 = get_node("MainLevelViewport/SubViewport")
 	var viewport2 = get_node("FogViewport")
 	var viewport3 = get_node("VisibilityViewport")
 	var player: CharacterBody2D = get_tree().get_first_node_in_group("player")
+	#setting viewports size to match project size
+	var view_size = get_viewport().get_visible_rect().size
+	viewport1.size = view_size
+	viewport2.size = view_size
+	viewport3.size = view_size
+	#viewport1.set_size_2d_override(view_size)
+	#viewport2.set_size_2d_override(view_size)
+	#viewport3.set_size_2d_override(view_size)
+	
+	viewport1 = get_node("MainLevelViewport/SubViewport").get_child(0)
 	#connecting viewport cameras
 	var cam_main = viewport1.get_node_or_null("PlayerCamera")
 	var cam_fog = viewport2.get_node_or_null("Camera2D")

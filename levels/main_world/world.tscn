@@ -120,7 +120,7 @@ material = SubResource("ShaderMaterial_nmqhj")
 blend_mode = 1
 shadow_enabled = true
 texture = ExtResource("3_wk82u")
-texture_scale = 2.0
+texture_scale = 3.5
 
 [node name="PointLight2D" type="PointLight2D" parent="VisibilityViewport/ViewLight"]
 blend_mode = 1

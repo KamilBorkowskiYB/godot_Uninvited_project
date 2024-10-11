@@ -20,14 +20,12 @@ modulate = Color(0.0862745, 0.219608, 0, 1)
 use_parent_material = true
 position = Vector2(139, 347)
 scale = Vector2(25.308, 8.60762)
-floor_material = 0
 
 [node name="Grass2" parent="Static/Floors" instance=ExtResource("1_s2rjp")]
 modulate = Color(0.0862745, 0.219608, 0, 1)
 use_parent_material = true
 position = Vector2(156, -408)
 scale = Vector2(25.588, 2.96762)
-floor_material = 0
 
 [node name="Grass3" parent="Static/Floors" instance=ExtResource("1_s2rjp")]
 modulate = Color(0.0862745, 0.219608, 0, 1)
@@ -35,7 +33,6 @@ use_parent_material = true
 position = Vector2(845, 111)
 rotation = 1.5708
 scale = Vector2(16.868, 3.52819)
-floor_material = 0
 
 [node name="Grass4" parent="Static/Floors" instance=ExtResource("1_s2rjp")]
 modulate = Color(0.0862745, 0.219608, 0, 1)
@@ -43,13 +40,13 @@ use_parent_material = true
 position = Vector2(-604, 111)
 rotation = 1.5708
 scale = Vector2(16.868, 1.88819)
-floor_material = 0
 
 [node name="Concrete" parent="Static/Floors" instance=ExtResource("1_s2rjp")]
 modulate = Color(0.370789, 0.245634, 0.151719, 1)
 use_parent_material = true
 position = Vector2(90, -113)
 scale = Vector2(19.3188, 5.79915)
+stands_on = "brick"
 
 [node name="Walls" type="Node2D" parent="Static"]
 use_parent_material = true

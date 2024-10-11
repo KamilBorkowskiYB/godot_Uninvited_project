@@ -1,7 +1,6 @@
 extends CPUParticles2D
 
 @onready var interaction_area: InteractionArea = $InteractionArea
-@onready var player: CharacterBody2D = get_tree().get_first_node_in_group("player")
 var item_name = "None"# displayed name 
 var item_id = "None" # has to be equal to player unlock
 var is_space
@@ -39,6 +38,7 @@ func _ready():
 			item_name = "Pistol"
 
 func _on_interact():
+	var player: CharacterBody2D = get_tree().get_first_node_in_group("player")
 	if item_id == "rifle_ammo" and player.get(item_id) + 1 > player.RIFLE_MAX_SIZE:
 		item_picked_up.emit(0,item_name)
 	elif item_id == "shotgun_shells" and player.get(item_id) + 1 > player.SHOTGUN_MAX_SIZE:
