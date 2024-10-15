@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://dsldmk2ksjn2m" path="res://objects/lowMovingBlock.tscn" id="5_qlbnc"]
 
 [node name="test_level1_low" type="Node2D" groups=["level_low"]]
-position = Vector2(150, 50)
 
 [node name="Static" type="Node2D" parent="."]
 use_parent_material = true

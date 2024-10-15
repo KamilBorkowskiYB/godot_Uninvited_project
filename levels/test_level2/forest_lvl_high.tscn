@@ -10,9 +10,6 @@
 
 [node name="forest_lvl_mid" parent="." index="0" instance=ExtResource("2_cvxue")]
 
-[node name="Player" parent="." index="1"]
-position = Vector2(1377, -698)
-
 [node name="Zombie" parent="Enemies" index="0" instance=ExtResource("5_e8msc")]
 position = Vector2(1271, 186)
 

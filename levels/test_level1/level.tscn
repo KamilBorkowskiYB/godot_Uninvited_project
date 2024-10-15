@@ -1,8 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://d1oul8y1hqgln"]
+[gd_scene load_steps=8 format=3 uid="uid://d1oul8y1hqgln"]
 
 [ext_resource type="Script" path="res://levels/camera_control.gd" id="1_4f817"]
 [ext_resource type="PackedScene" uid="uid://bnppgiphfgo5q" path="res://levels/test_level1/enviroment.tscn" id="1_aqhqd"]
-[ext_resource type="PackedScene" uid="uid://c8bitsc7ybbya" path="res://characters/player/player.tscn" id="2_klocm"]
 [ext_resource type="PackedScene" uid="uid://dss4qi31e3k2u" path="res://characters/zombie/zombie.tscn" id="3_7x6e1"]
 [ext_resource type="PackedScene" uid="uid://shqgwjseluto" path="res://objects/light_source.tscn" id="4_n3l4b"]
 [ext_resource type="Script" path="res://characters/player/Camera2D.gd" id="5_ccx42"]
@@ -10,13 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://bkwqhd3tr21xb" path="res://Interactions/SceneChange/change_scene.tscn" id="8_smc70"]
 
 [node name="Level" type="Node2D"]
-position = Vector2(150, 50)
 script = ExtResource("1_4f817")
 
 [node name="Enviroment" parent="." instance=ExtResource("1_aqhqd")]
-
-[node name="Player" parent="." instance=ExtResource("2_klocm")]
-position = Vector2(248, 390)
 
 [node name="Enemies" type="Node2D" parent="."]
 position = Vector2(4, 5)
@@ -31,18 +26,19 @@ position = Vector2(-310, 34)
 position = Vector2(253, -203)
 
 [node name="LightSource" parent="." instance=ExtResource("4_n3l4b")]
-position = Vector2(109, 51)
+position = Vector2(-28, 8)
 
 [node name="LightSource2" parent="." instance=ExtResource("4_n3l4b")]
-position = Vector2(403, 35)
+position = Vector2(266, -8)
 
 [node name="LightSource3" parent="." instance=ExtResource("4_n3l4b")]
-position = Vector2(100, 450)
+position = Vector2(-37, 407)
 
 [node name="PlayerCamera" type="Camera2D" parent="."]
 script = ExtResource("5_ccx42")
 
 [node name="PickUps" type="Node2D" parent="."]
+position = Vector2(-82, -66)
 
 [node name="PickUp" parent="PickUps" instance=ExtResource("7_0crg7")]
 item_selected = 4
@@ -89,6 +85,7 @@ position = Vector2(501, 477)
 item_selected = 2
 
 [node name="LevelExits" type="Node2D" parent="."]
+position = Vector2(-184, -5)
 
 [node name="change_scene" parent="LevelExits" instance=ExtResource("8_smc70")]
 position = Vector2(1002, 391)

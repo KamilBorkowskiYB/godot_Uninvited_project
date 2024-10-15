@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dbs8dbmepbxnh"]
+[gd_scene load_steps=22 format=3 uid="uid://dbs8dbmepbxnh"]
 
 [ext_resource type="Script" path="res://levels/main_world/world.gd" id="1_eb6ap"]
 [ext_resource type="Shader" path="res://shaders/grayscale.gdshader" id="1_fgecg"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bnppgiphfgo5q" path="res://levels/test_level1/enviroment.tscn" id="3_uc7v4"]
 [ext_resource type="Texture2D" uid="uid://dv1g3h6sswoha" path="res://characters/player/graphic/view_cone.png" id="3_wk82u"]
 [ext_resource type="Shader" path="res://shaders/visibilityMapShader.gdshader" id="4_thh5m"]
+[ext_resource type="PackedScene" uid="uid://c8bitsc7ybbya" path="res://characters/player/player.tscn" id="5_5swua"]
 [ext_resource type="Texture2D" uid="uid://cgkk6a01eg81t" path="res://characters/player/graphic/aim_assinst_line.png" id="6_6svyg"]
 [ext_resource type="PackedScene" uid="uid://b7iklrlyc5m55" path="res://levels/test_level1/test_level_1_low.tscn" id="8_apxvq"]
 
@@ -80,6 +81,9 @@ render_target_update_mode = 4
 [node name="Level" parent="MainLevelViewport/SubViewport" instance=ExtResource("2_n2174")]
 light_mask = 897
 visibility_layer = 897
+
+[node name="Player" parent="MainLevelViewport/SubViewport" instance=ExtResource("5_5swua")]
+position = Vector2(400, 450)
 
 [node name="FogViewport" type="SubViewport" parent="."]
 transparent_bg = true

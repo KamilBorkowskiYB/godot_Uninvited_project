@@ -218,7 +218,8 @@ func shoot(ray_casts,ammo_type):
 		$Top/FlashLight.show()
 		$Top/MuzzleFlash/Timer.start()
 		$Sounds/ShootSound.play()
-		get_parent().start_shake(10, 0.1) 
+		var level = get_parent().get_child(0) #level always should be first node of viewport
+		level.start_shake(10, 0.1) 
 		recoil = min(max_recoil, recoil + max_recoil * 0.7)
 		ammo_type -= 1
 		# Iterate through all RayCast2D
@@ -230,10 +231,10 @@ func shoot(ray_casts,ammo_type):
 			var shot_trail = bullet_trail.instantiate()
 			
 			# Setting bullet trail points
-			shot_trail.add_point(get_parent().to_local(ray_cast.global_position) - offset)
+			shot_trail.add_point(level.to_local(ray_cast.global_position) - offset)
 			if ray_cast.is_colliding():
-				shot_trail.add_point(get_parent().to_local(ray_cast.get_collision_point()))
-			get_parent().add_child(shot_trail)
+				shot_trail.add_point(level.to_local(ray_cast.get_collision_point()))
+			level.add_child(shot_trail)
 			
 			# Killing
 			if ray_cast.is_colliding():

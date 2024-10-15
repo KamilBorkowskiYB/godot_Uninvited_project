@@ -12,10 +12,8 @@ fill = 2
 fill_from = Vector2(0.5, 0.5)
 
 [node name="Enviroment" type="Node2D"]
-position = Vector2(150, 50)
 
 [node name="test_level1_low" parent="." instance=ExtResource("1_4so2i")]
-position = Vector2(0, 0)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 use_parent_material = true
