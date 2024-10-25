@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://b7iklrlyc5m55"]
+[gd_scene load_steps=7 format=3 uid="uid://b7iklrlyc5m55"]
 
+[ext_resource type="Texture2D" uid="uid://cma5kmw10jghr" path="res://white_sq.png" id="1_7tonl"]
 [ext_resource type="PackedScene" uid="uid://d32q58d334dfd" path="res://objects/floor/floor.tscn" id="1_s2rjp"]
 [ext_resource type="PackedScene" uid="uid://cxiu2kws8f1xm" path="res://objects/staticBlock.tscn" id="2_p8rs4"]
 [ext_resource type="PackedScene" uid="uid://cng2o48wdswvk" path="res://objects/door/door.tscn" id="3_44mhx"]
@@ -14,11 +15,27 @@ use_parent_material = true
 [node name="Floors" type="Node2D" parent="Static"]
 use_parent_material = true
 
-[node name="Grass" parent="Static/Floors" instance=ExtResource("1_s2rjp")]
+[node name="BackgroundGrass" type="Sprite2D" parent="Static/Floors"]
+modulate = Color(0.0862745, 0.219608, 0, 1)
+z_index = -6
+z_as_relative = false
+use_parent_material = true
+position = Vector2(146, 78)
+scale = Vector2(25.8, 17.68)
+texture = ExtResource("1_7tonl")
+
+[node name="Water" parent="Static/Floors" instance=ExtResource("1_s2rjp")]
+modulate = Color(0.0862745, 0.180392, 0.737255, 1)
+use_parent_material = true
+position = Vector2(-308, 363)
+scale = Vector2(7.188, 8.60762)
+stands_on = "water"
+
+[node name="Grass5" parent="Static/Floors" instance=ExtResource("1_s2rjp")]
 modulate = Color(0.0862745, 0.219608, 0, 1)
 use_parent_material = true
-position = Vector2(139, 347)
-scale = Vector2(25.308, 8.60762)
+position = Vector2(328, 359)
+scale = Vector2(12.588, 8.60762)
 
 [node name="Grass2" parent="Static/Floors" instance=ExtResource("1_s2rjp")]
 modulate = Color(0.0862745, 0.219608, 0, 1)

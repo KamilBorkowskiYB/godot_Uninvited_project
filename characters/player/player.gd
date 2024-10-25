@@ -36,6 +36,10 @@ var shotgun_shells = 1
 @onready var LEFT_aim_assitst = $Top/AimAssistL
 @onready var bullet_trail = load("res://shot_trail.tscn")
 @export var move_speed = 200
+var aim_move_speed_debuff = 1.0
+var floor_move_speed_debuff = 1.0
+var run_move_speed_buff = 1.0
+var animation_walk = "walking"
 @export var push_force = 20.0
 var dead = false
 var weapon_selected  #0-rifle	1-shotgun 	2-pistol
@@ -118,7 +122,7 @@ func _process(_delta):
 	$Legs.rotation = move_direction.angle() + PI/2
 
 	if velocity.length() > 0:
-		animation_playerLegs.play("walking")
+		animation_playerLegs.play(animation_walk)
 		min_recoil = floor_min_recoil * 2
 		if(recoil < min_recoil):
 			recoil = min_recoil
@@ -129,6 +133,16 @@ func _process(_delta):
 	
 	update_ammo_numbers()
 	##########        INPUTS         ##########
+	if Input.is_action_just_pressed("run"):
+		if cursor_current == cursor_aim:
+			return
+		animation_walk = "walking" #add running anim
+		run_move_speed_buff = 1.7
+		animation_playerLegs.speed_scale = 1.5
+	if Input.is_action_just_released("run"):
+		animation_walk = "walking"
+		run_move_speed_buff = 1.0
+		animation_playerLegs.speed_scale = 1.0
 	if Input.is_action_just_pressed("shoot"):
 		if weapon_selected == 0 and rifle_cur_mag > 0:
 			rifle_cur_mag = shoot([ray_cast1], rifle_cur_mag)
@@ -161,11 +175,11 @@ func _process(_delta):
 		animation_player.play(animation_aim)
 		animation_player.queue(animation_aimed)
 		animation_playerLegs.speed_scale = 0.7
+		aim_move_speed_debuff = 0.5
 		RIGHT_aim_assitst.show()
 		LEFT_aim_assitst.show()
 		Input.set_custom_mouse_cursor(cursor_aim,Input.CURSOR_ARROW,Vector2(24,24))
 		cursor_current = cursor_aim
-		move_speed = 100
 	if Input.is_action_pressed("Aim"):
 		if weapon_selected == null:
 			return
@@ -193,8 +207,14 @@ func _physics_process(_delta):
 		return
 	##########        MOVING         ##########
 	var move_dir = Input.get_vector("move_left","move_right","move_down","move_up")
-	velocity = move_dir * move_speed
+	velocity = move_dir * move_speed * aim_move_speed_debuff * floor_move_speed_debuff * run_move_speed_buff
 	move_and_slide()
+	if standing_on == "water":
+		floor_move_speed_debuff = 0.3
+		$Legs.hide()
+	else:
+		floor_move_speed_debuff = 1.0
+		$Legs.show()
 	##########        COLIDING WITH RIGIDBODYS         ##########
 	for i in get_slide_collision_count():
 		var c = get_slide_collision(i)
@@ -251,11 +271,11 @@ func unaim():
 	if cursor_current == cursor_aim:
 		animation_player.play_backwards(animation_aim)
 		animation_playerLegs.speed_scale = 1
+		aim_move_speed_debuff = 1
 		RIGHT_aim_assitst.hide()
 		LEFT_aim_assitst.hide()
 		Input.set_custom_mouse_cursor(cursor_normal,Input.CURSOR_ARROW,Vector2(24,24))
 		cursor_current = cursor_normal
-		move_speed = 200
 
 func animation_end_reload():
 	if weapon_selected == 0 and rifle_cur_mag < RIFLE_MAG_SIZE and rifle_ammo > 0:
