@@ -12,9 +12,6 @@ func _ready():
 	viewport1.size = view_size
 	viewport2.size = view_size
 	viewport3.size = view_size
-	#viewport1.set_size_2d_override(view_size)
-	#viewport2.set_size_2d_override(view_size)
-	#viewport3.set_size_2d_override(view_size)
 	
 	viewport1 = get_node("MainLevelViewport/SubViewport").get_child(0)
 	#connecting viewport cameras
@@ -68,6 +65,9 @@ func _ready():
 	for child in viewport1.get_children():
 		if child.has_signal("change_level"):
 			child.change_level.connect(change_level)
+	
+	#setting materials in viewport3 to white
+	change_material_to_white(viewport3.get_child(0))
 	
 	viewport1 = get_node("MainLevelViewport/SubViewport").get_child(0).get_child(0).get_child(0).get_node("Doors")
 	viewport2 = get_node("FogViewport").get_child(0).get_child(0).get_node("Doors")
@@ -144,6 +144,10 @@ func item_picked_up(is_space,item_name):
 	$ItemsObtained/UI/PickUpTimer.start()
 func weapon_info_visible():
 	$WeaponSelected/Control.show()
+func change_material_to_white(node):
+	node.use_parent_material = true
+	for child in node.get_children():
+		change_material_to_white(child)
 func change_level(player_pos,level_high,level_mid,level_low):
 	get_node("MainLevelViewport/SubViewport").get_child(0).queue_free()
 	get_node("FogViewport").get_child(0).queue_free()

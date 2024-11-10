@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://b7iklrlyc5m55"]
+[gd_scene load_steps=8 format=3 uid="uid://b7iklrlyc5m55"]
 
 [ext_resource type="Texture2D" uid="uid://cma5kmw10jghr" path="res://white_sq.png" id="1_7tonl"]
 [ext_resource type="PackedScene" uid="uid://d32q58d334dfd" path="res://objects/floor/floor.tscn" id="1_s2rjp"]
 [ext_resource type="PackedScene" uid="uid://cxiu2kws8f1xm" path="res://objects/staticBlock.tscn" id="2_p8rs4"]
 [ext_resource type="PackedScene" uid="uid://cng2o48wdswvk" path="res://objects/door/door.tscn" id="3_44mhx"]
+[ext_resource type="PackedScene" uid="uid://cdjrccvmnvd0y" path="res://objects/floor/water.tscn" id="3_dfka1"]
 [ext_resource type="PackedScene" uid="uid://cv46bl48bc1fk" path="res://objects/movingBlock.tscn" id="4_c60oe"]
 [ext_resource type="PackedScene" uid="uid://dsldmk2ksjn2m" path="res://objects/lowMovingBlock.tscn" id="5_qlbnc"]
 
@@ -17,19 +18,12 @@ use_parent_material = true
 
 [node name="BackgroundGrass" type="Sprite2D" parent="Static/Floors"]
 modulate = Color(0.0862745, 0.219608, 0, 1)
-z_index = -6
+z_index = -10
 z_as_relative = false
 use_parent_material = true
 position = Vector2(146, 78)
 scale = Vector2(25.8, 17.68)
 texture = ExtResource("1_7tonl")
-
-[node name="Water" parent="Static/Floors" instance=ExtResource("1_s2rjp")]
-modulate = Color(0.0862745, 0.180392, 0.737255, 1)
-use_parent_material = true
-position = Vector2(-308, 363)
-scale = Vector2(7.188, 8.60762)
-stands_on = "water"
 
 [node name="Grass5" parent="Static/Floors" instance=ExtResource("1_s2rjp")]
 modulate = Color(0.0862745, 0.219608, 0, 1)
@@ -63,6 +57,10 @@ use_parent_material = true
 position = Vector2(90, -113)
 scale = Vector2(19.3188, 5.79915)
 stands_on = "brick"
+
+[node name="Water2" parent="Static/Floors" instance=ExtResource("3_dfka1")]
+position = Vector2(-310, 359)
+scale = Vector2(6.96648, 8.23578)
 
 [node name="Walls" type="Node2D" parent="Static"]
 use_parent_material = true

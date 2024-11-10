@@ -1,0 +1,34 @@
+[gd_scene load_steps=8 format=3 uid="uid://cdjrccvmnvd0y"]
+
+[ext_resource type="PackedScene" uid="uid://d32q58d334dfd" path="res://objects/floor/floor.tscn" id="1_eg444"]
+[ext_resource type="Shader" path="res://shaders/water.gdshader" id="2_j6t1m"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_r603y"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_2h71w"]
+seamless = true
+noise = SubResource("FastNoiseLite_r603y")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_1yyds"]
+noise_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_fv8xm"]
+seamless = true
+noise = SubResource("FastNoiseLite_1yyds")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ufi46"]
+shader = ExtResource("2_j6t1m")
+shader_parameter/scroll = Vector2(0.05, 0.05)
+shader_parameter/scroll2 = Vector2(-0.05, -0.05)
+shader_parameter/tone_color = Color(0, 0.419608, 0, 1)
+shader_parameter/min_brightness = 0.3
+shader_parameter/noise = SubResource("NoiseTexture2D_2h71w")
+shader_parameter/noise2 = SubResource("NoiseTexture2D_fv8xm")
+
+[node name="Water" instance=ExtResource("1_eg444")]
+scale = Vector2(2.92648, 2.95578)
+stands_on = "water"
+
+[node name="FloorSprite" parent="." index="0"]
+z_index = -7
+material = SubResource("ShaderMaterial_ufi46")

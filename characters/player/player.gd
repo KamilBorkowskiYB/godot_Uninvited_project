@@ -45,6 +45,7 @@ var dead = false
 var weapon_selected  #0-rifle	1-shotgun 	2-pistol
 @export var can_shoot = false
 @export var can_interact = true #not used at the moment
+var move_direction = Vector2(0,0)
 
 ##########        WEAPON STATS         ##########
 #pistol
@@ -118,7 +119,7 @@ func _process(_delta):
 		
 	##########        TOP AND LEGS ROTATION         ##########
 	$Top.rotation = global_position.direction_to(get_global_mouse_position()).angle() + PI/2
-	var move_direction = Input.get_vector("move_left","move_right","move_down","move_up")
+	move_direction = Input.get_vector("move_left","move_right","move_down","move_up")
 	$Legs.rotation = move_direction.angle() + PI/2
 
 	if velocity.length() > 0:
@@ -212,9 +213,11 @@ func _physics_process(_delta):
 	if standing_on == "water":
 		floor_move_speed_debuff = 0.3
 		$Legs.hide()
+		$WaterSplash.emitting = true
 	else:
 		floor_move_speed_debuff = 1.0
 		$Legs.show()
+		$WaterSplash.emitting = false
 	##########        COLIDING WITH RIGIDBODYS         ##########
 	for i in get_slide_collision_count():
 		var c = get_slide_collision(i)
