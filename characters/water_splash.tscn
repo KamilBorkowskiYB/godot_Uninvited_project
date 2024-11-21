@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://b4hop5ypxtvrs"]
 
-[ext_resource type="Texture2D" uid="uid://vmh4nmso4qe1" path="res://characters/player/legacy/water_steps.png" id="1_y17xt"]
+[ext_resource type="Texture2D" uid="uid://vmh4nmso4qe1" path="res://characters/player/misc/water_steps.png" id="1_y17xt"]
 [ext_resource type="Script" path="res://characters/water_splash.gd" id="2_pcddv"]
 
 [sub_resource type="Curve" id="Curve_icxdi"]

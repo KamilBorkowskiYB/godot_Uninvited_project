@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://cv46bl48bc1fk"]
+[gd_scene load_steps=7 format=3 uid="uid://cv46bl48bc1fk"]
 
 [ext_resource type="Texture2D" uid="uid://cma5kmw10jghr" path="res://white_sq.png" id="1_8184v"]
 [ext_resource type="Script" path="res://objects/movingBlock.gd" id="1_eecgp"]
+[ext_resource type="PackedScene" uid="uid://cjgla4gkbb8u2" path="res://Interactions/footsteps.tscn" id="3_syn83"]
+[ext_resource type="PackedScene" uid="uid://b4hop5ypxtvrs" path="res://characters/water_splash.tscn" id="4_p672w"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_k200j"]
 polygon = PackedVector2Array(32, -32, -32, -32, -32, 32, 32, 32)
@@ -30,3 +32,8 @@ occluder = SubResource("OccluderPolygon2D_k200j")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_10kxg")
+
+[node name="Footsteps" parent="." instance=ExtResource("3_syn83")]
+
+[node name="WaterSplash" parent="." instance=ExtResource("4_p672w")]
+position = Vector2(0, 0)

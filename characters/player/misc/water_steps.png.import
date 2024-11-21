@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://vmh4nmso4qe1"
-path="res://.godot/imported/water_steps.png-603f72099fd95c4c10b7832394d5c2c8.ctex"
+path="res://.godot/imported/water_steps.png-59ce495a2ba8653e80d380820aac71d9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://characters/player/legacy/water_steps.png"
-dest_files=["res://.godot/imported/water_steps.png-603f72099fd95c4c10b7832394d5c2c8.ctex"]
+source_file="res://characters/player/misc/water_steps.png"
+dest_files=["res://.godot/imported/water_steps.png-59ce495a2ba8653e80d380820aac71d9.ctex"]
 
 [params]
 
