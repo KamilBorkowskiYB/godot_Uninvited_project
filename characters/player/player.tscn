@@ -724,10 +724,11 @@ libraries = {
 }
 
 [node name="zone_light" type="PointLight2D" parent="."]
-light_mask = 3
+light_mask = 524291
+visibility_layer = 524289
 color = Color(1, 1, 1, 0.333333)
 shadow_enabled = true
-shadow_item_cull_mask = 3
+shadow_item_cull_mask = 524291
 texture = SubResource("GradientTexture2D_0f7kp")
 texture_scale = 0.7
 

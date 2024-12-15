@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://bgviwme3dklaa"]
+[gd_scene load_steps=11 format=3 uid="uid://bgviwme3dklaa"]
 
 [ext_resource type="PackedScene" uid="uid://drjtbe7lus5v0" path="res://levels/preset_level/preset_level_low.tscn" id="1_svwaw"]
 [ext_resource type="PackedScene" uid="uid://d32q58d334dfd" path="res://objects/floor/floor.tscn" id="2_qgqjp"]
 [ext_resource type="PackedScene" uid="uid://cxiu2kws8f1xm" path="res://objects/staticBlock.tscn" id="3_qhk2v"]
 [ext_resource type="Texture2D" uid="uid://c81efo3urc6nt" path="res://characters/player/legacy/view_cone_redo.png" id="4_hwgbk"]
+[ext_resource type="PackedScene" uid="uid://ckpdtj6bvcm5m" path="res://objects/tree_one.tscn" id="4_wcnjk"]
 [ext_resource type="PackedScene" uid="uid://cng2o48wdswvk" path="res://objects/door/door.tscn" id="5_dcpon"]
 [ext_resource type="PackedScene" uid="uid://cv46bl48bc1fk" path="res://objects/movingBlock.tscn" id="6_sf8n3"]
 [ext_resource type="PackedScene" uid="uid://c33j86e6f8mi7" path="res://levels/atlases/atlas_one.tscn" id="7_kdcdf"]
@@ -281,21 +282,13 @@ texture = ExtResource("4_hwgbk")
 [node name="LightOccluder2D" type="LightOccluder2D" parent="Static/Walls/patch/Tree5" index="2"]
 occluder = SubResource("OccluderPolygon2D_kkhw0")
 
-[node name="Tree6" type="StaticBody2D" parent="Static/Walls/patch" index="5"]
-position = Vector2(352, -252)
+[node name="Tree6" parent="Static/Walls/patch" index="5" instance=ExtResource("4_wcnjk")]
+position = Vector2(323, -208)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Static/Walls/patch/Tree6" index="0"]
-shape = SubResource("CircleShape2D_osc3k")
+[node name="Tree10" parent="Static/Walls/patch" index="6" instance=ExtResource("4_wcnjk")]
+position = Vector2(457, -437)
 
-[node name="Sprite2D" type="Sprite2D" parent="Static/Walls/patch/Tree6" index="1"]
-modulate = Color(0, 0, 0, 1)
-scale = Vector2(0.14, 0.14)
-texture = ExtResource("4_hwgbk")
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Static/Walls/patch/Tree6" index="2"]
-occluder = SubResource("OccluderPolygon2D_kkhw0")
-
-[node name="Tree7" type="StaticBody2D" parent="Static/Walls/patch" index="6"]
+[node name="Tree7" type="StaticBody2D" parent="Static/Walls/patch" index="7"]
 position = Vector2(524, -159)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Static/Walls/patch/Tree7" index="0"]
@@ -309,7 +302,7 @@ texture = ExtResource("4_hwgbk")
 [node name="LightOccluder2D" type="LightOccluder2D" parent="Static/Walls/patch/Tree7" index="2"]
 occluder = SubResource("OccluderPolygon2D_kkhw0")
 
-[node name="Tree8" type="StaticBody2D" parent="Static/Walls/patch" index="7"]
+[node name="Tree8" type="StaticBody2D" parent="Static/Walls/patch" index="8"]
 position = Vector2(583, -32)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Static/Walls/patch/Tree8" index="0"]
@@ -323,7 +316,7 @@ texture = ExtResource("4_hwgbk")
 [node name="LightOccluder2D" type="LightOccluder2D" parent="Static/Walls/patch/Tree8" index="2"]
 occluder = SubResource("OccluderPolygon2D_kkhw0")
 
-[node name="Tree9" type="StaticBody2D" parent="Static/Walls/patch" index="8"]
+[node name="Tree9" type="StaticBody2D" parent="Static/Walls/patch" index="9"]
 position = Vector2(581, 112)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Static/Walls/patch/Tree9" index="0"]

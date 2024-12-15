@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dbs8dbmepbxnh"]
+[gd_scene load_steps=24 format=3 uid="uid://dbs8dbmepbxnh"]
 
 [ext_resource type="Script" path="res://levels/main_world/world.gd" id="1_eb6ap"]
 [ext_resource type="Shader" path="res://shaders/grayscale.gdshader" id="1_fgecg"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://c8bitsc7ybbya" path="res://characters/player/player.tscn" id="5_5swua"]
 [ext_resource type="Texture2D" uid="uid://cgkk6a01eg81t" path="res://characters/player/graphic/aim_assinst_line.png" id="6_6svyg"]
 [ext_resource type="PackedScene" uid="uid://b7iklrlyc5m55" path="res://levels/test_level1/test_level_1_low.tscn" id="8_apxvq"]
+[ext_resource type="Script" path="res://levels/main_world/FollowMouse.gd" id="11_shrgv"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_23xho"]
 shader = ExtResource("1_fgecg")
@@ -54,6 +55,9 @@ fill_to = Vector2(0.862385, 0.178899)
 [sub_resource type="Theme" id="Theme_1ss4e"]
 default_font_size = 26
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_8ptiq"]
+viewport_path = NodePath("VisibilityViewport")
+
 [node name="World" type="Node2D"]
 position = Vector2(1, 2)
 script = ExtResource("1_eb6ap")
@@ -74,7 +78,7 @@ handle_input_locally = false
 canvas_item_default_texture_filter = 0
 audio_listener_enable_2d = true
 physics_object_picking = true
-canvas_cull_mask = 4294966399
+canvas_cull_mask = 4294933631
 size = Vector2i(1152, 648)
 render_target_update_mode = 4
 
@@ -131,6 +135,17 @@ blend_mode = 1
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_ifk28")
 texture_scale = 0.7
+
+[node name="MouseTopVisibility" type="PointLight2D" parent="VisibilityViewport"]
+visible = false
+light_mask = 32769
+visibility_layer = 32769
+z_index = 10
+blend_mode = 1
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_ifk28")
+texture_scale = 0.7
+script = ExtResource("11_shrgv")
 
 [node name="Camera2D" type="Camera2D" parent="VisibilityViewport"]
 
@@ -270,6 +285,13 @@ grow_vertical = 0
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
+
+[node name="Debug" type="CanvasLayer" parent="."]
+
+[node name="DebugViewVision" type="Sprite2D" parent="Debug"]
+position = Vector2(128, 79)
+scale = Vector2(0.2, 0.2)
+texture = SubResource("ViewportTexture_8ptiq")
 
 [connection signal="timeout" from="ItemsObtained/UI/PickUpTimer" to="ItemsObtained/UI" method="hide"]
 [connection signal="pressed" from="DeathScreen/DeathScreen/Panel/Button" to="." method="restart"]

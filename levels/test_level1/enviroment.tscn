@@ -2,12 +2,12 @@
 
 [ext_resource type="PackedScene" uid="uid://b7iklrlyc5m55" path="res://levels/test_level1/test_level_1_low.tscn" id="1_4so2i"]
 
-[sub_resource type="Gradient" id="Gradient_spnc3"]
+[sub_resource type="Gradient" id="Gradient_hm63i"]
 offsets = PackedFloat32Array(0.987013, 0.993506, 1)
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1, 0.12987, 0.12987, 0.12987, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_c1o86"]
-gradient = SubResource("Gradient_spnc3")
+gradient = SubResource("Gradient_hm63i")
 fill = 2
 fill_from = Vector2(0.5, 0.5)
 
