@@ -30,15 +30,6 @@ shader = ExtResource("2_hpucc")
 shader_parameter/mask_texture = SubResource("ViewportTexture_urhso")
 shader_parameter/unseen = SubResource("ViewportTexture_nggp3")
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_rrk16"]
-light_mode = 1
-
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_voyp2"]
-light_mode = 1
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_nmqhj"]
-shader = ExtResource("4_thh5m")
-
 [sub_resource type="Gradient" id="Gradient_qum5l"]
 interpolation_mode = 2
 offsets = PackedFloat32Array(0.675325, 1)
@@ -51,6 +42,15 @@ height = 256
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.862385, 0.178899)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_rrk16"]
+light_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_voyp2"]
+light_mode = 1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nmqhj"]
+shader = ExtResource("4_thh5m")
 
 [sub_resource type="Theme" id="Theme_1ss4e"]
 default_font_size = 26
@@ -78,7 +78,7 @@ handle_input_locally = false
 canvas_item_default_texture_filter = 0
 audio_listener_enable_2d = true
 physics_object_picking = true
-canvas_cull_mask = 4294933631
+canvas_cull_mask = 4294966399
 size = Vector2i(1152, 648)
 render_target_update_mode = 4
 
@@ -88,6 +88,16 @@ visibility_layer = 897
 
 [node name="Player" parent="MainLevelViewport/SubViewport" instance=ExtResource("5_5swua")]
 position = Vector2(400, 450)
+
+[node name="MouseTopVisibility" type="PointLight2D" parent="MainLevelViewport/SubViewport"]
+light_mask = 32768
+visibility_layer = 32768
+z_index = 10
+range_item_cull_mask = 32768
+shadow_item_cull_mask = 32768
+texture = SubResource("GradientTexture2D_ifk28")
+texture_scale = 0.7
+script = ExtResource("11_shrgv")
 
 [node name="FogViewport" type="SubViewport" parent="."]
 transparent_bg = true
@@ -135,17 +145,6 @@ blend_mode = 1
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_ifk28")
 texture_scale = 0.7
-
-[node name="MouseTopVisibility" type="PointLight2D" parent="VisibilityViewport"]
-visible = false
-light_mask = 32769
-visibility_layer = 32769
-z_index = 10
-blend_mode = 1
-shadow_enabled = true
-texture = SubResource("GradientTexture2D_ifk28")
-texture_scale = 0.7
-script = ExtResource("11_shrgv")
 
 [node name="Camera2D" type="Camera2D" parent="VisibilityViewport"]
 

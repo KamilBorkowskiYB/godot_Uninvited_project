@@ -13,7 +13,8 @@ polygon = PackedVector2Array(23.2645, -14.4567, 18.2534, -19.7375, 12.8183, -23.
 light_mask = 32769
 visibility_layer = 32769
 
-[node name="Rroom" type="PointLight2D" parent="."]
+[node name="shadow" type="PointLight2D" parent="."]
+visible = false
 scale = Vector2(0.64, 0.64)
 energy = 0.1
 blend_mode = 1
@@ -31,6 +32,7 @@ texture = ExtResource("1_p74s0")
 occluder = SubResource("OccluderPolygon2D_kkhw0")
 
 [node name="Leaves" type="Sprite2D" parent="."]
+visible = false
 self_modulate = Color(0.0352941, 0.113725, 0.0117647, 1)
 clip_children = 2
 light_mask = 32769
