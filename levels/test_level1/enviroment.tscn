@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://bnppgiphfgo5q"]
+[gd_scene load_steps=7 format=3 uid="uid://bnppgiphfgo5q"]
 
 [ext_resource type="PackedScene" uid="uid://b7iklrlyc5m55" path="res://levels/test_level1/test_level_1_low.tscn" id="1_4so2i"]
+[ext_resource type="Shader" path="res://shaders/topObjects.gdshader" id="2_rgmch"]
 [ext_resource type="Texture2D" uid="uid://cdfvsilgf65en" path="res://icon.svg" id="3_jkgn8"]
 
 [sub_resource type="Gradient" id="Gradient_hm63i"]
@@ -12,8 +13,12 @@ gradient = SubResource("Gradient_hm63i")
 fill = 2
 fill_from = Vector2(0.5, 0.5)
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_hggks"]
-light_mode = 2
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4s5kh"]
+shader = ExtResource("2_rgmch")
+shader_parameter/CircleCentres = null
+shader_parameter/NumCircleCentres = 2
+shader_parameter/CircleRadius = 100.0
+shader_parameter/CircleBlur = 0.01
 
 [node name="Enviroment" type="Node2D"]
 
@@ -43,11 +48,11 @@ blend_mode = 1
 texture = SubResource("GradientTexture2D_c1o86")
 texture_scale = 14.18
 
-[node name="Leaves" type="Sprite2D" parent="."]
+[node name="Leaves" type="Sprite2D" parent="." groups=["Transparent"]]
 light_mask = 32768
 visibility_layer = 32768
 z_index = 10
-material = SubResource("CanvasItemMaterial_hggks")
-position = Vector2(178, 306)
-scale = Vector2(1.52, 1.52)
+material = SubResource("ShaderMaterial_4s5kh")
+position = Vector2(473, 268)
+scale = Vector2(2.08, 2.08)
 texture = ExtResource("3_jkgn8")
