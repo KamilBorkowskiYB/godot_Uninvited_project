@@ -275,7 +275,6 @@ offset_right = 40.0
 offset_bottom = 23.0
 
 [node name="Debug" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="DebugViewVision" type="Sprite2D" parent="Debug"]
 position = Vector2(128, 79)

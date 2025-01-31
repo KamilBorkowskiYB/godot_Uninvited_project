@@ -643,6 +643,7 @@ texture = ExtResource("3_0tow6")
 position = Vector2(0, -2)
 
 [node name="Alive" type="Sprite2D" parent="Top"]
+texture_filter = 1
 position = Vector2(0, 5)
 texture = ExtResource("3_wpnqy")
 hframes = 13
@@ -681,7 +682,7 @@ one_shot = true
 
 [node name="AimAssistR" type="Sprite2D" parent="Top"]
 visible = false
-z_index = 5
+z_index = 100
 material = SubResource("CanvasItemMaterial_iro56")
 scale = Vector2(0.5, 0.8)
 texture = ExtResource("9_4hpk5")
@@ -689,7 +690,7 @@ offset = Vector2(0, -300)
 
 [node name="AimAssistL" type="Sprite2D" parent="Top"]
 visible = false
-z_index = 5
+z_index = 100
 material = SubResource("CanvasItemMaterial_ppqp4")
 scale = Vector2(0.5, 0.8)
 texture = ExtResource("9_4hpk5")

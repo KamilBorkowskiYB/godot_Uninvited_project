@@ -1,13 +1,20 @@
-[gd_scene load_steps=5 format=3 uid="uid://ckpdtj6bvcm5m"]
+[gd_scene load_steps=6 format=3 uid="uid://ckpdtj6bvcm5m"]
 
 [ext_resource type="Texture2D" uid="uid://c81efo3urc6nt" path="res://characters/player/legacy/view_cone_redo.png" id="1_p74s0"]
-[ext_resource type="Texture2D" uid="uid://cma5kmw10jghr" path="res://white_sq.png" id="2_3dfaa"]
+[ext_resource type="Shader" path="res://shaders/topObjects.gdshader" id="2_quund"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_osc3k"]
 radius = 26.0192
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_kkhw0"]
 polygon = PackedVector2Array(23.2645, -14.4567, 18.2534, -19.7375, 12.8183, -23.6694, 6.07251, -25.7895, 0.251953, -26.1364, -6.45532, -26.0208, -12.6614, -22.7828, -17.5183, -19.1208, -21.9127, -14.5723, -25.382, -8.25049, -27.0396, -0.618225, -25.5362, 8.74878, -21.8357, 15.8414, -17.7496, 19.3492, -13.6636, 22.857, -9.61621, 24.1291, -4.2196, 25.8252, 3.41272, 27.4827, 11.8546, 24.2062, 20.2579, 18.694, 26.3483, 8.74878, 27.5433, 0.229858, 26.9651, -7.36389)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hhcwb"]
+shader = ExtResource("2_quund")
+shader_parameter/CircleCentres = null
+shader_parameter/NumCircleCentres = 2
+shader_parameter/CircleRadius = 100.0
+shader_parameter/CircleBlur = 0.01
 
 [node name="Tree6" type="StaticBody2D"]
 light_mask = 32769
@@ -31,19 +38,12 @@ texture = ExtResource("1_p74s0")
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 occluder = SubResource("OccluderPolygon2D_kkhw0")
 
-[node name="Leaves" type="Sprite2D" parent="."]
+[node name="LeavesMustBeHigher" type="Sprite2D" parent="." groups=["Transparent"]]
 visible = false
-self_modulate = Color(0.0352941, 0.113725, 0.0117647, 1)
-clip_children = 2
-light_mask = 32769
+light_mask = 32768
 visibility_layer = 32768
 z_index = 10
-use_parent_material = true
+texture_filter = 1
+material = SubResource("ShaderMaterial_hhcwb")
+scale = Vector2(0.7, 0.7)
 texture = ExtResource("1_p74s0")
-
-[node name="CullMaskTest" type="Sprite2D" parent="Leaves"]
-self_modulate = Color(0.0352941, 0.113725, 0.0117647, 1)
-visibility_layer = 32768
-position = Vector2(-1, 2)
-scale = Vector2(0.440002, 0.440002)
-texture = ExtResource("2_3dfaa")

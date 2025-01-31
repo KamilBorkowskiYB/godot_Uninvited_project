@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://b7iklrlyc5m55" path="res://levels/test_level1/test_level_1_low.tscn" id="1_4so2i"]
 [ext_resource type="Shader" path="res://shaders/topObjects.gdshader" id="2_rgmch"]
-[ext_resource type="Texture2D" uid="uid://cdfvsilgf65en" path="res://icon.svg" id="3_jkgn8"]
+[ext_resource type="Texture2D" uid="uid://c81efo3urc6nt" path="res://characters/player/legacy/view_cone_redo.png" id="3_4mek5"]
 
 [sub_resource type="Gradient" id="Gradient_hm63i"]
 offsets = PackedFloat32Array(0.987013, 0.993506, 1)
@@ -52,7 +52,8 @@ texture_scale = 14.18
 light_mask = 32768
 visibility_layer = 32768
 z_index = 10
+texture_filter = 1
 material = SubResource("ShaderMaterial_4s5kh")
-position = Vector2(473, 268)
-scale = Vector2(2.08, 2.08)
-texture = ExtResource("3_jkgn8")
+position = Vector2(612, 549)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("3_4mek5")

@@ -21,8 +21,6 @@ InteractionManager="*res://Interactions/InteractionManager.tscn"
 
 [display]
 
-window/size/viewport_width=1920
-window/size/viewport_height=1080
 window/stretch/mode="viewport"
 mouse_cursor/custom_image="res://cursor/cursor_normal.png"
 mouse_cursor/custom_image_hotspot=Vector2(24, 24)

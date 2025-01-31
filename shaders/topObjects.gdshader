@@ -6,7 +6,7 @@ const int MAX_POSITIONS = 2;
 uniform vec2 CircleCentres[MAX_POSITIONS];
 uniform int NumCircleCentres : hint_range(0, 2, 1) = 1;
 uniform float CircleRadius = 50.0;
-uniform float CircleBlur : hint_range(0.0, 1.0, 0.01) = 0.01;
+uniform float CircleBlur : hint_range(0.0, 1.0, 0.01) = 0.0;
 
 void fragment() 
 {

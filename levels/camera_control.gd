@@ -25,14 +25,15 @@ func _process(_delta):
 	var mouse_position = get_global_mouse_position()
 	var player_position = player.global_position
 	var distance = player_position.distance_to(mouse_position)
+	var screen_middle = get_viewport().get_visible_rect().size / 2
 	var target_position = player_position
-	var screen_position = Vector2(960,540)
+	var screen_position = screen_middle
 
 	if distance > DEAD_ZONE:
 		var direction = (mouse_position - player_position).normalized()
 		var clamped_distance = min(distance, max_view_distance)
 		target_position = player_position + direction * (clamped_distance - DEAD_ZONE) * 0.5
-		screen_position = Vector2(960,540)- direction * (clamped_distance - DEAD_ZONE) * 0.5
+		screen_position = screen_middle - direction * (clamped_distance - DEAD_ZONE) * 0.5
 	
 	$PlayerCamera.global_position = target_position
 	
