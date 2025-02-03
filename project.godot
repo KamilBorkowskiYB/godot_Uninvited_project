@@ -21,7 +21,11 @@ InteractionManager="*res://Interactions/InteractionManager.tscn"
 
 [display]
 
-window/stretch/mode="viewport"
+window/size/viewport_width=1440
+window/size/viewport_height=810
+window/size/window_width_override=1920
+window/size/window_height_override=1080
+window/stretch/mode="canvas_items"
 mouse_cursor/custom_image="res://cursor/cursor_normal.png"
 mouse_cursor/custom_image_hotspot=Vector2(24, 24)
 
@@ -111,3 +115,5 @@ run={
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
 environment/defaults/default_clear_color=Color(0.0313726, 0.32549, 0.454902, 1)
+2d/snap/snap_2d_transforms_to_pixel=true
+2d/snap/snap_2d_vertices_to_pixel=true

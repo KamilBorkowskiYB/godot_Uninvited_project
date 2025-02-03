@@ -42,9 +42,9 @@ func _ready():
 	
 	
 	#connecting aim assist to player 
-	var aim = viewport2.get_node_or_null("AimAssist")
-	var aimL = viewport2.get_node_or_null("AimAssist/AimAssistL")
-	var aimR = viewport2.get_node_or_null("AimAssist/AimAssistR")
+	var aim = $WeaponSelected/AimAssist
+	var aimL = $WeaponSelected/AimAssist/AimAssistL
+	var aimR = $WeaponSelected/AimAssist/AimAssistR
 	if(player and aim and aimL and aimR):
 		player.aim_assist = aim
 		player.aim_assistR = aimR

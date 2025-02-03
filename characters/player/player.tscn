@@ -644,8 +644,9 @@ position = Vector2(0, -2)
 
 [node name="Alive" type="Sprite2D" parent="Top"]
 texture_filter = 1
-position = Vector2(0, 5)
+position = Vector2(-64, -75)
 texture = ExtResource("3_wpnqy")
+centered = false
 hframes = 13
 vframes = 6
 

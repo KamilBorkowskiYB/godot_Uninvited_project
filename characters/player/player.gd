@@ -32,8 +32,6 @@ var shotgun_shells = 1
 @onready var ray_cast4 = $Top/RayCasts/RayCast2D4
 @onready var animation_player = $AnimationPlayerTOP
 @onready var animation_playerLegs = $AnimationPlayerLEGS
-@onready var RIGHT_aim_assitst = $Top/AimAssistR
-@onready var LEFT_aim_assitst = $Top/AimAssistL
 @onready var bullet_trail = load("res://characters/player/misc/shot_trail.tscn")
 @export var move_speed = 200
 var aim_move_speed_debuff = 1.0
@@ -101,12 +99,8 @@ func _ready():
 func _process(_delta):
 	##########        CONNECTING NODES FROM VIEWPORTS         ##########
 	if aim_assist != null:
-		aim_assist.position = self.position
+		aim_assist.position = get_viewport_rect().size / 2
 		aim_assist.rotation = $Top.rotation
-		aim_assistR.rotation = $Top/AimAssistR.rotation
-		aim_assistL.rotation = $Top/AimAssistL.rotation
-		aim_assistR.visible = $Top/AimAssistR.visible
-		aim_assistL.visible = $Top/AimAssistL.visible
 	if view_light != null:      #viewPorty
 		view_light.rotation = $Top.rotation
 		view_light.position = self.position
@@ -177,16 +171,16 @@ func _process(_delta):
 		animation_player.queue(animation_aimed)
 		animation_playerLegs.speed_scale = 0.7
 		aim_move_speed_debuff = 0.5
-		RIGHT_aim_assitst.show()
-		LEFT_aim_assitst.show()
+		aim_assistR.show()
+		aim_assistL.show()
 		Input.set_custom_mouse_cursor(cursor_aim,Input.CURSOR_ARROW,Vector2(24,24))
 		cursor_current = cursor_aim
 	if Input.is_action_pressed("Aim"):
 		if weapon_selected == null:
 			return
 		recoil = max(recoil - recoil_focus_speed,min_recoil)
-		RIGHT_aim_assitst.rotation_degrees = recoil
-		LEFT_aim_assitst.rotation_degrees = -recoil
+		aim_assistR.rotation_degrees = recoil
+		aim_assistL.rotation_degrees = -recoil
 	else:
 		recoil = min(recoil + 0.1,max_recoil)
 	if recoil != 0:
@@ -275,8 +269,8 @@ func unaim():
 		animation_player.play_backwards(animation_aim)
 		animation_playerLegs.speed_scale = 1
 		aim_move_speed_debuff = 1
-		RIGHT_aim_assitst.hide()
-		LEFT_aim_assitst.hide()
+		aim_assistR.hide()
+		aim_assistL.hide()
 		Input.set_custom_mouse_cursor(cursor_normal,Input.CURSOR_ARROW,Vector2(24,24))
 		cursor_current = cursor_normal
 

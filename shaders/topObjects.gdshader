@@ -15,6 +15,7 @@ void fragment()
     {
         float circle_dist = distance( CircleCentres[i], FRAGCOORD.xy );
         circle_signal = max( circle_signal, smoothstep( CircleRadius, CircleRadius*(1.0-CircleBlur), circle_dist ) );
+
     }
     vec4 tex_color = texture( TEXTURE, UV );
     float lumi = (tex_color.r + tex_color.g + tex_color.b) / 3.0;

@@ -18,7 +18,7 @@ shader = ExtResource("2_rgmch")
 shader_parameter/CircleCentres = null
 shader_parameter/NumCircleCentres = 2
 shader_parameter/CircleRadius = 100.0
-shader_parameter/CircleBlur = 0.01
+shader_parameter/CircleBlur = 0.7
 
 [node name="Enviroment" type="Node2D"]
 
