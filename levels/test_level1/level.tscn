@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://d1oul8y1hqgln"]
+[gd_scene load_steps=9 format=3 uid="uid://d1oul8y1hqgln"]
 
 [ext_resource type="Script" path="res://levels/camera_control.gd" id="1_4f817"]
 [ext_resource type="PackedScene" uid="uid://bnppgiphfgo5q" path="res://levels/test_level1/enviroment.tscn" id="1_aqhqd"]
 [ext_resource type="PackedScene" uid="uid://dss4qi31e3k2u" path="res://characters/zombie/zombie.tscn" id="3_7x6e1"]
+[ext_resource type="PackedScene" uid="uid://86mkpqtpfq1p" path="res://characters/mutant/mutant.tscn" id="4_78ckn"]
 [ext_resource type="PackedScene" uid="uid://shqgwjseluto" path="res://objects/light_source.tscn" id="4_n3l4b"]
 [ext_resource type="Script" path="res://characters/player/Camera2D.gd" id="5_ccx42"]
 [ext_resource type="PackedScene" uid="uid://bhvgcymlk0ibj" path="res://Interactions/pickUp.tscn" id="7_0crg7"]
@@ -24,6 +25,9 @@ position = Vector2(-310, 34)
 
 [node name="Zombie4" parent="Enemies" instance=ExtResource("3_7x6e1")]
 position = Vector2(253, -203)
+
+[node name="Mutant" parent="Enemies" instance=ExtResource("4_78ckn")]
+position = Vector2(10, 563)
 
 [node name="LightSource" parent="." instance=ExtResource("4_n3l4b")]
 position = Vector2(-28, 8)

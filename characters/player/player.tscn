@@ -702,18 +702,22 @@ offset = Vector2(0, -300)
 [node name="RayCast2D" type="RayCast2D" parent="Top/RayCasts"]
 target_position = Vector2(0, -1400)
 collision_mask = 3
+collide_with_areas = true
 
 [node name="RayCast2D2" type="RayCast2D" parent="Top/RayCasts"]
 target_position = Vector2(0, -1400)
 collision_mask = 3
+collide_with_areas = true
 
 [node name="RayCast2D3" type="RayCast2D" parent="Top/RayCasts"]
 target_position = Vector2(0, -1400)
 collision_mask = 3
+collide_with_areas = true
 
 [node name="RayCast2D4" type="RayCast2D" parent="Top/RayCasts"]
 target_position = Vector2(0, -1400)
 collision_mask = 3
+collide_with_areas = true
 
 [node name="AnimationPlayerTOP" type="AnimationPlayer" parent="."]
 libraries = {
