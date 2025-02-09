@@ -10,8 +10,18 @@ var floor_move_speed_debuff = 1.0
 
 func _ready():
 	$Graphic/Body/Head/HurtBoxArea.got_hit_head.connect(head_hit)
-	$Graphic/Body/RightShoulder/RightUpper/RightElbow/HurtBoxArea.got_hit_head.connect(arm_hit)
+	$Graphic/Body/RightShoulder/RightElbow/HurtBoxArea.got_hit_head.connect(right_arm_hit)
+	$Graphic/Body/RightShoulder/HurtBoxArea.got_hit_head.connect(right_arm_hit)
 	
+	$Graphic/Body/LeftShoulder/LeftElbow/HurtBoxArea.got_hit_head.connect(left_arm_hit)
+	$Graphic/Body/LeftShoulder/HurtBoxArea.got_hit_head.connect(left_arm_hit)
+	
+	$Graphic/Body/RightFrontShoulder/RightFrontElbow/HurtBoxArea.got_hit_head.connect(front_right_arm_hit)
+	$Graphic/Body/RightFrontShoulder/HurtBoxArea.got_hit_head.connect(front_right_arm_hit)
+	
+	$Graphic/Body/LeftFrontShoulder/LeftFrontElbow/HurtBoxArea.got_hit_head.connect(front_left_arm_hit)
+	$Graphic/Body/LeftFrontShoulder/HurtBoxArea.got_hit_head.connect(front_left_arm_hit)
+
 func _physics_process(_delta):
 	if dead:
 		return
@@ -42,19 +52,79 @@ func head_hit(attack: Attack):
 		return
 	print("critical hit")
 
-func arm_hit(attack: Attack):
+func right_arm_hit(attack: Attack):
 	if dead:
 		return
-	#$Graphic/Body/RightShoulder/RightUpper/RightElbow.hide()
-	$Graphic/Body/RightShoulder/RightUpper/RightElbow/RightLower.hide()
-	$Graphic/Body/RightShoulder/RightUpper/RightElbow/RightClaw.hide()
-	$Graphic/Body/RightShoulder/RightUpper/RightElbow/HurtBoxArea.hide()
-	$Graphic/Body/RightShoulder/RightUpper/RightElbow/HurtBoxArea/CollisionShape2D.disabled = true
-	$Graphic/Body/RightShoulder/RightUpper/Blood.emitting = true
+	$Graphic/Body/RightShoulder/RightUpper.hide()
+	$Graphic/Body/RightShoulder/RightElbow/RightLower.hide()
+	$Graphic/Body/RightShoulder/RightElbow/RightClawL.hide()
+	$Graphic/Body/RightShoulder/RightElbow/RightClawM.hide()
+	$Graphic/Body/RightShoulder/RightElbow/RightClawR.hide()
+	$Graphic/Body/RightShoulder/RightElbow/HurtBoxArea.hide()
+	$Graphic/Body/RightShoulder/RightElbow/HurtBoxArea/CollisionShape2D.disabled = true
+	$Graphic/Body/RightShoulder/HurtBoxArea/CollisionShape2D.disabled = true
+	$Graphic/Body/RightShoulder/Blood.emitting = true
 	
-	$Graphic/Body/RightShoulder/RightUpper/RightElbow/ElbowDestroyed.emitting = true
-	print("arm hit")
+	$Graphic/Body/RightShoulder/ShoulderDestroyed.emitting = true
+	$Graphic/Body/RightShoulder/RightElbow/ElbowDestroyed.emitting = true
 	
+	$Graphic/Body/RightShoulder/Blood/Timer.start()
+	print("right arm hit")
+
+
+func left_arm_hit(attack: Attack):
+	if dead:
+		return
+	$Graphic/Body/LeftShoulder/LeftUpper.hide()
+	$Graphic/Body/LeftShoulder/LeftElbow/LeftLower.hide()
+	$Graphic/Body/LeftShoulder/LeftElbow/LeftClawL.hide()
+	$Graphic/Body/LeftShoulder/LeftElbow/LeftClawR.hide()
+	$Graphic/Body/LeftShoulder/LeftElbow/HurtBoxArea.hide()
+	$Graphic/Body/LeftShoulder/LeftElbow/HurtBoxArea/CollisionShape2D.disabled = true
+	$Graphic/Body/LeftShoulder/HurtBoxArea/CollisionShape2D.disabled = true
+	$Graphic/Body/LeftShoulder/Blood.emitting = true
+	
+	$Graphic/Body/LeftShoulder/ShoulderDestroyed.emitting = true
+	$Graphic/Body/LeftShoulder/LeftElbow/ElbowDestroyed.emitting = true
+	
+	$Graphic/Body/LeftShoulder/Blood/Timer.start()
+	print("left arm hit")
+	
+func front_right_arm_hit(attack: Attack):
+	if dead:
+		return
+	$Graphic/Body/RightFrontShoulder/RightFrontUpper.hide()
+	$Graphic/Body/RightFrontShoulder/RightFrontElbow/RightFrontLower.hide()
+	$Graphic/Body/RightFrontShoulder/RightFrontElbow/RightFrontClawL.hide()
+	$Graphic/Body/RightFrontShoulder/RightFrontElbow/RightFrontClawR.hide()
+	$Graphic/Body/RightFrontShoulder/RightFrontElbow/HurtBoxArea.hide()
+	$Graphic/Body/RightFrontShoulder/RightFrontElbow/HurtBoxArea/CollisionShape2D.disabled = true
+	$Graphic/Body/RightFrontShoulder/HurtBoxArea/CollisionShape2D.disabled = true
+	$Graphic/Body/RightFrontShoulder/Blood.emitting = true
+	
+	$Graphic/Body/RightFrontShoulder/ShoulderDestroyed.emitting = true
+	
+	$Graphic/Body/RightFrontShoulder/Blood/Timer.start()
+	print("right low arm hit")
+	
+
+func front_left_arm_hit(attack: Attack):
+	if dead:
+		return
+	$Graphic/Body/LeftFrontShoulder/LeftFrontUpper.hide()
+	$Graphic/Body/LeftFrontShoulder/LeftFrontElbow/LeftFrontLower.hide()
+	$Graphic/Body/LeftFrontShoulder/LeftFrontElbow/LeftFrontClawL.hide()
+	$Graphic/Body/LeftFrontShoulder/LeftFrontElbow/LeftFrontClawR.hide()
+	$Graphic/Body/LeftFrontShoulder/LeftFrontElbow/HurtBoxArea.hide()
+	$Graphic/Body/LeftFrontShoulder/LeftFrontElbow/HurtBoxArea/CollisionShape2D.disabled = true
+	$Graphic/Body/LeftFrontShoulder/HurtBoxArea/CollisionShape2D.disabled = true
+	$Graphic/Body/LeftFrontShoulder/Blood.emitting = true
+	
+	$Graphic/Body/LeftFrontShoulder/ShoulderDestroyed.emitting = true
+	
+	$Graphic/Body/LeftFrontShoulder/Blood/Timer.start()
+	print("left low arm hit")
+
 func step():
 	pass
 	#if standing_on == "brick":

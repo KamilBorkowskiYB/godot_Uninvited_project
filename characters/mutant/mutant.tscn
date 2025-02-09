@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://86mkpqtpfq1p"]
+[gd_scene load_steps=16 format=3 uid="uid://86mkpqtpfq1p"]
 
 [ext_resource type="Script" path="res://characters/mutant/mutant.gd" id="1_1yt33"]
 [ext_resource type="Texture2D" uid="uid://2kn0gfrstr18" path="res://characters/mutant/mutant_sheet.png" id="1_ee7ra"]
@@ -8,18 +8,45 @@
 radius = 18.0159
 height = 62.027
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_h2sl5"]
-height = 60.8227
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x3wg0"]
+radius = 12.0825
+height = 42.0467
 
 [sub_resource type="Curve" id="Curve_t342t"]
 max_value = 10.0
 _data = [Vector2(0, 6.01284), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hke3y"]
+radius = 12.2058
+height = 46.0434
+
 [sub_resource type="Curve" id="Curve_623ta"]
 max_value = 3.0
 _data = [Vector2(0, 3), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_h2sl5"]
+height = 60.8227
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pcqgf"]
+radius = 10.9232
+height = 67.6735
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_edhc4"]
+radius = 8.94373
+height = 37.5735
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yf7hq"]
+radius = 7.80767
+height = 31.2307
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_665c5"]
+radius = 6.37101
+height = 29.7117
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0dxmm"]
+radius = 8.05983
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cgwyu"]
 radius = 12.0
@@ -54,64 +81,52 @@ texture = ExtResource("1_ee7ra")
 region_enabled = true
 region_rect = Rect2(122, 245, 50, 40)
 
-[node name="LeftElbow" type="Node2D" parent="Graphic/Body/LeftShoulder/LeftUpper"]
-position = Vector2(-15, -10)
+[node name="LeftElbow" type="Node2D" parent="Graphic/Body/LeftShoulder"]
+position = Vector2(-30, -22)
 
-[node name="LeftLower" type="Sprite2D" parent="Graphic/Body/LeftShoulder/LeftUpper/LeftElbow"]
+[node name="LeftClawL" type="Node2D" parent="Graphic/Body/LeftShoulder/LeftElbow"]
+position = Vector2(8, -37)
+
+[node name="LeftClawL" type="Sprite2D" parent="Graphic/Body/LeftShoulder/LeftElbow/LeftClawL"]
+texture_filter = 1
+position = Vector2(0, -7)
+texture = ExtResource("1_ee7ra")
+region_enabled = true
+region_rect = Rect2(97, 145, 15, 18)
+
+[node name="LeftClawR" type="Node2D" parent="Graphic/Body/LeftShoulder/LeftElbow"]
+position = Vector2(10, -36)
+rotation = 0.00210962
+
+[node name="LeftClawR" type="Sprite2D" parent="Graphic/Body/LeftShoulder/LeftElbow/LeftClawR"]
+texture_filter = 1
+position = Vector2(6.99365, -3.01476)
+texture = ExtResource("1_ee7ra")
+region_enabled = true
+region_rect = Rect2(116, 149, 20, 19)
+
+[node name="LeftLower" type="Sprite2D" parent="Graphic/Body/LeftShoulder/LeftElbow"]
 texture_filter = 1
 position = Vector2(1, -16)
 texture = ExtResource("1_ee7ra")
 region_enabled = true
 region_rect = Rect2(84, 183, 38, 51)
 
-[node name="LeftLowerClaw" type="Sprite2D" parent="Graphic/Body/LeftShoulder/LeftUpper/LeftElbow"]
-texture_filter = 1
-position = Vector2(13, -42)
-texture = ExtResource("1_ee7ra")
-region_enabled = true
-region_rect = Rect2(88, 141, 43, 28)
-
-[node name="RightShoulder" type="Node2D" parent="Graphic/Body"]
-position = Vector2(28, -9)
-
-[node name="RightUpper" type="Sprite2D" parent="Graphic/Body/RightShoulder"]
-texture_filter = 1
-position = Vector2(25, -16)
-texture = ExtResource("1_ee7ra")
-region_enabled = true
-region_rect = Rect2(305, 235, 66, 57)
-
-[node name="RightElbow" type="Node2D" parent="Graphic/Body/RightShoulder/RightUpper"]
-position = Vector2(25, -18)
-
-[node name="RightLower" type="Sprite2D" parent="Graphic/Body/RightShoulder/RightUpper/RightElbow"]
-texture_filter = 1
-position = Vector2(-15, -19)
-texture = ExtResource("1_ee7ra")
-region_enabled = true
-region_rect = Rect2(358, 171, 53, 51)
-
-[node name="RightClaw" type="Sprite2D" parent="Graphic/Body/RightShoulder/RightUpper/RightElbow"]
-texture_filter = 1
-position = Vector2(-45, -44)
-texture = ExtResource("1_ee7ra")
-region_enabled = true
-region_rect = Rect2(338, 128, 31, 29)
-
-[node name="HurtBoxArea" type="Area2D" parent="Graphic/Body/RightShoulder/RightUpper/RightElbow"]
+[node name="HurtBoxArea" type="Area2D" parent="Graphic/Body/LeftShoulder/LeftElbow"]
 position = Vector2(0, 13)
 collision_layer = 2
 collision_mask = 7
 script = ExtResource("3_j2t8s")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Graphic/Body/RightShoulder/RightUpper/RightElbow/HurtBoxArea"]
-position = Vector2(-17, -31)
-rotation = -0.79587
-shape = SubResource("CapsuleShape2D_h2sl5")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Graphic/Body/LeftShoulder/LeftElbow/HurtBoxArea"]
+position = Vector2(3, -30)
+rotation = 0.435996
+shape = SubResource("CapsuleShape2D_x3wg0")
 
-[node name="ElbowDestroyed" type="CPUParticles2D" parent="Graphic/Body/RightShoulder/RightUpper/RightElbow"]
-position = Vector2(-27, -27)
-rotation = -2.39808
+[node name="ElbowDestroyed" type="CPUParticles2D" parent="Graphic/Body/LeftShoulder/LeftElbow"]
+position = Vector2(3, -19)
+rotation = -4.37298
+scale = Vector2(1, 1)
 emitting = false
 amount = 200
 lifetime = 0.3
@@ -124,8 +139,19 @@ initial_velocity_min = 60.0
 initial_velocity_max = 65.79
 scale_amount_curve = SubResource("Curve_t342t")
 
-[node name="Blood" type="CPUParticles2D" parent="Graphic/Body/RightShoulder/RightUpper"]
-position = Vector2(26, -20)
+[node name="HurtBoxArea" type="Area2D" parent="Graphic/Body/LeftShoulder"]
+position = Vector2(0, 13)
+collision_layer = 2
+collision_mask = 7
+script = ExtResource("3_j2t8s")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Graphic/Body/LeftShoulder/HurtBoxArea"]
+position = Vector2(-15, -24)
+rotation = -0.971342
+shape = SubResource("CapsuleShape2D_hke3y")
+
+[node name="Blood" type="CPUParticles2D" parent="Graphic/Body/LeftShoulder"]
+position = Vector2(7.15256e-07, 1)
 emitting = false
 amount = 100
 lifetime = 0.5
@@ -136,6 +162,146 @@ gravity = Vector2(0, 0)
 initial_velocity_max = 200.0
 scale_amount_max = 3.0
 scale_amount_curve = SubResource("Curve_623ta")
+
+[node name="Timer" type="Timer" parent="Graphic/Body/LeftShoulder/Blood"]
+wait_time = 3.0
+one_shot = true
+
+[node name="ShoulderDestroyed" type="CPUParticles2D" parent="Graphic/Body/LeftShoulder"]
+position = Vector2(-16, -11)
+rotation = -2.4121
+emitting = false
+amount = 200
+lifetime = 0.3
+one_shot = true
+emission_shape = 3
+emission_rect_extents = Vector2(40, 5)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 60.0
+initial_velocity_max = 65.79
+scale_amount_curve = SubResource("Curve_t342t")
+
+[node name="RightShoulder" type="Node2D" parent="Graphic/Body"]
+position = Vector2(28, -9)
+rotation = -0.00805268
+
+[node name="RightUpper" type="Sprite2D" parent="Graphic/Body/RightShoulder"]
+texture_filter = 1
+position = Vector2(25, -16)
+texture = ExtResource("1_ee7ra")
+region_enabled = true
+region_rect = Rect2(305, 235, 66, 57)
+
+[node name="RightElbow" type="Node2D" parent="Graphic/Body/RightShoulder"]
+position = Vector2(50, -34)
+
+[node name="RightLower" type="Sprite2D" parent="Graphic/Body/RightShoulder/RightElbow"]
+texture_filter = 1
+position = Vector2(-15, -19)
+texture = ExtResource("1_ee7ra")
+region_enabled = true
+region_rect = Rect2(358, 171, 53, 51)
+
+[node name="RightClawL" type="Node2D" parent="Graphic/Body/RightShoulder/RightElbow"]
+position = Vector2(-35.4287, -36.885)
+
+[node name="RightClawL" type="Sprite2D" parent="Graphic/Body/RightShoulder/RightElbow/RightClawL"]
+texture_filter = 1
+position = Vector2(-8.9514, -6.07227)
+texture = ExtResource("1_ee7ra")
+region_enabled = true
+region_rect = Rect2(329, 128, 21, 20)
+
+[node name="RightClawM" type="Node2D" parent="Graphic/Body/RightShoulder/RightElbow"]
+position = Vector2(-35.4287, -36.885)
+
+[node name="RightClawM" type="Sprite2D" parent="Graphic/Body/RightShoulder/RightElbow/RightClawM"]
+texture_filter = 1
+position = Vector2(-4.94347, -7.04003)
+texture = ExtResource("1_ee7ra")
+region_enabled = true
+region_rect = Rect2(351, 125, 18, 21)
+
+[node name="RightClawR" type="Node2D" parent="Graphic/Body/RightShoulder/RightElbow"]
+position = Vector2(-34.4207, -37.8769)
+
+[node name="RightClawR" type="Sprite2D" parent="Graphic/Body/RightShoulder/RightElbow/RightClawR"]
+texture_filter = 1
+position = Vector2(-2.93549, -8.0239)
+texture = ExtResource("1_ee7ra")
+region_enabled = true
+region_rect = Rect2(371, 126, 18, 22)
+
+[node name="HurtBoxArea" type="Area2D" parent="Graphic/Body/RightShoulder/RightElbow"]
+position = Vector2(0, 13)
+collision_layer = 2
+collision_mask = 7
+script = ExtResource("3_j2t8s")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Graphic/Body/RightShoulder/RightElbow/HurtBoxArea"]
+position = Vector2(-17, -31)
+rotation = -0.79587
+shape = SubResource("CapsuleShape2D_h2sl5")
+
+[node name="ElbowDestroyed" type="CPUParticles2D" parent="Graphic/Body/RightShoulder/RightElbow"]
+position = Vector2(-27, -27)
+rotation = -2.39808
+scale = Vector2(1, 1)
+emitting = false
+amount = 200
+lifetime = 0.3
+one_shot = true
+emission_shape = 3
+emission_rect_extents = Vector2(40, 5)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 60.0
+initial_velocity_max = 65.79
+scale_amount_curve = SubResource("Curve_t342t")
+
+[node name="HurtBoxArea" type="Area2D" parent="Graphic/Body/RightShoulder"]
+position = Vector2(0, 13)
+collision_layer = 2
+collision_mask = 7
+script = ExtResource("3_j2t8s")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Graphic/Body/RightShoulder/HurtBoxArea"]
+position = Vector2(26, -32)
+rotation = 0.94411
+shape = SubResource("CapsuleShape2D_pcqgf")
+
+[node name="Blood" type="CPUParticles2D" parent="Graphic/Body/RightShoulder"]
+position = Vector2(0.663848, -1.88661)
+emitting = false
+amount = 100
+lifetime = 0.5
+emission_shape = 1
+emission_sphere_radius = 6.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_max = 200.0
+scale_amount_max = 3.0
+scale_amount_curve = SubResource("Curve_623ta")
+
+[node name="Timer" type="Timer" parent="Graphic/Body/RightShoulder/Blood"]
+wait_time = 3.0
+one_shot = true
+
+[node name="ShoulderDestroyed" type="CPUParticles2D" parent="Graphic/Body/RightShoulder"]
+position = Vector2(21.7838, -16.7172)
+rotation = -3.72478
+emitting = false
+amount = 200
+lifetime = 0.3
+one_shot = true
+emission_shape = 3
+emission_rect_extents = Vector2(40, 5)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 60.0
+initial_velocity_max = 65.79
+scale_amount_curve = SubResource("Curve_t342t")
 
 [node name="LeftBackShoulder" type="Node2D" parent="Graphic/Body"]
 position = Vector2(-18, 9)
@@ -157,9 +323,22 @@ texture = ExtResource("1_ee7ra")
 region_enabled = true
 region_rect = Rect2(170, 353, 27, 22)
 
-[node name="LeftBackClaw" type="Sprite2D" parent="Graphic/Body/LeftBackShoulder/LeftBackUpper/LeftBackElbow"]
+[node name="LeftBackClawL" type="Node2D" parent="Graphic/Body/LeftBackShoulder/LeftBackUpper/LeftBackElbow"]
+position = Vector2(-18, -11)
+
+[node name="LeftBackClawL" type="Sprite2D" parent="Graphic/Body/LeftBackShoulder/LeftBackUpper/LeftBackElbow/LeftBackClawL"]
 texture_filter = 1
-position = Vector2(-20, -16)
+position = Vector2(-2, -5)
+texture = ExtResource("1_ee7ra")
+region_enabled = true
+region_rect = Rect2(138, 336, 10, 14)
+
+[node name="LeftBackClawR" type="Node2D" parent="Graphic/Body/LeftBackShoulder/LeftBackUpper/LeftBackElbow"]
+position = Vector2(-15, -12)
+
+[node name="LeftBackClawR" type="Sprite2D" parent="Graphic/Body/LeftBackShoulder/LeftBackUpper/LeftBackElbow/LeftBackClawR"]
+texture_filter = 1
+position = Vector2(-3, -4)
 texture = ExtResource("1_ee7ra")
 region_enabled = true
 region_rect = Rect2(148, 335, 19, 18)
@@ -184,12 +363,25 @@ texture = ExtResource("1_ee7ra")
 region_enabled = true
 region_rect = Rect2(322, 347, 24, 25)
 
-[node name="RightBackClaw" type="Sprite2D" parent="Graphic/Body/RightBackShoulder/RightBackUpper/RightBackElbow"]
+[node name="RightBackClawL" type="Node2D" parent="Graphic/Body/RightBackShoulder/RightBackUpper/RightBackElbow"]
+position = Vector2(11, -15)
+
+[node name="RightBackClawL" type="Sprite2D" parent="Graphic/Body/RightBackShoulder/RightBackUpper/RightBackElbow/RightBackClawL"]
 texture_filter = 1
-position = Vector2(13, -21)
+position = Vector2(-2, -2)
 texture = ExtResource("1_ee7ra")
 region_enabled = true
-region_rect = Rect2(347, 327, 22, 16)
+region_rect = Rect2(344, 332, 10, 9)
+
+[node name="RightBackClawR" type="Node2D" parent="Graphic/Body/RightBackShoulder/RightBackUpper/RightBackElbow"]
+position = Vector2(15, -13)
+
+[node name="RightBackClawR" type="Sprite2D" parent="Graphic/Body/RightBackShoulder/RightBackUpper/RightBackElbow/RightBackClawR"]
+texture_filter = 1
+position = Vector2(1, -3)
+texture = ExtResource("1_ee7ra")
+region_enabled = true
+region_rect = Rect2(357, 331, 9, 13)
 
 [node name="LeftFrontShoulder" type="Node2D" parent="Graphic/Body"]
 position = Vector2(-24, -11)
@@ -201,22 +393,89 @@ texture = ExtResource("1_ee7ra")
 region_enabled = true
 region_rect = Rect2(185, 218, 31, 37)
 
-[node name="LeftFrontElbow" type="Node2D" parent="Graphic/Body/LeftFrontShoulder/LeftFrontUpper"]
-position = Vector2(-6, -13)
+[node name="LeftFrontElbow" type="Node2D" parent="Graphic/Body/LeftFrontShoulder"]
+position = Vector2(-6, -22)
 
-[node name="LeftFrontLower" type="Sprite2D" parent="Graphic/Body/LeftFrontShoulder/LeftFrontUpper/LeftFrontElbow"]
+[node name="LeftFrontLower" type="Sprite2D" parent="Graphic/Body/LeftFrontShoulder/LeftFrontElbow"]
 texture_filter = 1
 position = Vector2(4, -8)
 texture = ExtResource("1_ee7ra")
 region_enabled = true
 region_rect = Rect2(163, 177, 25, 29)
 
-[node name="LeftFrontClaw" type="Sprite2D" parent="Graphic/Body/LeftFrontShoulder/LeftFrontUpper/LeftFrontElbow"]
+[node name="LeftFrontClawL" type="Node2D" parent="Graphic/Body/LeftFrontShoulder/LeftFrontElbow"]
+position = Vector2(6, -18)
+
+[node name="LeftFrontClawL" type="Sprite2D" parent="Graphic/Body/LeftFrontShoulder/LeftFrontElbow/LeftFrontClawL"]
 texture_filter = 1
-position = Vector2(9, -27)
+position = Vector2(-2, -7)
 texture = ExtResource("1_ee7ra")
 region_enabled = true
-region_rect = Rect2(170, 135, 23, 24)
+region_rect = Rect2(171, 135, 13, 21)
+
+[node name="LeftFrontClawR" type="Node2D" parent="Graphic/Body/LeftFrontShoulder/LeftFrontElbow"]
+position = Vector2(10, -17)
+
+[node name="LeftFrontClawR" type="Sprite2D" parent="Graphic/Body/LeftFrontShoulder/LeftFrontElbow/LeftFrontClawR"]
+texture_filter = 1
+position = Vector2(2, -6)
+texture = ExtResource("1_ee7ra")
+region_enabled = true
+region_rect = Rect2(187, 141, 10, 17)
+
+[node name="HurtBoxArea" type="Area2D" parent="Graphic/Body/LeftFrontShoulder/LeftFrontElbow"]
+position = Vector2(10, 7)
+collision_layer = 2
+collision_mask = 7
+script = ExtResource("3_j2t8s")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Graphic/Body/LeftFrontShoulder/LeftFrontElbow/HurtBoxArea"]
+position = Vector2(-5, -23)
+rotation = 0.452653
+shape = SubResource("CapsuleShape2D_edhc4")
+
+[node name="HurtBoxArea" type="Area2D" parent="Graphic/Body/LeftFrontShoulder"]
+position = Vector2(0, 13)
+collision_layer = 2
+collision_mask = 7
+script = ExtResource("3_j2t8s")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Graphic/Body/LeftFrontShoulder/HurtBoxArea"]
+position = Vector2(-1, -29)
+rotation = -0.669017
+shape = SubResource("CapsuleShape2D_yf7hq")
+
+[node name="Blood" type="CPUParticles2D" parent="Graphic/Body/LeftFrontShoulder"]
+position = Vector2(-2, -9)
+emitting = false
+amount = 100
+lifetime = 0.5
+emission_shape = 1
+emission_sphere_radius = 6.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_max = 200.0
+scale_amount_max = 3.0
+scale_amount_curve = SubResource("Curve_623ta")
+
+[node name="Timer" type="Timer" parent="Graphic/Body/LeftFrontShoulder/Blood"]
+wait_time = 3.0
+one_shot = true
+
+[node name="ShoulderDestroyed" type="CPUParticles2D" parent="Graphic/Body/LeftFrontShoulder"]
+position = Vector2(-2, -23)
+rotation = -4.4138
+emitting = false
+amount = 200
+lifetime = 0.3
+one_shot = true
+emission_shape = 3
+emission_rect_extents = Vector2(20, 5)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 60.0
+initial_velocity_max = 65.79
+scale_amount_curve = SubResource("Curve_t342t")
 
 [node name="RightFrontShoulder" type="Node2D" parent="Graphic/Body"]
 position = Vector2(17, -15)
@@ -228,22 +487,89 @@ texture = ExtResource("1_ee7ra")
 region_enabled = true
 region_rect = Rect2(279, 219, 26, 33)
 
-[node name="RightFrontElbow" type="Node2D" parent="Graphic/Body/RightFrontShoulder/RightFrontUpper"]
-position = Vector2(8, -12)
+[node name="RightFrontElbow" type="Node2D" parent="Graphic/Body/RightFrontShoulder"]
+position = Vector2(14, -22)
 
-[node name="RightFrontLower" type="Sprite2D" parent="Graphic/Body/RightFrontShoulder/RightFrontUpper/RightFrontElbow"]
+[node name="RightFrontLower" type="Sprite2D" parent="Graphic/Body/RightFrontShoulder/RightFrontElbow"]
 texture_filter = 1
 position = Vector2(-3, -7)
 texture = ExtResource("1_ee7ra")
 region_enabled = true
 region_rect = Rect2(293, 181, 25, 27)
 
-[node name="RightFrontClaw" type="Sprite2D" parent="Graphic/Body/RightFrontShoulder/RightFrontUpper/RightFrontElbow"]
+[node name="RightFrontClawL" type="Node2D" parent="Graphic/Body/RightFrontShoulder/RightFrontElbow"]
+position = Vector2(-10, -14)
+
+[node name="RightFrontClawL" type="Sprite2D" parent="Graphic/Body/RightFrontShoulder/RightFrontElbow/RightFrontClawL"]
 texture_filter = 1
-position = Vector2(-11, -21)
+position = Vector2(-3, -4)
 texture = ExtResource("1_ee7ra")
 region_enabled = true
-region_rect = Rect2(289, 143, 21, 18)
+region_rect = Rect2(290, 148, 11, 12)
+
+[node name="RightFrontClawR" type="Node2D" parent="Graphic/Body/RightFrontShoulder/RightFrontElbow"]
+position = Vector2(-6, -17)
+
+[node name="RightFrontClaw" type="Sprite2D" parent="Graphic/Body/RightFrontShoulder/RightFrontElbow/RightFrontClawR"]
+texture_filter = 1
+position = Vector2(-2, -3)
+texture = ExtResource("1_ee7ra")
+region_enabled = true
+region_rect = Rect2(304, 148, 10, 11)
+
+[node name="HurtBoxArea" type="Area2D" parent="Graphic/Body/RightFrontShoulder/RightFrontElbow"]
+position = Vector2(0, 13)
+collision_layer = 2
+collision_mask = 7
+script = ExtResource("3_j2t8s")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Graphic/Body/RightFrontShoulder/RightFrontElbow/HurtBoxArea"]
+position = Vector2(-5, -22)
+rotation = -0.617657
+shape = SubResource("CapsuleShape2D_665c5")
+
+[node name="HurtBoxArea" type="Area2D" parent="Graphic/Body/RightFrontShoulder"]
+position = Vector2(0, 13)
+collision_layer = 2
+collision_mask = 7
+script = ExtResource("3_j2t8s")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Graphic/Body/RightFrontShoulder/HurtBoxArea"]
+position = Vector2(7, -20)
+rotation = 0.494597
+shape = SubResource("CapsuleShape2D_0dxmm")
+
+[node name="Blood" type="CPUParticles2D" parent="Graphic/Body/RightFrontShoulder"]
+position = Vector2(2, -1)
+emitting = false
+amount = 100
+lifetime = 0.5
+emission_shape = 1
+emission_sphere_radius = 6.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_max = 200.0
+scale_amount_max = 3.0
+scale_amount_curve = SubResource("Curve_623ta")
+
+[node name="Timer" type="Timer" parent="Graphic/Body/RightFrontShoulder/Blood"]
+wait_time = 3.0
+one_shot = true
+
+[node name="ShoulderDestroyed" type="CPUParticles2D" parent="Graphic/Body/RightFrontShoulder"]
+position = Vector2(8, -17)
+rotation = -4.46838
+emitting = false
+amount = 200
+lifetime = 0.3
+one_shot = true
+emission_shape = 3
+emission_rect_extents = Vector2(20, 5)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 60.0
+initial_velocity_max = 65.79
+scale_amount_curve = SubResource("Curve_t342t")
 
 [node name="Head" type="Node2D" parent="Graphic/Body"]
 position = Vector2(1, -17)
@@ -255,12 +581,67 @@ texture = ExtResource("1_ee7ra")
 region_enabled = true
 region_rect = Rect2(229, 206, 34, 43)
 
-[node name="HeadClaw" type="Sprite2D" parent="Graphic/Body/Head"]
+[node name="HeadClaws" type="Node2D" parent="Graphic/Body/Head"]
+
+[node name="HeadClawL1" type="Node2D" parent="Graphic/Body/Head/HeadClaws"]
+position = Vector2(-5, -25)
+
+[node name="HeadClaw" type="Sprite2D" parent="Graphic/Body/Head/HeadClaws/HeadClawL1"]
 texture_filter = 1
-position = Vector2(2, -22)
+position = Vector2(0, -3)
 texture = ExtResource("1_ee7ra")
 region_enabled = true
-region_rect = Rect2(227, 159, 43, 29)
+region_rect = Rect2(227, 155, 14, 13)
+
+[node name="HeadClawL2" type="Node2D" parent="Graphic/Body/Head/HeadClaws"]
+position = Vector2(-10, -20)
+
+[node name="HeadClaw2" type="Sprite2D" parent="Graphic/Body/Head/HeadClaws/HeadClawL2"]
+texture_filter = 1
+position = Vector2(-1, -2)
+texture = ExtResource("1_ee7ra")
+region_enabled = true
+region_rect = Rect2(228, 171, 8, 10)
+
+[node name="HeadClawL3" type="Node2D" parent="Graphic/Body/Head/HeadClaws"]
+position = Vector2(-12, -14)
+
+[node name="HeadClaw3" type="Sprite2D" parent="Graphic/Body/Head/HeadClaws/HeadClawL3"]
+texture_filter = 1
+position = Vector2(-2, -1)
+texture = ExtResource("1_ee7ra")
+region_enabled = true
+region_rect = Rect2(227, 183, 9, 6)
+
+[node name="HeadClawR1" type="Node2D" parent="Graphic/Body/Head/HeadClaws"]
+position = Vector2(5, -24)
+
+[node name="HeadClaw4" type="Sprite2D" parent="Graphic/Body/Head/HeadClaws/HeadClawR1"]
+texture_filter = 1
+position = Vector2(1, -3)
+texture = ExtResource("1_ee7ra")
+region_enabled = true
+region_rect = Rect2(251, 155, 12, 13)
+
+[node name="HeadClawR2" type="Node2D" parent="Graphic/Body/Head/HeadClaws"]
+position = Vector2(10, -19)
+
+[node name="HeadClaw5" type="Sprite2D" parent="Graphic/Body/Head/HeadClaws/HeadClawR2"]
+texture_filter = 1
+position = Vector2(1, -2)
+texture = ExtResource("1_ee7ra")
+region_enabled = true
+region_rect = Rect2(255, 169, 10, 9)
+
+[node name="HeadClawR3" type="Node2D" parent="Graphic/Body/Head/HeadClaws"]
+position = Vector2(11, -14)
+
+[node name="HeadClaw6" type="Sprite2D" parent="Graphic/Body/Head/HeadClaws/HeadClawR3"]
+texture_filter = 1
+position = Vector2(1, -1)
+texture = ExtResource("1_ee7ra")
+region_enabled = true
+region_rect = Rect2(256, 181, 8, 8)
 
 [node name="HurtBoxArea" type="Area2D" parent="Graphic/Body/Head"]
 position = Vector2(0, 13)
@@ -271,3 +652,16 @@ script = ExtResource("3_j2t8s")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Graphic/Body/Head/HurtBoxArea"]
 position = Vector2(-1, -20)
 shape = SubResource("CapsuleShape2D_cgwyu")
+
+[node name="AnimationFrontArms" type="AnimationPlayer" parent="."]
+
+[node name="AnimationRightArm" type="AnimationPlayer" parent="."]
+
+[node name="AnimationLeftArm" type="AnimationPlayer" parent="."]
+
+[node name="AnimationBody" type="AnimationPlayer" parent="."]
+
+[connection signal="timeout" from="Graphic/Body/LeftShoulder/Blood/Timer" to="Graphic/Body/LeftShoulder/Blood" method="set_emitting" binds= [false]]
+[connection signal="timeout" from="Graphic/Body/RightShoulder/Blood/Timer" to="Graphic/Body/RightShoulder/Blood" method="set_emitting" binds= [false]]
+[connection signal="timeout" from="Graphic/Body/LeftFrontShoulder/Blood/Timer" to="Graphic/Body/LeftFrontShoulder/Blood" method="set_emitting" binds= [false]]
+[connection signal="timeout" from="Graphic/Body/RightFrontShoulder/Blood/Timer" to="Graphic/Body/RightFrontShoulder/Blood" method="set_emitting" binds= [false]]
