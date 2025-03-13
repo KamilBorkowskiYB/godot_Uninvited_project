@@ -21,6 +21,9 @@ func _ready():
 	
 	$Graphic/Body/LeftFrontShoulder/LeftFrontElbow/HurtBoxArea.got_hit_head.connect(front_left_arm_hit)
 	$Graphic/Body/LeftFrontShoulder/HurtBoxArea.got_hit_head.connect(front_left_arm_hit)
+	
+	$AnimationFrontArms.play("Idle")
+	$AnimationFrontArms.speed_scale = 2.5
 
 func _physics_process(_delta):
 	if dead:
@@ -62,6 +65,7 @@ func right_arm_hit(attack: Attack):
 	$Graphic/Body/RightShoulder/RightElbow/RightClawR.hide()
 	$Graphic/Body/RightShoulder/RightElbow/HurtBoxArea.hide()
 	$Graphic/Body/RightShoulder/RightElbow/HurtBoxArea/CollisionShape2D.disabled = true
+	$Graphic/Body/RightShoulder/HurtBoxArea.hide()
 	$Graphic/Body/RightShoulder/HurtBoxArea/CollisionShape2D.disabled = true
 	$Graphic/Body/RightShoulder/Blood.emitting = true
 	
