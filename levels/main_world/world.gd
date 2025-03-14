@@ -29,7 +29,9 @@ func _ready():
 	
 	
 	#connecting tilemap to player footsteps
-	var tilemap = viewport1.get_child(0).get_child(0).get_node("Tilemap").get_child(0)
+	var tilemap = null
+	if viewport1.get_child(0).get_child(0).get_node("Tilemap").get_child_count() > 0:
+		tilemap = viewport1.get_child(0).get_child(0).get_node("Tilemap").get_child(0)
 	var footnode = player.get_node("Footsteps")
 	if(footnode and tilemap):
 		footnode.tilemap = tilemap
@@ -125,7 +127,7 @@ func _ready():
 				node1.linkedView = node2
 				node1.linkedFog = node3
 
-func _process(delta):
+func _process(_delta):
 	var player: CharacterBody2D = get_tree().get_first_node_in_group("player")
 	if player != null:
 		$WeaponSelected/Control/Label.text = str(player.magazine) +"/"+ str(player.ammo)

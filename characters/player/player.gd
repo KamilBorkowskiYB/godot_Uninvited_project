@@ -49,7 +49,7 @@ var move_direction = Vector2(0,0)
 #pistol
 const PISTOL_MAX_RECOIL = 20.0
 const PISTOL_MIN_RECOIL = 6.0
-const PISTOL_FOCUS_SPEED = 0.2
+const PISTOL_FOCUS_SPEED = 2
 const PISTOL_DMG = 10.0
 const PISTOL_MAG_SIZE = 8
 const PISTOL_MAX_SIZE = 24
@@ -60,7 +60,7 @@ const PISTOL_RELOAD_ANIM = "reload_pistol"
 #rifle
 const RIFLE_MAX_RECOIL = 15.0
 const RIFLE_MIN_RECOIL = 3.0
-const RIFLE_FOCUS_SPEED = 0.1
+const RIFLE_FOCUS_SPEED = 4.0
 const RIFLE_DMG = 30.0
 const RIFLE_MAG_SIZE = 1
 const RIFLE_MAX_SIZE = 10
@@ -71,7 +71,7 @@ const RIFLE_RELOAD_ANIM = "reload_rifle"
 #shotgun
 const SHOTGUN_MAX_RECOIL = 40.0
 const SHOTGUN_MIN_RECOIL = 10.0
-const SHOTGUN_FOCUS_SPEED = 0.4
+const SHOTGUN_FOCUS_SPEED = 7.0
 const SHOTGUN_DMG = 15
 const SHOTGUN_MAG_SIZE = 2
 const SHOTGUN_MAX_SIZE = 10
@@ -83,7 +83,7 @@ const SHOTGUN_RELOAD_ANIM = "reload_shotgun"
 var max_recoil = RIFLE_MAX_RECOIL
 var min_recoil = RIFLE_MIN_RECOIL#dynamic min recoil based of walking, etc.
 var recoil = max_recoil * 0.7
-var recoil_focus_speed = RIFLE_FOCUS_SPEED
+var recoil_focus_speed = (RIFLE_MAX_RECOIL-RIFLE_MIN_RECOIL)/RIFLE_FOCUS_SPEED
 var floor_min_recoil = RIFLE_MIN_RECOIL #static min recoil based of weapon
 var damage = RIFLE_DMG
 var animation_aim = RIFLE_AIM_ANIM
@@ -96,7 +96,7 @@ func _ready():
 	can_shoot = false
 	can_interact = true
 
-func _process(_delta):
+func _process(delta):
 	##########        CONNECTING NODES FROM VIEWPORTS         ##########
 	if aim_assist != null:
 		aim_assist.position = get_viewport_rect().size / 2
@@ -178,11 +178,11 @@ func _process(_delta):
 	if Input.is_action_pressed("Aim"):
 		if weapon_selected == null:
 			return
-		recoil = max(recoil - recoil_focus_speed,min_recoil)
+		recoil = max(recoil - recoil_focus_speed * delta,min_recoil)
 		aim_assistR.rotation_degrees = recoil
 		aim_assistL.rotation_degrees = -recoil
 	else:
-		recoil = min(recoil + 0.1,max_recoil)
+		recoil = min(recoil + 10 * delta,max_recoil)
 	if recoil != 0:
 		ray_cast1.rotation_degrees = randf_range(-recoil, recoil)
 		ray_cast2.rotation_degrees= randf_range(-recoil, recoil)
@@ -305,7 +305,7 @@ func change_weapon(frame,wep_num,max_rec,min_rec,dmg,rec_sped,anim_aim,anim_aime
 		max_recoil = max_rec
 		min_recoil = min_rec
 		damage = dmg
-		recoil_focus_speed = rec_sped
+		recoil_focus_speed = (max_recoil-min_recoil)/ rec_sped
 		weapon_selected = wep_num
 		floor_min_recoil = min_rec
 		animation_aim = anim_aim

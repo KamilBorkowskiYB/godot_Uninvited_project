@@ -24,6 +24,12 @@ func _ready():
 	
 	$AnimationFrontArms.play("Idle")
 	$AnimationFrontArms.speed_scale = 2.5
+	
+	$AnimationLeftArm.play("Idle")
+	$AnimationLeftArm.speed_scale = 2.5
+	
+	$AnimationRightArm.play("Idle")
+	#$AnimationRightArm.speed_scale = 1.5
 
 func _physics_process(_delta):
 	if dead:

@@ -9,7 +9,7 @@ func _ready():
 	interaction_area.interact = Callable(self,"_on_interact")
 	transform_to = self.transform
 
-func _process(delta):
+func _process(_delta):
 	if $".".mass == 1.0:
 		$interaction_area.action_name = "Close"
 	else:
