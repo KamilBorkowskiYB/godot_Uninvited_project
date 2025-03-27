@@ -2,11 +2,13 @@ extends CharacterBody2D
 
 
 @export var move_speed = 100
+@onready var viewRayCast = $ViewRayCast
 var dead = false
 @export var push_force = 10.0
 var move_direction = Vector2(0,0)
 var standing_on :String = "grass"
 var floor_move_speed_debuff = 1.0
+
 
 func _ready():
 	$Graphic/Body/Head/HurtBoxArea.got_hit_head.connect(head_hit)
@@ -22,14 +24,6 @@ func _ready():
 	$Graphic/Body/LeftFrontShoulder/LeftFrontElbow/HurtBoxArea.got_hit_head.connect(front_left_arm_hit)
 	$Graphic/Body/LeftFrontShoulder/HurtBoxArea.got_hit_head.connect(front_left_arm_hit)
 	
-	$AnimationFrontArms.play("Idle")
-	$AnimationFrontArms.speed_scale = 2.5
-	
-	$AnimationLeftArm.play("Idle")
-	$AnimationLeftArm.speed_scale = 2.5
-	
-	$AnimationRightArm.play("Idle")
-	#$AnimationRightArm.speed_scale = 1.5
 
 func _physics_process(_delta):
 	if dead:
@@ -38,8 +32,16 @@ func _physics_process(_delta):
 		floor_move_speed_debuff = 0.3
 	else:
 		floor_move_speed_debuff = 1.0
-
+	
 	var player: CharacterBody2D = get_tree().get_first_node_in_group("player")
+	if player:
+		viewRayCast.target_position = player.global_position - viewRayCast.global_position
+	
+	if  player in $ViewArea.get_overlapping_bodies() and viewRayCast.get_collider() == player:
+		player_spoted()
+	else:
+		player_lost()
+		
 	#move_direction = global_position.direction_to(player.global_position)
 	#velocity = move_speed * move_direction * floor_move_speed_debuff
 	#move_and_slide()
@@ -50,7 +52,19 @@ func _physics_process(_delta):
 	
 	#global_rotation = move_direction.angle() + PI/2.0
 	
-		
+
+func player_spoted():
+	$AnimationFrontArms.play("Chase")
+	$AnimationLeftArm.play("Chase")
+	$AnimationRightArm.play("Chase")
+
+func player_lost():
+		$AnimationFrontArms.play("Idle")
+		$AnimationFrontArms.speed_scale = 2.5
+		$AnimationLeftArm.play("Idle")
+		$AnimationLeftArm.speed_scale = 2.5
+		$AnimationRightArm.play("Idle")
+
 func kill(attack: Attack):
 	if dead:
 		return
