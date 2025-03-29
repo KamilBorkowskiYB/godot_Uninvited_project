@@ -1,13 +1,16 @@
 extends CharacterBody2D
 
 
-@export var move_speed = 100
+@export var move_speed = 250
 @onready var viewRayCast = $ViewRayCast
-var dead = false
 @export var push_force = 10.0
 var move_direction = Vector2(0,0)
 var standing_on :String = "grass"
 var floor_move_speed_debuff = 1.0
+var distance_to_target = 10000
+
+enum State { CHASE, IDLE, ATTACK, DEAD }
+var current_state: State = State.IDLE  
 
 
 func _ready():
@@ -26,7 +29,7 @@ func _ready():
 	
 
 func _physics_process(_delta):
-	if dead:
+	if current_state == State.DEAD:
 		return
 	if standing_on == "water":
 		floor_move_speed_debuff = 0.3
@@ -35,30 +38,34 @@ func _physics_process(_delta):
 	
 	var player: CharacterBody2D = get_tree().get_first_node_in_group("player")
 	if player:
-		viewRayCast.target_position = player.global_position - viewRayCast.global_position
+		viewRayCast.target_position = viewRayCast.to_local(player.global_position)
 	
 	if  player in $ViewArea.get_overlapping_bodies() and viewRayCast.get_collider() == player:
 		player_spoted()
 	else:
 		player_lost()
 		
-	#move_direction = global_position.direction_to(player.global_position)
-	#velocity = move_speed * move_direction * floor_move_speed_debuff
-	#move_and_slide()
-	#for i in get_slide_collision_count():
-		#var c = get_slide_collision(i)
-		#if c.get_collider() is RigidBody2D:
-			#c.get_collider().apply_central_impulse(-c.get_normal() * push_force)
-	
-	#global_rotation = move_direction.angle() + PI/2.0
+	if current_state == State.CHASE:
+		move_direction = global_position.direction_to(player.global_position)
+		print(viewRayCast.target_position.length())
+		velocity = move_speed * move_direction * floor_move_speed_debuff
+		move_and_slide()
+		for i in get_slide_collision_count():
+			var c = get_slide_collision(i)
+			if c.get_collider() is RigidBody2D:
+				c.get_collider().apply_central_impulse(-c.get_normal() * push_force)
+		
+		global_rotation = move_direction.angle() + PI/2.0
 	
 
 func player_spoted():
+	current_state = State.CHASE
 	$AnimationFrontArms.play("Chase")
 	$AnimationLeftArm.play("Chase")
 	$AnimationRightArm.play("Chase")
 
 func player_lost():
+		current_state = State.IDLE
 		$AnimationFrontArms.play("Idle")
 		$AnimationFrontArms.speed_scale = 2.5
 		$AnimationLeftArm.play("Idle")
@@ -66,17 +73,17 @@ func player_lost():
 		$AnimationRightArm.play("Idle")
 
 func kill(attack: Attack):
-	if dead:
+	if current_state == State.DEAD:
 		return
 	print("hit")
 
 func head_hit(attack: Attack):
-	if dead:
+	if current_state == State.DEAD:
 		return
 	print("critical hit")
 
 func right_arm_hit(attack: Attack):
-	if dead:
+	if current_state == State.DEAD:
 		return
 	$Graphic/Body/RightShoulder/RightUpper.hide()
 	$Graphic/Body/RightShoulder/RightElbow/RightLower.hide()
@@ -97,7 +104,7 @@ func right_arm_hit(attack: Attack):
 
 
 func left_arm_hit(attack: Attack):
-	if dead:
+	if current_state == State.DEAD:
 		return
 	$Graphic/Body/LeftShoulder/LeftUpper.hide()
 	$Graphic/Body/LeftShoulder/LeftElbow/LeftLower.hide()
@@ -115,7 +122,7 @@ func left_arm_hit(attack: Attack):
 	print("left arm hit")
 	
 func front_right_arm_hit(attack: Attack):
-	if dead:
+	if current_state == State.DEAD:
 		return
 	$Graphic/Body/RightFrontShoulder/RightFrontUpper.hide()
 	$Graphic/Body/RightFrontShoulder/RightFrontElbow/RightFrontLower.hide()
@@ -133,7 +140,7 @@ func front_right_arm_hit(attack: Attack):
 	
 
 func front_left_arm_hit(attack: Attack):
-	if dead:
+	if current_state == State.DEAD:
 		return
 	$Graphic/Body/LeftFrontShoulder/LeftFrontUpper.hide()
 	$Graphic/Body/LeftFrontShoulder/LeftFrontElbow/LeftFrontLower.hide()
