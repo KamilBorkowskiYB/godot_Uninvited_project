@@ -47,7 +47,6 @@ func _physics_process(_delta):
 		
 	if current_state == State.CHASE:
 		move_direction = global_position.direction_to(player.global_position)
-		print(viewRayCast.target_position.length())
 		velocity = move_speed * move_direction * floor_move_speed_debuff
 		move_and_slide()
 		for i in get_slide_collision_count():
@@ -56,13 +55,22 @@ func _physics_process(_delta):
 				c.get_collider().apply_central_impulse(-c.get_normal() * push_force)
 		
 		global_rotation = move_direction.angle() + PI/2.0
+		
+		if viewRayCast.target_position.length() <= 200 and viewRayCast.target_position.length() >= 120:
+			attack_rigt_arm();
+		if viewRayCast.target_position.length() < 120:
+			attack_left_arm();
+			$Graphic/Body/LeftShoulder/LeftElbow/AttackArea2D
 	
 
 func player_spoted():
 	current_state = State.CHASE
 	$AnimationFrontArms.play("Chase")
-	$AnimationLeftArm.play("Chase")
-	$AnimationRightArm.play("Chase")
+	if $AnimationLeftArm.current_animation != "Attack":
+		$AnimationLeftArm.play("Chase")
+	if $AnimationRightArm.current_animation != "Attack":
+		$AnimationRightArm.play("Chase")
+	$AnimationBody.play("Steps")
 
 func player_lost():
 		current_state = State.IDLE
@@ -71,6 +79,12 @@ func player_lost():
 		$AnimationLeftArm.play("Idle")
 		$AnimationLeftArm.speed_scale = 2.5
 		$AnimationRightArm.play("Idle")
+
+func attack_rigt_arm():
+	$AnimationRightArm.play("Attack")
+
+func attack_left_arm():
+	$AnimationLeftArm.play("Attack")
 
 func kill(attack: Attack):
 	if current_state == State.DEAD:
@@ -157,11 +171,14 @@ func front_left_arm_hit(attack: Attack):
 	print("left low arm hit")
 
 func step():
-	pass
-	#if standing_on == "brick":
-		#$ConcreteFootstep.pitch_scale = randf_range(0.8, 1.2)
-		#$ConcreteFootstep.play()
-	#if standing_on == "grass":
-		#$GrassFootstep.pitch_scale = randf_range(0.8, 1.2)
-		#$GrassFootstep.play()
+	if standing_on == "brick":
+		$Sounds/Footsteps/ConcreteFootstep.pitch_scale = randf_range(0.8, 1.2)
+		$Sounds/Footsteps/ConcreteFootstep.play()
+	if standing_on == "grass":
+		$Sounds/Footsteps/GrassFootstep.pitch_scale = randf_range(0.8, 1.2)
+		$Sounds/Footsteps/GrassFootstep.play()
 
+
+
+func _on_attack_area_2d_body_entered(body):
+	pass # Replace with function body.

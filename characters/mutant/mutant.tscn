@@ -1,8 +1,12 @@
-[gd_scene load_steps=30 format=3 uid="uid://86mkpqtpfq1p"]
+[gd_scene load_steps=37 format=3 uid="uid://86mkpqtpfq1p"]
 
 [ext_resource type="Script" path="res://characters/mutant/mutant.gd" id="1_1yt33"]
 [ext_resource type="Texture2D" uid="uid://2kn0gfrstr18" path="res://characters/mutant/mutant_sheet.png" id="1_ee7ra"]
 [ext_resource type="Script" path="res://characters/mutant/HurtBoxArea.gd" id="3_j2t8s"]
+[ext_resource type="PackedScene" uid="uid://cjgla4gkbb8u2" path="res://Interactions/footsteps.tscn" id="4_4bqlu"]
+[ext_resource type="Script" path="res://characters/mutant/AttackArea2D.gd" id="4_8i8i8"]
+[ext_resource type="AudioStream" uid="uid://6pn5lbj8i2ch" path="res://characters/player/sounds/concrete_footstep.mp3" id="5_yxhgv"]
+[ext_resource type="AudioStream" uid="uid://baanxyc2vjxhr" path="res://characters/player/sounds/grass_footsteps.mp3" id="6_i1dw6"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_84btc"]
 radius = 18.0159
@@ -16,6 +20,9 @@ height = 42.0467
 max_value = 10.0
 _data = [Vector2(0, 6.01284), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rjmce"]
+radius = 14.0357
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hke3y"]
 radius = 12.2058
@@ -866,7 +873,6 @@ _data = {
 [sub_resource type="Animation" id="Animation_qjr84"]
 resource_name = "Attack"
 length = 2.0
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -1156,7 +1162,6 @@ _data = {
 [sub_resource type="Animation" id="Animation_sqlfv"]
 resource_name = "Attack"
 length = 1.5
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -1371,9 +1376,36 @@ _data = {
 "RESET": SubResource("Animation_ifv7w")
 }
 
+[sub_resource type="Animation" id="Animation_5m7x4"]
+resource_name = "Steps"
+length = 0.8
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.4, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"step"
+}, {
+"args": [],
+"method": &"step"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i23r7"]
+_data = {
+"Steps": SubResource("Animation_5m7x4")
+}
+
 [node name="Mutant" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 7
+motion_mode = 1
 script = ExtResource("1_1yt33")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -1456,6 +1488,15 @@ gravity = Vector2(0, 0)
 initial_velocity_min = 60.0
 initial_velocity_max = 65.79
 scale_amount_curve = SubResource("Curve_t342t")
+
+[node name="AttackArea2D" type="Area2D" parent="Graphic/Body/LeftShoulder/LeftElbow"]
+position = Vector2(12, -41)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("4_8i8i8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Graphic/Body/LeftShoulder/LeftElbow/AttackArea2D"]
+shape = SubResource("CircleShape2D_rjmce")
 
 [node name="HurtBoxArea" type="Area2D" parent="Graphic/Body/LeftShoulder"]
 position = Vector2(0, 13)
@@ -1576,6 +1617,15 @@ gravity = Vector2(0, 0)
 initial_velocity_min = 60.0
 initial_velocity_max = 65.79
 scale_amount_curve = SubResource("Curve_t342t")
+
+[node name="AttackArea2D" type="Area2D" parent="Graphic/Body/RightShoulder/RightElbow"]
+position = Vector2(-41.3561, -45.933)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("4_8i8i8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Graphic/Body/RightShoulder/RightElbow/AttackArea2D"]
+shape = SubResource("CircleShape2D_rjmce")
 
 [node name="HurtBoxArea" type="Area2D" parent="Graphic/Body/RightShoulder"]
 position = Vector2(0, 13)
@@ -1986,6 +2036,9 @@ libraries = {
 }
 
 [node name="AnimationBody" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_i23r7")
+}
 
 [node name="ViewArea" type="Area2D" parent="."]
 collision_layer = 0
@@ -1999,7 +2052,35 @@ polygon = PackedVector2Array(276, -310, -276, -310, 0, 0)
 target_position = Vector2(0, 0)
 collision_mask = 3
 
+[node name="Footsteps" parent="." instance=ExtResource("4_4bqlu")]
+
+[node name="ConcreteFootstep" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_yxhgv")
+max_distance = 500.0
+bus = &"sfx"
+
+[node name="GrassFootstep" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_i1dw6")
+max_distance = 500.0
+bus = &"sfx"
+
+[node name="Sounds" type="Node2D" parent="."]
+
+[node name="Footsteps" type="Node2D" parent="Sounds"]
+
+[node name="ConcreteFootstep" type="AudioStreamPlayer2D" parent="Sounds/Footsteps"]
+stream = ExtResource("5_yxhgv")
+max_distance = 500.0
+bus = &"sfx"
+
+[node name="GrassFootstep" type="AudioStreamPlayer2D" parent="Sounds/Footsteps"]
+stream = ExtResource("6_i1dw6")
+max_distance = 500.0
+bus = &"sfx"
+
+[connection signal="body_entered" from="Graphic/Body/LeftShoulder/LeftElbow/AttackArea2D" to="Graphic/Body/LeftShoulder/LeftElbow/AttackArea2D" method="_on_body_entered"]
 [connection signal="timeout" from="Graphic/Body/LeftShoulder/Blood/Timer" to="Graphic/Body/LeftShoulder/Blood" method="set_emitting" binds= [false]]
+[connection signal="body_entered" from="Graphic/Body/RightShoulder/RightElbow/AttackArea2D" to="Graphic/Body/RightShoulder/RightElbow/AttackArea2D" method="_on_body_entered"]
 [connection signal="timeout" from="Graphic/Body/RightShoulder/Blood/Timer" to="Graphic/Body/RightShoulder/Blood" method="set_emitting" binds= [false]]
 [connection signal="timeout" from="Graphic/Body/LeftFrontShoulder/Blood/Timer" to="Graphic/Body/LeftFrontShoulder/Blood" method="set_emitting" binds= [false]]
 [connection signal="timeout" from="Graphic/Body/RightFrontShoulder/Blood/Timer" to="Graphic/Body/RightFrontShoulder/Blood" method="set_emitting" binds= [false]]
