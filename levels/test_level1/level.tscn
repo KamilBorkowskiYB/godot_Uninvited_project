@@ -27,7 +27,8 @@ position = Vector2(-310, 34)
 position = Vector2(253, -203)
 
 [node name="Mutant" parent="Enemies" instance=ExtResource("4_78ckn")]
-position = Vector2(10, 563)
+position = Vector2(847, -74)
+rotation = -3.12884
 
 [node name="LightSource" parent="." instance=ExtResource("4_n3l4b")]
 position = Vector2(-28, 8)

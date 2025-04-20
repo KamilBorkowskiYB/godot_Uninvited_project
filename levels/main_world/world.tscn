@@ -108,6 +108,7 @@ render_target_update_mode = 4
 material = SubResource("ShaderMaterial_nmqhj")
 
 [node name="ViewLight" type="PointLight2D" parent="VisibilityViewport"]
+scale = Vector2(1.5, 1.5)
 blend_mode = 1
 shadow_enabled = true
 texture = ExtResource("3_wk82u")

@@ -32,6 +32,7 @@ var shotgun_shells = 1
 @onready var ray_cast4 = $Top/RayCasts/RayCast2D4
 @onready var animation_player = $AnimationPlayerTOP
 @onready var animation_playerLegs = $AnimationPlayerLEGS
+@onready var animation_run_rotation = $AnimationPlayerRUNROT
 @onready var bullet_trail = load("res://characters/player/misc/shot_trail.tscn")
 @export var move_speed = 200
 var aim_move_speed_debuff = 1.0
@@ -128,16 +129,24 @@ func _process(delta):
 	
 	update_ammo_numbers()
 	##########        INPUTS         ##########
-	if Input.is_action_just_pressed("run"):
-		if cursor_current == cursor_aim:
-			return
-		animation_walk = "walking" #add running anim
-		run_move_speed_buff = 1.7
-		animation_playerLegs.speed_scale = 1.5
+	if Input.is_action_pressed("run"):
+		if cursor_current == cursor_aim or velocity.length() <= 0:
+			run_move_speed_buff = 1.0
+			animation_playerLegs.speed_scale = 1.0
+			animation_run_rotation.stop()
+		elif velocity.length() > 0:
+			run_move_speed_buff = 1.7
+			animation_playerLegs.speed_scale = 1.5
+			animation_run_rotation.play("run_rotate")
+	
 	if Input.is_action_just_released("run"):
-		animation_walk = "walking"
 		run_move_speed_buff = 1.0
 		animation_playerLegs.speed_scale = 1.0
+		animation_run_rotation.stop()
+		if animation_player.current_animation == "run_unarmed":
+			animation_player.stop()
+			$Top/Alive.frame = 0;
+	
 	if Input.is_action_just_pressed("shoot"):
 		if weapon_selected == 0 and rifle_cur_mag > 0:
 			rifle_cur_mag = shoot([ray_cast1], rifle_cur_mag)
@@ -194,8 +203,15 @@ func _process(delta):
 	
 	if Input.is_action_just_pressed("reload"):
 		if weapon_selected != null:
-			unaim()
-			animation_player.queue(animation_reload)
+			if weapon_selected != 0:
+				unaim()
+				animation_player.queue(animation_reload)
+			else: # rifle can reload when aiming
+				if cursor_current == cursor_aim and can_shoot:
+					animation_player.play(animation_reload)
+					animation_player.queue(animation_aimed)
+				else:# rifle can reload without aiming
+					animation_player.play("reload_rifle_calm")
 
 func _physics_process(_delta):
 	if dead:
@@ -243,7 +259,7 @@ func shoot(ray_casts,ammo_type):
 		for ray_cast in ray_casts:
 			var direction = ray_cast.global_position - get_global_mouse_position()
 			direction = direction.normalized()
-			var offset = direction * 70
+			var offset = direction * 150 #ADD OFSET FOR EACH WEAPON
 			
 			var shot_trail = bullet_trail.instantiate()
 			

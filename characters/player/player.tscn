@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://c8bitsc7ybbya"]
+[gd_scene load_steps=40 format=3 uid="uid://c8bitsc7ybbya"]
 
 [ext_resource type="Script" path="res://characters/player/player.gd" id="1_bf8ru"]
 [ext_resource type="Texture2D" uid="uid://f5sx516ofsyb" path="res://characters/player/graphic/legs.png" id="2_qgy1a"]
@@ -234,7 +234,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(3, -85), Vector2(-6, -85), Vector2(12, -84), Vector2(3, -85), Vector2(12, -84)]
+"values": [Vector2(3, -85), Vector2(-0.666663, -84), Vector2(7.33334, -82), Vector2(3, -85), Vector2(6, -82)]
 }
 
 [sub_resource type="Animation" id="Animation_dngic"]
@@ -263,7 +263,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(7, -88), Vector2(0, -89), Vector2(10, -88), Vector2(6, -88), Vector2(0, -88)]
+"values": [Vector2(-2, -96), Vector2(-2.66666, -96.6667), Vector2(0.66667, -96.6667), Vector2(-0.666663, -97.3333), Vector2(-1.33333, -96.6667)]
 }
 
 [sub_resource type="Animation" id="Animation_dd0um"]
@@ -327,7 +327,8 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_omqqw"]
 resource_name = "reload_rifle"
-length = 0.8
+length = 0.85
+step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -347,7 +348,7 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.8),
+"times": PackedFloat32Array(0.85),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -385,6 +386,54 @@ tracks/1/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_xxlak"]
+resource_name = "reload_rifle_calm"
+length = 0.85
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Top/Alive:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [66, 67, 68, 69, 70]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.85),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"animation_end_reload"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_7gtrs"]
+resource_name = "run_unarmed"
+length = 1.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Top/Alive:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2yjhd"]
 _data = {
 "RESET": SubResource("Animation_syd44"),
@@ -396,7 +445,9 @@ _data = {
 "aimed_shotgun": SubResource("Animation_dd0um"),
 "reload_pistol": SubResource("Animation_vx4md"),
 "reload_rifle": SubResource("Animation_omqqw"),
-"reload_shotgun": SubResource("Animation_sliev")
+"reload_rifle_calm": SubResource("Animation_xxlak"),
+"reload_shotgun": SubResource("Animation_sliev"),
+"run_unarmed": SubResource("Animation_7gtrs")
 }
 
 [sub_resource type="Animation" id="Animation_fmsm1"]
@@ -574,6 +625,44 @@ _data = {
 "walking": SubResource("Animation_24fju")
 }
 
+[sub_resource type="Animation" id="Animation_2h6ly"]
+resource_name = "run_rotate"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Top/Alive:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.174533, 0.0, -0.174533]
+}
+
+[sub_resource type="Animation" id="Animation_b4rr7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Top/Alive:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_raa63"]
+_data = {
+"RESET": SubResource("Animation_b4rr7"),
+"run_rotate": SubResource("Animation_2h6ly")
+}
+
 [sub_resource type="Gradient" id="Gradient_wei4d"]
 interpolation_mode = 2
 offsets = PackedFloat32Array(0.727273, 1)
@@ -588,6 +677,7 @@ fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.798165, 0.201835)
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
+scale = Vector2(1.5, 1.5)
 collision_layer = 2
 collision_mask = 7
 motion_mode = 1
@@ -598,11 +688,13 @@ can_shoot = true
 shape = SubResource("CircleShape2D_f7cyc")
 
 [node name="Legs" type="Node2D" parent="."]
+scale = Vector2(0.8, 1)
 
 [node name="LegL" type="Node2D" parent="Legs"]
 position = Vector2(-8, 0)
 
 [node name="thighL" type="Sprite2D" parent="Legs/LegL"]
+texture_filter = 1
 texture = ExtResource("2_qgy1a")
 region_enabled = true
 region_rect = Rect2(32, 88, 15, 17)
@@ -621,6 +713,7 @@ region_rect = Rect2(34, 16, 9, 15)
 position = Vector2(8, 0)
 
 [node name="thighR" type="Sprite2D" parent="Legs/LegR"]
+texture_filter = 1
 texture = ExtResource("2_qgy1a")
 region_enabled = true
 region_rect = Rect2(81, 88, 15, 17)
@@ -636,19 +729,19 @@ region_enabled = true
 region_rect = Rect2(85, 16, 9, 15)
 
 [node name="Pelvis" type="Sprite2D" parent="Legs"]
+texture_filter = 1
 position = Vector2(-1, 0)
 texture = ExtResource("3_0tow6")
 
 [node name="Top" type="Node2D" parent="."]
-position = Vector2(0, -2)
+position = Vector2(-3.8147e-06, -2.66667)
 
 [node name="Alive" type="Sprite2D" parent="Top"]
 texture_filter = 1
-position = Vector2(-64, -75)
 texture = ExtResource("3_wpnqy")
-centered = false
+offset = Vector2(0, -25)
 hframes = 13
-vframes = 6
+vframes = 8
 
 [node name="Dead" type="Sprite2D" parent="Top"]
 visible = false
@@ -698,6 +791,7 @@ texture = ExtResource("9_4hpk5")
 offset = Vector2(0, -300)
 
 [node name="RayCasts" type="Node2D" parent="Top"]
+position = Vector2(1.33333, 3.33337)
 
 [node name="RayCast2D" type="RayCast2D" parent="Top/RayCasts"]
 target_position = Vector2(0, -1400)
@@ -727,6 +821,11 @@ libraries = {
 [node name="AnimationPlayerLEGS" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_tr807")
+}
+
+[node name="AnimationPlayerRUNROT" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_raa63")
 }
 
 [node name="zone_light" type="PointLight2D" parent="."]

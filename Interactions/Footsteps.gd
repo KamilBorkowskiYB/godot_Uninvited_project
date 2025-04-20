@@ -4,7 +4,7 @@ var tilemap: TileMap
 var found_tile = false
 
 func _process(_delta):
-	if tilemap:
+	if is_instance_valid(tilemap):
 		var area_position = tilemap.to_local(global_position)
 		var map_position = tilemap.local_to_map(area_position)
 		for i in range(3, -1, -1): #itereting throu all walkable floors and breaking on top one

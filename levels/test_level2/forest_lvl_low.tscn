@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bgviwme3dklaa"]
+[gd_scene load_steps=12 format=3 uid="uid://bgviwme3dklaa"]
 
 [ext_resource type="PackedScene" uid="uid://drjtbe7lus5v0" path="res://levels/preset_level/preset_level_low.tscn" id="1_svwaw"]
 [ext_resource type="PackedScene" uid="uid://d32q58d334dfd" path="res://objects/floor/floor.tscn" id="2_qgqjp"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cng2o48wdswvk" path="res://objects/door/door.tscn" id="5_dcpon"]
 [ext_resource type="PackedScene" uid="uid://cv46bl48bc1fk" path="res://objects/movingBlock.tscn" id="6_sf8n3"]
 [ext_resource type="PackedScene" uid="uid://c33j86e6f8mi7" path="res://levels/atlases/atlas_one.tscn" id="7_kdcdf"]
+[ext_resource type="Texture2D" uid="uid://dp05qdlei2vkx" path="res://characters/player/graphic/aim_sheet.png" id="9_5e404"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_osc3k"]
 radius = 26.0192
@@ -1148,3 +1149,13 @@ use_parent_material = true
 z_index = -2
 use_parent_material = true
 position = Vector2(1349, 200)
+
+[node name="Alive" type="Sprite2D" parent="." index="4"]
+visible = false
+texture_filter = 1
+position = Vector2(513, 352)
+rotation = 0.726316
+texture = ExtResource("9_5e404")
+hframes = 13
+vframes = 6
+frame = 65

@@ -109,7 +109,7 @@ func right_arm_hit(attack: Attack):
 	$Graphic/Body/RightShoulder/HurtBoxArea.hide()
 	$Graphic/Body/RightShoulder/HurtBoxArea/CollisionShape2D.disabled = true
 	$Graphic/Body/RightShoulder/Blood.emitting = true
-	
+	$Graphic/Body/RightShoulder/RightElbow/AttackArea2D/CollisionShape2D.disabled = true
 	$Graphic/Body/RightShoulder/ShoulderDestroyed.emitting = true
 	$Graphic/Body/RightShoulder/RightElbow/ElbowDestroyed.emitting = true
 	
@@ -128,7 +128,7 @@ func left_arm_hit(attack: Attack):
 	$Graphic/Body/LeftShoulder/LeftElbow/HurtBoxArea/CollisionShape2D.disabled = true
 	$Graphic/Body/LeftShoulder/HurtBoxArea/CollisionShape2D.disabled = true
 	$Graphic/Body/LeftShoulder/Blood.emitting = true
-	
+	$Graphic/Body/LeftShoulder/LeftElbow/AttackArea2D/CollisionShape2D.disabled = true
 	$Graphic/Body/LeftShoulder/ShoulderDestroyed.emitting = true
 	$Graphic/Body/LeftShoulder/LeftElbow/ElbowDestroyed.emitting = true
 	
