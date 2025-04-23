@@ -669,7 +669,7 @@ script = ExtResource("2_w0ahv")
 [node name="Back" type="Bone2D" parent="Body/Skeleton2D/Corpus"]
 position = Vector2(1, 13)
 rotation = -1.52038
-scale = Vector2(0.999993, 0.999993)
+scale = Vector2(0.999992, 0.999992)
 rest = Transform2D(0.0563573, -0.998411, 0.998411, 0.0563573, 4, -145)
 auto_calculate_length_and_angle = false
 length = 50.0

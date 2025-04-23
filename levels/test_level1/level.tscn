@@ -18,26 +18,29 @@ script = ExtResource("1_4f817")
 position = Vector2(4, 5)
 
 [node name="Zombie" parent="Enemies" instance=ExtResource("3_7x6e1")]
-position = Vector2(687, 11)
+position = Vector2(1312, -278)
 
 [node name="Zombie2" parent="Enemies" instance=ExtResource("3_7x6e1")]
-position = Vector2(-310, 34)
+position = Vector2(-288, 221)
 
 [node name="Zombie4" parent="Enemies" instance=ExtResource("3_7x6e1")]
-position = Vector2(253, -203)
+position = Vector2(555, -397)
 
 [node name="Mutant" parent="Enemies" instance=ExtResource("4_78ckn")]
-position = Vector2(847, -74)
+position = Vector2(1733, -612)
 rotation = -3.12884
 
 [node name="LightSource" parent="." instance=ExtResource("4_n3l4b")]
-position = Vector2(-28, 8)
+z_index = -2
+position = Vector2(678, -284)
 
 [node name="LightSource2" parent="." instance=ExtResource("4_n3l4b")]
-position = Vector2(266, -8)
+z_index = -2
+position = Vector2(569, 409)
 
 [node name="LightSource3" parent="." instance=ExtResource("4_n3l4b")]
-position = Vector2(-37, 407)
+z_index = -2
+position = Vector2(38, 282)
 
 [node name="PlayerCamera" type="Camera2D" parent="."]
 rotation_smoothing_enabled = true
@@ -47,55 +50,56 @@ script = ExtResource("5_ccx42")
 position = Vector2(-82, -66)
 
 [node name="PickUp" parent="PickUps" instance=ExtResource("7_0crg7")]
+position = Vector2(540, 75)
 item_selected = 4
 
 [node name="PickUp2" parent="PickUps" instance=ExtResource("7_0crg7")]
-position = Vector2(581, -183)
+position = Vector2(1495, -162)
 item_selected = 1
 
 [node name="PickUp3" parent="PickUps" instance=ExtResource("7_0crg7")]
-position = Vector2(356, 485)
+position = Vector2(1278, 34)
 
 [node name="PickUp4" parent="PickUps" instance=ExtResource("7_0crg7")]
-position = Vector2(356, 485)
+position = Vector2(1278, 34)
 
 [node name="PickUp5" parent="PickUps" instance=ExtResource("7_0crg7")]
-position = Vector2(356, 485)
+position = Vector2(1278, 34)
 
 [node name="PickUp6" parent="PickUps" instance=ExtResource("7_0crg7")]
-position = Vector2(356, 485)
+position = Vector2(1278, 34)
 
 [node name="PickUp7" parent="PickUps" instance=ExtResource("7_0crg7")]
-position = Vector2(356, 485)
+position = Vector2(1278, 34)
 
 [node name="PickUp8" parent="PickUps" instance=ExtResource("7_0crg7")]
-position = Vector2(356, 485)
+position = Vector2(1278, 34)
 
 [node name="PickUp9" parent="PickUps" instance=ExtResource("7_0crg7")]
-position = Vector2(356, 485)
+position = Vector2(1278, 34)
 
 [node name="PickUp10" parent="PickUps" instance=ExtResource("7_0crg7")]
-position = Vector2(356, 485)
+position = Vector2(1278, 34)
 
 [node name="PickUp11" parent="PickUps" instance=ExtResource("7_0crg7")]
-position = Vector2(356, 485)
+position = Vector2(1278, 34)
 
 [node name="PickUp12" parent="PickUps" instance=ExtResource("7_0crg7")]
-position = Vector2(356, 485)
+position = Vector2(1278, 34)
 
 [node name="PickUp13" parent="PickUps" instance=ExtResource("7_0crg7")]
-position = Vector2(356, 485)
+position = Vector2(1278, 34)
 
 [node name="PickUp14" parent="PickUps" instance=ExtResource("7_0crg7")]
-position = Vector2(501, 477)
+position = Vector2(311, 348)
 item_selected = 2
 
 [node name="LevelExits" type="Node2D" parent="."]
 position = Vector2(-184, -5)
 
 [node name="change_scene" parent="LevelExits" instance=ExtResource("8_smc70")]
-position = Vector2(1002, 391)
-scale = Vector2(1, 4.2)
+position = Vector2(2177, 549)
+scale = Vector2(1.72, 5.48)
 level_high = "res://levels/test_level2/forest_lvl_high.tscn"
 level_mid = "res://levels/test_level2/forest_lvl_mid.tscn"
 level_low = "res://levels/test_level2/forest_lvl_low.tscn"

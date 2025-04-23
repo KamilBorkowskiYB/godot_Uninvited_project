@@ -1,14 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://bgviwme3dklaa"]
+[gd_scene load_steps=9 format=3 uid="uid://bgviwme3dklaa"]
 
 [ext_resource type="PackedScene" uid="uid://drjtbe7lus5v0" path="res://levels/preset_level/preset_level_low.tscn" id="1_svwaw"]
 [ext_resource type="PackedScene" uid="uid://d32q58d334dfd" path="res://objects/floor/floor.tscn" id="2_qgqjp"]
 [ext_resource type="PackedScene" uid="uid://cxiu2kws8f1xm" path="res://objects/staticBlock.tscn" id="3_qhk2v"]
 [ext_resource type="Texture2D" uid="uid://c81efo3urc6nt" path="res://characters/player/legacy/view_cone_redo.png" id="4_hwgbk"]
 [ext_resource type="PackedScene" uid="uid://ckpdtj6bvcm5m" path="res://objects/tree_one.tscn" id="4_wcnjk"]
-[ext_resource type="PackedScene" uid="uid://cng2o48wdswvk" path="res://objects/door/door.tscn" id="5_dcpon"]
 [ext_resource type="PackedScene" uid="uid://cv46bl48bc1fk" path="res://objects/movingBlock.tscn" id="6_sf8n3"]
-[ext_resource type="PackedScene" uid="uid://c33j86e6f8mi7" path="res://levels/atlases/atlas_one.tscn" id="7_kdcdf"]
-[ext_resource type="Texture2D" uid="uid://dp05qdlei2vkx" path="res://characters/player/graphic/aim_sheet.png" id="9_5e404"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_osc3k"]
 radius = 26.0192
@@ -54,7 +51,7 @@ scale = Vector2(23.12, 35.32)
 [node name="Grass14" parent="Static/Floors" index="4" instance=ExtResource("2_qgqjp")]
 modulate = Color(0.0862745, 0.219608, 0, 1)
 use_parent_material = true
-position = Vector2(1310, -1126)
+position = Vector2(1323, -493)
 scale = Vector2(23.12, 35.32)
 
 [node name="Grass15" parent="Static/Floors" index="5" instance=ExtResource("2_qgqjp")]
@@ -67,7 +64,7 @@ scale = Vector2(13.64, -15.6123)
 modulate = Color(0.0862745, 0.219608, 0, 1)
 use_parent_material = true
 position = Vector2(526, -545)
-scale = Vector2(5.36001, -8.69225)
+scale = Vector2(5.36001, -9.73225)
 
 [node name="Grass17" parent="Static/Floors" index="7" instance=ExtResource("2_qgqjp")]
 modulate = Color(0.0862745, 0.219608, 0, 1)
@@ -209,6 +206,8 @@ use_parent_material = true
 
 [node name="patch" type="Node2D" parent="Static/Walls" index="0"]
 use_parent_material = true
+position = Vector2(-114, -88)
+rotation = 0.0598044
 
 [node name="Tree" type="StaticBody2D" parent="Static/Walls/patch" index="0"]
 use_parent_material = true
@@ -332,8 +331,8 @@ texture = ExtResource("4_hwgbk")
 occluder = SubResource("OccluderPolygon2D_kkhw0")
 
 [node name="patch2" type="Node2D" parent="Static/Walls" index="1"]
-position = Vector2(531, -174)
-rotation = -1.08991
+position = Vector2(1030, -384)
+rotation = -1.58957
 
 [node name="Tree" type="StaticBody2D" parent="Static/Walls/patch2" index="0"]
 position = Vector2(269, 259)
@@ -1132,10 +1131,6 @@ scale = Vector2(57.16, 1)
 [node name="Doors" parent="." index="1"]
 use_parent_material = true
 
-[node name="Door" parent="Doors" index="0" instance=ExtResource("5_dcpon")]
-position = Vector2(-314, -439)
-rotation = -1.07491
-
 [node name="MovingBlocks" parent="." index="2"]
 use_parent_material = true
 
@@ -1144,18 +1139,3 @@ position = Vector2(-209, 53)
 
 [node name="Tilemap" parent="." index="3"]
 use_parent_material = true
-
-[node name="Atlas_one" parent="Tilemap" index="0" instance=ExtResource("7_kdcdf")]
-z_index = -2
-use_parent_material = true
-position = Vector2(1349, 200)
-
-[node name="Alive" type="Sprite2D" parent="." index="4"]
-visible = false
-texture_filter = 1
-position = Vector2(513, 352)
-rotation = 0.726316
-texture = ExtResource("9_5e404")
-hframes = 13
-vframes = 6
-frame = 65

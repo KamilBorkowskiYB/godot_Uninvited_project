@@ -26,23 +26,31 @@ shader_parameter/CircleBlur = 0.7
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 use_parent_material = true
-color = Color(0.439049, 0.439049, 0.439049, 1)
+color = Color(0.76662, 0.76662, 0.76662, 1)
 
 [node name="AmbientDark" type="Node2D" parent="."]
 position = Vector2(84, -115)
 scale = Vector2(1.36722, 0.411714)
 
 [node name="PointLight2D" type="PointLight2D" parent="AmbientDark"]
-position = Vector2(-128.728, -9.71547)
-scale = Vector2(0.73, 1.087)
+position = Vector2(808.209, 500.347)
+scale = Vector2(0.525208, 1.087)
+energy = 0.2
+blend_mode = 1
+texture = SubResource("GradientTexture2D_c1o86")
+texture_scale = 14.18
+
+[node name="PointLight2D2" type="PointLight2D" parent="AmbientDark"]
+position = Vector2(392.768, -34.0042)
+scale = Vector2(0.394026, 2.35001)
 energy = 0.2
 blend_mode = 1
 texture = SubResource("GradientTexture2D_c1o86")
 texture_scale = 14.18
 
 [node name="Rroom" type="PointLight2D" parent="AmbientDark"]
-position = Vector2(333.524, 2.09808e-05)
-scale = Vector2(0.31, 0.997)
+position = Vector2(814.792, -570.785)
+scale = Vector2(0.544053, 1.19131)
 energy = 0.5
 blend_mode = 1
 texture = SubResource("GradientTexture2D_c1o86")
@@ -54,6 +62,6 @@ visibility_layer = 32768
 z_index = 10
 texture_filter = 1
 material = SubResource("ShaderMaterial_4s5kh")
-position = Vector2(612, 549)
+position = Vector2(1152, 506)
 scale = Vector2(0.7, 0.7)
 texture = ExtResource("3_4mek5")

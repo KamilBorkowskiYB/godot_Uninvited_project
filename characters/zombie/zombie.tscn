@@ -249,7 +249,6 @@ texture = ExtResource("3_8ck50")
 
 [node name="Dead" type="Sprite2D" parent="Graphics"]
 visible = false
-z_index = -1
 use_parent_material = true
 position = Vector2(-11, 45)
 texture = ExtResource("4_hxr4a")

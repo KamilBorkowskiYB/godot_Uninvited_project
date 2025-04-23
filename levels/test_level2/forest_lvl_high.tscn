@@ -11,7 +11,11 @@
 [node name="forest_lvl_mid" parent="." index="0" instance=ExtResource("2_cvxue")]
 
 [node name="Zombie" parent="Enemies" index="0" instance=ExtResource("5_e8msc")]
-position = Vector2(1271, 186)
+position = Vector2(1635, -198)
+
+[node name="LightSources" parent="." index="4"]
+z_index = 2
+position = Vector2(96, 102)
 
 [node name="LightSource" parent="LightSources" index="0" instance=ExtResource("3_j13ns")]
 position = Vector2(678, -470)
