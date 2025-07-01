@@ -257,9 +257,9 @@ func shoot(ray_casts,ammo_type):
 		ammo_type -= 1
 		# Iterate through all RayCast2D
 		for ray_cast in ray_casts:
-			var direction = ray_cast.global_position - get_global_mouse_position()
+			var direction = ray_cast.global_position - get_global_mouse_position() # where player looks, not where raycast shoots
 			direction = direction.normalized()
-			var offset = direction * 150 #ADD OFSET FOR EACH WEAPON
+			var offset = direction * 150 #[TODO] ADD OFSET FOR EACH WEAPON
 			
 			var shot_trail = bullet_trail.instantiate()
 			
@@ -267,6 +267,10 @@ func shoot(ray_casts,ammo_type):
 			shot_trail.add_point(level.to_local(ray_cast.global_position) - offset)
 			if ray_cast.is_colliding():
 				shot_trail.add_point(level.to_local(ray_cast.get_collision_point()))
+			#else: # IDK how to add end point on miss
+				#var raycast_direction = (ray_cast.to_global(ray_cast.target_position) - ray_cast.global_position).normalized()
+				#var end_point = level.to_local(ray_cast.target_position)
+				#shot_trail.add_point(level.to_local(end_point))
 			level.add_child(shot_trail)
 			
 			# Killing

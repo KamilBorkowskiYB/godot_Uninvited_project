@@ -791,7 +791,6 @@ texture = ExtResource("9_4hpk5")
 offset = Vector2(0, -300)
 
 [node name="RayCasts" type="Node2D" parent="Top"]
-position = Vector2(1.33333, 3.33337)
 
 [node name="RayCast2D" type="RayCast2D" parent="Top/RayCasts"]
 target_position = Vector2(0, -1400)

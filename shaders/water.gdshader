@@ -9,8 +9,10 @@ uniform vec4 color2 : source_color;
 uniform	vec4 color3 : source_color;
 uniform float min_brightness = 0.3;
 
+uniform vec2 sprite_scale = vec2(1.0, 1.0);//for resizing texture
+
 void fragment() {
-	vec4 noise_col = texture(noise,UV+scroll*(TIME*0.3)) * texture(noise2,UV+scroll2*(TIME*0.3));
+	vec4 noise_col = texture(noise,UV*sprite_scale+scroll*(TIME*0.3)) * texture(noise2,UV*sprite_scale+scroll2*(TIME*0.3));
 	float noise_value = noise_col.r;
 	vec4 final_color;
 	if (noise_value < 0.20) {

@@ -17,6 +17,7 @@ seamless = true
 noise = SubResource("FastNoiseLite_1yyds")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ufi46"]
+resource_local_to_scene = true
 shader = ExtResource("2_j6t1m")
 shader_parameter/scroll = Vector2(0.05, 0.05)
 shader_parameter/scroll2 = Vector2(-0.05, -0.05)
@@ -24,13 +25,15 @@ shader_parameter/color1 = Color(0, 0.396078, 0.368627, 1)
 shader_parameter/color2 = Color(0, 0.439216, 0.376471, 1)
 shader_parameter/color3 = Color(0, 0.501961, 0.411765, 1)
 shader_parameter/min_brightness = 0.3
+shader_parameter/sprite_scale = Vector2(2, 2)
 shader_parameter/noise = SubResource("NoiseTexture2D_2h71w")
 shader_parameter/noise2 = SubResource("NoiseTexture2D_fv8xm")
 
 [node name="Water" instance=ExtResource("1_eg444")]
-scale = Vector2(2.92648, 2.95578)
 stands_on = "water"
 
 [node name="FloorSprite" parent="." index="0"]
 z_index = -7
+texture_repeat = 2
 material = SubResource("ShaderMaterial_ufi46")
+region_rect = Rect2(0, 0, 64, 64)
