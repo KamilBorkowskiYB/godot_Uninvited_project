@@ -37,3 +37,6 @@ z_index = -7
 texture_repeat = 2
 material = SubResource("ShaderMaterial_ufi46")
 region_rect = Rect2(0, 0, 64, 64)
+
+[node name="Area2D" parent="." index="1"]
+visible = false

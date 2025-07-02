@@ -2,6 +2,7 @@ extends Node2D
 
 @export var linkedView: Node2D
 @export var linkedFog: Node2D 
+@export var grabable: bool
 var health = 150
 var standing_on = "grass"
 var move_direction = Vector2(0,0)

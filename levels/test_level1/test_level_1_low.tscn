@@ -34,7 +34,7 @@ z_index = 1
 position = Vector2(1049, 161)
 
 [node name="Door" parent="Doors" instance=ExtResource("3_44mhx")]
-position = Vector2(-590, 139)
+position = Vector2(-583, 139)
 
 [node name="Door2" parent="Doors" instance=ExtResource("3_44mhx")]
 position = Vector2(-175, -26)
@@ -51,6 +51,9 @@ position = Vector2(-148, 316)
 
 [node name="lowMovingBlock" parent="MovingBlocks" instance=ExtResource("5_qlbnc")]
 position = Vector2(-144, 231)
+
+[node name="lowMovingBlock2" parent="MovingBlocks" instance=ExtResource("5_qlbnc")]
+position = Vector2(448, -79)
 
 [node name="Tilemap" type="Node2D" parent="."]
 position = Vector2(-133, 27)
