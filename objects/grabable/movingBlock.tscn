@@ -1,0 +1,53 @@
+[gd_scene load_steps=9 format=3 uid="uid://cv46bl48bc1fk"]
+
+[ext_resource type="Script" path="res://objects/grabable/movingBlock.gd" id="1_5ffd8"]
+[ext_resource type="Texture2D" uid="uid://g4afi40m350" path="res://objects/grabable/crate.png" id="2_4l7cw"]
+[ext_resource type="PackedScene" uid="uid://cjgla4gkbb8u2" path="res://Interactions/footsteps.tscn" id="3_mm4i6"]
+[ext_resource type="PackedScene" uid="uid://b4hop5ypxtvrs" path="res://characters/water_splash.tscn" id="4_bhn4c"]
+[ext_resource type="PackedScene" uid="uid://dtfqvqygnxp8r" path="res://Interactions/InteractionArea.tscn" id="5_lx4jv"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_8mmyc"]
+resource_local_to_scene = true
+polygon = PackedVector2Array(25, -24, 25, 24, -24, 24, -24, -24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5p00n"]
+resource_local_to_scene = true
+size = Vector2(65, 64)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0ki3b"]
+resource_local_to_scene = true
+radius = 84.0952
+
+[node name="MovingBlock" type="RigidBody2D" groups=["movable_blocks"]]
+use_parent_material = true
+collision_layer = 2
+collision_mask = 7
+gravity_scale = 0.0
+linear_damp = 2.0
+angular_damp = 2.0
+script = ExtResource("1_5ffd8")
+
+[node name="BlockSprite" type="Sprite2D" parent="."]
+light_mask = 897
+visibility_layer = 897
+use_parent_material = true
+texture = ExtResource("2_4l7cw")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="BlockSprite"]
+occluder = SubResource("OccluderPolygon2D_8mmyc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_5p00n")
+
+[node name="Footsteps" parent="." instance=ExtResource("3_mm4i6")]
+
+[node name="WaterSplash" parent="." instance=ExtResource("4_bhn4c")]
+position = Vector2(0, 0)
+emitting = false
+
+[node name="interaction_area" parent="." instance=ExtResource("5_lx4jv")]
+action_name = "Grab"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="interaction_area"]
+shape = SubResource("CircleShape2D_0ki3b")

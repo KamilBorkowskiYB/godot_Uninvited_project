@@ -71,61 +71,34 @@ func _ready():
 	#setting materials in viewport3 to white
 	change_material_to_white(viewport3.get_child(0))
 	
-	viewport1 = get_node("MainLevelViewport/SubViewport").get_child(0).get_child(0).get_child(0).get_node("Doors")
-	viewport2 = get_node("FogViewport").get_child(0).get_child(0).get_node("Doors")
-	viewport3 = get_node("VisibilityViewport").get_child(0).get_node("Doors")
 	
-	for i in range(4):#connecting doors
-		if(i==0):
-			var node1 = viewport1.get_node_or_null("Door")
-			var node2 = viewport2.get_node_or_null("Door")
-			var node3 = viewport3.get_node_or_null("Door")
-			if(node1 and node2 and node3):
-				node1.linkedView = node2
-				node1.linkedFog = node3
-		else:
-			var node1 = viewport1.get_node_or_null("Door" + str(i))
-			var node2 = viewport2.get_node_or_null("Door" + str(i))
-			var node3 = viewport3.get_node_or_null("Door" + str(i))
-			if(node1 and node2 and node3):
-				node1.linkedView = node2
-				node1.linkedFog = node3
+	# Connecting movable blocks and doors
+	viewport1 = get_node("MainLevelViewport/SubViewport")
+	viewport2 = get_node("FogViewport")
+	viewport3 = get_node("VisibilityViewport")
+	var all_movable = get_tree().get_nodes_in_group("movable_blocks")
 	
-	viewport1 = get_node("MainLevelViewport/SubViewport").get_child(0).get_child(0).get_child(0).get_node("MovingBlocks")
-	viewport2 = get_node("FogViewport").get_child(0).get_child(0).get_node("MovingBlocks")
-	viewport3 = get_node("VisibilityViewport").get_child(0).get_node("MovingBlocks")
-	
-	for i in range(4):#connecting Moving block
-		if(i==0):
-			var node1 = viewport1.get_node_or_null("MovingBlock")
-			var node2 = viewport2.get_node_or_null("MovingBlock")
-			var node3 = viewport3.get_node_or_null("MovingBlock")
-			if(node1 and node2 and node3):
-				node1.linkedView = node2
-				node1.linkedFog = node3
-		else:
-			var node1 = viewport1.get_node_or_null("MovingBlock" + str(i))
-			var node2 = viewport2.get_node_or_null("MovingBlock" + str(i))
-			var node3 = viewport3.get_node_or_null("MovingBlock" + str(i))
-			if(node1 and node2 and node3):
-				node1.linkedView = node2
-				node1.linkedFog = node3
-	
-	for i in range(4):#connecting lowMoving block
-		if(i==0):
-			var node1 = viewport1.get_node_or_null("lowMovingBlock")
-			var node2 = viewport2.get_node_or_null("lowMovingBlock")
-			var node3 = viewport3.get_node_or_null("lowMovingBlock")
-			if(node1 and node2 and node3):
-				node1.linkedView = node2
-				node1.linkedFog = node3
-		else:
-			var node1 = viewport1.get_node_or_null("lowMovingBlock" + str(i))
-			var node2 = viewport2.get_node_or_null("lowMovingBlock" + str(i))
-			var node3 = viewport3.get_node_or_null("lowMovingBlock" + str(i))
-			if(node1 and node2 and node3):
-				node1.linkedView = node2
-				node1.linkedFog = node3
+	for node1 in all_movable:
+		if not viewport1.is_ancestor_of(node1):
+			continue
+		
+		var target_name = node1.name
+		var node2 = null
+		var node3 = null
+		
+		for candidate in all_movable:
+			if candidate.name == target_name and viewport2.is_ancestor_of(candidate):
+				node2 = candidate
+				break
+		for candidate in all_movable:
+			if candidate.name == target_name and viewport3.is_ancestor_of(candidate):
+				node3 = candidate
+				break
+		
+		if node2 and node3:
+			node1.linkedView = node2
+			node1.linkedFog = node3
+
 
 func _process(_delta):
 	var player: CharacterBody2D = get_tree().get_first_node_in_group("player")

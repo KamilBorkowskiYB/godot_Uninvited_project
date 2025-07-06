@@ -50,7 +50,7 @@ script = ExtResource("5_ccx42")
 position = Vector2(-82, -66)
 
 [node name="PickUp" parent="PickUps" instance=ExtResource("7_0crg7")]
-position = Vector2(532, -11)
+position = Vector2(532, 22)
 item_selected = 4
 
 [node name="PickUp2" parent="PickUps" instance=ExtResource("7_0crg7")]

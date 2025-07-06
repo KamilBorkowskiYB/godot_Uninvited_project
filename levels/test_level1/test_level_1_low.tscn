@@ -2,9 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://cng2o48wdswvk" path="res://objects/door/door.tscn" id="3_44mhx"]
 [ext_resource type="PackedScene" uid="uid://cdjrccvmnvd0y" path="res://objects/floor/water.tscn" id="3_dfka1"]
-[ext_resource type="PackedScene" uid="uid://cv46bl48bc1fk" path="res://objects/movingBlock.tscn" id="4_c60oe"]
+[ext_resource type="PackedScene" uid="uid://cv46bl48bc1fk" path="res://objects/grabable/movingBlock.tscn" id="4_uhdau"]
 [ext_resource type="PackedScene" uid="uid://ckpdtj6bvcm5m" path="res://objects/tree_one.tscn" id="5_13loo"]
-[ext_resource type="PackedScene" uid="uid://dsldmk2ksjn2m" path="res://objects/lowMovingBlock.tscn" id="5_qlbnc"]
+[ext_resource type="PackedScene" uid="uid://bef12d8fnd3pw" path="res://objects/grabable/wardrobe.tscn" id="5_58tq3"]
 [ext_resource type="PackedScene" uid="uid://c33j86e6f8mi7" path="res://levels/atlases/atlas_one.tscn" id="6_jx3yk"]
 
 [node name="test_level1_low" type="Node2D" groups=["level_low"]]
@@ -46,14 +46,19 @@ rotation = -1.5708
 
 [node name="MovingBlocks" type="Node2D" parent="."]
 
-[node name="MovingBlock2" parent="MovingBlocks" instance=ExtResource("4_c60oe")]
+[node name="MovingBlock" parent="MovingBlocks" instance=ExtResource("4_uhdau")]
 position = Vector2(-148, 316)
 
-[node name="lowMovingBlock" parent="MovingBlocks" instance=ExtResource("5_qlbnc")]
-position = Vector2(-144, 231)
+[node name="MovingBlock2" parent="MovingBlocks" instance=ExtResource("4_uhdau")]
+position = Vector2(456, -49)
+high = true
 
-[node name="lowMovingBlock2" parent="MovingBlocks" instance=ExtResource("5_qlbnc")]
-position = Vector2(448, -79)
+[node name="MovingBlock3" parent="MovingBlocks" instance=ExtResource("4_uhdau")]
+position = Vector2(834, -357)
+high = true
+
+[node name="MovingBlock4" parent="MovingBlocks" instance=ExtResource("5_58tq3")]
+position = Vector2(1197, -27)
 
 [node name="Tilemap" type="Node2D" parent="."]
 position = Vector2(-133, 27)

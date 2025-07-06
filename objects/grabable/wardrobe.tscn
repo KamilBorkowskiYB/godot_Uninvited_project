@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://bef12d8fnd3pw"]
+
+[ext_resource type="PackedScene" uid="uid://cv46bl48bc1fk" path="res://objects/grabable/movingBlock.tscn" id="1_1g66k"]
+[ext_resource type="Texture2D" uid="uid://broia3g3wqwuo" path="res://objects/grabable/wardrobe.png" id="2_rmofc"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_pt2e4"]
+resource_local_to_scene = true
+polygon = PackedVector2Array(74, -26, 73, 25, -72, 25, -72, -26)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y47cv"]
+resource_local_to_scene = true
+size = Vector2(160, 64)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tte8g"]
+radius = 59.9997
+height = 225.999
+
+[node name="MovingBlock" instance=ExtResource("1_1g66k")]
+high = true
+
+[node name="BlockSprite" parent="." index="0"]
+texture = ExtResource("2_rmofc")
+
+[node name="LightOccluder2D" parent="BlockSprite" index="0"]
+occluder = SubResource("OccluderPolygon2D_pt2e4")
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(0, 0)
+shape = SubResource("RectangleShape2D_y47cv")
+
+[node name="CollisionShape2D" parent="interaction_area" index="0"]
+rotation = -1.56755
+shape = SubResource("CapsuleShape2D_tte8g")

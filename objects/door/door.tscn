@@ -20,7 +20,7 @@ size = Vector2(14, 14)
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_v140c"]
 polygon = PackedVector2Array(-1.56636, 0.021211, -1.56636, -0.021211, 1.25309, -0.021211, 1.25309, 0.021211)
 
-[node name="Door" type="Node2D"]
+[node name="Door" type="Node2D" groups=["movable_blocks"]]
 use_parent_material = true
 script = ExtResource("1_ntr16")
 
