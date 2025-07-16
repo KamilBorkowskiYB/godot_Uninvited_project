@@ -1,11 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://bgviwme3dklaa"]
+[gd_scene load_steps=11 format=3 uid="uid://bgviwme3dklaa"]
 
 [ext_resource type="PackedScene" uid="uid://drjtbe7lus5v0" path="res://levels/preset_level/preset_level_low.tscn" id="1_svwaw"]
 [ext_resource type="PackedScene" uid="uid://d32q58d334dfd" path="res://objects/floor/floor.tscn" id="2_qgqjp"]
 [ext_resource type="PackedScene" uid="uid://cxiu2kws8f1xm" path="res://objects/staticBlock.tscn" id="3_qhk2v"]
 [ext_resource type="Texture2D" uid="uid://c81efo3urc6nt" path="res://characters/player/legacy/view_cone_redo.png" id="4_hwgbk"]
 [ext_resource type="PackedScene" uid="uid://ckpdtj6bvcm5m" path="res://objects/tree_one.tscn" id="4_wcnjk"]
+[ext_resource type="PackedScene" uid="uid://cng2o48wdswvk" path="res://objects/door/door.tscn" id="6_lfchn"]
 [ext_resource type="PackedScene" uid="uid://cv46bl48bc1fk" path="res://objects/grabable/movingBlock.tscn" id="6_sf8n3"]
+[ext_resource type="PackedScene" uid="uid://bef12d8fnd3pw" path="res://objects/grabable/wardrobe.tscn" id="8_rabms"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_osc3k"]
 radius = 26.0192
@@ -1131,11 +1133,21 @@ scale = Vector2(57.16, 1)
 [node name="Doors" parent="." index="1"]
 use_parent_material = true
 
+[node name="Door" parent="Doors" index="0" instance=ExtResource("6_lfchn")]
+position = Vector2(349, 151)
+
 [node name="MovingBlocks" parent="." index="2"]
 use_parent_material = true
 
 [node name="MovingBlock" parent="MovingBlocks" index="0" instance=ExtResource("6_sf8n3")]
 position = Vector2(-209, 53)
+
+[node name="MovingBlock2" parent="MovingBlocks" index="1" instance=ExtResource("6_sf8n3")]
+position = Vector2(-100, -144)
+high = true
+
+[node name="MovingBlock3" parent="MovingBlocks" index="2" instance=ExtResource("8_rabms")]
+position = Vector2(531, 309)
 
 [node name="Tilemap" parent="." index="3"]
 use_parent_material = true

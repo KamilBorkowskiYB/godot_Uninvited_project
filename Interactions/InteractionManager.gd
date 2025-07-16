@@ -28,24 +28,51 @@ func unregister_area(area: InteractionArea):
 	if index != -1:
 		active_areas.remove_at(index)
 	
+#func _process(_delta):
+	#var player_help = get_tree().get_first_node_in_group("player") #after restart player is freed 
+	#if active_areas.size() > 0 && can_interact && mouse_range.size() > 0 && mouse_range.find(active_areas[0]) != -1:
+		#active_areas.sort_custom(_sort_by_distance_to_player)
+		#label.text = base_text + active_areas[0].action_name
+		#label.global_position = active_areas[0].global_position
+		#var mouse_pos = get_viewport().get_mouse_position()
+		#label.global_position.y = mouse_pos.y + 30
+		#label.global_position.x = mouse_pos.x - 75
+		#if player_help.cursor_current != cursor_aim:
+			#label.show()
+			#Input.set_custom_mouse_cursor(cursor_interact,Input.CURSOR_ARROW,Vector2(24,24))
+		#else:
+			#label.hide()
+	#else:
+		#label.hide()
+		#if player_help != null and player_help.cursor_current != cursor_aim:
+			#Input.set_custom_mouse_cursor(cursor_normal,Input.CURSOR_ARROW,Vector2(24,24))
 func _process(_delta):
-	var player_help = get_tree().get_first_node_in_group("player") #after restart player is freed 
-	if active_areas.size() > 0 && can_interact && mouse_range.size() > 0 && mouse_range.find(active_areas[0]) != -1:
-		active_areas.sort_custom(_sort_by_distance_to_player)
-		label.text = base_text + active_areas[0].action_name
-		label.global_position = active_areas[0].global_position
+	var player_help = get_tree().get_first_node_in_group("player")
+
+	# Znajdź area, która jest jednocześnie aktywna i pod myszką
+	var intersecting_areas = []
+	for area in active_areas:
+		if mouse_range.has(area):
+			intersecting_areas.append(area)
+	
+	if intersecting_areas.size() > 0 and can_interact:
+		intersecting_areas.sort_custom(_sort_by_distance_to_player)
+		
+		var area = intersecting_areas[0]
+		label.text = base_text + area.action_name
+		
 		var mouse_pos = get_viewport().get_mouse_position()
-		label.global_position.y = mouse_pos.y + 30
-		label.global_position.x = mouse_pos.x - 75
+		label.global_position = mouse_pos + Vector2(-75, 30)
+		
 		if player_help.cursor_current != cursor_aim:
 			label.show()
-			Input.set_custom_mouse_cursor(cursor_interact,Input.CURSOR_ARROW,Vector2(24,24))
+			Input.set_custom_mouse_cursor(cursor_interact, Input.CURSOR_ARROW, Vector2(24, 24))
 		else:
 			label.hide()
 	else:
 		label.hide()
-		if player_help != null and player_help.cursor_current != cursor_aim:
-			Input.set_custom_mouse_cursor(cursor_normal,Input.CURSOR_ARROW,Vector2(24,24))
+	if player_help != null and player_help.cursor_current != cursor_aim:
+		Input.set_custom_mouse_cursor(cursor_normal, Input.CURSOR_ARROW, Vector2(24, 24))
 
 
 func _sort_by_distance_to_player(area1, area2):
@@ -54,12 +81,30 @@ func _sort_by_distance_to_player(area1, area2):
 	var area2_to_player = player_help.global_position.distance_to(area2.global_position)
 	return area1_to_player < area2_to_player
 	
+
 func _input(event):
 	var player_help = get_tree().get_first_node_in_group("player") #after restart player is freed 
-	if event.is_action_pressed("shoot") && can_interact && player_help.cursor_current != cursor_aim:
-		if active_areas.size() > 0:
-			if mouse_range.find(active_areas[0]) != -1:
-				can_interact = false
-				label.hide()
-				await  active_areas[0].interact.call()
-				can_interact = true
+
+	if event.is_action_pressed("shoot") and can_interact and player_help.cursor_current != cursor_aim:
+		var intersecting_areas = []
+		for area in active_areas:
+			if mouse_range.has(area):
+				intersecting_areas.append(area)
+	
+		if intersecting_areas.size() > 0:
+			intersecting_areas.sort_custom(_sort_by_distance_to_player)
+			var area_to_interact = intersecting_areas[0]
+	
+			can_interact = false
+			label.hide()
+			await area_to_interact.interact.call()
+			can_interact = true
+#func _input(event):
+	#var player_help = get_tree().get_first_node_in_group("player") #after restart player is freed 
+	#if event.is_action_pressed("shoot") && can_interact && player_help.cursor_current != cursor_aim:
+		#if active_areas.size() > 0:
+			#if mouse_range.find(active_areas[0]) != -1:
+				#can_interact = false
+				#label.hide()
+				#await  active_areas[0].interact.call()
+				#can_interact = true

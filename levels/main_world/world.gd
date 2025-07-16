@@ -42,6 +42,11 @@ func _ready():
 		if(child and tilemap):
 			child.get_node_or_null("Footsteps").tilemap = tilemap
 	
+	#connecting tilemap to movingblocks
+	viewport1 = get_node("MainLevelViewport/SubViewport").get_child(0).get_child(0).get_child(0).get_node("MovingBlocks") #First get_child - lvl_hight, second - lvl_middium, third - lvl_low
+	for child in viewport1.get_children():
+		if(child and tilemap):
+			child.get_node_or_null("Footsteps").tilemap = tilemap
 	
 	#connecting aim assist to player 
 	var aim = $WeaponSelected/AimAssist

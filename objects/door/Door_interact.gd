@@ -11,9 +11,9 @@ func _ready():
 
 func _process(_delta):
 	if freeze == false:
-		$interaction_area.action_name = "Close"
+		interaction_area.action_name = "Close"
 	else:
-		$interaction_area.action_name = "Open"
+		interaction_area.action_name = "Open"
 
 
 func _on_interact():

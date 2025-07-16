@@ -41,6 +41,7 @@ var run_move_speed_buff = 1.0
 var animation_walk = "walking"
 @export var push_force = 20.0
 var dead = false
+var grabbing = false
 var weapon_selected  #0-rifle	1-shotgun 	2-pistol
 @export var can_shoot = false
 @export var can_interact = true #not used at the moment
@@ -113,10 +114,11 @@ func _process(delta):
 		return
 		
 	##########        TOP AND LEGS ROTATION         ##########
-	$Top.rotation = global_position.direction_to(get_global_mouse_position()).angle() + PI/2
+	if !grabbing:
+		$Top.rotation = global_position.direction_to(get_global_mouse_position()).angle() + PI/2
 	move_direction = Input.get_vector("move_left","move_right","move_down","move_up")
 	$Legs.rotation = move_direction.angle() + PI/2
-
+	
 	if velocity.length() > 0:
 		animation_playerLegs.play(animation_walk)
 		min_recoil = floor_min_recoil * 2
@@ -130,6 +132,8 @@ func _process(delta):
 	update_ammo_numbers()
 	##########        INPUTS         ##########
 	if Input.is_action_pressed("run"):
+		if grabbing:
+			return
 		if cursor_current == cursor_aim or velocity.length() <= 0:
 			run_move_speed_buff = 1.0
 			animation_playerLegs.speed_scale = 1.0
@@ -140,12 +144,7 @@ func _process(delta):
 			animation_run_rotation.play("run_rotate")
 	
 	if Input.is_action_just_released("run"):
-		run_move_speed_buff = 1.0
-		animation_playerLegs.speed_scale = 1.0
-		animation_run_rotation.stop()
-		if animation_player.current_animation == "run_unarmed":
-			animation_player.stop()
-			$Top/Alive.frame = 0;
+		stop_run()
 	
 	if Input.is_action_just_pressed("shoot"):
 		if weapon_selected == 0 and rifle_cur_mag > 0:
@@ -156,25 +155,25 @@ func _process(delta):
 			pistol_cur_mag = shoot([ray_cast1], pistol_cur_mag)
 	
 	if Input.is_action_just_pressed("weapon_1"):
-		if rifle_unlock > 0:
+		if rifle_unlock > 0 and !grabbing:
 			change_weapon(39,0,RIFLE_MAX_RECOIL,RIFLE_MIN_RECOIL,
 			RIFLE_DMG,RIFLE_FOCUS_SPEED,RIFLE_AIM_ANIM,RIFLE_AIMED_ANIM,RIFLE_RELOAD_ANIM)
 			weapon_info_on.emit()
 			
 	if Input.is_action_just_pressed("weapon_2"):
-		if shotgun_unlock > 0:
+		if shotgun_unlock > 0 and !grabbing:
 			change_weapon(52,1,SHOTGUN_MAX_RECOIL,SHOTGUN_MIN_RECOIL,
 			SHOTGUN_DMG,SHOTGUN_FOCUS_SPEED,SHOTGUN_AIM_ANIM,SHOTGUN_AIMED_ANIM,SHOTGUN_RELOAD_ANIM)
 			weapon_info_on.emit()
 	
 	if Input.is_action_just_pressed("weapon_3"):
-		if pistol_unlock > 0:
+		if pistol_unlock > 0 and !grabbing:
 			change_weapon(13,2,PISTOL_MAX_RECOIL,PISTOL_MIN_RECOIL,
 			PISTOL_DMG,PISTOL_FOCUS_SPEED,PISTOL_AIM_ANIM,PISTOL_AIMED_ANIM,PISTOL_RELOAD_ANIM)
 			weapon_info_on.emit()
 	
 	if Input.is_action_just_pressed("Aim"):
-		if weapon_selected == null:
+		if weapon_selected == null or grabbing:
 			return
 		animation_player.play(animation_aim)
 		animation_player.queue(animation_aimed)
@@ -185,7 +184,7 @@ func _process(delta):
 		Input.set_custom_mouse_cursor(cursor_aim,Input.CURSOR_ARROW,Vector2(24,24))
 		cursor_current = cursor_aim
 	if Input.is_action_pressed("Aim"):
-		if weapon_selected == null:
+		if weapon_selected == null or grabbing:
 			return
 		recoil = max(recoil - recoil_focus_speed * delta,min_recoil)
 		aim_assistR.rotation_degrees = recoil
@@ -345,6 +344,24 @@ func update_ammo_numbers():
 	elif weapon_selected == 2:	
 		magazine = pistol_cur_mag
 		ammo = pistol_ammo
+
+func grab_object():
+	grabbing = true
+	stop_run()
+	# set sprite to grab
+	# slow player
+
+func realese_object():
+	grabbing = false
+	# return sprite to holding correct weapon
+
+func stop_run():
+	run_move_speed_buff = 1.0
+	animation_playerLegs.speed_scale = 1.0
+	animation_run_rotation.stop()
+	if animation_player.current_animation == "run_unarmed":#No such anim for a moment
+		animation_player.stop()
+		$Top/Alive.frame = 0;
 
 func step():
 	if standing_on == "brick":
