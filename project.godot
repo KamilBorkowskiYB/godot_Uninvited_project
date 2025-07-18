@@ -105,6 +105,8 @@ run={
 
 [layer_names]
 
+2d_render/layer_1="Standard"
+2d_render/layer_2="lowerBlocks"
 2d_physics/layer_1="Enviroment"
 2d_physics/layer_2="Characters"
 2d_physics/layer_3="LowBlocks"

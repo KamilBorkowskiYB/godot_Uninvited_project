@@ -36,6 +36,7 @@ func _process(_delta):
 		screen_position = screen_middle - direction * (clamped_distance - DEAD_ZONE) * 0.5
 	
 	$PlayerCamera.global_position = target_position
+	player.aim_assist.global_position = screen_position
 	
 	if shake_timer > 0:
 		shake_timer -= _delta

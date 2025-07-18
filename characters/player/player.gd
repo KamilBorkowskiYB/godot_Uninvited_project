@@ -42,10 +42,11 @@ var animation_walk = "walking"
 @export var push_force = 20.0
 var dead = false
 var grabbing = false
+var grabbed_object:RigidBody2D
 var weapon_selected  #0-rifle	1-shotgun 	2-pistol
 @export var can_shoot = false
 @export var can_interact = true #not used at the moment
-var move_direction = Vector2(0,0)
+var move_direction = Vector2(0,0) # for water splashes
 
 ##########        WEAPON STATS         ##########
 #pistol
@@ -101,8 +102,10 @@ func _ready():
 func _process(delta):
 	##########        CONNECTING NODES FROM VIEWPORTS         ##########
 	if aim_assist != null:
-		aim_assist.position = get_viewport_rect().size / 2
+		#aim_assist.position = self.position
+		#position is set in camera_control.gd
 		aim_assist.rotation = $Top.rotation
+		
 	if view_light != null:      #viewPorty
 		view_light.rotation = $Top.rotation
 		view_light.position = self.position
@@ -116,6 +119,8 @@ func _process(delta):
 	##########        TOP AND LEGS ROTATION         ##########
 	if !grabbing:
 		$Top.rotation = global_position.direction_to(get_global_mouse_position()).angle() + PI/2
+	else:
+		$Top.rotation = global_position.direction_to(grabbed_object.global_position).angle() + PI/2
 	move_direction = Input.get_vector("move_left","move_right","move_down","move_up")
 	$Legs.rotation = move_direction.angle() + PI/2
 	
@@ -217,7 +222,10 @@ func _physics_process(_delta):
 		return
 	##########        MOVING         ##########
 	var move_dir = Input.get_vector("move_left","move_right","move_down","move_up")
-	velocity = move_dir * move_speed * aim_move_speed_debuff * floor_move_speed_debuff * run_move_speed_buff
+	if !grabbing:
+		velocity = move_dir * move_speed * aim_move_speed_debuff * floor_move_speed_debuff * run_move_speed_buff
+	else:
+		velocity = move_dir * move_speed * aim_move_speed_debuff * floor_move_speed_debuff * run_move_speed_buff / grabbed_object.mass
 	move_and_slide()
 	if standing_on == "water":
 		floor_move_speed_debuff = 0.3
@@ -335,25 +343,30 @@ func change_weapon(frame,wep_num,max_rec,min_rec,dmg,rec_sped,anim_aim,anim_aime
 func update_ammo_numbers():
 	if weapon_selected == null:
 		return
-	elif weapon_selected == 0:	
+	elif weapon_selected == 0:
 		magazine = rifle_cur_mag
 		ammo = rifle_ammo
-	elif weapon_selected == 1:	
+	elif weapon_selected == 1:
 		magazine = shotgun_cur_mag
 		ammo = shotgun_shells
-	elif weapon_selected == 2:	
+	elif weapon_selected == 2:
 		magazine = pistol_cur_mag
 		ammo = pistol_ammo
 
-func grab_object():
+var before_grab_player_frame
+var grabbing_player_sprite_frame = 78
+func grab_object(object: RigidBody2D):
 	grabbing = true
+	before_grab_player_frame = $Top/Alive.frame
 	stop_run()
-	# set sprite to grab
+	$Top/Alive.frame = grabbing_player_sprite_frame
+	grabbed_object = object
+	# constrain distance
 	# slow player
 
 func realese_object():
 	grabbing = false
-	# return sprite to holding correct weapon
+	$Top/Alive.frame = before_grab_player_frame
 
 func stop_run():
 	run_move_speed_buff = 1.0

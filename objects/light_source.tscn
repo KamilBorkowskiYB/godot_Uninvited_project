@@ -13,5 +13,6 @@ light_mask = 0
 visibility_layer = 0
 blend_mode = 2
 shadow_enabled = true
+shadow_item_cull_mask = 3
 texture = ExtResource("2_wvohu")
 texture_scale = 2.9

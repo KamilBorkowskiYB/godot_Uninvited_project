@@ -268,7 +268,7 @@ z_index = 100
 material = SubResource("CanvasItemMaterial_rrk16")
 scale = Vector2(0.5, 0.8)
 texture = ExtResource("6_6svyg")
-offset = Vector2(0, -300)
+offset = Vector2(0, -500)
 
 [node name="AimAssistL" type="Sprite2D" parent="WeaponSelected/AimAssist"]
 visible = false
@@ -276,7 +276,7 @@ z_index = 100
 material = SubResource("CanvasItemMaterial_voyp2")
 scale = Vector2(0.5, 0.8)
 texture = ExtResource("6_6svyg")
-offset = Vector2(0, -300)
+offset = Vector2(0, -500)
 
 [node name="Debug" type="CanvasLayer" parent="."]
 

@@ -16,7 +16,11 @@ radius = 59.9997
 height = 225.999
 
 [node name="MovingBlock" instance=ExtResource("1_1g66k")]
+mass = 5.0
+linear_damp = 5.0
+angular_damp = 5.0
 high = true
+max_to_player_distance = 160
 
 [node name="BlockSprite" parent="." index="0"]
 texture = ExtResource("2_rmofc")
