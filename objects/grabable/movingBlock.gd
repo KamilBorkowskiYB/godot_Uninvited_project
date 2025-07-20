@@ -14,8 +14,6 @@ var move_direction = Vector2(0,0) # for water surface effect
 var grabbed = false
 var previous_player_position := Vector2.ZERO
 var initial_mass
-@export var max_to_player_distance = 130
-
 
 func _ready():
 	interaction_area.interact = Callable(self,"_on_interact")
@@ -48,7 +46,12 @@ func _physics_process(delta):
 	if grabbed:
 		global_position += player_movement
 		
-		if global_position.distance_to(player.global_position) > max_to_player_distance:
+		var player_in_area := false
+		for body in interaction_area.get_overlapping_bodies():
+			if body == player:
+				player_in_area = true
+				break
+		if !player_in_area:
 			_on_interact()
 	
 	previous_player_position = player.global_position
@@ -67,11 +70,11 @@ func _on_interact():
 	if !grabbed:
 		grabbed = true
 		interaction_area.action_name = "Let go"
-		self.mass = 10
+		self.mass = initial_mass * 10
 		self.linear_velocity = Vector2(0,0)
 		player.grab_object(self)
 	else:
-		self.mass = 1
+		self.mass = initial_mass
 		interaction_area.action_name = "Grab"
 		grabbed = false
 		player.realese_object()

@@ -361,11 +361,10 @@ func grab_object(object: RigidBody2D):
 	stop_run()
 	$Top/Alive.frame = grabbing_player_sprite_frame
 	grabbed_object = object
-	# constrain distance
-	# slow player
 
 func realese_object():
 	grabbing = false
+	grabbed_object = null
 	$Top/Alive.frame = before_grab_player_frame
 
 func stop_run():

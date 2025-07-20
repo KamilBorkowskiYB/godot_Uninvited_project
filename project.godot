@@ -112,6 +112,7 @@ run={
 2d_physics/layer_3="LowBlocks"
 2d_physics/layer_7="Footsteps"
 2d_physics/layer_8="Interaction"
+2d_physics/layer_9="Interaction Focused"
 
 [rendering]
 

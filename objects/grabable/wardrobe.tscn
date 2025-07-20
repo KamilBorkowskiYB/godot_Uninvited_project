@@ -20,7 +20,6 @@ mass = 5.0
 linear_damp = 5.0
 angular_damp = 5.0
 high = true
-max_to_player_distance = 160
 
 [node name="BlockSprite" parent="." index="0"]
 texture = ExtResource("2_rmofc")
