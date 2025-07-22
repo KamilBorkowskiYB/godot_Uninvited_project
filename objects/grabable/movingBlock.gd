@@ -3,6 +3,7 @@ extends Node2D
 @export var linkedView: Node2D
 @export var linkedFog: Node2D
 @export var high: bool
+@export var release_force = 5000
 @export var grabable: bool # for feture use case
 
 @onready var interaction_area: InteractionArea = $interaction_area
@@ -13,6 +14,9 @@ var move_direction = Vector2(0,0) # for water surface effect
 
 var grabbed = false
 var previous_player_position := Vector2.ZERO
+var previous_player_rotation := 0.0
+var relative_offset := Vector2.ZERO
+var initial_angle_to_player := 0.0
 var initial_mass
 
 func _ready():
@@ -41,20 +45,33 @@ func _process(_delta):
 
 func _physics_process(delta):
 	var player: CharacterBody2D = get_tree().get_first_node_in_group("player")
-	var player_movement = player.global_position - previous_player_position
+	if player == null:
+		return
 	
 	if grabbed:
-		global_position += player_movement
+		var player_movement = player.global_position - previous_player_position
+		var rotation_delta = player.top.rotation - previous_player_rotation
+		
+		relative_offset = (global_position - previous_player_position).rotated(rotation_delta)
+		initial_angle_to_player += rotation_delta
+		global_position = player.global_position + relative_offset
+		rotation += rotation_delta
 		
 		var player_in_area := false
 		for body in interaction_area.get_overlapping_bodies():
 			if body == player:
 				player_in_area = true
 				break
-		if !player_in_area:
+		if !player_in_area: #realese grab if player isn't in the interaction zone
 			_on_interact()
+		else:               #realese grab if rotation of player and object aren't matching
+			var current_angle_to_player = (global_position - player.global_position).angle()
+			var angle_diff = abs(wrapf(current_angle_to_player - initial_angle_to_player, -PI, PI))
+			if angle_diff > 0.3:
+				_on_interact()
 	
 	previous_player_position = player.global_position
+	previous_player_rotation = player.top.rotation
 
 
 func kill(attack: Attack):
@@ -68,13 +85,22 @@ func kill(attack: Attack):
 func _on_interact():
 	var player: CharacterBody2D = get_tree().get_first_node_in_group("player")
 	if !grabbed:
+		player.top.rotation = player.global_position.direction_to(global_position).angle() + PI/2
+		previous_player_rotation = player.top.rotation
 		grabbed = true
 		interaction_area.action_name = "Let go"
-		self.mass = initial_mass * 10
+		self.mass = initial_mass * 10 #changing mass for slowing player
 		self.linear_velocity = Vector2(0,0)
+		initial_angle_to_player = (global_position - player.global_position).angle()
 		player.grab_object(self)
 	else:
 		self.mass = initial_mass
 		interaction_area.action_name = "Grab"
 		grabbed = false
 		player.realese_object()
+		
+		var rotation_speed = player.top.rotation - previous_player_rotation
+		var direction = (global_position - player.global_position).normalized()
+		var force_direction = direction.rotated(sign(rotation_speed) * PI / 2)
+		var force_strength = abs(rotation_speed) * release_force
+		$".".apply_impulse(force_direction * force_strength)

@@ -33,6 +33,7 @@ var shotgun_shells = 1
 @onready var animation_player = $AnimationPlayerTOP
 @onready var animation_playerLegs = $AnimationPlayerLEGS
 @onready var animation_run_rotation = $AnimationPlayerRUNROT
+@onready var top = $Top
 @onready var bullet_trail = load("res://characters/player/misc/shot_trail.tscn")
 @export var move_speed = 200
 var aim_move_speed_debuff = 1.0
@@ -120,7 +121,8 @@ func _process(delta):
 	if !grabbing:
 		$Top.rotation = global_position.direction_to(get_global_mouse_position()).angle() + PI/2
 	else:
-		$Top.rotation = global_position.direction_to(grabbed_object.global_position).angle() + PI/2
+		var target_rotation = global_position.direction_to(get_global_mouse_position()).angle() + PI/2
+		$Top.rotation = lerp_angle($Top.rotation, target_rotation, 0.01 / grabbed_object.mass)
 	move_direction = Input.get_vector("move_left","move_right","move_down","move_up")
 	$Legs.rotation = move_direction.angle() + PI/2
 	
@@ -222,10 +224,9 @@ func _physics_process(_delta):
 		return
 	##########        MOVING         ##########
 	var move_dir = Input.get_vector("move_left","move_right","move_down","move_up")
-	if !grabbing:
-		velocity = move_dir * move_speed * aim_move_speed_debuff * floor_move_speed_debuff * run_move_speed_buff
-	else:
-		velocity = move_dir * move_speed * aim_move_speed_debuff * floor_move_speed_debuff * run_move_speed_buff / grabbed_object.mass
+	velocity = move_dir * move_speed * aim_move_speed_debuff * floor_move_speed_debuff * run_move_speed_buff
+	if grabbing:
+		velocity = velocity / grabbed_object.mass
 	move_and_slide()
 	if standing_on == "water":
 		floor_move_speed_debuff = 0.3
