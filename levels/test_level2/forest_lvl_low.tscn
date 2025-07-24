@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://d32q58d334dfd" path="res://objects/floor/floor.tscn" id="2_qgqjp"]
 [ext_resource type="PackedScene" uid="uid://cxiu2kws8f1xm" path="res://objects/staticBlock.tscn" id="3_qhk2v"]
 [ext_resource type="Texture2D" uid="uid://c81efo3urc6nt" path="res://characters/player/legacy/view_cone_redo.png" id="4_hwgbk"]
-[ext_resource type="PackedScene" uid="uid://ckpdtj6bvcm5m" path="res://objects/tree_one.tscn" id="4_wcnjk"]
+[ext_resource type="PackedScene" uid="uid://ckpdtj6bvcm5m" path="res://objects/tree/tree.tscn" id="4_wcnjk"]
 [ext_resource type="PackedScene" uid="uid://cng2o48wdswvk" path="res://objects/door/door.tscn" id="6_lfchn"]
 [ext_resource type="PackedScene" uid="uid://cv46bl48bc1fk" path="res://objects/grabable/movingBlock.tscn" id="6_sf8n3"]
 [ext_resource type="PackedScene" uid="uid://bef12d8fnd3pw" path="res://objects/grabable/wardrobe.tscn" id="8_rabms"]

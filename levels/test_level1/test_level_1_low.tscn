@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://b7iklrlyc5m55"]
 
+[ext_resource type="PackedScene" uid="uid://ckpdtj6bvcm5m" path="res://objects/tree/tree.tscn" id="2_nn3gb"]
 [ext_resource type="PackedScene" uid="uid://cng2o48wdswvk" path="res://objects/door/door.tscn" id="3_44mhx"]
 [ext_resource type="PackedScene" uid="uid://cdjrccvmnvd0y" path="res://objects/floor/water.tscn" id="3_dfka1"]
 [ext_resource type="PackedScene" uid="uid://cv46bl48bc1fk" path="res://objects/grabable/movingBlock.tscn" id="4_uhdau"]
-[ext_resource type="PackedScene" uid="uid://ckpdtj6bvcm5m" path="res://objects/tree_one.tscn" id="5_13loo"]
 [ext_resource type="PackedScene" uid="uid://bef12d8fnd3pw" path="res://objects/grabable/wardrobe.tscn" id="5_58tq3"]
 [ext_resource type="PackedScene" uid="uid://c33j86e6f8mi7" path="res://levels/atlases/atlas_one.tscn" id="6_jx3yk"]
 
@@ -26,8 +26,11 @@ use_parent_material = true
 [node name="Trees" type="Node2D" parent="Static"]
 position = Vector2(546, -44)
 
-[node name="Tree6" parent="Static/Trees" instance=ExtResource("5_13loo")]
+[node name="Tree6" parent="Static/Trees" instance=ExtResource("2_nn3gb")]
 position = Vector2(604, 555)
+
+[node name="Tree7" parent="Static/Trees" instance=ExtResource("2_nn3gb")]
+position = Vector2(-261, 610)
 
 [node name="Doors" type="Node2D" parent="."]
 z_index = 1
