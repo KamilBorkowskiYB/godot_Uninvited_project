@@ -78,10 +78,6 @@ func _sort_by_distance_to_player(area1, area2):
 func _input(event):
 	var player_help = get_tree().get_first_node_in_group("player") #after restart player is freed 
 	
-	var grabbed_area = null
-	if player_help != null and player_help.grabbed_object != null:
-		grabbed_area = player_help.grabbed_object.interaction_area
-	
 	if event.is_action_pressed("shoot") and can_interact and player_help.cursor_current != cursor_aim and intersecting_areas.size() > 0:
 		var area_to_interact = intersecting_areas[0]
 		can_interact = false

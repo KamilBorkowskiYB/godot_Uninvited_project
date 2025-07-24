@@ -49,7 +49,6 @@ func _physics_process(delta):
 		return
 	
 	if grabbed:
-		var player_movement = player.global_position - previous_player_position
 		var rotation_delta = player.top.rotation - previous_player_rotation
 		
 		relative_offset = (global_position - previous_player_position).rotated(rotation_delta)

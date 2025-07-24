@@ -60,7 +60,6 @@ func _physics_process(_delta):
 			attack_rigt_arm();
 		if viewRayCast.target_position.length() < 120:
 			attack_left_arm();
-			$Graphic/Body/LeftShoulder/LeftElbow/AttackArea2D
 	
 
 func player_spoted():
@@ -86,17 +85,17 @@ func attack_rigt_arm():
 func attack_left_arm():
 	$AnimationLeftArm.play("Attack")
 
-func kill(attack: Attack):
-	if current_state == State.DEAD:
+func kill(_attack: Attack):
+	if current_state == State.DEAD:# dead should be a stand alone boolean
 		return
 	print("hit")
 
-func head_hit(attack: Attack):
+func head_hit(_attack: Attack):
 	if current_state == State.DEAD:
 		return
 	print("critical hit")
 
-func right_arm_hit(attack: Attack):
+func right_arm_hit(_attack: Attack):
 	if current_state == State.DEAD:
 		return
 	$Graphic/Body/RightShoulder/RightUpper.hide()
@@ -117,7 +116,7 @@ func right_arm_hit(attack: Attack):
 	print("right arm hit")
 
 
-func left_arm_hit(attack: Attack):
+func left_arm_hit(_attack: Attack):
 	if current_state == State.DEAD:
 		return
 	$Graphic/Body/LeftShoulder/LeftUpper.hide()
@@ -135,7 +134,7 @@ func left_arm_hit(attack: Attack):
 	$Graphic/Body/LeftShoulder/Blood/Timer.start()
 	print("left arm hit")
 	
-func front_right_arm_hit(attack: Attack):
+func front_right_arm_hit(_attack: Attack):
 	if current_state == State.DEAD:
 		return
 	$Graphic/Body/RightFrontShoulder/RightFrontUpper.hide()
@@ -153,7 +152,7 @@ func front_right_arm_hit(attack: Attack):
 	print("right low arm hit")
 	
 
-func front_left_arm_hit(attack: Attack):
+func front_left_arm_hit(_attack: Attack):
 	if current_state == State.DEAD:
 		return
 	$Graphic/Body/LeftFrontShoulder/LeftFrontUpper.hide()
@@ -180,5 +179,5 @@ func step():
 
 
 
-func _on_attack_area_2d_body_entered(body):
+func _on_attack_area_2d_body_entered(_body):
 	pass # Replace with function body.

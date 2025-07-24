@@ -12,8 +12,6 @@ func _ready():
 		var sprite_scale_x = scale.x
 		var sprite_scale_y = scale.y
 		var shader = $FloorSprite.material
-		var noise_1 = shader.get_shader_parameter("noise")
-		var noise_2 = shader.get_shader_parameter("noise2")
 		
 		var offset = 10 #Shader always streches  by default 10 times
 		if shader is ShaderMaterial:
