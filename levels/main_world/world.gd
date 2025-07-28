@@ -103,6 +103,15 @@ func _ready():
 		if node2 and node3:
 			node1.linkedView = node2
 			node1.linkedFog = node3
+	
+	# Hidding front elements in Visibility Viewport
+	var transparent = get_tree().get_nodes_in_group("Transparent")
+	
+	for node in transparent:
+		if not viewport3.is_ancestor_of(node):
+			continue
+		
+		node.hide()
 
 
 func _process(_delta):

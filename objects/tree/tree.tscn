@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://ckpdtj6bvcm5m"]
 
-[ext_resource type="Texture2D" uid="uid://c81efo3urc6nt" path="res://characters/player/legacy/view_cone_redo.png" id="1_jndqf"]
 [ext_resource type="Texture2D" uid="uid://ddwrdn3fjmi71" path="res://objects/tree/tree.png" id="2_2okxi"]
 [ext_resource type="Shader" path="res://shaders/topObjects.gdshader" id="3_r24pn"]
 [ext_resource type="Texture2D" uid="uid://bgii8nn1gtx4f" path="res://objects/tree/tree_crown_no_leaves.png" id="4_67jvj"]
+[ext_resource type="Script" path="res://objects/tree/parallax.gd" id="5_76mjl"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_osc3k"]
 radius = 50.01
@@ -15,18 +15,13 @@ polygon = PackedVector2Array(23.2645, -14.4567, 18.2534, -19.7375, 12.8183, -23.
 shader = ExtResource("3_r24pn")
 shader_parameter/CircleCentres = null
 shader_parameter/NumCircleCentres = 2
-shader_parameter/CircleRadius = 100.0
-shader_parameter/CircleBlur = 0.01
+shader_parameter/PlayerCircleRadius = 400.0
+shader_parameter/CursosCircleRadius = 100.0
+shader_parameter/CircleBlur = 0.35
 
 [node name="Tree" type="StaticBody2D"]
 light_mask = 32769
 visibility_layer = 32769
-
-[node name="shadow" type="PointLight2D" parent="."]
-visible = false
-energy = 0.1
-blend_mode = 1
-texture = ExtResource("1_jndqf")
 
 [node name="Bark_Sprite" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -39,11 +34,12 @@ shape = SubResource("CircleShape2D_osc3k")
 scale = Vector2(1.41967, -1.44615)
 occluder = SubResource("OccluderPolygon2D_kkhw0")
 
-[node name="LeavesMustBeHigher" type="Sprite2D" parent="." groups=["Transparent"]]
-visible = false
-light_mask = 32768
-visibility_layer = 32768
+[node name="Leaves" type="Sprite2D" parent="." groups=["Transparent"]]
+light_mask = 0
 z_index = 10
 texture_filter = 1
 material = SubResource("ShaderMaterial_hhcwb")
 texture = ExtResource("4_67jvj")
+script = ExtResource("5_76mjl")
+parallax_preset = 1
+parralax_on = true

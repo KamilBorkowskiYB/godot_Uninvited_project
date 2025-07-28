@@ -1,19 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://bgviwme3dklaa"]
+[gd_scene load_steps=8 format=3 uid="uid://bgviwme3dklaa"]
 
 [ext_resource type="PackedScene" uid="uid://drjtbe7lus5v0" path="res://levels/preset_level/preset_level_low.tscn" id="1_svwaw"]
 [ext_resource type="PackedScene" uid="uid://d32q58d334dfd" path="res://objects/floor/floor.tscn" id="2_qgqjp"]
 [ext_resource type="PackedScene" uid="uid://cxiu2kws8f1xm" path="res://objects/staticBlock.tscn" id="3_qhk2v"]
-[ext_resource type="Texture2D" uid="uid://c81efo3urc6nt" path="res://characters/player/legacy/view_cone_redo.png" id="4_hwgbk"]
 [ext_resource type="PackedScene" uid="uid://ckpdtj6bvcm5m" path="res://objects/tree/tree.tscn" id="4_wcnjk"]
 [ext_resource type="PackedScene" uid="uid://cng2o48wdswvk" path="res://objects/door/door.tscn" id="6_lfchn"]
 [ext_resource type="PackedScene" uid="uid://cv46bl48bc1fk" path="res://objects/grabable/movingBlock.tscn" id="6_sf8n3"]
 [ext_resource type="PackedScene" uid="uid://bef12d8fnd3pw" path="res://objects/grabable/wardrobe.tscn" id="8_rabms"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_osc3k"]
-radius = 26.0192
-
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_kkhw0"]
-polygon = PackedVector2Array(23.2645, -14.4567, 18.2534, -19.7375, 12.8183, -23.6694, 6.07251, -25.7895, 0.251953, -26.1364, -6.45532, -26.0208, -12.6614, -22.7828, -17.5183, -19.1208, -21.9127, -14.5723, -25.382, -8.25049, -27.0396, -0.618225, -25.5362, 8.74878, -21.8357, 15.8414, -17.7496, 19.3492, -13.6636, 22.857, -9.61621, 24.1291, -4.2196, 25.8252, 3.41272, 27.4827, 11.8546, 24.2062, 20.2579, 18.694, 26.3483, 8.74878, 27.5433, 0.229858, 26.9651, -7.36389)
 
 [node name="forest_lvl_low" instance=ExtResource("1_svwaw")]
 
@@ -208,924 +201,133 @@ use_parent_material = true
 
 [node name="patch" type="Node2D" parent="Static/Walls" index="0"]
 use_parent_material = true
-position = Vector2(-114, -88)
+position = Vector2(751, -577)
 rotation = 0.0598044
 
-[node name="Tree" type="StaticBody2D" parent="Static/Walls/patch" index="0"]
-use_parent_material = true
-position = Vector2(269, 259)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Static/Walls/patch/Tree" index="0"]
-use_parent_material = true
-shape = SubResource("CircleShape2D_osc3k")
-
-[node name="Sprite2D" type="Sprite2D" parent="Static/Walls/patch/Tree" index="1"]
-modulate = Color(0, 0, 0, 1)
-use_parent_material = true
-scale = Vector2(0.14, 0.14)
-texture = ExtResource("4_hwgbk")
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Static/Walls/patch/Tree" index="2"]
-occluder = SubResource("OccluderPolygon2D_kkhw0")
-
-[node name="Tree2" type="StaticBody2D" parent="Static/Walls/patch" index="1"]
-position = Vector2(316, 106)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Static/Walls/patch/Tree2" index="0"]
-shape = SubResource("CircleShape2D_osc3k")
-
-[node name="Sprite2D" type="Sprite2D" parent="Static/Walls/patch/Tree2" index="1"]
-modulate = Color(0, 0, 0, 1)
-scale = Vector2(0.14, 0.14)
-texture = ExtResource("4_hwgbk")
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Static/Walls/patch/Tree2" index="2"]
-occluder = SubResource("OccluderPolygon2D_kkhw0")
-
-[node name="Tree3" type="StaticBody2D" parent="Static/Walls/patch" index="2"]
-position = Vector2(252, -66)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Static/Walls/patch/Tree3" index="0"]
-shape = SubResource("CircleShape2D_osc3k")
-
-[node name="Sprite2D" type="Sprite2D" parent="Static/Walls/patch/Tree3" index="1"]
-modulate = Color(0, 0, 0, 1)
-scale = Vector2(0.14, 0.14)
-texture = ExtResource("4_hwgbk")
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Static/Walls/patch/Tree3" index="2"]
-occluder = SubResource("OccluderPolygon2D_kkhw0")
-
-[node name="Tree4" type="StaticBody2D" parent="Static/Walls/patch" index="3"]
-position = Vector2(432, -28)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Static/Walls/patch/Tree4" index="0"]
-shape = SubResource("CircleShape2D_osc3k")
-
-[node name="Sprite2D" type="Sprite2D" parent="Static/Walls/patch/Tree4" index="1"]
-modulate = Color(0, 0, 0, 1)
-scale = Vector2(0.14, 0.14)
-texture = ExtResource("4_hwgbk")
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Static/Walls/patch/Tree4" index="2"]
-occluder = SubResource("OccluderPolygon2D_kkhw0")
-
-[node name="Tree5" type="StaticBody2D" parent="Static/Walls/patch" index="4"]
-position = Vector2(445, 214)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Static/Walls/patch/Tree5" index="0"]
-shape = SubResource("CircleShape2D_osc3k")
-
-[node name="Sprite2D" type="Sprite2D" parent="Static/Walls/patch/Tree5" index="1"]
-modulate = Color(0, 0, 0, 1)
-scale = Vector2(0.14, 0.14)
-texture = ExtResource("4_hwgbk")
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Static/Walls/patch/Tree5" index="2"]
-occluder = SubResource("OccluderPolygon2D_kkhw0")
-
-[node name="Tree6" parent="Static/Walls/patch" index="5" instance=ExtResource("4_wcnjk")]
+[node name="Tree" parent="Static/Walls/patch" index="0" instance=ExtResource("4_wcnjk")]
 position = Vector2(323, -208)
 
-[node name="Tree10" parent="Static/Walls/patch" index="6" instance=ExtResource("4_wcnjk")]
+[node name="Tree1" parent="Static/Walls/patch" index="1" instance=ExtResource("4_wcnjk")]
 position = Vector2(457, -437)
 
-[node name="Tree7" type="StaticBody2D" parent="Static/Walls/patch" index="7"]
-position = Vector2(524, -159)
+[node name="Tree2" parent="Static/Walls/patch" index="2" instance=ExtResource("4_wcnjk")]
+position = Vector2(476.566, -21.5222)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Static/Walls/patch/Tree7" index="0"]
-shape = SubResource("CircleShape2D_osc3k")
+[node name="Tree3" parent="Static/Walls/patch" index="3" instance=ExtResource("4_wcnjk")]
+position = Vector2(787.798, 39.9858)
 
-[node name="Sprite2D" type="Sprite2D" parent="Static/Walls/patch/Tree7" index="1"]
-modulate = Color(0, 0, 0, 1)
-scale = Vector2(0.14, 0.14)
-texture = ExtResource("4_hwgbk")
+[node name="Tree4" parent="Static/Walls/patch" index="4" instance=ExtResource("4_wcnjk")]
+position = Vector2(117.717, 92.1289)
 
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Static/Walls/patch/Tree7" index="2"]
-occluder = SubResource("OccluderPolygon2D_kkhw0")
-
-[node name="Tree8" type="StaticBody2D" parent="Static/Walls/patch" index="8"]
-position = Vector2(583, -32)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Static/Walls/patch/Tree8" index="0"]
-shape = SubResource("CircleShape2D_osc3k")
-
-[node name="Sprite2D" type="Sprite2D" parent="Static/Walls/patch/Tree8" index="1"]
-modulate = Color(0, 0, 0, 1)
-scale = Vector2(0.14, 0.14)
-texture = ExtResource("4_hwgbk")
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Static/Walls/patch/Tree8" index="2"]
-occluder = SubResource("OccluderPolygon2D_kkhw0")
-
-[node name="Tree9" type="StaticBody2D" parent="Static/Walls/patch" index="9"]
-position = Vector2(581, 112)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Static/Walls/patch/Tree9" index="0"]
-shape = SubResource("CircleShape2D_osc3k")
-
-[node name="Sprite2D" type="Sprite2D" parent="Static/Walls/patch/Tree9" index="1"]
-modulate = Color(0, 0, 0, 1)
-scale = Vector2(0.14, 0.14)
-texture = ExtResource("4_hwgbk")
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Static/Walls/patch/Tree9" index="2"]
-occluder = SubResource("OccluderPolygon2D_kkhw0")
+[node name="Tree5" parent="Static/Walls/patch" index="5" instance=ExtResource("4_wcnjk")]
+position = Vector2(755.038, -289.645)
 
 [node name="patch2" type="Node2D" parent="Static/Walls" index="1"]
-position = Vector2(1030, -384)
-rotation = -1.58957
+use_parent_material = true
+position = Vector2(-340, -467)
+rotation = -1.10921
 
-[node name="Tree" type="StaticBody2D" parent="Static/Walls/patch2" index="0"]
-position = Vector2(269, 259)
+[node name="Tree" parent="Static/Walls/patch2" index="0" instance=ExtResource("4_wcnjk")]
+position = Vector2(323, -208)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Static/Walls/patch2/Tree" index="0"]
-shape = SubResource("CircleShape2D_osc3k")
+[node name="Tree1" parent="Static/Walls/patch2" index="1" instance=ExtResource("4_wcnjk")]
+position = Vector2(457, -437)
 
-[node name="Sprite2D" type="Sprite2D" parent="Static/Walls/patch2/Tree" index="1"]
-modulate = Color(0, 0, 0, 1)
-scale = Vector2(0.14, 0.14)
-texture = ExtResource("4_hwgbk")
+[node name="Tree2" parent="Static/Walls/patch2" index="2" instance=ExtResource("4_wcnjk")]
+position = Vector2(476.566, -21.5222)
 
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Static/Walls/patch2/Tree" index="2"]
-occluder = SubResource("OccluderPolygon2D_kkhw0")
+[node name="Tree3" parent="Static/Walls/patch2" index="3" instance=ExtResource("4_wcnjk")]
+position = Vector2(787.798, 39.9858)
 
-[node name="Tree2" type="StaticBody2D" parent="Static/Walls/patch2" index="1"]
-position = Vector2(316, 106)
+[node name="Tree4" parent="Static/Walls/patch2" index="4" instance=ExtResource("4_wcnjk")]
+position = Vector2(117.717, 92.1289)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Static/Walls/patch2/Tree2" index="0"]
-shape = SubResource("CircleShape2D_osc3k")
-
-[node name="Sprite2D" type="Sprite2D" parent="Static/Walls/patch2/Tree2" index="1"]
-modulate = Color(0, 0, 0, 1)
-scale = Vector2(0.14, 0.14)
-texture = ExtResource("4_hwgbk")
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Static/Walls/patch2/Tree2" index="2"]
-occluder = SubResource("OccluderPolygon2D_kkhw0")
-
-[node name="Tree3" type="StaticBody2D" parent="Static/Walls/patch2" index="2"]
-position = Vector2(252, -66)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Static/Walls/patch2/Tree3" index="0"]
-shape = SubResource("CircleShape2D_osc3k")
-
-[node name="Sprite2D" type="Sprite2D" parent="Static/Walls/patch2/Tree3" index="1"]
-modulate = Color(0, 0, 0, 1)
-scale = Vector2(0.14, 0.14)
-texture = ExtResource("4_hwgbk")
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Static/Walls/patch2/Tree3" index="2"]
-occluder = SubResource("OccluderPolygon2D_kkhw0")
-
-[node name="Tree4" type="StaticBody2D" parent="Static/Walls/patch2" index="3"]
-position = Vector2(432, -28)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Static/Walls/patch2/Tree4" index="0"]
-shape = SubResource("CircleShape2D_osc3k")
-
-[node name="Sprite2D" type="Sprite2D" parent="Static/Walls/patch2/Tree4" index="1"]
-modulate = Color(0, 0, 0, 1)
-scale = Vector2(0.14, 0.14)
-texture = ExtResource("4_hwgbk")
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Static/Walls/patch2/Tree4" index="2"]
-occluder = SubResource("OccluderPolygon2D_kkhw0")
-
-[node name="Tree5" type="StaticBody2D" parent="Static/Walls/patch2" index="4"]
-position = Vector2(445, 214)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Static/Walls/patch2/Tree5" index="0"]
-shape = SubResource("CircleShape2D_osc3k")
-
-[node name="Sprite2D" type="Sprite2D" parent="Static/Walls/patch2/Tree5" index="1"]
-modulate = Color(0, 0, 0, 1)
-scale = Vector2(0.14, 0.14)
-texture = ExtResource("4_hwgbk")
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Static/Walls/patch2/Tree5" index="2"]
-occluder = SubResource("OccluderPolygon2D_kkhw0")
-
-[node name="Tree6" type="StaticBody2D" parent="Static/Walls/patch2" index="5"]
-position = Vector2(352, -252)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Static/Walls/patch2/Tree6" index="0"]
-shape = SubResource("CircleShape2D_osc3k")
-
-[node name="Sprite2D" type="Sprite2D" parent="Static/Walls/patch2/Tree6" index="1"]
-modulate = Color(0, 0, 0, 1)
-scale = Vector2(0.14, 0.14)
-texture = ExtResource("4_hwgbk")
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Static/Walls/patch2/Tree6" index="2"]
-occluder = SubResource("OccluderPolygon2D_kkhw0")
-
-[node name="Tree7" type="StaticBody2D" parent="Static/Walls/patch2" index="6"]
-position = Vector2(524, -159)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Static/Walls/patch2/Tree7" index="0"]
-shape = SubResource("CircleShape2D_osc3k")
-
-[node name="Sprite2D" type="Sprite2D" parent="Static/Walls/patch2/Tree7" index="1"]
-modulate = Color(0, 0, 0, 1)
-scale = Vector2(0.14, 0.14)
-texture = ExtResource("4_hwgbk")
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Static/Walls/patch2/Tree7" index="2"]
-occluder = SubResource("OccluderPolygon2D_kkhw0")
-
-[node name="Tree8" type="StaticBody2D" parent="Static/Walls/patch2" index="7"]
-position = Vector2(583, -32)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Static/Walls/patch2/Tree8" index="0"]
-shape = SubResource("CircleShape2D_osc3k")
-
-[node name="Sprite2D" type="Sprite2D" parent="Static/Walls/patch2/Tree8" index="1"]
-modulate = Color(0, 0, 0, 1)
-scale = Vector2(0.14, 0.14)
-texture = ExtResource("4_hwgbk")
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Static/Walls/patch2/Tree8" index="2"]
-occluder = SubResource("OccluderPolygon2D_kkhw0")
-
-[node name="Tree9" type="StaticBody2D" parent="Static/Walls/patch2" index="8"]
-position = Vector2(581, 112)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Static/Walls/patch2/Tree9" index="0"]
-shape = SubResource("CircleShape2D_osc3k")
-
-[node name="Sprite2D" type="Sprite2D" parent="Static/Walls/patch2/Tree9" index="1"]
-modulate = Color(0, 0, 0, 1)
-scale = Vector2(0.14, 0.14)
-texture = ExtResource("4_hwgbk")
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Static/Walls/patch2/Tree9" index="2"]
-occluder = SubResource("OccluderPolygon2D_kkhw0")
+[node name="Tree5" parent="Static/Walls/patch2" index="5" instance=ExtResource("4_wcnjk")]
+position = Vector2(755.038, -289.645)
 
 [node name="patch3" type="Node2D" parent="Static/Walls" index="2"]
-position = Vector2(-114, 68.0001)
-rotation = -3.81835
+use_parent_material = true
+position = Vector2(-684, -782)
+rotation = 1.64021
 
-[node name="Tree" type="StaticBody2D" parent="Static/Walls/patch3" index="0"]
-position = Vector2(269, 259)
+[node name="Tree" parent="Static/Walls/patch3" index="0" instance=ExtResource("4_wcnjk")]
+position = Vector2(323, -208)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Static/Walls/patch3/Tree" index="0"]
-shape = SubResource("CircleShape2D_osc3k")
+[node name="Tree1" parent="Static/Walls/patch3" index="1" instance=ExtResource("4_wcnjk")]
+position = Vector2(457, -437)
 
-[node name="Sprite2D" type="Sprite2D" parent="Static/Walls/patch3/Tree" index="1"]
-modulate = Color(0, 0, 0, 1)
-scale = Vector2(0.14, 0.14)
-texture = ExtResource("4_hwgbk")
+[node name="Tree2" parent="Static/Walls/patch3" index="2" instance=ExtResource("4_wcnjk")]
+position = Vector2(476.566, -21.5222)
 
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Static/Walls/patch3/Tree" index="2"]
-occluder = SubResource("OccluderPolygon2D_kkhw0")
+[node name="Tree3" parent="Static/Walls/patch3" index="3" instance=ExtResource("4_wcnjk")]
+position = Vector2(787.798, 39.9858)
 
-[node name="Tree2" type="StaticBody2D" parent="Static/Walls/patch3" index="1"]
-position = Vector2(316, 106)
+[node name="Tree4" parent="Static/Walls/patch3" index="4" instance=ExtResource("4_wcnjk")]
+position = Vector2(117.717, 92.1289)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Static/Walls/patch3/Tree2" index="0"]
-shape = SubResource("CircleShape2D_osc3k")
-
-[node name="Sprite2D" type="Sprite2D" parent="Static/Walls/patch3/Tree2" index="1"]
-modulate = Color(0, 0, 0, 1)
-scale = Vector2(0.14, 0.14)
-texture = ExtResource("4_hwgbk")
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Static/Walls/patch3/Tree2" index="2"]
-occluder = SubResource("OccluderPolygon2D_kkhw0")
-
-[node name="Tree3" type="StaticBody2D" parent="Static/Walls/patch3" index="2"]
-position = Vector2(252, -66)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Static/Walls/patch3/Tree3" index="0"]
-shape = SubResource("CircleShape2D_osc3k")
-
-[node name="Sprite2D" type="Sprite2D" parent="Static/Walls/patch3/Tree3" index="1"]
-modulate = Color(0, 0, 0, 1)
-scale = Vector2(0.14, 0.14)
-texture = ExtResource("4_hwgbk")
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Static/Walls/patch3/Tree3" index="2"]
-occluder = SubResource("OccluderPolygon2D_kkhw0")
-
-[node name="Tree4" type="StaticBody2D" parent="Static/Walls/patch3" index="3"]
-position = Vector2(432, -28)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Static/Walls/patch3/Tree4" index="0"]
-shape = SubResource("CircleShape2D_osc3k")
-
-[node name="Sprite2D" type="Sprite2D" parent="Static/Walls/patch3/Tree4" index="1"]
-modulate = Color(0, 0, 0, 1)
-scale = Vector2(0.14, 0.14)
-texture = ExtResource("4_hwgbk")
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Static/Walls/patch3/Tree4" index="2"]
-occluder = SubResource("OccluderPolygon2D_kkhw0")
-
-[node name="Tree5" type="StaticBody2D" parent="Static/Walls/patch3" index="4"]
-position = Vector2(445, 214)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Static/Walls/patch3/Tree5" index="0"]
-shape = SubResource("CircleShape2D_osc3k")
-
-[node name="Sprite2D" type="Sprite2D" parent="Static/Walls/patch3/Tree5" index="1"]
-modulate = Color(0, 0, 0, 1)
-scale = Vector2(0.14, 0.14)
-texture = ExtResource("4_hwgbk")
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Static/Walls/patch3/Tree5" index="2"]
-occluder = SubResource("OccluderPolygon2D_kkhw0")
-
-[node name="Tree6" type="StaticBody2D" parent="Static/Walls/patch3" index="5"]
-position = Vector2(352, -252)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Static/Walls/patch3/Tree6" index="0"]
-shape = SubResource("CircleShape2D_osc3k")
-
-[node name="Sprite2D" type="Sprite2D" parent="Static/Walls/patch3/Tree6" index="1"]
-modulate = Color(0, 0, 0, 1)
-scale = Vector2(0.14, 0.14)
-texture = ExtResource("4_hwgbk")
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Static/Walls/patch3/Tree6" index="2"]
-occluder = SubResource("OccluderPolygon2D_kkhw0")
-
-[node name="Tree7" type="StaticBody2D" parent="Static/Walls/patch3" index="6"]
-position = Vector2(524, -159)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Static/Walls/patch3/Tree7" index="0"]
-shape = SubResource("CircleShape2D_osc3k")
-
-[node name="Sprite2D" type="Sprite2D" parent="Static/Walls/patch3/Tree7" index="1"]
-modulate = Color(0, 0, 0, 1)
-scale = Vector2(0.14, 0.14)
-texture = ExtResource("4_hwgbk")
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Static/Walls/patch3/Tree7" index="2"]
-occluder = SubResource("OccluderPolygon2D_kkhw0")
-
-[node name="Tree8" type="StaticBody2D" parent="Static/Walls/patch3" index="7"]
-position = Vector2(583, -32)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Static/Walls/patch3/Tree8" index="0"]
-shape = SubResource("CircleShape2D_osc3k")
-
-[node name="Sprite2D" type="Sprite2D" parent="Static/Walls/patch3/Tree8" index="1"]
-modulate = Color(0, 0, 0, 1)
-scale = Vector2(0.14, 0.14)
-texture = ExtResource("4_hwgbk")
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Static/Walls/patch3/Tree8" index="2"]
-occluder = SubResource("OccluderPolygon2D_kkhw0")
-
-[node name="Tree9" type="StaticBody2D" parent="Static/Walls/patch3" index="8"]
-position = Vector2(581, 112)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Static/Walls/patch3/Tree9" index="0"]
-shape = SubResource("CircleShape2D_osc3k")
-
-[node name="Sprite2D" type="Sprite2D" parent="Static/Walls/patch3/Tree9" index="1"]
-modulate = Color(0, 0, 0, 1)
-scale = Vector2(0.14, 0.14)
-texture = ExtResource("4_hwgbk")
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Static/Walls/patch3/Tree9" index="2"]
-occluder = SubResource("OccluderPolygon2D_kkhw0")
+[node name="Tree5" parent="Static/Walls/patch3" index="5" instance=ExtResource("4_wcnjk")]
+position = Vector2(755.038, -289.645)
 
 [node name="patch4" type="Node2D" parent="Static/Walls" index="3"]
-position = Vector2(-635, 95)
-rotation = -1.22014
+use_parent_material = true
+position = Vector2(376, -425)
+rotation = 1.05819
 
-[node name="Tree" type="StaticBody2D" parent="Static/Walls/patch4" index="0"]
-position = Vector2(269, 259)
+[node name="Tree" parent="Static/Walls/patch4" index="0" instance=ExtResource("4_wcnjk")]
+position = Vector2(323, -208)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Static/Walls/patch4/Tree" index="0"]
-shape = SubResource("CircleShape2D_osc3k")
+[node name="Tree1" parent="Static/Walls/patch4" index="1" instance=ExtResource("4_wcnjk")]
+position = Vector2(457, -437)
 
-[node name="Sprite2D" type="Sprite2D" parent="Static/Walls/patch4/Tree" index="1"]
-modulate = Color(0, 0, 0, 1)
-scale = Vector2(0.14, 0.14)
-texture = ExtResource("4_hwgbk")
+[node name="Tree2" parent="Static/Walls/patch4" index="2" instance=ExtResource("4_wcnjk")]
+position = Vector2(476.566, -21.5222)
 
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Static/Walls/patch4/Tree" index="2"]
-occluder = SubResource("OccluderPolygon2D_kkhw0")
+[node name="Tree3" parent="Static/Walls/patch4" index="3" instance=ExtResource("4_wcnjk")]
+position = Vector2(787.798, 39.9858)
 
-[node name="Tree2" type="StaticBody2D" parent="Static/Walls/patch4" index="1"]
-position = Vector2(316, 106)
+[node name="Tree4" parent="Static/Walls/patch4" index="4" instance=ExtResource("4_wcnjk")]
+position = Vector2(117.717, 92.1289)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Static/Walls/patch4/Tree2" index="0"]
-shape = SubResource("CircleShape2D_osc3k")
-
-[node name="Sprite2D" type="Sprite2D" parent="Static/Walls/patch4/Tree2" index="1"]
-modulate = Color(0, 0, 0, 1)
-scale = Vector2(0.14, 0.14)
-texture = ExtResource("4_hwgbk")
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Static/Walls/patch4/Tree2" index="2"]
-occluder = SubResource("OccluderPolygon2D_kkhw0")
-
-[node name="Tree3" type="StaticBody2D" parent="Static/Walls/patch4" index="2"]
-position = Vector2(252, -66)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Static/Walls/patch4/Tree3" index="0"]
-shape = SubResource("CircleShape2D_osc3k")
-
-[node name="Sprite2D" type="Sprite2D" parent="Static/Walls/patch4/Tree3" index="1"]
-modulate = Color(0, 0, 0, 1)
-scale = Vector2(0.14, 0.14)
-texture = ExtResource("4_hwgbk")
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Static/Walls/patch4/Tree3" index="2"]
-occluder = SubResource("OccluderPolygon2D_kkhw0")
-
-[node name="Tree4" type="StaticBody2D" parent="Static/Walls/patch4" index="3"]
-position = Vector2(432, -28)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Static/Walls/patch4/Tree4" index="0"]
-shape = SubResource("CircleShape2D_osc3k")
-
-[node name="Sprite2D" type="Sprite2D" parent="Static/Walls/patch4/Tree4" index="1"]
-modulate = Color(0, 0, 0, 1)
-scale = Vector2(0.14, 0.14)
-texture = ExtResource("4_hwgbk")
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Static/Walls/patch4/Tree4" index="2"]
-occluder = SubResource("OccluderPolygon2D_kkhw0")
-
-[node name="Tree5" type="StaticBody2D" parent="Static/Walls/patch4" index="4"]
-position = Vector2(445, 214)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Static/Walls/patch4/Tree5" index="0"]
-shape = SubResource("CircleShape2D_osc3k")
-
-[node name="Sprite2D" type="Sprite2D" parent="Static/Walls/patch4/Tree5" index="1"]
-modulate = Color(0, 0, 0, 1)
-scale = Vector2(0.14, 0.14)
-texture = ExtResource("4_hwgbk")
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Static/Walls/patch4/Tree5" index="2"]
-occluder = SubResource("OccluderPolygon2D_kkhw0")
-
-[node name="Tree6" type="StaticBody2D" parent="Static/Walls/patch4" index="5"]
-position = Vector2(352, -252)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Static/Walls/patch4/Tree6" index="0"]
-shape = SubResource("CircleShape2D_osc3k")
-
-[node name="Sprite2D" type="Sprite2D" parent="Static/Walls/patch4/Tree6" index="1"]
-modulate = Color(0, 0, 0, 1)
-scale = Vector2(0.14, 0.14)
-texture = ExtResource("4_hwgbk")
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Static/Walls/patch4/Tree6" index="2"]
-occluder = SubResource("OccluderPolygon2D_kkhw0")
-
-[node name="Tree7" type="StaticBody2D" parent="Static/Walls/patch4" index="6"]
-position = Vector2(524, -159)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Static/Walls/patch4/Tree7" index="0"]
-shape = SubResource("CircleShape2D_osc3k")
-
-[node name="Sprite2D" type="Sprite2D" parent="Static/Walls/patch4/Tree7" index="1"]
-modulate = Color(0, 0, 0, 1)
-scale = Vector2(0.14, 0.14)
-texture = ExtResource("4_hwgbk")
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Static/Walls/patch4/Tree7" index="2"]
-occluder = SubResource("OccluderPolygon2D_kkhw0")
-
-[node name="Tree8" type="StaticBody2D" parent="Static/Walls/patch4" index="7"]
-position = Vector2(583, -32)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Static/Walls/patch4/Tree8" index="0"]
-shape = SubResource("CircleShape2D_osc3k")
-
-[node name="Sprite2D" type="Sprite2D" parent="Static/Walls/patch4/Tree8" index="1"]
-modulate = Color(0, 0, 0, 1)
-scale = Vector2(0.14, 0.14)
-texture = ExtResource("4_hwgbk")
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Static/Walls/patch4/Tree8" index="2"]
-occluder = SubResource("OccluderPolygon2D_kkhw0")
-
-[node name="Tree9" type="StaticBody2D" parent="Static/Walls/patch4" index="8"]
-position = Vector2(581, 112)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Static/Walls/patch4/Tree9" index="0"]
-shape = SubResource("CircleShape2D_osc3k")
-
-[node name="Sprite2D" type="Sprite2D" parent="Static/Walls/patch4/Tree9" index="1"]
-modulate = Color(0, 0, 0, 1)
-scale = Vector2(0.14, 0.14)
-texture = ExtResource("4_hwgbk")
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Static/Walls/patch4/Tree9" index="2"]
-occluder = SubResource("OccluderPolygon2D_kkhw0")
+[node name="Tree5" parent="Static/Walls/patch4" index="5" instance=ExtResource("4_wcnjk")]
+position = Vector2(755.038, -289.645)
 
 [node name="patch5" type="Node2D" parent="Static/Walls" index="4"]
-position = Vector2(-222, -1553)
-rotation = 0.650766
+use_parent_material = true
+position = Vector2(459, -486)
+rotation = -0.645472
 
-[node name="Tree" type="StaticBody2D" parent="Static/Walls/patch5" index="0"]
-position = Vector2(269, 259)
+[node name="Tree" parent="Static/Walls/patch5" index="0" instance=ExtResource("4_wcnjk")]
+position = Vector2(323, -208)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Static/Walls/patch5/Tree" index="0"]
-shape = SubResource("CircleShape2D_osc3k")
+[node name="Tree1" parent="Static/Walls/patch5" index="1" instance=ExtResource("4_wcnjk")]
+position = Vector2(457, -437)
 
-[node name="Sprite2D" type="Sprite2D" parent="Static/Walls/patch5/Tree" index="1"]
-modulate = Color(0, 0, 0, 1)
-scale = Vector2(0.14, 0.14)
-texture = ExtResource("4_hwgbk")
+[node name="Tree2" parent="Static/Walls/patch5" index="2" instance=ExtResource("4_wcnjk")]
+position = Vector2(476.566, -21.5222)
 
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Static/Walls/patch5/Tree" index="2"]
-occluder = SubResource("OccluderPolygon2D_kkhw0")
+[node name="Tree3" parent="Static/Walls/patch5" index="3" instance=ExtResource("4_wcnjk")]
+position = Vector2(787.798, 39.9858)
 
-[node name="Tree2" type="StaticBody2D" parent="Static/Walls/patch5" index="1"]
-position = Vector2(316, 106)
+[node name="Tree4" parent="Static/Walls/patch5" index="4" instance=ExtResource("4_wcnjk")]
+position = Vector2(117.717, 92.1289)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Static/Walls/patch5/Tree2" index="0"]
-shape = SubResource("CircleShape2D_osc3k")
+[node name="Tree5" parent="Static/Walls/patch5" index="5" instance=ExtResource("4_wcnjk")]
+position = Vector2(755.038, -289.645)
 
-[node name="Sprite2D" type="Sprite2D" parent="Static/Walls/patch5/Tree2" index="1"]
-modulate = Color(0, 0, 0, 1)
-scale = Vector2(0.14, 0.14)
-texture = ExtResource("4_hwgbk")
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Static/Walls/patch5/Tree2" index="2"]
-occluder = SubResource("OccluderPolygon2D_kkhw0")
-
-[node name="Tree3" type="StaticBody2D" parent="Static/Walls/patch5" index="2"]
-position = Vector2(252, -66)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Static/Walls/patch5/Tree3" index="0"]
-shape = SubResource("CircleShape2D_osc3k")
-
-[node name="Sprite2D" type="Sprite2D" parent="Static/Walls/patch5/Tree3" index="1"]
-modulate = Color(0, 0, 0, 1)
-scale = Vector2(0.14, 0.14)
-texture = ExtResource("4_hwgbk")
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Static/Walls/patch5/Tree3" index="2"]
-occluder = SubResource("OccluderPolygon2D_kkhw0")
-
-[node name="Tree4" type="StaticBody2D" parent="Static/Walls/patch5" index="3"]
-position = Vector2(432, -28)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Static/Walls/patch5/Tree4" index="0"]
-shape = SubResource("CircleShape2D_osc3k")
-
-[node name="Sprite2D" type="Sprite2D" parent="Static/Walls/patch5/Tree4" index="1"]
-modulate = Color(0, 0, 0, 1)
-scale = Vector2(0.14, 0.14)
-texture = ExtResource("4_hwgbk")
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Static/Walls/patch5/Tree4" index="2"]
-occluder = SubResource("OccluderPolygon2D_kkhw0")
-
-[node name="Tree5" type="StaticBody2D" parent="Static/Walls/patch5" index="4"]
-position = Vector2(445, 214)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Static/Walls/patch5/Tree5" index="0"]
-shape = SubResource("CircleShape2D_osc3k")
-
-[node name="Sprite2D" type="Sprite2D" parent="Static/Walls/patch5/Tree5" index="1"]
-modulate = Color(0, 0, 0, 1)
-scale = Vector2(0.14, 0.14)
-texture = ExtResource("4_hwgbk")
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Static/Walls/patch5/Tree5" index="2"]
-occluder = SubResource("OccluderPolygon2D_kkhw0")
-
-[node name="Tree6" type="StaticBody2D" parent="Static/Walls/patch5" index="5"]
-position = Vector2(352, -252)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Static/Walls/patch5/Tree6" index="0"]
-shape = SubResource("CircleShape2D_osc3k")
-
-[node name="Sprite2D" type="Sprite2D" parent="Static/Walls/patch5/Tree6" index="1"]
-modulate = Color(0, 0, 0, 1)
-scale = Vector2(0.14, 0.14)
-texture = ExtResource("4_hwgbk")
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Static/Walls/patch5/Tree6" index="2"]
-occluder = SubResource("OccluderPolygon2D_kkhw0")
-
-[node name="Tree7" type="StaticBody2D" parent="Static/Walls/patch5" index="6"]
-position = Vector2(524, -159)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Static/Walls/patch5/Tree7" index="0"]
-shape = SubResource("CircleShape2D_osc3k")
-
-[node name="Sprite2D" type="Sprite2D" parent="Static/Walls/patch5/Tree7" index="1"]
-modulate = Color(0, 0, 0, 1)
-scale = Vector2(0.14, 0.14)
-texture = ExtResource("4_hwgbk")
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Static/Walls/patch5/Tree7" index="2"]
-occluder = SubResource("OccluderPolygon2D_kkhw0")
-
-[node name="Tree8" type="StaticBody2D" parent="Static/Walls/patch5" index="7"]
-position = Vector2(583, -32)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Static/Walls/patch5/Tree8" index="0"]
-shape = SubResource("CircleShape2D_osc3k")
-
-[node name="Sprite2D" type="Sprite2D" parent="Static/Walls/patch5/Tree8" index="1"]
-modulate = Color(0, 0, 0, 1)
-scale = Vector2(0.14, 0.14)
-texture = ExtResource("4_hwgbk")
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Static/Walls/patch5/Tree8" index="2"]
-occluder = SubResource("OccluderPolygon2D_kkhw0")
-
-[node name="Tree9" type="StaticBody2D" parent="Static/Walls/patch5" index="8"]
-position = Vector2(581, 112)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Static/Walls/patch5/Tree9" index="0"]
-shape = SubResource("CircleShape2D_osc3k")
-
-[node name="Sprite2D" type="Sprite2D" parent="Static/Walls/patch5/Tree9" index="1"]
-modulate = Color(0, 0, 0, 1)
-scale = Vector2(0.14, 0.14)
-texture = ExtResource("4_hwgbk")
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Static/Walls/patch5/Tree9" index="2"]
-occluder = SubResource("OccluderPolygon2D_kkhw0")
-
-[node name="patch6" type="Node2D" parent="Static/Walls" index="5"]
-position = Vector2(-16, -1154)
-rotation = 2.03779
-
-[node name="Tree" type="StaticBody2D" parent="Static/Walls/patch6" index="0"]
-position = Vector2(269, 259)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Static/Walls/patch6/Tree" index="0"]
-shape = SubResource("CircleShape2D_osc3k")
-
-[node name="Sprite2D" type="Sprite2D" parent="Static/Walls/patch6/Tree" index="1"]
-modulate = Color(0, 0, 0, 1)
-scale = Vector2(0.14, 0.14)
-texture = ExtResource("4_hwgbk")
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Static/Walls/patch6/Tree" index="2"]
-occluder = SubResource("OccluderPolygon2D_kkhw0")
-
-[node name="Tree2" type="StaticBody2D" parent="Static/Walls/patch6" index="1"]
-position = Vector2(316, 106)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Static/Walls/patch6/Tree2" index="0"]
-shape = SubResource("CircleShape2D_osc3k")
-
-[node name="Sprite2D" type="Sprite2D" parent="Static/Walls/patch6/Tree2" index="1"]
-modulate = Color(0, 0, 0, 1)
-scale = Vector2(0.14, 0.14)
-texture = ExtResource("4_hwgbk")
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Static/Walls/patch6/Tree2" index="2"]
-occluder = SubResource("OccluderPolygon2D_kkhw0")
-
-[node name="Tree3" type="StaticBody2D" parent="Static/Walls/patch6" index="2"]
-position = Vector2(252, -66)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Static/Walls/patch6/Tree3" index="0"]
-shape = SubResource("CircleShape2D_osc3k")
-
-[node name="Sprite2D" type="Sprite2D" parent="Static/Walls/patch6/Tree3" index="1"]
-modulate = Color(0, 0, 0, 1)
-scale = Vector2(0.14, 0.14)
-texture = ExtResource("4_hwgbk")
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Static/Walls/patch6/Tree3" index="2"]
-occluder = SubResource("OccluderPolygon2D_kkhw0")
-
-[node name="Tree4" type="StaticBody2D" parent="Static/Walls/patch6" index="3"]
-position = Vector2(432, -28)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Static/Walls/patch6/Tree4" index="0"]
-shape = SubResource("CircleShape2D_osc3k")
-
-[node name="Sprite2D" type="Sprite2D" parent="Static/Walls/patch6/Tree4" index="1"]
-modulate = Color(0, 0, 0, 1)
-scale = Vector2(0.14, 0.14)
-texture = ExtResource("4_hwgbk")
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Static/Walls/patch6/Tree4" index="2"]
-occluder = SubResource("OccluderPolygon2D_kkhw0")
-
-[node name="Tree5" type="StaticBody2D" parent="Static/Walls/patch6" index="4"]
-position = Vector2(445, 214)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Static/Walls/patch6/Tree5" index="0"]
-shape = SubResource("CircleShape2D_osc3k")
-
-[node name="Sprite2D" type="Sprite2D" parent="Static/Walls/patch6/Tree5" index="1"]
-modulate = Color(0, 0, 0, 1)
-scale = Vector2(0.14, 0.14)
-texture = ExtResource("4_hwgbk")
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Static/Walls/patch6/Tree5" index="2"]
-occluder = SubResource("OccluderPolygon2D_kkhw0")
-
-[node name="Tree6" type="StaticBody2D" parent="Static/Walls/patch6" index="5"]
-position = Vector2(352, -252)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Static/Walls/patch6/Tree6" index="0"]
-shape = SubResource("CircleShape2D_osc3k")
-
-[node name="Sprite2D" type="Sprite2D" parent="Static/Walls/patch6/Tree6" index="1"]
-modulate = Color(0, 0, 0, 1)
-scale = Vector2(0.14, 0.14)
-texture = ExtResource("4_hwgbk")
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Static/Walls/patch6/Tree6" index="2"]
-occluder = SubResource("OccluderPolygon2D_kkhw0")
-
-[node name="Tree7" type="StaticBody2D" parent="Static/Walls/patch6" index="6"]
-position = Vector2(524, -159)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Static/Walls/patch6/Tree7" index="0"]
-shape = SubResource("CircleShape2D_osc3k")
-
-[node name="Sprite2D" type="Sprite2D" parent="Static/Walls/patch6/Tree7" index="1"]
-modulate = Color(0, 0, 0, 1)
-scale = Vector2(0.14, 0.14)
-texture = ExtResource("4_hwgbk")
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Static/Walls/patch6/Tree7" index="2"]
-occluder = SubResource("OccluderPolygon2D_kkhw0")
-
-[node name="Tree8" type="StaticBody2D" parent="Static/Walls/patch6" index="7"]
-position = Vector2(583, -32)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Static/Walls/patch6/Tree8" index="0"]
-shape = SubResource("CircleShape2D_osc3k")
-
-[node name="Sprite2D" type="Sprite2D" parent="Static/Walls/patch6/Tree8" index="1"]
-modulate = Color(0, 0, 0, 1)
-scale = Vector2(0.14, 0.14)
-texture = ExtResource("4_hwgbk")
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Static/Walls/patch6/Tree8" index="2"]
-occluder = SubResource("OccluderPolygon2D_kkhw0")
-
-[node name="Tree9" type="StaticBody2D" parent="Static/Walls/patch6" index="8"]
-position = Vector2(581, 112)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Static/Walls/patch6/Tree9" index="0"]
-shape = SubResource("CircleShape2D_osc3k")
-
-[node name="Sprite2D" type="Sprite2D" parent="Static/Walls/patch6/Tree9" index="1"]
-modulate = Color(0, 0, 0, 1)
-scale = Vector2(0.14, 0.14)
-texture = ExtResource("4_hwgbk")
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Static/Walls/patch6/Tree9" index="2"]
-occluder = SubResource("OccluderPolygon2D_kkhw0")
-
-[node name="patch7" type="Node2D" parent="Static/Walls" index="6"]
-position = Vector2(1241, -1118)
-rotation = 3.08062
-
-[node name="Tree" type="StaticBody2D" parent="Static/Walls/patch7" index="0"]
-position = Vector2(269, 259)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Static/Walls/patch7/Tree" index="0"]
-shape = SubResource("CircleShape2D_osc3k")
-
-[node name="Sprite2D" type="Sprite2D" parent="Static/Walls/patch7/Tree" index="1"]
-modulate = Color(0, 0, 0, 1)
-scale = Vector2(0.14, 0.14)
-texture = ExtResource("4_hwgbk")
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Static/Walls/patch7/Tree" index="2"]
-occluder = SubResource("OccluderPolygon2D_kkhw0")
-
-[node name="Tree2" type="StaticBody2D" parent="Static/Walls/patch7" index="1"]
-position = Vector2(316, 106)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Static/Walls/patch7/Tree2" index="0"]
-shape = SubResource("CircleShape2D_osc3k")
-
-[node name="Sprite2D" type="Sprite2D" parent="Static/Walls/patch7/Tree2" index="1"]
-modulate = Color(0, 0, 0, 1)
-scale = Vector2(0.14, 0.14)
-texture = ExtResource("4_hwgbk")
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Static/Walls/patch7/Tree2" index="2"]
-occluder = SubResource("OccluderPolygon2D_kkhw0")
-
-[node name="Tree3" type="StaticBody2D" parent="Static/Walls/patch7" index="2"]
-position = Vector2(252, -66)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Static/Walls/patch7/Tree3" index="0"]
-shape = SubResource("CircleShape2D_osc3k")
-
-[node name="Sprite2D" type="Sprite2D" parent="Static/Walls/patch7/Tree3" index="1"]
-modulate = Color(0, 0, 0, 1)
-scale = Vector2(0.14, 0.14)
-texture = ExtResource("4_hwgbk")
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Static/Walls/patch7/Tree3" index="2"]
-occluder = SubResource("OccluderPolygon2D_kkhw0")
-
-[node name="Tree4" type="StaticBody2D" parent="Static/Walls/patch7" index="3"]
-position = Vector2(432, -28)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Static/Walls/patch7/Tree4" index="0"]
-shape = SubResource("CircleShape2D_osc3k")
-
-[node name="Sprite2D" type="Sprite2D" parent="Static/Walls/patch7/Tree4" index="1"]
-modulate = Color(0, 0, 0, 1)
-scale = Vector2(0.14, 0.14)
-texture = ExtResource("4_hwgbk")
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Static/Walls/patch7/Tree4" index="2"]
-occluder = SubResource("OccluderPolygon2D_kkhw0")
-
-[node name="Tree5" type="StaticBody2D" parent="Static/Walls/patch7" index="4"]
-position = Vector2(445, 214)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Static/Walls/patch7/Tree5" index="0"]
-shape = SubResource("CircleShape2D_osc3k")
-
-[node name="Sprite2D" type="Sprite2D" parent="Static/Walls/patch7/Tree5" index="1"]
-modulate = Color(0, 0, 0, 1)
-scale = Vector2(0.14, 0.14)
-texture = ExtResource("4_hwgbk")
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Static/Walls/patch7/Tree5" index="2"]
-occluder = SubResource("OccluderPolygon2D_kkhw0")
-
-[node name="Tree6" type="StaticBody2D" parent="Static/Walls/patch7" index="5"]
-position = Vector2(352, -252)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Static/Walls/patch7/Tree6" index="0"]
-shape = SubResource("CircleShape2D_osc3k")
-
-[node name="Sprite2D" type="Sprite2D" parent="Static/Walls/patch7/Tree6" index="1"]
-modulate = Color(0, 0, 0, 1)
-scale = Vector2(0.14, 0.14)
-texture = ExtResource("4_hwgbk")
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Static/Walls/patch7/Tree6" index="2"]
-occluder = SubResource("OccluderPolygon2D_kkhw0")
-
-[node name="Tree7" type="StaticBody2D" parent="Static/Walls/patch7" index="6"]
-position = Vector2(524, -159)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Static/Walls/patch7/Tree7" index="0"]
-shape = SubResource("CircleShape2D_osc3k")
-
-[node name="Sprite2D" type="Sprite2D" parent="Static/Walls/patch7/Tree7" index="1"]
-modulate = Color(0, 0, 0, 1)
-scale = Vector2(0.14, 0.14)
-texture = ExtResource("4_hwgbk")
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Static/Walls/patch7/Tree7" index="2"]
-occluder = SubResource("OccluderPolygon2D_kkhw0")
-
-[node name="Tree8" type="StaticBody2D" parent="Static/Walls/patch7" index="7"]
-position = Vector2(583, -32)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Static/Walls/patch7/Tree8" index="0"]
-shape = SubResource("CircleShape2D_osc3k")
-
-[node name="Sprite2D" type="Sprite2D" parent="Static/Walls/patch7/Tree8" index="1"]
-modulate = Color(0, 0, 0, 1)
-scale = Vector2(0.14, 0.14)
-texture = ExtResource("4_hwgbk")
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Static/Walls/patch7/Tree8" index="2"]
-occluder = SubResource("OccluderPolygon2D_kkhw0")
-
-[node name="Tree9" type="StaticBody2D" parent="Static/Walls/patch7" index="8"]
-position = Vector2(581, 112)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Static/Walls/patch7/Tree9" index="0"]
-shape = SubResource("CircleShape2D_osc3k")
-
-[node name="Sprite2D" type="Sprite2D" parent="Static/Walls/patch7/Tree9" index="1"]
-modulate = Color(0, 0, 0, 1)
-scale = Vector2(0.14, 0.14)
-texture = ExtResource("4_hwgbk")
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="Static/Walls/patch7/Tree9" index="2"]
-occluder = SubResource("OccluderPolygon2D_kkhw0")
-
-[node name="staticBlock" parent="Static/Walls" index="7" instance=ExtResource("3_qhk2v")]
+[node name="staticBlock" parent="Static/Walls" index="5" instance=ExtResource("3_qhk2v")]
 position = Vector2(243, 638)
 scale = Vector2(57.16, 1)
 
-[node name="staticBlock2" parent="Static/Walls" index="8" instance=ExtResource("3_qhk2v")]
+[node name="staticBlock2" parent="Static/Walls" index="6" instance=ExtResource("3_qhk2v")]
 position = Vector2(234, -1580)
 scale = Vector2(57.16, 1)
 
-[node name="staticBlock3" parent="Static/Walls" index="9" instance=ExtResource("3_qhk2v")]
+[node name="staticBlock3" parent="Static/Walls" index="7" instance=ExtResource("3_qhk2v")]
 position = Vector2(2012, -691)
 rotation = 1.59285
 scale = Vector2(57.16, 1)
 
-[node name="staticBlock4" parent="Static/Walls" index="10" instance=ExtResource("3_qhk2v")]
+[node name="staticBlock4" parent="Static/Walls" index="8" instance=ExtResource("3_qhk2v")]
 position = Vector2(-1544, -898)
 rotation = 1.59285
 scale = Vector2(57.16, 1)

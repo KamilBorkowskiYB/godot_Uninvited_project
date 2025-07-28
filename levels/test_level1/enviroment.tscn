@@ -1,8 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://bnppgiphfgo5q"]
+[gd_scene load_steps=4 format=3 uid="uid://bnppgiphfgo5q"]
 
 [ext_resource type="PackedScene" uid="uid://b7iklrlyc5m55" path="res://levels/test_level1/test_level_1_low.tscn" id="1_4so2i"]
-[ext_resource type="Shader" path="res://shaders/topObjects.gdshader" id="2_rgmch"]
-[ext_resource type="Texture2D" uid="uid://c81efo3urc6nt" path="res://characters/player/legacy/view_cone_redo.png" id="3_4mek5"]
 
 [sub_resource type="Gradient" id="Gradient_hm63i"]
 offsets = PackedFloat32Array(0.987013, 0.993506, 1)
@@ -12,13 +10,6 @@ colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1, 0.12987, 0.12987, 0.12987, 1)
 gradient = SubResource("Gradient_hm63i")
 fill = 2
 fill_from = Vector2(0.5, 0.5)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_4s5kh"]
-shader = ExtResource("2_rgmch")
-shader_parameter/CircleCentres = null
-shader_parameter/NumCircleCentres = 2
-shader_parameter/CircleRadius = 100.0
-shader_parameter/CircleBlur = 0.7
 
 [node name="Enviroment" type="Node2D"]
 
@@ -47,13 +38,3 @@ energy = 0.5
 blend_mode = 1
 texture = SubResource("GradientTexture2D_c1o86")
 texture_scale = 14.18
-
-[node name="Leaves" type="Sprite2D" parent="." groups=["Transparent"]]
-light_mask = 32768
-visibility_layer = 32768
-z_index = 10
-texture_filter = 1
-material = SubResource("ShaderMaterial_4s5kh")
-position = Vector2(1152, 506)
-scale = Vector2(0.7, 0.7)
-texture = ExtResource("3_4mek5")
