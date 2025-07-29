@@ -58,8 +58,9 @@ func _ready():
 		player.aim_assistL = aimL
 	
 	#connecting signals from player
-	player.player_has_died.connect(player_dead)
-	player.weapon_info_on.connect(weapon_info_visible)
+	if not player.player_has_died.is_connected(player_dead):#conneting connected singnal returns error
+		player.player_has_died.connect(player_dead)
+		player.weapon_info_on.connect(weapon_info_visible)
 	
 	#connecting signals from pickUps
 	viewport1 = get_node("MainLevelViewport/SubViewport").get_child(0).get_node("PickUps")
