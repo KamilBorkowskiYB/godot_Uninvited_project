@@ -20,11 +20,11 @@ radius = 84.0952
 
 [node name="MovingBlock" type="RigidBody2D" groups=["movable_blocks"]]
 use_parent_material = true
-collision_layer = 2
+collision_layer = 0
 collision_mask = 7
 gravity_scale = 0.0
 linear_damp = 2.0
-angular_damp = 2.0
+angular_damp = 20.0
 script = ExtResource("1_5ffd8")
 
 [node name="BlockSprite" type="Sprite2D" parent="."]

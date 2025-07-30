@@ -26,6 +26,7 @@ script = ExtResource("1_ntr16")
 
 [node name="Door" type="RigidBody2D" parent="."]
 use_parent_material = true
+collision_mask = 7
 input_pickable = true
 gravity_scale = 0.0
 freeze = true
@@ -50,6 +51,7 @@ scale = Vector2(0.666755, 1.07854)
 occluder = SubResource("OccluderPolygon2D_rejhh")
 
 [node name="interaction_area" parent="Door" instance=ExtResource("4_k0qj8")]
+collision_mask = 6
 action_name = "Open"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Door/interaction_area"]

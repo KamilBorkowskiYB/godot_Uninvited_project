@@ -62,6 +62,7 @@ high = true
 
 [node name="MovingBlock4" parent="MovingBlocks" instance=ExtResource("5_58tq3")]
 position = Vector2(1197, -27)
+collision_layer = 2
 
 [node name="MovingBlock5" parent="MovingBlocks" instance=ExtResource("4_uhdau")]
 position = Vector2(850, 697)

@@ -350,6 +350,7 @@ high = true
 
 [node name="MovingBlock3" parent="MovingBlocks" index="2" instance=ExtResource("8_rabms")]
 position = Vector2(531, 309)
+collision_layer = 2
 
 [node name="Tilemap" parent="." index="3"]
 use_parent_material = true

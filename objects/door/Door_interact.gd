@@ -35,6 +35,11 @@ func _on_interact():
 		set_angular_velocity(0)
 		self.transform = transform_to
 		freeze = true
+		
+		for body in interaction_area.get_overlapping_bodies(): #apply impulse to push object out of the door
+			if body is RigidBody2D:
+				body.apply_impulse(Vector2.ZERO, Vector2(1,1))
+
 
 
 func kill(attack: Attack):
