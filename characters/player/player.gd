@@ -26,14 +26,15 @@ var shotgun_unlock = 0
 var shotgun_shells = 1
 
 ##########        PLAYER NODES        ##########
-@onready var ray_cast1 = $Top/RayCasts/RayCast2D
-@onready var ray_cast2 = $Top/RayCasts/RayCast2D2
-@onready var ray_cast3 = $Top/RayCasts/RayCast2D3
-@onready var ray_cast4 = $Top/RayCasts/RayCast2D4
+@onready var top = $Top
+@onready var legs = $Legs
+@onready var ray_cast1 = top.get_node("RayCasts/RayCast2D")
+@onready var ray_cast2 = top.get_node("RayCasts/RayCast2D2")
+@onready var ray_cast3 = top.get_node("RayCasts/RayCast2D3")
+@onready var ray_cast4 = top.get_node("RayCasts/RayCast2D4")
 @onready var animation_player = $AnimationPlayerTOP
 @onready var animation_playerLegs = $AnimationPlayerLEGS
 @onready var animation_run_rotation = $AnimationPlayerRUNROT
-@onready var top = $Top
 @onready var bullet_trail = load("res://characters/player/misc/shot_trail.tscn")
 @export var move_speed = 200
 var aim_move_speed_debuff = 1.0
@@ -61,6 +62,7 @@ var pistol_cur_mag = 8
 const PISTOL_AIM_ANIM = "aim_pistol"
 const PISTOL_AIMED_ANIM = "aimed_pistol"
 const PISTOL_RELOAD_ANIM = "reload_pistol"
+const PISTOL_FRAME = 13
 #rifle
 const RIFLE_MAX_RECOIL = 15.0
 const RIFLE_MIN_RECOIL = 3.0
@@ -72,6 +74,7 @@ var rifle_cur_mag = 1
 const RIFLE_AIM_ANIM = "aim_rifle"
 const RIFLE_AIMED_ANIM = "aimed_rifle"
 const RIFLE_RELOAD_ANIM = "reload_rifle"
+const RIFLE_FRAME = 39
 #shotgun
 const SHOTGUN_MAX_RECOIL = 40.0
 const SHOTGUN_MIN_RECOIL = 10.0
@@ -83,6 +86,7 @@ var shotgun_cur_mag = 2
 const SHOTGUN_AIM_ANIM = "aim_shotgun"
 const SHOTGUN_AIMED_ANIM = "aimed_shotgun"
 const SHOTGUN_RELOAD_ANIM = "reload_shotgun"
+const SHOTGUN_FRAME = 52
 #defalut
 var max_recoil = RIFLE_MAX_RECOIL
 var min_recoil = RIFLE_MIN_RECOIL#dynamic min recoil based of walking, etc.
@@ -95,6 +99,7 @@ var animation_aimed = RIFLE_AIMED_ANIM
 var animation_reload = RIFLE_RELOAD_ANIM
 var magazine = rifle_cur_mag
 var ammo = rifle_ammo
+var weapon_frame = RIFLE_FRAME
 
 func _ready():
 	can_shoot = false
@@ -105,10 +110,10 @@ func _process(delta):
 	if aim_assist != null:
 		#aim_assist.position = self.position
 		#position is set in camera_control.gd
-		aim_assist.rotation = $Top.rotation
+		aim_assist.rotation = top.rotation
 		
 	if view_light != null:      #viewPorty
-		view_light.rotation = $Top.rotation
+		view_light.rotation = top.rotation
 		view_light.position = self.position
 	##########        EXITING         ##########
 	if Input.is_action_just_pressed("exit"):
@@ -119,12 +124,12 @@ func _process(delta):
 		
 	##########        TOP AND LEGS ROTATION         ##########
 	if !grabbing:
-		$Top.rotation = global_position.direction_to(get_global_mouse_position()).angle() + PI/2
+		top.rotation = global_position.direction_to(get_global_mouse_position()).angle() + PI/2
 	else:
 		var target_rotation = global_position.direction_to(get_global_mouse_position()).angle() + PI/2
-		$Top.rotation = lerp_angle($Top.rotation, target_rotation, 0.01 / grabbed_object.mass)
+		top.rotation = lerp_angle(top.rotation, target_rotation, 0.01 / grabbed_object.mass)
 	move_direction = Input.get_vector("move_left","move_right","move_down","move_up")
-	$Legs.rotation = move_direction.angle() + PI/2
+	legs.rotation = move_direction.angle() + PI/2
 	
 	if velocity.length() > 0:
 		animation_playerLegs.play(animation_walk)
@@ -132,7 +137,7 @@ func _process(delta):
 		if(recoil < min_recoil):
 			recoil = min_recoil
 	else:
-		$Legs.rotation = $Top.rotation
+		legs.rotation = top.rotation
 		animation_playerLegs.stop()
 		min_recoil = floor_min_recoil
 	
@@ -163,19 +168,19 @@ func _process(delta):
 	
 	if Input.is_action_just_pressed("weapon_1"):
 		if rifle_unlock > 0 and !grabbing:
-			change_weapon(39,0,RIFLE_MAX_RECOIL,RIFLE_MIN_RECOIL,
+			change_weapon(RIFLE_FRAME,0,RIFLE_MAX_RECOIL,RIFLE_MIN_RECOIL,
 			RIFLE_DMG,RIFLE_FOCUS_SPEED,RIFLE_AIM_ANIM,RIFLE_AIMED_ANIM,RIFLE_RELOAD_ANIM)
 			weapon_info_on.emit()
 			
 	if Input.is_action_just_pressed("weapon_2"):
 		if shotgun_unlock > 0 and !grabbing:
-			change_weapon(52,1,SHOTGUN_MAX_RECOIL,SHOTGUN_MIN_RECOIL,
+			change_weapon(SHOTGUN_FRAME,1,SHOTGUN_MAX_RECOIL,SHOTGUN_MIN_RECOIL,
 			SHOTGUN_DMG,SHOTGUN_FOCUS_SPEED,SHOTGUN_AIM_ANIM,SHOTGUN_AIMED_ANIM,SHOTGUN_RELOAD_ANIM)
 			weapon_info_on.emit()
 	
 	if Input.is_action_just_pressed("weapon_3"):
 		if pistol_unlock > 0 and !grabbing:
-			change_weapon(13,2,PISTOL_MAX_RECOIL,PISTOL_MIN_RECOIL,
+			change_weapon(PISTOL_FRAME,2,PISTOL_MAX_RECOIL,PISTOL_MIN_RECOIL,
 			PISTOL_DMG,PISTOL_FOCUS_SPEED,PISTOL_AIM_ANIM,PISTOL_AIMED_ANIM,PISTOL_RELOAD_ANIM)
 			weapon_info_on.emit()
 	
@@ -230,11 +235,11 @@ func _physics_process(_delta):
 	move_and_slide()
 	if standing_on == "water":
 		floor_move_speed_debuff = 0.3
-		$Legs.hide()
+		legs.hide()
 		$WaterSplash.emitting = true
 	else:
 		floor_move_speed_debuff = 1.0
-		$Legs.show()
+		legs.show()
 		$WaterSplash.emitting = false
 	##########        COLIDING WITH RIGIDBODYS         ##########
 	for i in get_slide_collision_count():
@@ -247,17 +252,17 @@ func kill():
 		return
 	dead = true
 	$Sounds/DeafSound.play()
-	$Top/Dead.show()
-	$Top/Alive.hide()
-	$Legs.hide()
+	top.get_node("Dead").show()
+	top.get_node("Alive").hide()
+	legs.hide()
 	z_index = -1
 	emit_signal("player_has_died")
 
 func shoot(ray_casts,ammo_type):
 	if can_shoot == true:
-		$Top/MuzzleFlash.show()
-		$Top/FlashLight.show()
-		$Top/MuzzleFlash/Timer.start()
+		top.get_node("MuzzleFlash").show()
+		top.get_node("FlashLight").show()
+		top.get_node("MuzzleFlash/Timer").start()
 		$Sounds/ShootSound.play()
 		var level = get_parent().get_child(0) #level always should be first node of viewport
 		level.start_shake(10, 0.1) 
@@ -329,7 +334,8 @@ func reload(curr_mag,mag_size,amo):
 
 func change_weapon(frame,wep_num,max_rec,min_rec,dmg,rec_sped,anim_aim,anim_aimed,anim_rel):
 	if cursor_current != cursor_aim and !animation_player.is_playing():
-		$Top/Alive.frame = frame
+		top.get_node("Alive").frame = frame
+		weapon_frame = frame
 		max_recoil = max_rec
 		min_recoil = min_rec
 		damage = dmg
@@ -354,19 +360,18 @@ func update_ammo_numbers():
 		magazine = pistol_cur_mag
 		ammo = pistol_ammo
 
-var before_grab_player_frame
 var grabbing_player_sprite_frame = 78
 func grab_object(object: RigidBody2D):
 	grabbing = true
-	before_grab_player_frame = $Top/Alive.frame
 	stop_run()
-	$Top/Alive.frame = grabbing_player_sprite_frame
+	animation_player.seek(0.0, true)
+	top.get_node("Alive").frame = grabbing_player_sprite_frame
 	grabbed_object = object
 
 func realese_object():
 	grabbing = false
 	grabbed_object = null
-	$Top/Alive.frame = before_grab_player_frame
+	top.get_node("Alive").frame = weapon_frame
 
 func stop_run():
 	run_move_speed_buff = 1.0
@@ -374,7 +379,7 @@ func stop_run():
 	animation_run_rotation.stop()
 	if animation_player.current_animation == "run_unarmed":#No such anim for a moment
 		animation_player.stop()
-		$Top/Alive.frame = 0;
+		top.get_node("Alive").frame = 0;
 
 func step():
 	if standing_on == "brick":

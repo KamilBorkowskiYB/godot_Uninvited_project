@@ -17,7 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://b4hop5ypxtvrs" path="res://characters/water_splash.tscn" id="15_vfyxc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_f7cyc"]
-radius = 27.2947
+radius = 40.0125
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_iro56"]
 light_mode = 1
@@ -677,7 +677,6 @@ fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.798165, 0.201835)
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
-scale = Vector2(1.5, 1.5)
 collision_layer = 2
 collision_mask = 7
 motion_mode = 1
@@ -688,7 +687,8 @@ can_shoot = true
 shape = SubResource("CircleShape2D_f7cyc")
 
 [node name="Legs" type="Node2D" parent="."]
-scale = Vector2(0.8, 1)
+position = Vector2(-0.666663, 6.66667)
+scale = Vector2(1.2, 1.5)
 
 [node name="LegL" type="Node2D" parent="Legs"]
 position = Vector2(-8, 0)
@@ -734,12 +734,12 @@ position = Vector2(-1, 0)
 texture = ExtResource("3_0tow6")
 
 [node name="Top" type="Node2D" parent="."]
-position = Vector2(-3.8147e-06, -2.66667)
+position = Vector2(-0.666667, 4)
 
 [node name="Alive" type="Sprite2D" parent="Top"]
 texture_filter = 1
 texture = ExtResource("3_wpnqy")
-offset = Vector2(0, -25)
+offset = Vector2(0, -38)
 hframes = 13
 vframes = 8
 
@@ -747,6 +747,7 @@ vframes = 8
 visible = false
 z_index = -1
 position = Vector2(0, -14)
+scale = Vector2(1.5, 1.5)
 texture = ExtResource("4_kohlt")
 
 [node name="BloodSplatter" type="Sprite2D" parent="Top/Dead"]
@@ -758,6 +759,7 @@ texture = ExtResource("5_ilehf")
 [node name="FlashLight" type="PointLight2D" parent="Top"]
 visible = false
 position = Vector2(0, -66)
+scale = Vector2(1.5, 1.5)
 color = Color(1, 1, 1, 0.741176)
 blend_mode = 2
 shadow_enabled = true
@@ -768,6 +770,7 @@ texture_scale = 10.05
 visible = false
 self_modulate = Color(1, 1, 0.172549, 1)
 position = Vector2(3, -85)
+scale = Vector2(1.5, 1.5)
 texture = ExtResource("7_pvwq1")
 
 [node name="Timer" type="Timer" parent="Top/MuzzleFlash"]
@@ -830,6 +833,7 @@ libraries = {
 [node name="zone_light" type="PointLight2D" parent="."]
 light_mask = 524291
 visibility_layer = 524289
+scale = Vector2(1.5, 1.5)
 color = Color(1, 1, 1, 0.333333)
 shadow_enabled = true
 shadow_item_cull_mask = 524291
@@ -857,6 +861,7 @@ bus = &"sfx"
 [node name="Footsteps" parent="." instance=ExtResource("14_xbjs0")]
 
 [node name="WaterSplash" parent="." instance=ExtResource("15_vfyxc")]
+scale = Vector2(1.5, 1.5)
 
 [connection signal="timeout" from="Top/MuzzleFlash/Timer" to="Top/FlashLight" method="hide"]
 [connection signal="timeout" from="Top/MuzzleFlash/Timer" to="Top/MuzzleFlash" method="hide"]
