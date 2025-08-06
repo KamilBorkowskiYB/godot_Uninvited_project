@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://68vxx7afs0bf"]
+
+[ext_resource type="PackedScene" uid="uid://bbmb7rfl6hr0t" path="res://levels/preset_level/preset_level_mid.tscn" id="1_th2y4"]
+
+[node name="preset_level_gray" type="Node2D"]
+
+[node name="preset_level_mid" parent="." instance=ExtResource("1_th2y4")]
+
+[node name="out_of_view_overlay" type="Node2D" parent="."]

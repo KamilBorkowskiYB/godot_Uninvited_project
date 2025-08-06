@@ -10,7 +10,6 @@ extends Node2D
 
 var health = 150
 var standing_on = "grass"
-var move_direction = Vector2(0,0) # for water surface effect
 
 var grabbed = false
 var previous_player_position := Vector2.ZERO

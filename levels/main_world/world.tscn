@@ -4,11 +4,11 @@
 [ext_resource type="Shader" path="res://shaders/grayscale.gdshader" id="1_fgecg"]
 [ext_resource type="Shader" path="res://shaders/maskView.gdshader" id="2_hpucc"]
 [ext_resource type="PackedScene" uid="uid://d1oul8y1hqgln" path="res://levels/test_level1/level.tscn" id="2_n2174"]
-[ext_resource type="PackedScene" uid="uid://bnppgiphfgo5q" path="res://levels/test_level1/enviroment.tscn" id="3_uc7v4"]
 [ext_resource type="Texture2D" uid="uid://dv1g3h6sswoha" path="res://characters/player/graphic/view_cone.png" id="3_wk82u"]
 [ext_resource type="Shader" path="res://shaders/visibilityMapShader.gdshader" id="4_thh5m"]
 [ext_resource type="PackedScene" uid="uid://c8bitsc7ybbya" path="res://characters/player/player.tscn" id="5_5swua"]
 [ext_resource type="Texture2D" uid="uid://cgkk6a01eg81t" path="res://characters/player/graphic/aim_assinst_line.png" id="6_6svyg"]
+[ext_resource type="PackedScene" uid="uid://02ixg6ydcbav" path="res://levels/test_level1/test_level_1_gray.tscn" id="6_76trs"]
 [ext_resource type="PackedScene" uid="uid://b7iklrlyc5m55" path="res://levels/test_level1/test_level_1_low.tscn" id="8_apxvq"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_23xho"]
@@ -94,7 +94,7 @@ handle_input_locally = false
 size = Vector2i(1152, 648)
 render_target_update_mode = 4
 
-[node name="Enviroment" parent="FogViewport" instance=ExtResource("3_uc7v4")]
+[node name="test_level_1_gray" parent="FogViewport" instance=ExtResource("6_76trs")]
 
 [node name="Camera2D" type="Camera2D" parent="FogViewport"]
 

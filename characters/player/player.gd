@@ -48,7 +48,7 @@ var grabbed_object:RigidBody2D
 var weapon_selected  #0-rifle	1-shotgun 	2-pistol
 @export var can_shoot = false
 @export var can_interact = true #not used at the moment
-var move_direction = Vector2(0,0) # for water splashes
+var move_direction = Vector2(0,0)
 
 ##########        WEAPON STATS         ##########
 #pistol
@@ -99,7 +99,7 @@ var animation_aimed = RIFLE_AIMED_ANIM
 var animation_reload = RIFLE_RELOAD_ANIM
 var magazine = rifle_cur_mag
 var ammo = rifle_ammo
-var weapon_frame = RIFLE_FRAME
+var weapon_frame = 0
 
 func _ready():
 	can_shoot = false

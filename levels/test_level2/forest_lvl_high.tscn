@@ -13,7 +13,7 @@
 [node name="Zombie" parent="Enemies" index="0" instance=ExtResource("5_e8msc")]
 position = Vector2(1635, -198)
 
-[node name="LightSources" parent="." index="4"]
+[node name="LightSources" parent="." index="5"]
 z_index = 2
 position = Vector2(96, 102)
 
@@ -30,7 +30,7 @@ position = Vector2(1070, -344)
 position = Vector2(514, -1356)
 scale = Vector2(2.32, 1.88)
 level_high = "res://levels/test_level1/level.tscn"
-level_mid = "res://levels/test_level1/enviroment.tscn"
+level_mid = "res://levels/test_level1/test_level_1_gray.tscn"
 level_low = "res://levels/test_level1/test_level_1_low.tscn"
 player_position = Vector2(800, 350)
 level_name = "Cottage"

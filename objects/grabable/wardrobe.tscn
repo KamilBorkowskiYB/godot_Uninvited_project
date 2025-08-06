@@ -15,7 +15,7 @@ size = Vector2(160, 64)
 radius = 59.9997
 height = 225.999
 
-[node name="MovingBlock" instance=ExtResource("1_1g66k")]
+[node name="Wardrobe" instance=ExtResource("1_1g66k")]
 mass = 5.0
 linear_damp = 5.0
 angular_damp = 5.0

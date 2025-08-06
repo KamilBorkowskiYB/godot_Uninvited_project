@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://c2m7t1akvxu2e"]
+
+[ext_resource type="PackedScene" uid="uid://cv46bl48bc1fk" path="res://objects/grabable/movingBlock.tscn" id="1_mvpmb"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_5d7qn"]
+resource_local_to_scene = true
+polygon = PackedVector2Array(24.6667, -24, 24.6667, 23.3333, -23.3333, 23.3333, -23.3333, -24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7bwlt"]
+resource_local_to_scene = true
+size = Vector2(97, 96)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_c70i0"]
+resource_local_to_scene = true
+radius = 84.0952
+
+[node name="CreateBig" instance=ExtResource("1_mvpmb")]
+mass = 6.0
+high = true
+grabable = true
+
+[node name="BlockSprite" parent="." index="0"]
+scale = Vector2(1.5, 1.5)
+
+[node name="LightOccluder2D" parent="BlockSprite" index="0"]
+occluder = SubResource("OccluderPolygon2D_5d7qn")
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("RectangleShape2D_7bwlt")
+
+[node name="CollisionShape2D" parent="interaction_area" index="0"]
+shape = SubResource("CircleShape2D_c70i0")

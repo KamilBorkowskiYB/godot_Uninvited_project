@@ -43,7 +43,6 @@ shape = SubResource("RectangleShape2D_5p00n")
 [node name="Footsteps" parent="." instance=ExtResource("3_mm4i6")]
 
 [node name="WaterSplash" parent="." instance=ExtResource("4_bhn4c")]
-position = Vector2(0, 0)
 emitting = false
 
 [node name="interaction_area" parent="." instance=ExtResource("5_lx4jv")]
