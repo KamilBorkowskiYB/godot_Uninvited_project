@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://bnppgiphfgo5q"]
+[gd_scene load_steps=5 format=3 uid="uid://bnppgiphfgo5q"]
 
 [ext_resource type="PackedScene" uid="uid://b7iklrlyc5m55" path="res://levels/test_level1/test_level_1_low.tscn" id="1_4so2i"]
+[ext_resource type="PackedScene" uid="uid://bkv3a0k14fqnv" path="res://Interactions/SecretArea.tscn" id="2_nvptp"]
 
 [sub_resource type="Gradient" id="Gradient_hm63i"]
 offsets = PackedFloat32Array(0.987013, 0.993506, 1)
@@ -31,10 +32,15 @@ blend_mode = 1
 texture = SubResource("GradientTexture2D_c1o86")
 texture_scale = 14.18
 
-[node name="Rroom" type="PointLight2D" parent="AmbientDark"]
-position = Vector2(814.792, -570.785)
-scale = Vector2(0.544053, 1.19131)
-energy = 0.5
-blend_mode = 1
-texture = SubResource("GradientTexture2D_c1o86")
-texture_scale = 14.18
+[node name="Secrets" type="Node2D" parent="."]
+
+[node name="SecretArea" parent="Secrets" instance=ExtResource("2_nvptp")]
+position = Vector2(1200, -345)
+scale = Vector2(0.66, 0.463999)
+
+[node name="SecretArea2" parent="Secrets" instance=ExtResource("2_nvptp")]
+position = Vector2(1728, 56)
+scale = Vector2(0.46, 2.064)
+texture = null
+
+[editable path="Secrets/SecretArea2"]

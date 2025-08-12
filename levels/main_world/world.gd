@@ -36,7 +36,7 @@ func _ready():
 	if(footnode and tilemap):
 		footnode.tilemap = tilemap
 	
-	#connecting tilemap to zombies footsteps
+	#connecting tilemap to enemies footsteps
 	viewport1 = get_node("MainLevelViewport/SubViewport").get_child(0).get_node("Enemies")
 	for child in viewport1.get_children():
 		if(child and tilemap):
@@ -74,6 +74,12 @@ func _ready():
 		if child.has_signal("change_level"):
 			child.change_level.connect(change_level)
 	
+	#connecting signals from Secrets
+	viewport1 = get_node("MainLevelViewport/SubViewport").get_child(0).get_child(0).get_node("Secrets")
+	for child in viewport1.get_children():
+		if child.get_child(0).has_signal("reveal_area"):
+			child.get_child(0).reveal_area.connect(reveal_area)
+	
 	#setting materials in viewport3 to white
 	change_material_to_white(viewport3.get_child(0))
 	
@@ -107,11 +113,9 @@ func _ready():
 	
 	# Hidding front elements in Visibility Viewport
 	var transparent = get_tree().get_nodes_in_group("Transparent")
-	
 	for node in transparent:
 		if not viewport3.is_ancestor_of(node):
 			continue
-		
 		node.hide()
 
 
@@ -132,12 +136,18 @@ func item_picked_up(is_space,item_name):
 		$ItemsObtained/UI/Panel/Label.text = "No more space: " + item_name
 	$ItemsObtained/UI.show()
 	$ItemsObtained/UI/PickUpTimer.start()
+
+
 func weapon_info_visible():
 	$WeaponSelected/Control.show()
+
+
 func change_material_to_white(node):
 	node.use_parent_material = true
 	for child in node.get_children():
 		change_material_to_white(child)
+
+
 func change_level(player_pos,level_high,level_mid,level_low):
 	get_node("MainLevelViewport/SubViewport").get_child(0).queue_free()
 	get_node("FogViewport").get_child(0).queue_free()
@@ -168,3 +178,28 @@ func change_level(player_pos,level_high,level_mid,level_low):
 	_ready()
 	InteractionManager.active_areas = []
 	InteractionManager.mouse_range = []
+
+
+func reveal_area(secret_name: String):
+	#TILESET MUST BE NAMED JUST LIKE SECRET 
+	var viewport1 = get_node("MainLevelViewport/SubViewport").get_child(0).get_child(0).get_node("Secrets")
+	var viewport2 = get_node("FogViewport").get_child(0).get_child(0).get_node("Secrets")
+	var viewport2prim = get_node("FogViewport").get_child(0).get_node("out_of_view_overlay").get_node("Secrets") #tileset overlay
+	
+	var node1 = viewport1.get_node(NodePath(secret_name))
+	var node2 = viewport2.get_node(NodePath(secret_name))
+	var node3 = viewport2prim.get_node_or_null(NodePath(secret_name))
+	
+	var tween_timer: float = 1.5
+	var tween1 = create_tween()
+	tween1.tween_property(node1, "color:a", 0.0, tween_timer) 
+	tween1.tween_callback(func(): node1.queue_free())
+	
+	var tween2 = create_tween()
+	tween2.tween_property(node2, "color:a", 0.0, tween_timer) 
+	tween2.tween_callback(func(): node2.queue_free()) 
+	
+	if node3:#optional
+		var tween3 = create_tween()
+		tween3.tween_property(node3, "modulate:a", 0.0, tween_timer) 
+		tween3.tween_callback(func(): node3.queue_free()) 

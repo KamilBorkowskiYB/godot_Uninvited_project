@@ -18,13 +18,13 @@ script = ExtResource("1_4f817")
 position = Vector2(4, 5)
 
 [node name="Zombie" parent="Enemies" instance=ExtResource("3_7x6e1")]
-position = Vector2(1312, -278)
+position = Vector2(778, -77)
 
 [node name="Zombie2" parent="Enemies" instance=ExtResource("3_7x6e1")]
 position = Vector2(-288, 221)
 
 [node name="Zombie4" parent="Enemies" instance=ExtResource("3_7x6e1")]
-position = Vector2(555, -397)
+position = Vector2(1177, 192)
 
 [node name="Mutant" parent="Enemies" instance=ExtResource("4_78ckn")]
 position = Vector2(1733, -612)
@@ -32,7 +32,7 @@ rotation = -3.12884
 
 [node name="LightSource" parent="." instance=ExtResource("4_n3l4b")]
 z_index = -2
-position = Vector2(678, -284)
+position = Vector2(1122, 62)
 
 [node name="LightSource2" parent="." instance=ExtResource("4_n3l4b")]
 z_index = -2
@@ -50,7 +50,7 @@ script = ExtResource("5_ccx42")
 position = Vector2(-82, -66)
 
 [node name="PickUp" parent="PickUps" instance=ExtResource("7_0crg7")]
-position = Vector2(532, 22)
+position = Vector2(543, -6)
 item_selected = 4
 
 [node name="PickUp2" parent="PickUps" instance=ExtResource("7_0crg7")]
@@ -58,37 +58,37 @@ position = Vector2(1495, -162)
 item_selected = 1
 
 [node name="PickUp3" parent="PickUps" instance=ExtResource("7_0crg7")]
-position = Vector2(1278, 34)
+position = Vector2(1311, -8)
 
 [node name="PickUp4" parent="PickUps" instance=ExtResource("7_0crg7")]
-position = Vector2(1278, 34)
+position = Vector2(1311, -8)
 
 [node name="PickUp5" parent="PickUps" instance=ExtResource("7_0crg7")]
-position = Vector2(1278, 34)
+position = Vector2(1311, -8)
 
 [node name="PickUp6" parent="PickUps" instance=ExtResource("7_0crg7")]
-position = Vector2(1278, 34)
+position = Vector2(1311, -8)
 
 [node name="PickUp7" parent="PickUps" instance=ExtResource("7_0crg7")]
-position = Vector2(1278, 34)
+position = Vector2(1311, -8)
 
 [node name="PickUp8" parent="PickUps" instance=ExtResource("7_0crg7")]
-position = Vector2(1278, 34)
+position = Vector2(1311, -8)
 
 [node name="PickUp9" parent="PickUps" instance=ExtResource("7_0crg7")]
-position = Vector2(1278, 34)
+position = Vector2(1311, -8)
 
 [node name="PickUp10" parent="PickUps" instance=ExtResource("7_0crg7")]
-position = Vector2(1278, 34)
+position = Vector2(1311, -8)
 
 [node name="PickUp11" parent="PickUps" instance=ExtResource("7_0crg7")]
-position = Vector2(1278, 34)
+position = Vector2(1311, -8)
 
 [node name="PickUp12" parent="PickUps" instance=ExtResource("7_0crg7")]
-position = Vector2(1278, 34)
+position = Vector2(1311, -8)
 
 [node name="PickUp13" parent="PickUps" instance=ExtResource("7_0crg7")]
-position = Vector2(1278, 34)
+position = Vector2(1311, -8)
 
 [node name="PickUp14" parent="PickUps" instance=ExtResource("7_0crg7")]
 position = Vector2(311, 348)
