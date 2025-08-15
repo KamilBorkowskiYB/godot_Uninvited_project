@@ -1,6 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://c2m7t1akvxu2e"]
+[gd_scene load_steps=6 format=3 uid="uid://c2m7t1akvxu2e"]
 
-[ext_resource type="PackedScene" uid="uid://cv46bl48bc1fk" path="res://objects/grabable/movingBlock.tscn" id="1_mvpmb"]
+[ext_resource type="PackedScene" uid="uid://cv46bl48bc1fk" path="res://objects/grabable/movingBlock.tscn" id="1_ctrth"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_5d7qn"]
 resource_local_to_scene = true
@@ -12,9 +12,13 @@ size = Vector2(97, 96)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_c70i0"]
 resource_local_to_scene = true
-radius = 84.0952
+radius = 100.0
 
-[node name="CreateBig" instance=ExtResource("1_mvpmb")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cetpj"]
+resource_local_to_scene = true
+size = Vector2(97, 96)
+
+[node name="CrateBig" instance=ExtResource("1_ctrth")]
 mass = 6.0
 high = true
 grabable = true
@@ -30,3 +34,6 @@ shape = SubResource("RectangleShape2D_7bwlt")
 
 [node name="CollisionShape2D" parent="interaction_area" index="0"]
 shape = SubResource("CircleShape2D_c70i0")
+
+[node name="CollisionShape2D" parent="MouseRangeInteraction" index="0"]
+shape = SubResource("RectangleShape2D_cetpj")

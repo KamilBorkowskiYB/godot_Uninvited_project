@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://bhvgcymlk0ibj"]
+[gd_scene load_steps=8 format=3 uid="uid://bhvgcymlk0ibj"]
 
 [ext_resource type="Script" path="res://Interactions/pickUp.gd" id="1_2hpch"]
 [ext_resource type="Script" path="res://Interactions/interaction_area.gd" id="1_ind0n"]
+[ext_resource type="PackedScene" uid="uid://bmdicmqksf7an" path="res://Interactions/MouseRangeInteraction.tscn" id="3_5a8ke"]
 
 [sub_resource type="Curve" id="Curve_5lc43"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -12,6 +13,9 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hd0jl"]
 size = Vector2(88, 80)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0sa0u"]
+size = Vector2(48, 42)
 
 [node name="PickUp" type="CPUParticles2D"]
 z_index = -1
@@ -35,6 +39,11 @@ action_name = "Pick up"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
 shape = SubResource("RectangleShape2D_hd0jl")
+
+[node name="MouseRangeInteraction" parent="." instance=ExtResource("3_5a8ke")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MouseRangeInteraction"]
+shape = SubResource("RectangleShape2D_0sa0u")
 
 [connection signal="body_entered" from="InteractionArea" to="InteractionArea" method="_on_body_entered"]
 [connection signal="body_exited" from="InteractionArea" to="InteractionArea" method="_on_body_exited"]

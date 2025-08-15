@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://djd0wpqb3yhqj"]
+[gd_scene load_steps=6 format=3 uid="uid://djd0wpqb3yhqj"]
 
 [ext_resource type="PackedScene" uid="uid://cv46bl48bc1fk" path="res://objects/grabable/movingBlock.tscn" id="1_4uxck"]
 
@@ -14,7 +14,11 @@ size = Vector2(65, 64)
 resource_local_to_scene = true
 radius = 84.0952
 
-[node name="CreateSmall" instance=ExtResource("1_4uxck")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g1c6x"]
+resource_local_to_scene = true
+size = Vector2(65, 64)
+
+[node name="CrateSmall" instance=ExtResource("1_4uxck")]
 mass = 3.0
 grabable = true
 
@@ -26,3 +30,6 @@ shape = SubResource("RectangleShape2D_ls7cb")
 
 [node name="CollisionShape2D" parent="interaction_area" index="0"]
 shape = SubResource("CircleShape2D_5e418")
+
+[node name="CollisionShape2D" parent="MouseRangeInteraction" index="0"]
+shape = SubResource("RectangleShape2D_g1c6x")

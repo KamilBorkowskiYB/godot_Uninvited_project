@@ -1,12 +1,16 @@
 extends RigidBody2D
 
 @onready var interaction_area: InteractionArea = $interaction_area
+@onready var mouse_interaction_area = $MouseRangeInteraction
+
 var transform_to
 var isClosed = true
 var health = 100
 signal destroyed
 func _ready():
 	interaction_area.interact = Callable(self,"_on_interact")
+	mouse_interaction_area.parent_interaction = interaction_area
+	
 	transform_to = self.transform
 
 func _process(_delta):

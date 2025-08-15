@@ -55,7 +55,7 @@ func _process(_delta):
 		label.text = base_text + area.action_name
 		
 		var mouse_pos = get_viewport().get_mouse_position()
-		label.global_position = mouse_pos + Vector2(-75, 30)
+		label.global_position = mouse_pos - label.size / 2 + Vector2(0, 30)
 		
 		if player_help.cursor_current != cursor_aim:
 			label.show()
@@ -67,13 +67,33 @@ func _process(_delta):
 	if player_help != null and player_help.cursor_current != cursor_aim:
 		Input.set_custom_mouse_cursor(cursor_normal, Input.CURSOR_ARROW, Vector2(24, 24))
 
-
 func _sort_by_distance_to_player(area1, area2):
+	if area1.get_parent().z_index != area2.get_parent().z_index:#return top interaction
+		return area1.z_index > area2.z_index 
 	var player_help = get_tree().get_first_node_in_group("player")
 	var area1_to_player = player_help.global_position.distance_to(area1.global_position)
 	var area2_to_player = player_help.global_position.distance_to(area2.global_position)
 	return area1_to_player < area2_to_player
-	
+
+#func _sort_by_distance_to_player(area1, area2):
+	##if area1.get_parent().z_index != area2.get_parent().z_index:#return top interaction
+		##return area1.z_index > area2.z_index 
+	#var player_help = get_tree().get_first_node_in_group("player")
+	#var mouse_pos = get_global_mouse_position() #get_viewport().get_mouse_position()
+	 #
+	#var area1_to_player = player_help.global_position.distance_to(area1.global_position)
+	#var area2_to_player = player_help.global_position.distance_to(area2.global_position)
+	#
+	#var area1_to_mouse = mouse_pos.distance_to(area1.global_position)
+	#var area2_to_mouse = mouse_pos.distance_to(area2.global_position)
+	#
+	#print("mouse pos: ", mouse_pos)
+	#print("area1 pos: ", area1.global_position, "  dist: ", area1_to_mouse)
+	#print("area2 pos: ", area2.global_position, "  dist: ", area2_to_mouse)
+	#
+	##return area1_to_player < area2_to_player
+	#return area1_to_mouse < area2_to_mouse
+
 
 func _input(event):
 	var player_help = get_tree().get_first_node_in_group("player") #after restart player is freed 

@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bef12d8fnd3pw" path="res://objects/grabable/wardrobe.tscn" id="5_58tq3"]
 [ext_resource type="PackedScene" uid="uid://djd0wpqb3yhqj" path="res://objects/grabable/crate_small.tscn" id="5_syhhd"]
 [ext_resource type="PackedScene" uid="uid://c33j86e6f8mi7" path="res://levels/atlases/atlas_one.tscn" id="6_jx3yk"]
-[ext_resource type="PackedScene" uid="uid://c2m7t1akvxu2e" path="res://objects/grabable/create_big.tscn" id="6_ratfj"]
+[ext_resource type="PackedScene" uid="uid://c2m7t1akvxu2e" path="res://objects/grabable/crate_big.tscn" id="6_qey61"]
 
 [node name="test_level1_low" type="Node2D" groups=["level_low"]]
 
@@ -55,10 +55,10 @@ position = Vector2(-92, 230)
 [node name="CreateSmall2" parent="MovingBlocks" instance=ExtResource("5_syhhd")]
 position = Vector2(460, -73)
 
-[node name="CreateBig" parent="MovingBlocks" instance=ExtResource("6_ratfj")]
+[node name="CreateBig" parent="MovingBlocks" instance=ExtResource("6_qey61")]
 position = Vector2(795, -392)
 
-[node name="CreateBig2" parent="MovingBlocks" instance=ExtResource("6_ratfj")]
+[node name="CreateBig2" parent="MovingBlocks" instance=ExtResource("6_qey61")]
 position = Vector2(1010, 562)
 
 [node name="Tilemap" type="Node2D" parent="."]

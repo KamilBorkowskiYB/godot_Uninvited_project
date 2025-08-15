@@ -1,6 +1,8 @@
 extends CPUParticles2D
 
 @onready var interaction_area: InteractionArea = $InteractionArea
+@onready var mouse_interaction_area = $MouseRangeInteraction
+
 var item_name = "None"# displayed name 
 var item_id = "None" # has to be equal to player unlock
 var is_space
@@ -17,6 +19,8 @@ signal item_picked_up(is_space,item_name)
 
 func _ready():
 	interaction_area.interact = Callable(self,"_on_interact")
+	mouse_interaction_area.parent_interaction = interaction_area
+	
 	match item_selected:
 		items.Rifle_Ammo:
 			item_id = "rifle_ammo"

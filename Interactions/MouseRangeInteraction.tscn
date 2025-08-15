@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://bmdicmqksf7an"]
+
+[ext_resource type="Script" path="res://Interactions/MouseRangeInteraction.gd" id="1_305b2"]
+
+[node name="MouseRangeInteraction" type="Area2D"]
+collision_layer = 128
+collision_mask = 2
+script = ExtResource("1_305b2")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

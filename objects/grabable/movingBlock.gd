@@ -7,6 +7,7 @@ extends Node2D
 @export var grabable: bool # for feture use case
 
 @onready var interaction_area: InteractionArea = $interaction_area
+@onready var mouse_interaction_area = $MouseRangeInteraction
 
 var health = 150
 var standing_on = "grass"
@@ -20,6 +21,8 @@ var initial_mass
 
 func _ready():
 	interaction_area.interact = Callable(self,"_on_interact")
+	mouse_interaction_area.parent_interaction = interaction_area
+	
 	initial_mass = self.mass
 	if high:
 		$".".set_collision_layer_value(2, true)
@@ -41,35 +44,6 @@ func _process(_delta):
 	else:
 		self.mass = initial_mass
 		$WaterSplash.emitting = false
-
-#func _physics_process(delta):
-	#var player: CharacterBody2D = get_tree().get_first_node_in_group("player")
-	#if player == null:
-		#return
-	#
-	#if grabbed:
-		#var rotation_delta = player.top.rotation - previous_player_rotation
-		#
-		#relative_offset = (global_position - previous_player_position).rotated(rotation_delta)
-		#initial_angle_to_player += rotation_delta
-		#global_position = player.global_position + relative_offset
-		#rotation += rotation_delta
-		#
-		#var player_in_area := false
-		#for body in interaction_area.get_overlapping_bodies():
-			#if body == player:
-				#player_in_area = true
-				#break
-		#if !player_in_area: #realese grab if player isn't in the interaction zone
-			#_on_interact()
-		#else:               #realese grab if rotation of player and object aren't matching
-			#var current_angle_to_player = (global_position - player.global_position).angle()
-			#var angle_diff = abs(wrapf(current_angle_to_player - initial_angle_to_player, -PI, PI))
-			#if angle_diff > 0.3:
-				#_on_interact()
-	#
-	#previous_player_position = player.global_position
-	#previous_player_rotation = player.top.rotation
 
 
 func _physics_process(delta):
