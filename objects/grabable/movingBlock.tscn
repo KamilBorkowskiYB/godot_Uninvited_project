@@ -4,8 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://g4afi40m350" path="res://objects/grabable/crate.png" id="2_4l7cw"]
 [ext_resource type="PackedScene" uid="uid://cjgla4gkbb8u2" path="res://Interactions/footsteps.tscn" id="3_mm4i6"]
 [ext_resource type="PackedScene" uid="uid://b4hop5ypxtvrs" path="res://characters/water_splash.tscn" id="4_bhn4c"]
-[ext_resource type="PackedScene" uid="uid://dtfqvqygnxp8r" path="res://Interactions/InteractionArea.tscn" id="5_lx4jv"]
-[ext_resource type="PackedScene" uid="uid://bmdicmqksf7an" path="res://Interactions/MouseRangeInteraction.tscn" id="6_jjgdq"]
+[ext_resource type="PackedScene" uid="uid://dtfqvqygnxp8r" path="res://Interactions/MainInteractionLogic/InteractionArea.tscn" id="5_lx4jv"]
+[ext_resource type="PackedScene" uid="uid://bmdicmqksf7an" path="res://Interactions/MainInteractionLogic/MouseRangeInteraction.tscn" id="6_jjgdq"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_8mmyc"]
 resource_local_to_scene = true

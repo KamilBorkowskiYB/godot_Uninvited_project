@@ -1,8 +1,9 @@
 extends Node2D
 
-@export var linkedView: Node2D
-@export var linkedFog: Node2D 
-
+var linkedView: Node2D
+var linkedFog: Node2D
+@export var hidden_area_name: String
+var hidden_area: Node2D
 
 func _ready():
 	$Door.destroyed.connect(destroyed)

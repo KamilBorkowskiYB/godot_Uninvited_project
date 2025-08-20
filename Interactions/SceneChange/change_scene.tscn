@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://bkwqhd3tr21xb"]
 
 [ext_resource type="Script" path="res://Interactions/SceneChange/change_scene.gd" id="1_m4k7i"]
-[ext_resource type="PackedScene" uid="uid://dtfqvqygnxp8r" path="res://Interactions/InteractionArea.tscn" id="1_va7y2"]
-[ext_resource type="PackedScene" uid="uid://bmdicmqksf7an" path="res://Interactions/MouseRangeInteraction.tscn" id="3_2om7u"]
+[ext_resource type="PackedScene" uid="uid://dtfqvqygnxp8r" path="res://Interactions/MainInteractionLogic/InteractionArea.tscn" id="2_ache5"]
+[ext_resource type="PackedScene" uid="uid://bmdicmqksf7an" path="res://Interactions/MainInteractionLogic/MouseRangeInteraction.tscn" id="3_3h8y3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cne2l"]
 size = Vector2(148, 102)
@@ -14,12 +14,12 @@ size = Vector2(150, 102)
 z_index = -1
 script = ExtResource("1_m4k7i")
 
-[node name="interaction_area" parent="." instance=ExtResource("1_va7y2")]
+[node name="interaction_area" parent="." instance=ExtResource("2_ache5")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="interaction_area"]
 shape = SubResource("RectangleShape2D_cne2l")
 
-[node name="MouseRangeInteraction" parent="." instance=ExtResource("3_2om7u")]
+[node name="MouseRangeInteraction" parent="." instance=ExtResource("3_3h8y3")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MouseRangeInteraction"]
 shape = SubResource("RectangleShape2D_7hxu7")

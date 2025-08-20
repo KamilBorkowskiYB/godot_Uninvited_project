@@ -110,6 +110,11 @@ func _ready():
 		if node2 and node3:
 			node1.linkedView = node2
 			node1.linkedFog = node3
+		
+		#Connecting doors with hiden areas
+		var ha1 = node1.get("hidden_area_name")
+		if ha1 != null: 
+			node1.hidden_area = get_node("MainLevelViewport/SubViewport").get_child(0).get_child(0).get_node(node1.hidden_area_name)
 	
 	# Hidding front elements in Visibility Viewport
 	var transparent = get_tree().get_nodes_in_group("Transparent")
@@ -190,7 +195,7 @@ func reveal_area(secret_name: String):
 	var node2 = viewport2.get_node(NodePath(secret_name))
 	var node3 = viewport2prim.get_node_or_null(NodePath(secret_name))
 	
-	var tween_timer: float = 1.5
+	var tween_timer: float = 0.4
 	var tween1 = create_tween()
 	tween1.tween_property(node1, "color:a", 0.0, tween_timer) 
 	tween1.tween_callback(func(): node1.queue_free())

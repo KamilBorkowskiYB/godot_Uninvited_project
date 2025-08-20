@@ -43,6 +43,9 @@ func _on_interact():
 		for body in interaction_area.get_overlapping_bodies(): #apply impulse to push object out of the door
 			if body is RigidBody2D:
 				body.apply_impulse(Vector2.ZERO, Vector2(1,1))
+	
+	if(get_parent().hidden_area != null ):
+		get_parent().hidden_area.get_node("TriggerEvent").trigger_event()
 
 
 

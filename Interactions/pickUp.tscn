@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://bhvgcymlk0ibj"]
 
 [ext_resource type="Script" path="res://Interactions/pickUp.gd" id="1_2hpch"]
-[ext_resource type="Script" path="res://Interactions/interaction_area.gd" id="1_ind0n"]
-[ext_resource type="PackedScene" uid="uid://bmdicmqksf7an" path="res://Interactions/MouseRangeInteraction.tscn" id="3_5a8ke"]
+[ext_resource type="Script" path="res://Interactions/MainInteractionLogic/interaction_area.gd" id="2_se4if"]
+[ext_resource type="PackedScene" uid="uid://bmdicmqksf7an" path="res://Interactions/MainInteractionLogic/MouseRangeInteraction.tscn" id="3_fexas"]
 
 [sub_resource type="Curve" id="Curve_5lc43"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -34,13 +34,13 @@ script = ExtResource("1_2hpch")
 [node name="InteractionArea" type="Area2D" parent="."]
 collision_layer = 128
 collision_mask = 2
-script = ExtResource("1_ind0n")
+script = ExtResource("2_se4if")
 action_name = "Pick up"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
 shape = SubResource("RectangleShape2D_hd0jl")
 
-[node name="MouseRangeInteraction" parent="." instance=ExtResource("3_5a8ke")]
+[node name="MouseRangeInteraction" parent="." instance=ExtResource("3_fexas")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MouseRangeInteraction"]
 shape = SubResource("RectangleShape2D_0sa0u")

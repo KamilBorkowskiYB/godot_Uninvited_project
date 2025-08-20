@@ -39,10 +39,12 @@ position = Vector2(1049, 161)
 
 [node name="Door" parent="Doors" instance=ExtResource("3_44mhx")]
 position = Vector2(-583, 139)
+hidden_area_name = "Secrets/SecretArea3"
 
 [node name="Door2" parent="Doors" instance=ExtResource("3_44mhx")]
 position = Vector2(-175, -26)
 rotation = -1.5708
+hidden_area_name = "Secrets/SecretArea2"
 
 [node name="MovingBlocks" type="Node2D" parent="."]
 

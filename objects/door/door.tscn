@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://objects/door/door.gd" id="1_ntr16"]
 [ext_resource type="Script" path="res://objects/door/Door_interact.gd" id="2_1lqf1"]
 [ext_resource type="Texture2D" uid="uid://cma5kmw10jghr" path="res://white_sq.png" id="3_gnegs"]
-[ext_resource type="PackedScene" uid="uid://dtfqvqygnxp8r" path="res://Interactions/InteractionArea.tscn" id="4_k0qj8"]
-[ext_resource type="PackedScene" uid="uid://bmdicmqksf7an" path="res://Interactions/MouseRangeInteraction.tscn" id="5_no43x"]
+[ext_resource type="PackedScene" uid="uid://dtfqvqygnxp8r" path="res://Interactions/MainInteractionLogic/InteractionArea.tscn" id="4_3cndi"]
+[ext_resource type="PackedScene" uid="uid://bmdicmqksf7an" path="res://Interactions/MainInteractionLogic/MouseRangeInteraction.tscn" id="5_y07kf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oivjw"]
 size = Vector2(106.985, 10)
@@ -54,7 +54,7 @@ shape = SubResource("RectangleShape2D_oivjw")
 scale = Vector2(0.666755, 1.07854)
 occluder = SubResource("OccluderPolygon2D_rejhh")
 
-[node name="interaction_area" parent="Door" instance=ExtResource("4_k0qj8")]
+[node name="interaction_area" parent="Door" instance=ExtResource("4_3cndi")]
 collision_mask = 6
 action_name = "Open"
 
@@ -64,7 +64,7 @@ rotation = -3.14159
 scale = Vector2(5.35766, -2.93936)
 shape = SubResource("RectangleShape2D_weep1")
 
-[node name="MouseRangeInteraction" parent="Door" instance=ExtResource("5_no43x")]
+[node name="MouseRangeInteraction" parent="Door" instance=ExtResource("5_y07kf")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Door/MouseRangeInteraction"]
 position = Vector2(55, 0)

@@ -39,8 +39,9 @@ position = Vector2(1200, -345)
 scale = Vector2(0.66, 0.463999)
 
 [node name="SecretArea2" parent="Secrets" instance=ExtResource("2_nvptp")]
-position = Vector2(1728, 56)
-scale = Vector2(0.46, 2.064)
-texture = null
+position = Vector2(1184, 96)
+scale = Vector2(0.66, 0.463999)
 
-[editable path="Secrets/SecretArea2"]
+[node name="SecretArea3" parent="Secrets" instance=ExtResource("2_nvptp")]
+position = Vector2(624, -128)
+scale = Vector2(0.539999, 0.903998)
