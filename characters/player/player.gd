@@ -28,6 +28,7 @@ var shotgun_shells = 1
 ##########        PLAYER NODES        ##########
 @onready var top = $Top
 @onready var legs = $Legs
+@onready var ray_casts = $Top/RayCasts
 @onready var ray_cast1 = top.get_node("RayCasts/RayCast2D")
 @onready var ray_cast2 = top.get_node("RayCasts/RayCast2D2")
 @onready var ray_cast3 = top.get_node("RayCasts/RayCast2D3")
@@ -52,9 +53,10 @@ var move_direction = Vector2(0,0)
 
 ##########        WEAPON STATS         ##########
 #pistol
-const PISTOL_MAX_RECOIL = 20.0
-const PISTOL_MIN_RECOIL = 6.0
-const PISTOL_FOCUS_SPEED = 2
+const PISTOL_MAX_RECOIL = 50.0
+const PISTOL_MIN_RECOIL = 5.0
+const PISTOL_MIN_RECOIL_WALKING = 20.0
+const PISTOL_FOCUS_SPEED = 15.0
 const PISTOL_DMG = 10.0
 const PISTOL_MAG_SIZE = 8
 const PISTOL_MAX_SIZE = 24
@@ -64,9 +66,10 @@ const PISTOL_AIMED_ANIM = "aimed_pistol"
 const PISTOL_RELOAD_ANIM = "reload_pistol"
 const PISTOL_FRAME = 13
 #rifle
-const RIFLE_MAX_RECOIL = 15.0
-const RIFLE_MIN_RECOIL = 3.0
-const RIFLE_FOCUS_SPEED = 4.0
+const RIFLE_MAX_RECOIL = 30.0
+const RIFLE_MIN_RECOIL = 1.0
+const RIFLE_MIN_RECOIL_WALKING = 10.0
+const RIFLE_FOCUS_SPEED = 20.0
 const RIFLE_DMG = 30.0
 const RIFLE_MAG_SIZE = 1
 const RIFLE_MAX_SIZE = 10
@@ -76,9 +79,10 @@ const RIFLE_AIMED_ANIM = "aimed_rifle"
 const RIFLE_RELOAD_ANIM = "reload_rifle"
 const RIFLE_FRAME = 39
 #shotgun
-const SHOTGUN_MAX_RECOIL = 40.0
+const SHOTGUN_MAX_RECOIL = 60.0
 const SHOTGUN_MIN_RECOIL = 10.0
-const SHOTGUN_FOCUS_SPEED = 7.0
+const SHOTGUN_MIN_RECOIL_WALKING = 35.0
+const SHOTGUN_FOCUS_SPEED = 20.0
 const SHOTGUN_DMG = 15
 const SHOTGUN_MAG_SIZE = 2
 const SHOTGUN_MAX_SIZE = 10
@@ -90,9 +94,10 @@ const SHOTGUN_FRAME = 52
 #defalut
 var max_recoil = RIFLE_MAX_RECOIL
 var min_recoil = RIFLE_MIN_RECOIL#dynamic min recoil based of walking, etc.
+var min_recoil_walking = RIFLE_MIN_RECOIL_WALKING#static min recoil based on movement and weapon 
 var recoil = max_recoil * 0.7
 var recoil_focus_speed = (RIFLE_MAX_RECOIL-RIFLE_MIN_RECOIL)/RIFLE_FOCUS_SPEED
-var floor_min_recoil = RIFLE_MIN_RECOIL #static min recoil based of weapon
+var floor_min_recoil = RIFLE_MIN_RECOIL #static min recoil based on weapon ()
 var damage = RIFLE_DMG
 var animation_aim = RIFLE_AIM_ANIM
 var animation_aimed = RIFLE_AIMED_ANIM
@@ -100,6 +105,7 @@ var animation_reload = RIFLE_RELOAD_ANIM
 var magazine = rifle_cur_mag
 var ammo = rifle_ammo
 var weapon_frame = 0
+
 
 func _ready():
 	can_shoot = false
@@ -133,7 +139,7 @@ func _process(delta):
 	
 	if velocity.length() > 0:
 		animation_playerLegs.play(animation_walk)
-		min_recoil = floor_min_recoil * 2
+		min_recoil = min_recoil_walking
 		if(recoil < min_recoil):
 			recoil = min_recoil
 	else:
@@ -167,20 +173,20 @@ func _process(delta):
 			pistol_cur_mag = shoot([ray_cast1], pistol_cur_mag)
 	
 	if Input.is_action_just_pressed("weapon_1"):
-		if rifle_unlock > 0 and !grabbing:
-			change_weapon(RIFLE_FRAME,0,RIFLE_MAX_RECOIL,RIFLE_MIN_RECOIL,
+		if rifle_unlock > 0 and !grabbing and weapon_selected != 0:
+			change_weapon(RIFLE_FRAME,0,RIFLE_MAX_RECOIL,RIFLE_MIN_RECOIL,RIFLE_MIN_RECOIL_WALKING,
 			RIFLE_DMG,RIFLE_FOCUS_SPEED,RIFLE_AIM_ANIM,RIFLE_AIMED_ANIM,RIFLE_RELOAD_ANIM)
 			weapon_info_on.emit()
 			
 	if Input.is_action_just_pressed("weapon_2"):
-		if shotgun_unlock > 0 and !grabbing:
-			change_weapon(SHOTGUN_FRAME,1,SHOTGUN_MAX_RECOIL,SHOTGUN_MIN_RECOIL,
+		if shotgun_unlock > 0 and !grabbing and weapon_selected != 1:
+			change_weapon(SHOTGUN_FRAME,1,SHOTGUN_MAX_RECOIL,SHOTGUN_MIN_RECOIL,SHOTGUN_MIN_RECOIL_WALKING,
 			SHOTGUN_DMG,SHOTGUN_FOCUS_SPEED,SHOTGUN_AIM_ANIM,SHOTGUN_AIMED_ANIM,SHOTGUN_RELOAD_ANIM)
 			weapon_info_on.emit()
 	
 	if Input.is_action_just_pressed("weapon_3"):
-		if pistol_unlock > 0 and !grabbing:
-			change_weapon(PISTOL_FRAME,2,PISTOL_MAX_RECOIL,PISTOL_MIN_RECOIL,
+		if pistol_unlock > 0 and !grabbing  and weapon_selected != 2:
+			change_weapon(PISTOL_FRAME,2,PISTOL_MAX_RECOIL,PISTOL_MIN_RECOIL,PISTOL_MIN_RECOIL_WALKING,
 			PISTOL_DMG,PISTOL_FOCUS_SPEED,PISTOL_AIM_ANIM,PISTOL_AIMED_ANIM,PISTOL_RELOAD_ANIM)
 			weapon_info_on.emit()
 	
@@ -198,11 +204,11 @@ func _process(delta):
 	if Input.is_action_pressed("Aim"):
 		if weapon_selected == null or grabbing:
 			return
-		recoil = max(recoil - recoil_focus_speed * delta,min_recoil)
+		recoil = lerp(recoil, min_recoil, recoil_focus_speed * delta)
 		aim_assistR.rotation_degrees = recoil
 		aim_assistL.rotation_degrees = -recoil
 	else:
-		recoil = min(recoil + 10 * delta,max_recoil)
+		recoil = lerp(recoil, max_recoil, recoil_focus_speed * delta)
 	if recoil != 0:
 		ray_cast1.rotation_degrees = randf_range(-recoil, recoil)
 		ray_cast2.rotation_degrees= randf_range(-recoil, recoil)
@@ -273,6 +279,7 @@ func shoot(ray_casts,ammo_type):
 			var direction = ray_cast.global_position - get_global_mouse_position() # where player looks, not where raycast shoots
 			direction = direction.normalized()
 			var offset = direction * 150 #[TODO] ADD OFSET FOR EACH WEAPON
+			var shoot_dir = (ray_cast.to_global(ray_cast.target_position) - ray_cast.to_global(Vector2.ZERO)).normalized()
 			
 			var shot_trail = bullet_trail.instantiate()
 			
@@ -280,10 +287,9 @@ func shoot(ray_casts,ammo_type):
 			shot_trail.add_point(level.to_local(ray_cast.global_position) - offset)
 			if ray_cast.is_colliding():
 				shot_trail.add_point(level.to_local(ray_cast.get_collision_point()))
-			#else: # IDK how to add end point on miss
-				#var raycast_direction = (ray_cast.to_global(ray_cast.target_position) - ray_cast.global_position).normalized()
-				#var end_point = level.to_local(ray_cast.target_position)
-				#shot_trail.add_point(level.to_local(end_point))
+			else:
+				var end_point = ray_cast.global_position + shoot_dir * 2000.0
+				shot_trail.add_point(level.to_local(end_point))
 			level.add_child(shot_trail)
 			
 			# Killing
@@ -332,16 +338,16 @@ func reload(curr_mag,mag_size,amo):
 	amo = amo - ammo_taken
 	return [curr_mag, amo]
 
-func change_weapon(frame,wep_num,max_rec,min_rec,dmg,rec_sped,anim_aim,anim_aimed,anim_rel):
+func change_weapon(frame,wep_num,max_rec,min_rec,min_rec_walk,dmg,rec_sped,anim_aim,anim_aimed,anim_rel):
 	if cursor_current != cursor_aim and !animation_player.is_playing():
 		top.get_node("Alive").frame = frame
 		weapon_frame = frame
 		max_recoil = max_rec
-		min_recoil = min_rec
+		floor_min_recoil = min_rec
+		min_recoil_walking = min_rec_walk
 		damage = dmg
 		recoil_focus_speed = (max_recoil-min_recoil)/ rec_sped
 		weapon_selected = wep_num
-		floor_min_recoil = min_rec
 		animation_aim = anim_aim
 		animation_aimed = anim_aimed
 		animation_reload = anim_rel

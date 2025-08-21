@@ -20,3 +20,16 @@ func open_doors():
 func close_doors():
 	Rdoor_physics.close()
 	Ldoor_physics.close()
+
+
+func doors_shot(shot_door, attack_dir):
+	if shot_door == Rdoor_physics and Ldoor_physics.isClosed:
+		Ldoor_physics.isClosed = false
+		Ldoor_physics.freeze = false
+		Ldoor_physics.trigger_linked_event()
+		Ldoor_physics.apply_central_impulse(-attack_dir * 250)
+	if shot_door == Ldoor_physics and Rdoor_physics.isClosed:
+		Rdoor_physics.isClosed = false
+		Rdoor_physics.freeze = false
+		Rdoor_physics.trigger_linked_event()
+		Rdoor_physics.apply_central_impulse(-attack_dir * 250)

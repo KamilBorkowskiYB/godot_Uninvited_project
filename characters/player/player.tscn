@@ -687,7 +687,6 @@ can_shoot = true
 shape = SubResource("CircleShape2D_f7cyc")
 
 [node name="Legs" type="Node2D" parent="."]
-position = Vector2(-0.666663, 6.66667)
 scale = Vector2(1.2, 1.5)
 
 [node name="LegL" type="Node2D" parent="Legs"]
@@ -734,7 +733,6 @@ position = Vector2(-1, 0)
 texture = ExtResource("3_0tow6")
 
 [node name="Top" type="Node2D" parent="."]
-position = Vector2(-0.666667, 4)
 
 [node name="Alive" type="Sprite2D" parent="Top"]
 texture_filter = 1

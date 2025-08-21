@@ -260,23 +260,24 @@ offset_right = 40.0
 offset_bottom = 23.0
 
 [node name="AimAssist" type="Node2D" parent="WeaponSelected"]
+modulate = Color(1, 1, 1, 0.458824)
 z_index = 100
 
 [node name="AimAssistR" type="Sprite2D" parent="WeaponSelected/AimAssist"]
 visible = false
 z_index = 100
 material = SubResource("CanvasItemMaterial_rrk16")
-scale = Vector2(0.5, 0.8)
+scale = Vector2(0.5, 1.5)
 texture = ExtResource("6_6svyg")
-offset = Vector2(0, -500)
+offset = Vector2(0, -350)
 
 [node name="AimAssistL" type="Sprite2D" parent="WeaponSelected/AimAssist"]
 visible = false
 z_index = 100
 material = SubResource("CanvasItemMaterial_voyp2")
-scale = Vector2(0.5, 0.8)
+scale = Vector2(0.5, 1.5)
 texture = ExtResource("6_6svyg")
-offset = Vector2(0, -500)
+offset = Vector2(0, -350)
 
 [node name="Debug" type="CanvasLayer" parent="."]
 

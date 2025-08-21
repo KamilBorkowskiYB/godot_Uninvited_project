@@ -2,6 +2,7 @@ extends RigidBody2D
 
 @onready var interaction_area: InteractionArea = $interaction_area
 @onready var mouse_interaction_area = $MouseRangeInteraction
+@onready var potential_double_doors = get_parent().get_parent()
 
 var transform_to
 var isClosed = true
@@ -21,7 +22,6 @@ func _process(_delta):
 
 
 func _on_interact():
-	var potential_double_doors = get_parent().get_parent()
 	if(isClosed):
 		if potential_double_doors.has_method("open_doors"):
 			potential_double_doors.open_doors()
@@ -38,6 +38,9 @@ func kill(attack: Attack):
 	if isClosed:
 		isClosed = false
 		freeze = false
+	if potential_double_doors.has_method("doors_shot"):
+		potential_double_doors.doors_shot(self, attack.attack_direction)
+	trigger_linked_event()
 	apply_central_impulse(-attack.attack_direction * 500)
 	health -= attack.attack_damage
 	if health <= 0:
@@ -46,11 +49,7 @@ func kill(attack: Attack):
 
 
 func open():
-	var parent = get_parent() #Trigger an event
-	if parent.hidden_area and is_instance_valid(parent.hidden_area):
-		var trigger = parent.hidden_area.get_node_or_null("TriggerEvent")
-		if trigger:
-			trigger.trigger_event()
+	trigger_linked_event()
 	
 	var player: CharacterBody2D = get_tree().get_first_node_in_group("player")
 	isClosed = false
@@ -75,3 +74,10 @@ func close():
 	for body in interaction_area.get_overlapping_bodies(): #apply impulse to push object out of the door
 		if body is RigidBody2D:
 			body.apply_impulse(Vector2.ZERO, Vector2(1,1))
+
+func trigger_linked_event():
+	var parent = get_parent() #Trigger an event
+	if parent.hidden_area and is_instance_valid(parent.hidden_area):
+		var trigger = parent.hidden_area.get_node_or_null("TriggerEvent")
+		if trigger:
+			trigger.trigger_event()
