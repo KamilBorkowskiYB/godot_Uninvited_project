@@ -21,32 +21,17 @@ func _process(_delta):
 
 
 func _on_interact():
-	var player: CharacterBody2D = get_tree().get_first_node_in_group("player")
+	var potential_double_doors = get_parent().get_parent()
 	if(isClosed):
-		isClosed = false
-		freeze = false
-		if(player.global_position.y > self.global_position.y):
-			apply_central_impulse(Vector2(0,-450))
+		if potential_double_doors.has_method("open_doors"):
+			potential_double_doors.open_doors()
 		else:
-			apply_central_impulse(Vector2(0,450))
-		if(player.global_position.x > self.global_position.x):
-			apply_central_impulse(Vector2(-450,0))
-		else:
-			apply_central_impulse(Vector2(450,0))
+			open()
 	else:
-		isClosed = true
-		set_linear_velocity(Vector2.ZERO)
-		set_angular_velocity(0)
-		self.transform = transform_to
-		freeze = true
-		
-		for body in interaction_area.get_overlapping_bodies(): #apply impulse to push object out of the door
-			if body is RigidBody2D:
-				body.apply_impulse(Vector2.ZERO, Vector2(1,1))
-	
-	if(get_parent().hidden_area != null ):
-		get_parent().hidden_area.get_node("TriggerEvent").trigger_event()
-
+		if potential_double_doors.has_method("close_doors"):
+			potential_double_doors.close_doors()
+		else:
+			close()
 
 
 func kill(attack: Attack):
@@ -58,3 +43,35 @@ func kill(attack: Attack):
 	if health <= 0:
 		destroyed.emit()
 		get_parent().queue_free()
+
+
+func open():
+	var parent = get_parent() #Trigger an event
+	if parent.hidden_area and is_instance_valid(parent.hidden_area):
+		var trigger = parent.hidden_area.get_node_or_null("TriggerEvent")
+		if trigger:
+			trigger.trigger_event()
+	
+	var player: CharacterBody2D = get_tree().get_first_node_in_group("player")
+	isClosed = false
+	freeze = false
+	if(player.global_position.y > self.global_position.y):
+		apply_central_impulse(Vector2(0,-450))
+	else:
+		apply_central_impulse(Vector2(0,450))
+	if(player.global_position.x > self.global_position.x):
+		apply_central_impulse(Vector2(-450,0))
+	else:
+		apply_central_impulse(Vector2(450,0))
+
+
+func close():
+	isClosed = true
+	set_linear_velocity(Vector2.ZERO)
+	set_angular_velocity(0)
+	self.transform = transform_to
+	freeze = true
+	
+	for body in interaction_area.get_overlapping_bodies(): #apply impulse to push object out of the door
+		if body is RigidBody2D:
+			body.apply_impulse(Vector2.ZERO, Vector2(1,1))

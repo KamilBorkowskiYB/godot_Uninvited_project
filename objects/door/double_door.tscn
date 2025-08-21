@@ -1,0 +1,175 @@
+[gd_scene load_steps=16 format=3 uid="uid://wnfv8t4fomvg"]
+
+[ext_resource type="Script" path="res://objects/door/double_door.gd" id="1_l8mso"]
+[ext_resource type="Script" path="res://objects/door/door.gd" id="1_urgna"]
+[ext_resource type="Script" path="res://objects/door/Door_interact.gd" id="2_sneaq"]
+[ext_resource type="Texture2D" uid="uid://cma5kmw10jghr" path="res://white_sq.png" id="3_os87f"]
+[ext_resource type="PackedScene" uid="uid://dtfqvqygnxp8r" path="res://Interactions/MainInteractionLogic/InteractionArea.tscn" id="4_4sep8"]
+[ext_resource type="Texture2D" uid="uid://cdghyxmtalxyy" path="res://objects/door/door.png" id="4_43v2f"]
+[ext_resource type="PackedScene" uid="uid://bmdicmqksf7an" path="res://Interactions/MainInteractionLogic/MouseRangeInteraction.tscn" id="5_tc7pg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pwyxb"]
+size = Vector2(123, 10)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_qdw88"]
+polygon = PackedVector2Array(176.585, -4.95549, 176.585, 4.95549, -5.9992, 4.6359, -5.9992, -4.6359)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vqr75"]
+size = Vector2(27.4374, 36.0623)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_20ltt"]
+resource_local_to_scene = true
+size = Vector2(149, 36)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jhexr"]
+size = Vector2(9.52381, 9.52381)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_jshn1"]
+polygon = PackedVector2Array(-1.04424, 0.0141407, -1.04424, -0.0141407, 0.835394, -0.0141407, 0.835394, 0.0141407)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ytbpf"]
+size = Vector2(123, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c4gxb"]
+size = Vector2(148, 36)
+
+[node name="DoubleDoor" type="Node2D"]
+script = ExtResource("1_l8mso")
+
+[node name="LeftDoor" type="Node2D" parent="." groups=["movable_blocks"]]
+script = ExtResource("1_urgna")
+
+[node name="Door" type="RigidBody2D" parent="LeftDoor"]
+use_parent_material = true
+collision_mask = 7
+input_pickable = true
+gravity_scale = 0.0
+freeze = true
+freeze_mode = 1
+linear_damp = 5.0
+angular_damp = 5.0
+script = ExtResource("2_sneaq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftDoor/Door"]
+position = Vector2(63.5, 0)
+shape = SubResource("RectangleShape2D_pwyxb")
+
+[node name="Sprite2D" type="Sprite2D" parent="LeftDoor/Door"]
+use_parent_material = true
+position = Vector2(67.254, 0)
+scale = Vector2(1.05853, 1)
+texture = ExtResource("4_43v2f")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="LeftDoor/Door"]
+scale = Vector2(0.713538, 1.00898)
+occluder = SubResource("OccluderPolygon2D_qdw88")
+
+[node name="interaction_area" parent="LeftDoor/Door" instance=ExtResource("4_4sep8")]
+position = Vector2(52, 0)
+scale = Vector2(1.2, 1)
+collision_mask = 6
+action_name = "Open"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftDoor/Door/interaction_area"]
+rotation = -3.14159
+scale = Vector2(5.35766, -2.93936)
+shape = SubResource("RectangleShape2D_vqr75")
+
+[node name="MouseRangeInteraction" parent="LeftDoor/Door" instance=ExtResource("5_tc7pg")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftDoor/Door/MouseRangeInteraction"]
+position = Vector2(59.5, 0)
+shape = SubResource("RectangleShape2D_20ltt")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="LeftDoor"]
+position = Vector2(2, 0)
+node_a = NodePath("../Door")
+node_b = NodePath("../hindge")
+
+[node name="hindge" type="StaticBody2D" parent="LeftDoor"]
+use_parent_material = true
+position = Vector2(2, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="LeftDoor/hindge"]
+self_modulate = Color(0, 0, 0, 1)
+use_parent_material = true
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_os87f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftDoor/hindge"]
+scale = Vector2(1.68, 1.68)
+shape = SubResource("RectangleShape2D_jhexr")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="LeftDoor/hindge"]
+scale = Vector2(9.57632, -565.743)
+occluder = SubResource("OccluderPolygon2D_jshn1")
+
+[node name="RightDoor" type="Node2D" parent="." groups=["movable_blocks"]]
+position = Vector2(252, 0)
+rotation = 3.14159
+script = ExtResource("1_urgna")
+
+[node name="Door" type="RigidBody2D" parent="RightDoor"]
+use_parent_material = true
+collision_mask = 7
+input_pickable = true
+gravity_scale = 0.0
+freeze = true
+freeze_mode = 1
+linear_damp = 5.0
+angular_damp = 5.0
+script = ExtResource("2_sneaq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightDoor/Door"]
+position = Vector2(63.5, 1.81899e-12)
+shape = SubResource("RectangleShape2D_ytbpf")
+
+[node name="Sprite2D" type="Sprite2D" parent="RightDoor/Door"]
+use_parent_material = true
+position = Vector2(67.1207, 2.40469e-06)
+scale = Vector2(1.06445, 1)
+texture = ExtResource("4_43v2f")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="RightDoor/Door"]
+scale = Vector2(0.713538, 1.00898)
+occluder = SubResource("OccluderPolygon2D_qdw88")
+
+[node name="interaction_area" parent="RightDoor/Door" instance=ExtResource("4_4sep8")]
+position = Vector2(52, 0)
+scale = Vector2(1.2, 1)
+collision_mask = 6
+action_name = "Open"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightDoor/Door/interaction_area"]
+rotation = -3.14159
+scale = Vector2(5.35766, -2.93936)
+shape = SubResource("RectangleShape2D_vqr75")
+
+[node name="MouseRangeInteraction" parent="RightDoor/Door" instance=ExtResource("5_tc7pg")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightDoor/Door/MouseRangeInteraction"]
+position = Vector2(60, 9.09495e-12)
+shape = SubResource("RectangleShape2D_c4gxb")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="RightDoor"]
+position = Vector2(2, 0)
+node_a = NodePath("../Door")
+node_b = NodePath("../hindge")
+
+[node name="hindge" type="StaticBody2D" parent="RightDoor"]
+use_parent_material = true
+position = Vector2(2, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="RightDoor/hindge"]
+self_modulate = Color(0, 0, 0, 1)
+use_parent_material = true
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_os87f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightDoor/hindge"]
+scale = Vector2(1.68, 1.68)
+shape = SubResource("RectangleShape2D_jhexr")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="RightDoor/hindge"]
+scale = Vector2(9.57632, -565.743)
+occluder = SubResource("OccluderPolygon2D_jshn1")
