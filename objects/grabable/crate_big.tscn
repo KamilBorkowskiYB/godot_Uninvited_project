@@ -10,9 +10,8 @@ polygon = PackedVector2Array(24.6667, -24, 24.6667, 23.3333, -23.3333, 23.3333, 
 resource_local_to_scene = true
 size = Vector2(97, 96)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_c70i0"]
-resource_local_to_scene = true
-radius = 100.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_sbrn2"]
+radius = 80.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cetpj"]
 resource_local_to_scene = true
@@ -33,7 +32,7 @@ occluder = SubResource("OccluderPolygon2D_5d7qn")
 shape = SubResource("RectangleShape2D_7bwlt")
 
 [node name="CollisionShape2D" parent="interaction_area" index="0"]
-shape = SubResource("CircleShape2D_c70i0")
+shape = SubResource("CircleShape2D_sbrn2")
 
 [node name="CollisionShape2D" parent="MouseRangeInteraction" index="0"]
 shape = SubResource("RectangleShape2D_cetpj")

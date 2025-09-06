@@ -113,7 +113,7 @@ func _ready():
 		
 		#Connecting doors with hiden areas
 		var ha1 = node1.get("hidden_area_name")
-		if ha1 != null: 
+		if ha1 != null and ha1 != "": 
 			node1.hidden_area = get_node("MainLevelViewport/SubViewport").get_child(0).get_child(0).get_node(node1.hidden_area_name)
 	
 	# Hidding front elements in Visibility Viewport

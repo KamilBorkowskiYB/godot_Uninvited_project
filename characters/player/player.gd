@@ -201,6 +201,7 @@ func _process(delta):
 		aim_assistL.show()
 		Input.set_custom_mouse_cursor(cursor_aim,Input.CURSOR_ARROW,Vector2(24,24))
 		cursor_current = cursor_aim
+	
 	if Input.is_action_pressed("Aim"):
 		if weapon_selected == null or grabbing:
 			return
@@ -344,6 +345,7 @@ func change_weapon(frame,wep_num,max_rec,min_rec,min_rec_walk,dmg,rec_sped,anim_
 		weapon_frame = frame
 		max_recoil = max_rec
 		floor_min_recoil = min_rec
+		min_recoil = min_rec 
 		min_recoil_walking = min_rec_walk
 		damage = dmg
 		recoil_focus_speed = (max_recoil-min_recoil)/ rec_sped
