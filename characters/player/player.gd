@@ -28,7 +28,6 @@ var shotgun_shells = 1
 ##########        PLAYER NODES        ##########
 @onready var top = $Top
 @onready var legs = $Legs
-@onready var ray_casts = $Top/RayCasts
 @onready var ray_cast1 = top.get_node("RayCasts/RayCast2D")
 @onready var ray_cast2 = top.get_node("RayCasts/RayCast2D2")
 @onready var ray_cast3 = top.get_node("RayCasts/RayCast2D3")

@@ -35,13 +35,16 @@ texture_scale = 14.18
 [node name="Secrets" type="Node2D" parent="."]
 
 [node name="SecretArea" parent="Secrets" instance=ExtResource("2_nvptp")]
+visible = false
 position = Vector2(1200, -339.86)
 scale = Vector2(0.66, 0.474708)
 
 [node name="SecretArea2" parent="Secrets" instance=ExtResource("2_nvptp")]
+visible = false
 position = Vector2(1197.6, 96)
 scale = Vector2(0.688333, 0.463999)
 
 [node name="SecretArea3" parent="Secrets" instance=ExtResource("2_nvptp")]
+visible = false
 position = Vector2(624, -128)
 scale = Vector2(0.539999, 0.903998)

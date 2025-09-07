@@ -115,6 +115,8 @@ func _ready():
 		var ha1 = node1.get("hidden_area_name")
 		if ha1 != null and ha1 != "": 
 			node1.hidden_area = get_node("MainLevelViewport/SubViewport").get_child(0).get_child(0).get_node(node1.hidden_area_name)
+		
+		node1.remove_from_group("movable_blocks")
 	
 	# Hidding front elements in Visibility Viewport
 	var transparent = get_tree().get_nodes_in_group("Transparent")
@@ -188,8 +190,8 @@ func change_level(player_pos,level_high,level_mid,level_low):
 func reveal_area(secret_name: String):
 	#TILESET MUST BE NAMED JUST LIKE SECRET 
 	var viewport1 = get_node("MainLevelViewport/SubViewport").get_child(0).get_child(0).get_node("Secrets")
-	var viewport2 = get_node("FogViewport").get_child(0).get_child(0).get_node("Secrets")
-	var viewport2prim = get_node("FogViewport").get_child(0).get_node("out_of_view_overlay").get_node("Secrets") #tileset overlay
+	var viewport2 = get_node("FogViewport").get_child(0).get_node("out_of_view_overlay").get_node("SecretsColor") #lights secrets   #get_node("FogViewport").get_child(0).get_child(0).get_node("Secrets")
+	var viewport2prim = get_node("FogViewport").get_child(0).get_node("out_of_view_overlay").get_node("SecretsModulate") #tileset and other overlay
 	
 	var node1 = viewport1.get_node(NodePath(secret_name))
 	var node2 = viewport2.get_node(NodePath(secret_name))
@@ -200,11 +202,12 @@ func reveal_area(secret_name: String):
 	tween1.tween_property(node1, "color:a", 0.0, tween_timer) 
 	tween1.tween_callback(func(): node1.queue_free())
 	
-	var tween2 = create_tween()
-	tween2.tween_property(node2, "color:a", 0.0, tween_timer) 
-	tween2.tween_callback(func(): node2.queue_free()) 
+	if node2: #light node in gray_viewport
+		var tween2 = create_tween()
+		tween2.tween_property(node2, "color:a", 0.0, tween_timer) 
+		tween2.tween_callback(func(): node2.queue_free()) 
 	
-	if node3:#optional
+	if node3: #tilemap node in gray_viewport
 		var tween3 = create_tween()
-		tween3.tween_property(node3, "modulate:a", 0.0, tween_timer) 
+		tween3.tween_property(node3, "modulate:a", 0.0, tween_timer)
 		tween3.tween_callback(func(): node3.queue_free()) 

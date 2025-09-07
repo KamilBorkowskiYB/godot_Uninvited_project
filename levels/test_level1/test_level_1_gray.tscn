@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://02ixg6ydcbav"]
+[gd_scene load_steps=4 format=3 uid="uid://02ixg6ydcbav"]
 
 [ext_resource type="PackedScene" uid="uid://bnppgiphfgo5q" path="res://levels/test_level1/enviroment.tscn" id="1_0r1uq"]
 [ext_resource type="PackedScene" uid="uid://c33j86e6f8mi7" path="res://levels/atlases/atlas_one.tscn" id="2_i0fpy"]
+[ext_resource type="PackedScene" uid="uid://bkv3a0k14fqnv" path="res://Interactions/SecretArea.tscn" id="3_bw1wj"]
 
 [node name="test_level_1_gray" type="Node2D"]
 
@@ -9,9 +10,23 @@
 
 [node name="out_of_view_overlay" type="Node2D" parent="."]
 
-[node name="Secrets" type="Node2D" parent="out_of_view_overlay"]
+[node name="SecretsColor" type="Node2D" parent="out_of_view_overlay"]
 
-[node name="SecretArea" parent="out_of_view_overlay/Secrets" instance=ExtResource("2_i0fpy")]
+[node name="SecretArea2" parent="out_of_view_overlay/SecretsColor" instance=ExtResource("3_bw1wj")]
+position = Vector2(1197.6, 96)
+scale = Vector2(0.688333, 0.463999)
+
+[node name="SecretArea3" parent="out_of_view_overlay/SecretsColor" instance=ExtResource("3_bw1wj")]
+position = Vector2(624, -128)
+scale = Vector2(0.539999, 0.903998)
+
+[node name="SecretArea" parent="out_of_view_overlay/SecretsColor" instance=ExtResource("3_bw1wj")]
+position = Vector2(1200, -339.86)
+scale = Vector2(0.66, 0.474708)
+
+[node name="SecretsModulate" type="Node2D" parent="out_of_view_overlay"]
+
+[node name="SecretArea" parent="out_of_view_overlay/SecretsModulate" instance=ExtResource("2_i0fpy")]
 z_index = -2
 position = Vector2(766, -312)
 layer_0/tile_data = PackedInt32Array()

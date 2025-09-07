@@ -50,7 +50,7 @@ hidden_area_name = "Secrets/SecretArea3"
 [node name="MovingBlocks" type="Node2D" parent="."]
 
 [node name="Wardrobe" parent="MovingBlocks" instance=ExtResource("5_58tq3")]
-position = Vector2(1229, -70)
+position = Vector2(1227, -74)
 
 [node name="CreateSmall" parent="MovingBlocks" instance=ExtResource("5_syhhd")]
 position = Vector2(-92, 230)
