@@ -121,9 +121,14 @@ func _ready():
 	# Hidding front elements in Visibility Viewport
 	var transparent = get_tree().get_nodes_in_group("Transparent")
 	for node in transparent:
-		if not viewport3.is_ancestor_of(node):
-			continue
-		node.hide()
+		if viewport3.is_ancestor_of(node):
+			node.hide()
+				# Disabling transparency in FogViewport
+		if viewport2.is_ancestor_of(node):
+			var mat: Material = node.material
+			if mat and mat is ShaderMaterial:
+				mat.set_shader_parameter("fog_dont_show", true)
+	viewport1.get_child(0)._ready() # reloads transparency calculation on level change
 
 
 func _process(_delta):
