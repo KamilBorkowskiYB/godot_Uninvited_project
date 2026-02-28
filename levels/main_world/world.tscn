@@ -74,7 +74,6 @@ offset_bottom = 648.0
 [node name="SubViewport" type="SubViewport" parent="MainLevelViewport"]
 transparent_bg = true
 handle_input_locally = false
-canvas_item_default_texture_filter = 0
 audio_listener_enable_2d = true
 physics_object_picking = true
 canvas_cull_mask = 4294966399

@@ -286,5 +286,3 @@ libraries = {
 [node name="Footsteps" parent="." instance=ExtResource("9_2ev7t")]
 
 [node name="WaterSplash" parent="." instance=ExtResource("10_ty3dq")]
-position = Vector2(0, 0)
-offset = 0

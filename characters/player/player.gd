@@ -27,6 +27,8 @@ var shotgun_shells = 1
 
 ##########        PLAYER NODES        ##########
 @onready var top = $Top
+#@onready var player_top_sprite = $Top/Alive
+@onready var player_top_sprite = $Top/Alive_New
 @onready var legs = $Legs
 @onready var ray_cast1 = top.get_node("RayCasts/RayCast2D")
 @onready var ray_cast2 = top.get_node("RayCasts/RayCast2D2")
@@ -63,6 +65,7 @@ var pistol_cur_mag = 8
 const PISTOL_AIM_ANIM = "aim_pistol"
 const PISTOL_AIMED_ANIM = "aimed_pistol"
 const PISTOL_RELOAD_ANIM = "reload_pistol"
+const PISTOL_IDLE_ANIM = "idle_pistol"
 const PISTOL_FRAME = 13
 #rifle
 const RIFLE_MAX_RECOIL = 30.0
@@ -76,6 +79,7 @@ var rifle_cur_mag = 1
 const RIFLE_AIM_ANIM = "aim_rifle"
 const RIFLE_AIMED_ANIM = "aimed_rifle"
 const RIFLE_RELOAD_ANIM = "reload_rifle"
+const RIFLE_IDLE_ANIM = "idle_rifle"
 const RIFLE_FRAME = 39
 #shotgun
 const SHOTGUN_MAX_RECOIL = 60.0
@@ -89,6 +93,7 @@ var shotgun_cur_mag = 2
 const SHOTGUN_AIM_ANIM = "aim_shotgun"
 const SHOTGUN_AIMED_ANIM = "aimed_shotgun"
 const SHOTGUN_RELOAD_ANIM = "reload_shotgun"
+const SHOTGUN_IDLE_ANIM = "idle_shotgun"
 const SHOTGUN_FRAME = 52
 #defalut
 var max_recoil = RIFLE_MAX_RECOIL
@@ -109,6 +114,7 @@ var weapon_frame = 0
 func _ready():
 	can_shoot = false
 	can_interact = true
+	animation_player.play("idle_unarmed")
 
 func _process(delta):
 	##########        CONNECTING NODES FROM VIEWPORTS         ##########
@@ -174,19 +180,19 @@ func _process(delta):
 	if Input.is_action_just_pressed("weapon_1"):
 		if rifle_unlock > 0 and !grabbing and weapon_selected != 0:
 			change_weapon(RIFLE_FRAME,0,RIFLE_MAX_RECOIL,RIFLE_MIN_RECOIL,RIFLE_MIN_RECOIL_WALKING,
-			RIFLE_DMG,RIFLE_FOCUS_SPEED,RIFLE_AIM_ANIM,RIFLE_AIMED_ANIM,RIFLE_RELOAD_ANIM)
+			RIFLE_DMG,RIFLE_FOCUS_SPEED,RIFLE_AIM_ANIM,RIFLE_AIMED_ANIM,RIFLE_RELOAD_ANIM,RIFLE_IDLE_ANIM)
 			weapon_info_on.emit()
 			
 	if Input.is_action_just_pressed("weapon_2"):
 		if shotgun_unlock > 0 and !grabbing and weapon_selected != 1:
 			change_weapon(SHOTGUN_FRAME,1,SHOTGUN_MAX_RECOIL,SHOTGUN_MIN_RECOIL,SHOTGUN_MIN_RECOIL_WALKING,
-			SHOTGUN_DMG,SHOTGUN_FOCUS_SPEED,SHOTGUN_AIM_ANIM,SHOTGUN_AIMED_ANIM,SHOTGUN_RELOAD_ANIM)
+			SHOTGUN_DMG,SHOTGUN_FOCUS_SPEED,SHOTGUN_AIM_ANIM,SHOTGUN_AIMED_ANIM,SHOTGUN_RELOAD_ANIM,SHOTGUN_IDLE_ANIM)
 			weapon_info_on.emit()
 	
 	if Input.is_action_just_pressed("weapon_3"):
 		if pistol_unlock > 0 and !grabbing  and weapon_selected != 2:
 			change_weapon(PISTOL_FRAME,2,PISTOL_MAX_RECOIL,PISTOL_MIN_RECOIL,PISTOL_MIN_RECOIL_WALKING,
-			PISTOL_DMG,PISTOL_FOCUS_SPEED,PISTOL_AIM_ANIM,PISTOL_AIMED_ANIM,PISTOL_RELOAD_ANIM)
+			PISTOL_DMG,PISTOL_FOCUS_SPEED,PISTOL_AIM_ANIM,PISTOL_AIMED_ANIM,PISTOL_RELOAD_ANIM,PISTOL_IDLE_ANIM)
 			weapon_info_on.emit()
 	
 	if Input.is_action_just_pressed("Aim"):
@@ -259,7 +265,7 @@ func kill():
 	dead = true
 	$Sounds/DeafSound.play()
 	top.get_node("Dead").show()
-	top.get_node("Alive").hide()
+	player_top_sprite.hide()
 	legs.hide()
 	z_index = -1
 	emit_signal("player_has_died")
@@ -338,9 +344,10 @@ func reload(curr_mag,mag_size,amo):
 	amo = amo - ammo_taken
 	return [curr_mag, amo]
 
-func change_weapon(frame,wep_num,max_rec,min_rec,min_rec_walk,dmg,rec_sped,anim_aim,anim_aimed,anim_rel):
+func change_weapon(frame,wep_num,max_rec,min_rec,min_rec_walk,dmg,rec_sped,anim_aim,anim_aimed,anim_rel,anim_idle):
 	if cursor_current != cursor_aim and !animation_player.is_playing():
-		top.get_node("Alive").frame = frame
+		animation_player.play(anim_idle) 
+		player_top_sprite.frame = frame
 		weapon_frame = frame
 		max_recoil = max_rec
 		floor_min_recoil = min_rec
@@ -372,13 +379,13 @@ func grab_object(object: RigidBody2D):
 	grabbing = true
 	stop_run()
 	animation_player.seek(0.0, true)
-	top.get_node("Alive").frame = grabbing_player_sprite_frame
+	player_top_sprite.frame = grabbing_player_sprite_frame
 	grabbed_object = object
 
 func realese_object():
 	grabbing = false
 	grabbed_object = null
-	top.get_node("Alive").frame = weapon_frame
+	player_top_sprite.frame = weapon_frame
 
 func stop_run():
 	run_move_speed_buff = 1.0
@@ -386,7 +393,7 @@ func stop_run():
 	animation_run_rotation.stop()
 	if animation_player.current_animation == "run_unarmed":#No such anim for a moment
 		animation_player.stop()
-		top.get_node("Alive").frame = 0;
+		player_top_sprite.frame = 0;
 
 func step():
 	if standing_on == "brick":
