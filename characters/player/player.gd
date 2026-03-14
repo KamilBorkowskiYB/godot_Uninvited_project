@@ -87,12 +87,12 @@ const SHOTGUN_MIN_RECOIL = 10.0
 const SHOTGUN_MIN_RECOIL_WALKING = 35.0
 const SHOTGUN_FOCUS_SPEED = 20.0
 const SHOTGUN_DMG = 15
-const SHOTGUN_MAG_SIZE = 2
-const SHOTGUN_MAX_SIZE = 10
+const SHOTGUN_MAG_SIZE = 5
+const SHOTGUN_MAX_SIZE = 15
 var shotgun_cur_mag = 2
 const SHOTGUN_AIM_ANIM = "aim_shotgun"
 const SHOTGUN_AIMED_ANIM = "aimed_shotgun"
-const SHOTGUN_RELOAD_ANIM = "reload_shotgun"
+const SHOTGUN_RELOAD_ANIM = "reload_shotgun_calm"
 const SHOTGUN_IDLE_ANIM = "idle_shotgun"
 const SHOTGUN_FRAME = 52
 #defalut
@@ -107,8 +107,8 @@ var animation_idle = "idle_unarmed"
 var animation_aim = RIFLE_AIM_ANIM
 var animation_aimed = RIFLE_AIMED_ANIM
 var animation_reload = RIFLE_RELOAD_ANIM
-var magazine = rifle_cur_mag
-var ammo = rifle_ammo
+var magazine = 0
+var ammo = 0
 var weapon_frame = 0
 
 
@@ -197,45 +197,47 @@ func _process(delta):
 			weapon_info_on.emit()
 	
 	if Input.is_action_just_pressed("Aim"):
-		if weapon_selected == null or grabbing:
-			return
-		animation_player.play(animation_aim)
-		animation_player.queue(animation_aimed)
-		animation_playerLegs.speed_scale = 0.7
-		aim_move_speed_debuff = 0.5
-		aim_assistR.show()
-		aim_assistL.show()
-		Input.set_custom_mouse_cursor(cursor_aim,Input.CURSOR_ARROW,Vector2(24,24))
-		cursor_current = cursor_aim
+		aim()
 	
-	if Input.is_action_pressed("Aim"):
+	if Input.is_action_pressed("Aim") and cursor_current == cursor_aim:
 		if weapon_selected == null or grabbing:
 			return
 		recoil = lerp(recoil, min_recoil, recoil_focus_speed * delta)
-		aim_assistR.rotation_degrees = recoil
-		aim_assistL.rotation_degrees = -recoil
+		
+		if recoil != 0:
+			ray_cast1.rotation_degrees = randf_range(-recoil, recoil)
+			ray_cast2.rotation_degrees= randf_range(-recoil, recoil)
+			ray_cast3.rotation_degrees= randf_range(-recoil, recoil)
+			ray_cast4.rotation_degrees = randf_range(-recoil, recoil)
 	else:
 		recoil = lerp(recoil, max_recoil, recoil_focus_speed * delta)
-	if recoil != 0:
-		ray_cast1.rotation_degrees = randf_range(-recoil, recoil)
-		ray_cast2.rotation_degrees= randf_range(-recoil, recoil)
-		ray_cast3.rotation_degrees= randf_range(-recoil, recoil)
-		ray_cast4.rotation_degrees = randf_range(-recoil, recoil)
+	aim_assistR.rotation_degrees = recoil
+	aim_assistL.rotation_degrees = -recoil
 	
 	if Input.is_action_just_released("Aim"):
 		unaim()
 	
 	if Input.is_action_just_pressed("reload"):
 		if weapon_selected != null:
-			if weapon_selected != 0:
-				unaim()
-				animation_player.queue(animation_reload)
-			else: # rifle can reload when aiming
-				if cursor_current == cursor_aim and can_shoot:
+			if weapon_selected == 0: # rifle can reload when aiming
+				if rifle_cur_mag == RIFLE_MAG_SIZE or rifle_ammo == 0:
+					return
+				elif cursor_current == cursor_aim and can_shoot:
 					animation_player.play(animation_reload)
 					animation_player.queue(animation_aimed)
 				else:# rifle can reload without aiming
 					animation_player.play("reload_rifle_calm")
+			elif weapon_selected == 1: #shotgun
+				if shotgun_cur_mag == SHOTGUN_MAG_SIZE or shotgun_shells == 0:
+					return
+				unaim()
+				animation_player.queue(animation_reload)
+			else:
+				if pistol_cur_mag == PISTOL_MAG_SIZE or pistol_ammo == 0:
+					return
+				unaim()
+				animation_player.queue(animation_reload)
+
 
 func _physics_process(_delta):
 	if dead:
@@ -308,6 +310,18 @@ func shoot(ray_casts,ammo_type):
 					ray_cast.get_collider().kill(attack)
 	return ammo_type
 
+func aim():
+	if weapon_selected == null or grabbing:
+		return
+	animation_player.play(animation_aim)
+	animation_player.queue(animation_aimed)
+	animation_playerLegs.speed_scale = 0.7
+	aim_move_speed_debuff = 0.5
+	aim_assistR.show()
+	aim_assistL.show()
+	Input.set_custom_mouse_cursor(cursor_aim,Input.CURSOR_ARROW,Vector2(24,24))
+	cursor_current = cursor_aim
+
 func unaim():
 	if weapon_selected == null:
 		return
@@ -329,21 +343,36 @@ func animation_end_reload():
 		var resoult = reload(shotgun_cur_mag,SHOTGUN_MAG_SIZE,shotgun_shells)
 		shotgun_cur_mag = resoult[0]
 		shotgun_shells = resoult[1]
+		shotgun_load_shell()
 	elif weapon_selected == 2 and pistol_cur_mag < PISTOL_MAG_SIZE and pistol_ammo > 0:
 		var resoult = reload(pistol_cur_mag,PISTOL_MAG_SIZE,pistol_ammo)
 		pistol_cur_mag = resoult[0]
 		pistol_ammo = resoult[1]
+		if Input.is_action_pressed("Aim"):
+			aim()
 
 func reload(curr_mag,mag_size,amo):
 	var needed_ammo = mag_size - curr_mag
 	var ammo_taken
 	if needed_ammo <= amo:
-		ammo_taken = needed_ammo
+		if weapon_selected == 1: #shotgun loads one shell at a time
+			ammo_taken = 1
+		else:
+			ammo_taken = needed_ammo
 	else:
 		ammo_taken = amo
 	curr_mag = curr_mag + ammo_taken
 	amo = amo - ammo_taken
 	return [curr_mag, amo]
+
+func shotgun_load_shell():
+	if shotgun_cur_mag < SHOTGUN_MAG_SIZE and shotgun_shells > 0:
+		animation_player.play("reload_shotgun_next")
+	elif Input.is_action_pressed("Aim"):
+		aim()
+	else:
+		animation_player.play("reload_shotgun_end")
+	
 
 func change_weapon(frame,wep_num,max_rec,min_rec,min_rec_walk,dmg,rec_sped,anim_aim,anim_aimed,anim_rel,anim_idle):
 	if cursor_current != cursor_aim and !animation_player.is_playing():
