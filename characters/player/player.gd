@@ -103,6 +103,7 @@ var recoil = max_recoil * 0.7
 var recoil_focus_speed = (RIFLE_MAX_RECOIL-RIFLE_MIN_RECOIL)/RIFLE_FOCUS_SPEED
 var floor_min_recoil = RIFLE_MIN_RECOIL #static min recoil based on weapon ()
 var damage = RIFLE_DMG
+var animation_idle = "idle_unarmed"
 var animation_aim = RIFLE_AIM_ANIM
 var animation_aimed = RIFLE_AIMED_ANIM
 var animation_reload = RIFLE_RELOAD_ANIM
@@ -346,7 +347,8 @@ func reload(curr_mag,mag_size,amo):
 
 func change_weapon(frame,wep_num,max_rec,min_rec,min_rec_walk,dmg,rec_sped,anim_aim,anim_aimed,anim_rel,anim_idle):
 	if cursor_current != cursor_aim and !animation_player.is_playing():
-		animation_player.play(anim_idle) 
+		animation_player.play(anim_idle)
+		animation_idle = anim_idle
 		player_top_sprite.frame = frame
 		weapon_frame = frame
 		max_recoil = max_rec
