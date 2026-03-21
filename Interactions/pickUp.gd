@@ -43,14 +43,21 @@ func _ready():
 
 func _on_interact():
 	var player: CharacterBody2D = get_tree().get_first_node_in_group("player")
-	if item_id == "rifle_ammo" and player.get(item_id) + 1 > player.RIFLE_MAX_SIZE:
+	if item_id == "rifle_ammo" and player.WEAPONS["rifle"]["current_ammo"] + 1 > player.WEAPONS["rifle"]["max_ammo"]:
 		item_picked_up.emit(0,item_name)
-	elif item_id == "shotgun_shells" and player.get(item_id) + 1 > player.SHOTGUN_MAX_SIZE:
+	elif item_id == "shotgun_shells" and player.WEAPONS["shotgun"]["current_ammo"] + 1 > player.WEAPONS["shotgun"]["max_ammo"]:
 		item_picked_up.emit(0,item_name)
-	elif item_id == "pistol_ammo" and player.get(item_id) + 1 > player.PISTOL_MAX_SIZE:
+	elif item_id == "pistol_ammo" and player.WEAPONS["rifle"]["current_ammo"] + 1 > player.WEAPONS["rifle"]["max_ammo"]:
 		item_picked_up.emit(0,item_name)
 	else:
-		player.set(item_id, player.get(item_id) + 1)
+		if item_id == "rifle_ammo":
+			player.WEAPONS["rifle"]["current_ammo"] += 1
+		elif item_id == "shotgun_shells":
+			player.WEAPONS["shotgun"]["current_ammo"] += 1
+		elif item_id == "pistol_ammo":
+			player.WEAPONS["pistol"]["current_ammo"] += 1
+		else:
+			player.set(item_id, player.get(item_id) + 1)
 		item_picked_up.emit(1,item_name)
 		queue_free()
 
