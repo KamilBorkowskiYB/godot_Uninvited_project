@@ -58,7 +58,6 @@ light_mode = 1
 viewport_path = NodePath("VisibilityViewport")
 
 [node name="World" type="Node2D"]
-position = Vector2(1, 2)
 script = ExtResource("1_eb6ap")
 
 [node name="FadeOutView" type="Sprite2D" parent="."]
@@ -279,9 +278,10 @@ texture = ExtResource("6_6svyg")
 offset = Vector2(0, -350)
 
 [node name="Debug" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="DebugViewVision" type="Sprite2D" parent="Debug"]
-position = Vector2(128, 79)
+position = Vector2(213, 130)
 scale = Vector2(0.2, 0.2)
 texture = SubResource("ViewportTexture_8ptiq")
 

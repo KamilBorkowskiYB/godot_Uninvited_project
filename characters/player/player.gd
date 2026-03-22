@@ -26,7 +26,8 @@ var shotgun_unlock = 0 #ammo has special case for pickups
 @onready var top = $Top
 #@onready var player_top_sprite = $Top/Alive
 @onready var player_top_sprite = $Top/Alive_New
-@onready var legs = $Legs
+@onready var bottom = $Bottom #rotates legs with top offset - like in aiming moves to the side
+@onready var legs = $Bottom/Legs #rotates legs in the direction of the walking
 @onready var ray_cast1 = top.get_node("RayCasts/RayCast2D")
 @onready var ray_cast2 = top.get_node("RayCasts/RayCast2D2")
 @onready var ray_cast3 = top.get_node("RayCasts/RayCast2D3")
@@ -62,6 +63,7 @@ var WEAPONS = {
 		"current_magazine": 8,
 		"max_ammo": 24,
 		"current_ammo": 8,
+		"raycast_offset": -75,
 		"anims": {
 			"aim": "aim_pistol",
 			"aimed": "aimed_pistol",
@@ -82,6 +84,7 @@ var WEAPONS = {
 		"current_magazine": 1,
 		"max_ammo": 10,
 		"current_ammo": 1,
+		"raycast_offset": -115,
 		"anims": {
 			"aim": "aim_rifle",
 			"aimed": "aimed_rifle",
@@ -102,6 +105,7 @@ var WEAPONS = {
 		"current_magazine": 2,
 		"max_ammo": 15,
 		"current_ammo": 2,
+		"raycast_offset": -115,
 		"anims": {
 			"aim": "aim_shotgun",
 			"aimed": "aimed_shotgun",
@@ -126,7 +130,7 @@ var WEAPONS = {
 			"aim": "aim_shotgun",
 			"aimed": "aimed_shotgun",
 			"reload": "reload_shotgun_calm",
-			"idle": "idle_shotgun",
+			"idle": "idle_unarmed",
 			"aftershot": "aftershot_shotgun"
 		}
 	}
@@ -177,7 +181,8 @@ func _process(delta):
 		var target_rotation = global_position.direction_to(get_global_mouse_position()).angle() + PI/2
 		top.rotation = lerp_angle(top.rotation, target_rotation, 0.01 / grabbed_object.mass)
 	move_direction = Input.get_vector("move_left","move_right","move_down","move_up")
-	legs.rotation = move_direction.angle() + PI/2
+	legs.rotation = move_direction.angle() + PI/2 - bottom.rotation
+	bottom.rotation = top.rotation
 	
 	if velocity.length() > 0:
 		animation_playerLegs.play(animation_walk)
@@ -185,7 +190,6 @@ func _process(delta):
 		if(recoil < min_recoil):
 			recoil = min_recoil
 	else:
-		legs.rotation = top.rotation
 		animation_playerLegs.stop()
 		min_recoil = floor_min_recoil
 	
@@ -255,7 +259,7 @@ func _process(delta):
 		if current_weapon_id == "rifle":
 			if cursor_current == cursor_aim and can_shoot:
 				animation_player.play(animation_reload)
-				animation_player.queue(animation_aimed)
+				#animation_player.queue(animation_aimed)
 			else:# rifle can reload without aiming
 				animation_player.play("reload_rifle_calm")
 		else:
@@ -314,13 +318,13 @@ func shoot(ray_casts,ammo_type):
 		for ray_cast in ray_casts:
 			var direction = ray_cast.global_position - get_global_mouse_position() # where player looks, not where raycast shoots
 			direction = direction.normalized()
-			var offset = direction * 150 #[TODO] ADD OFSET FOR EACH WEAPON
+			var offset = direction * current_weapon["raycast_offset"]
 			var shoot_dir = (ray_cast.to_global(ray_cast.target_position) - ray_cast.to_global(Vector2.ZERO)).normalized()
 			
 			var shot_trail = bullet_trail.instantiate()
 			
 			# Setting bullet trail points
-			shot_trail.add_point(level.to_local(ray_cast.global_position) - offset)
+			shot_trail.add_point(level.to_local(ray_cast.global_position) + offset)
 			if ray_cast.is_colliding():
 				shot_trail.add_point(level.to_local(ray_cast.get_collision_point()))
 			else:
@@ -341,7 +345,7 @@ func aim():
 	if current_weapon_id == "default" or grabbing:
 		return
 	animation_player.play(animation_aim)
-	animation_player.queue(animation_aimed)
+	#animation_player.queue(animation_aimed)
 	animation_playerLegs.speed_scale = 0.7
 	aim_move_speed_debuff = 0.5
 	aim_assistR.show()
@@ -416,17 +420,16 @@ func change_weapon(id):
 		animation_player.play(animation_idle)
 
 
-var grabbing_player_sprite_frame = 78
 func grab_object(object: RigidBody2D):
 	grabbing = true
 	stop_run()
-	animation_player.seek(0.0, true)
-	player_top_sprite.frame = grabbing_player_sprite_frame
+	animation_player.play("grabbing")
 	grabbed_object = object
 
 func realese_object():
 	grabbing = false
 	grabbed_object = null
+	animation_player.play(current_weapon["anims"]["idle"])
 
 func stop_run():
 	run_move_speed_buff = 1.0
