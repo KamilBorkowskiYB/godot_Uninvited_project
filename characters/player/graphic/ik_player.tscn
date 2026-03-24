@@ -1,0 +1,153 @@
+[gd_scene load_steps=9 format=3 uid="uid://c6nd5kmuxcvgl"]
+
+[ext_resource type="Texture2D" uid="uid://crt2dknkpsnhb" path="res://characters/player/graphic/sprites 5.0/torso.png" id="1_c0ak8"]
+[ext_resource type="Texture2D" uid="uid://knoh284ar337" path="res://characters/player/graphic/sprites 5.0/arm_H.png" id="2_reyp4"]
+[ext_resource type="Texture2D" uid="uid://dlr0xclf0f272" path="res://characters/player/graphic/sprites 5.0/arm_L.png" id="3_2g1rg"]
+[ext_resource type="Texture2D" uid="uid://bospbgeryyshp" path="res://characters/player/graphic/sprites 5.0/hand_one.png" id="4_6qrg4"]
+
+[sub_resource type="SkeletonModification2DCCDIK" id="SkeletonModification2DCCDIK_jqwdu"]
+target_nodepath = NodePath("../../targetLeft")
+tip_nodepath = NodePath("HArmo/LArm/Hand/Point")
+ccdik_data_chain_length = 3
+joint_data/0/bone_index = 2
+joint_data/0/bone2d_node = NodePath("HArmo/LArm/Hand")
+joint_data/0/rotate_from_joint = false
+joint_data/0/enable_constraint = true
+joint_data/0/constraint_angle_min = -75.79
+joint_data/0/constraint_angle_max = 74.067
+joint_data/0/constraint_angle_invert = true
+joint_data/0/constraint_in_localspace = true
+joint_data/0/editor_draw_gizmo = true
+joint_data/1/bone_index = 1
+joint_data/1/bone2d_node = NodePath("HArmo/LArm")
+joint_data/1/rotate_from_joint = false
+joint_data/1/enable_constraint = true
+joint_data/1/constraint_angle_min = -20.655
+joint_data/1/constraint_angle_max = 118.652
+joint_data/1/constraint_angle_invert = true
+joint_data/1/constraint_in_localspace = true
+joint_data/1/editor_draw_gizmo = true
+joint_data/2/bone_index = 0
+joint_data/2/bone2d_node = NodePath("HArmo")
+joint_data/2/rotate_from_joint = false
+joint_data/2/enable_constraint = true
+joint_data/2/constraint_angle_min = -75.79
+joint_data/2/constraint_angle_max = 46.507
+joint_data/2/constraint_angle_invert = true
+joint_data/2/constraint_in_localspace = true
+joint_data/2/editor_draw_gizmo = true
+
+[sub_resource type="SkeletonModificationStack2D" id="SkeletonModificationStack2D_h3xe0"]
+resource_local_to_scene = true
+modification_count = 1
+modifications/0 = SubResource("SkeletonModification2DCCDIK_jqwdu")
+
+[sub_resource type="SkeletonModification2DCCDIK" id="SkeletonModification2DCCDIK_jhsvg"]
+target_nodepath = NodePath("../../targetRight")
+tip_nodepath = NodePath("HArm/LArm/Hand/Point")
+ccdik_data_chain_length = 3
+joint_data/0/bone_index = 2
+joint_data/0/bone2d_node = NodePath("HArm/LArm/Hand")
+joint_data/0/rotate_from_joint = false
+joint_data/0/enable_constraint = true
+joint_data/0/constraint_angle_min = -65.182
+joint_data/0/constraint_angle_max = 64.437
+joint_data/0/constraint_angle_invert = true
+joint_data/0/constraint_in_localspace = true
+joint_data/0/editor_draw_gizmo = true
+joint_data/1/bone_index = 1
+joint_data/1/bone2d_node = NodePath("HArm/LArm")
+joint_data/1/rotate_from_joint = false
+joint_data/1/enable_constraint = true
+joint_data/1/constraint_angle_min = 6.613
+joint_data/1/constraint_angle_max = 216.85
+joint_data/1/constraint_angle_invert = true
+joint_data/1/constraint_in_localspace = true
+joint_data/1/editor_draw_gizmo = true
+joint_data/2/bone_index = 0
+joint_data/2/bone2d_node = NodePath("HArm")
+joint_data/2/rotate_from_joint = false
+joint_data/2/enable_constraint = true
+joint_data/2/constraint_angle_min = -55.12
+joint_data/2/constraint_angle_max = 84.402
+joint_data/2/constraint_angle_invert = true
+joint_data/2/constraint_in_localspace = true
+joint_data/2/editor_draw_gizmo = true
+
+[sub_resource type="SkeletonModificationStack2D" id="SkeletonModificationStack2D_57ebb"]
+resource_local_to_scene = true
+modification_count = 1
+modifications/0 = SubResource("SkeletonModification2DCCDIK_jhsvg")
+
+[node name="IK_TEST" type="Node2D"]
+
+[node name="Torso" type="Sprite2D" parent="."]
+position = Vector2(0, 1)
+texture = ExtResource("1_c0ak8")
+
+[node name="LeftArm" type="Skeleton2D" parent="Torso"]
+modification_stack = SubResource("SkeletonModificationStack2D_h3xe0")
+
+[node name="HArmo" type="Bone2D" parent="Torso/LeftArm"]
+position = Vector2(-43, -4)
+rest = Transform2D(1, 0, 0, 1, -43, -4)
+
+[node name="Icon" type="Sprite2D" parent="Torso/LeftArm/HArmo"]
+texture = ExtResource("2_reyp4")
+
+[node name="LArm" type="Bone2D" parent="Torso/LeftArm/HArmo"]
+position = Vector2(-5, -32)
+rest = Transform2D(1, 0, 0, 1, -5, -32)
+
+[node name="Icon" type="Sprite2D" parent="Torso/LeftArm/HArmo/LArm"]
+texture = ExtResource("3_2g1rg")
+
+[node name="Hand" type="Bone2D" parent="Torso/LeftArm/HArmo/LArm"]
+position = Vector2(6, -37)
+rest = Transform2D(1, 0, 0, 1, 6, -37)
+
+[node name="Icon" type="Sprite2D" parent="Torso/LeftArm/HArmo/LArm/Hand"]
+texture = ExtResource("4_6qrg4")
+
+[node name="Point" type="Bone2D" parent="Torso/LeftArm/HArmo/LArm/Hand"]
+position = Vector2(3, -22)
+rest = Transform2D(1, 0, 0, 1, 3, -22)
+
+[node name="RightArm" type="Skeleton2D" parent="Torso"]
+modification_stack = SubResource("SkeletonModificationStack2D_57ebb")
+
+[node name="HArm" type="Bone2D" parent="Torso/RightArm"]
+position = Vector2(43, -4)
+rest = Transform2D(1, 0, 0, 1, 43, -4)
+
+[node name="Icon" type="Sprite2D" parent="Torso/RightArm/HArm"]
+rotation = 0.348085
+texture = ExtResource("2_reyp4")
+
+[node name="LArm" type="Bone2D" parent="Torso/RightArm/HArm"]
+position = Vector2(5, -32)
+rest = Transform2D(1, 0, 0, 1, 5, -32)
+
+[node name="Icon" type="Sprite2D" parent="Torso/RightArm/HArm/LArm"]
+rotation = -0.334294
+texture = ExtResource("3_2g1rg")
+
+[node name="Hand" type="Bone2D" parent="Torso/RightArm/HArm/LArm"]
+position = Vector2(-6, -37)
+rest = Transform2D(1, 0, 0, 1, -6, -37)
+
+[node name="Icon" type="Sprite2D" parent="Torso/RightArm/HArm/LArm/Hand"]
+rotation = -0.12803
+texture = ExtResource("4_6qrg4")
+flip_h = true
+
+[node name="Point" type="Bone2D" parent="Torso/RightArm/HArm/LArm/Hand"]
+position = Vector2(-3, -22)
+rest = Transform2D(1, 0, 0, 1, -3, -22)
+
+[node name="targetLeft" type="Node2D" parent="."]
+position = Vector2(-37, -122)
+rotation = -0.0501422
+
+[node name="targetRight" type="Node2D" parent="."]
+position = Vector2(37, -123)
