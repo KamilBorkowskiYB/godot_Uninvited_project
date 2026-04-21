@@ -1,7 +1,6 @@
-[gd_scene load_steps=23 format=3 uid="uid://dbs8dbmepbxnh"]
+[gd_scene load_steps=22 format=3 uid="uid://dbs8dbmepbxnh"]
 
 [ext_resource type="Script" path="res://levels/main_world/world.gd" id="1_eb6ap"]
-[ext_resource type="Shader" path="res://shaders/grayscale.gdshader" id="1_fgecg"]
 [ext_resource type="Shader" path="res://shaders/maskView.gdshader" id="2_hpucc"]
 [ext_resource type="PackedScene" uid="uid://d1oul8y1hqgln" path="res://levels/test_level1/level.tscn" id="2_n2174"]
 [ext_resource type="Texture2D" uid="uid://dv1g3h6sswoha" path="res://characters/player/graphic/view_cone.png" id="3_wk82u"]
@@ -10,12 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://cgkk6a01eg81t" path="res://characters/player/graphic/aim_assinst_line.png" id="6_6svyg"]
 [ext_resource type="PackedScene" uid="uid://02ixg6ydcbav" path="res://levels/test_level1/test_level_1_gray.tscn" id="6_76trs"]
 [ext_resource type="PackedScene" uid="uid://b7iklrlyc5m55" path="res://levels/test_level1/test_level_1_low.tscn" id="8_apxvq"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_23xho"]
-shader = ExtResource("1_fgecg")
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_shxwe"]
-viewport_path = NodePath("FogViewport")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_urhso"]
 viewport_path = NodePath("VisibilityViewport")
@@ -45,6 +38,9 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.862385, 0.178899)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d736h"]
+shader = ExtResource("4_thh5m")
+
 [sub_resource type="Theme" id="Theme_1ss4e"]
 default_font_size = 26
 
@@ -57,13 +53,11 @@ light_mode = 1
 [sub_resource type="ViewportTexture" id="ViewportTexture_8ptiq"]
 viewport_path = NodePath("VisibilityViewport")
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_bsdqd"]
+viewport_path = NodePath("OtherDimension/DimensionsParser")
+
 [node name="World" type="Node2D"]
 script = ExtResource("1_eb6ap")
-
-[node name="FadeOutView" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_23xho")
-texture = SubResource("ViewportTexture_shxwe")
-centered = false
 
 [node name="MainLevelViewport" type="SubViewportContainer" parent="."]
 material = SubResource("ShaderMaterial_qgts6")
@@ -119,6 +113,31 @@ texture = SubResource("GradientTexture2D_ifk28")
 texture_scale = 0.7
 
 [node name="Camera2D" type="Camera2D" parent="VisibilityViewport"]
+
+[node name="OtherDimension" type="Node" parent="."]
+
+[node name="ODSeenViewport" type="SubViewport" parent="OtherDimension"]
+
+[node name="ODFogViewport" type="SubViewport" parent="OtherDimension"]
+
+[node name="ODVisibilityViewport" type="SubViewport" parent="OtherDimension"]
+
+[node name="DimensionsParser" type="SubViewport" parent="OtherDimension"]
+transparent_bg = true
+handle_input_locally = false
+
+[node name="test_level1_low" parent="OtherDimension/DimensionsParser" instance=ExtResource("8_apxvq")]
+material = SubResource("ShaderMaterial_d736h")
+
+[node name="ViewDimensionLight" type="PointLight2D" parent="OtherDimension/DimensionsParser"]
+scale = Vector2(1.5, 1.5)
+blend_mode = 1
+shadow_enabled = true
+shadow_item_cull_mask = 128
+texture = SubResource("GradientTexture2D_ifk28")
+texture_scale = 15.0
+
+[node name="Camera2D" type="Camera2D" parent="OtherDimension/DimensionsParser"]
 
 [node name="ItemsObtained" type="CanvasLayer" parent="."]
 
@@ -278,12 +297,16 @@ texture = ExtResource("6_6svyg")
 offset = Vector2(0, -350)
 
 [node name="Debug" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="DebugViewVision" type="Sprite2D" parent="Debug"]
 position = Vector2(213, 130)
 scale = Vector2(0.2, 0.2)
 texture = SubResource("ViewportTexture_8ptiq")
+
+[node name="DebbugDimensionParser" type="Sprite2D" parent="Debug"]
+position = Vector2(213, 362)
+scale = Vector2(0.2, 0.2)
+texture = SubResource("ViewportTexture_bsdqd")
 
 [connection signal="timeout" from="ItemsObtained/UI/PickUpTimer" to="ItemsObtained/UI" method="hide"]
 [connection signal="pressed" from="DeathScreen/DeathScreen/Panel/Button" to="." method="restart"]

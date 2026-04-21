@@ -43,7 +43,6 @@ z_index = -2
 position = Vector2(38, 282)
 
 [node name="PlayerCamera" type="Camera2D" parent="."]
-rotation_smoothing_enabled = true
 script = ExtResource("5_ccx42")
 
 [node name="PickUps" type="Node2D" parent="."]

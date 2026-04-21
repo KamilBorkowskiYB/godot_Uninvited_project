@@ -6,21 +6,28 @@ func _ready():
 	var viewport1 = get_node("MainLevelViewport/SubViewport")
 	var viewport2 = get_node("FogViewport")
 	var viewport3 = get_node("VisibilityViewport")
+	var viewport_dim_split = get_node("OtherDimension/DimensionsParser")
 	var player: CharacterBody2D = get_tree().get_first_node_in_group("player")
 	#setting viewports size to match project size
 	var view_size = get_viewport().get_visible_rect().size
 	viewport1.size = view_size
 	viewport2.size = view_size
 	viewport3.size = view_size
+	viewport_dim_split.size = view_size
 	
 	viewport1 = get_node("MainLevelViewport/SubViewport").get_child(0)
 	#connecting viewport cameras
 	var cam_main = viewport1.get_node_or_null("PlayerCamera")
 	var cam_fog = viewport2.get_node_or_null("Camera2D")
 	var cam_view = viewport3.get_node_or_null("Camera2D")
+	var cam_dim_split = viewport_dim_split.get_node_or_null("Camera2D")
+	var light_dim_split = viewport_dim_split.get_node_or_null("ViewDimensionLight")
 	if(cam_main and cam_fog and cam_view):
 		cam_main.vision_camera = cam_view
 		cam_main.fog_camera = cam_fog
+	if(cam_dim_split and light_dim_split):
+		cam_main.dim_split_camera = cam_dim_split
+		cam_main.dim_split_light = light_dim_split
 	
 	#connecting VisionViewport lights to player
 	var view_light = viewport3.get_node_or_null("ViewLight")
@@ -82,6 +89,7 @@ func _ready():
 	
 	#setting materials in viewport3 to white
 	change_material_to_white(viewport3.get_child(0))
+	change_material_to_white(viewport_dim_split.get_child(0))
 	
 	
 	# Connecting movable blocks and doors
@@ -122,6 +130,8 @@ func _ready():
 	var transparent = get_tree().get_nodes_in_group("Transparent")
 	for node in transparent:
 		if viewport3.is_ancestor_of(node):
+			node.hide()
+		if viewport_dim_split.is_ancestor_of(node):
 			node.hide()
 				# Disabling transparency in FogViewport
 		if viewport2.is_ancestor_of(node):
@@ -164,26 +174,32 @@ func change_level(player_pos,level_high,level_mid,level_low):
 	get_node("MainLevelViewport/SubViewport").get_child(0).queue_free()
 	get_node("FogViewport").get_child(0).queue_free()
 	get_node("VisibilityViewport").get_child(0).queue_free()
+	get_node("OtherDimension/DimensionsParser").get_child(0).queue_free()
 	
 	var viewport1 = get_node("MainLevelViewport/SubViewport")
 	var viewport2 = get_node("FogViewport")
 	var viewport3 = get_node("VisibilityViewport")
+	var viewport_dim_split = get_node_or_null("OtherDimension/DimensionsParser")
 	
 	var instance_high = load(level_high).instantiate()
 	var instance_mid = load(level_mid).instantiate()
 	var instance_low = load(level_low).instantiate()
+	var instance_dim_split = load(level_low).instantiate()
 	
 	var shader_material = ShaderMaterial.new()
 	shader_material.shader = preload("res://shaders/visibilityMapShader.gdshader")
 	instance_low.material = shader_material
+	instance_dim_split.material = shader_material
 	
 	viewport1.add_child(instance_high)
 	viewport2.add_child(instance_mid)
 	viewport3.add_child(instance_low)
+	viewport_dim_split.add_child(instance_dim_split)
 	
 	viewport1.move_child(instance_high,0)
 	viewport2.move_child(instance_mid,0)
 	viewport3.move_child(instance_low,0)
+	viewport_dim_split.move_child(instance_dim_split,0)
 	
 	var player: CharacterBody2D = get_tree().get_first_node_in_group("player")
 	player.position = player_pos
