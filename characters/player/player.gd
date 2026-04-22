@@ -5,6 +5,7 @@ signal weapon_info_on
 
 var view_light: Node2D #Connects view with player
 var dim_split_light: Node2D
+var od_view_light: Node2D
 var aim_assist: Node2D 
 var aim_assistR: Node2D 
 var aim_assistL: Node2D 
@@ -168,9 +169,11 @@ func _process(delta):
 	if view_light != null:      #viewPorty
 		view_light.rotation = top.rotation
 		view_light.position = self.position
-	if dim_split_light != null:
+	if dim_split_light != null and od_view_light != null:
 		dim_split_light.rotation = top.rotation
 		dim_split_light.position = self.position
+		od_view_light.rotation = top.rotation
+		od_view_light.position = self.position
 	##########        EXITING         ##########
 	if Input.is_action_just_pressed("exit"):
 		get_tree().quit()

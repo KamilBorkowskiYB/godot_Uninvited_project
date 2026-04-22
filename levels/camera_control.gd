@@ -20,6 +20,7 @@ func _ready():
 
 func _process(_delta):
 	var player: CharacterBody2D = get_tree().get_first_node_in_group("player")
+	var camera: Camera2D = get_parent().get_node_or_null("PlayerCamera")
 	if player == null: # or not get_parent().get_parent().is_ancestor_of(self)
 		return
 	var mouse_position = get_global_mouse_position()
@@ -35,14 +36,14 @@ func _process(_delta):
 		target_position = player_position + direction * (clamped_distance - DEAD_ZONE) * 0.5
 		screen_position = screen_middle - direction * (clamped_distance - DEAD_ZONE) * 0.5
 	
-	$PlayerCamera.global_position = target_position.round()
+	camera.global_position = target_position.round()
 	player.aim_assist.global_position = screen_position
 	
 	if shake_timer > 0:
 		shake_timer -= _delta
-		$PlayerCamera.offset = Vector2(randi_range(-shake_amount, shake_amount), randi_range(-shake_amount, shake_amount))
+		camera.offset = Vector2(randi_range(-shake_amount, shake_amount), randi_range(-shake_amount, shake_amount))
 	else:
-		$PlayerCamera.offset = Vector2.ZERO
+		camera.offset = Vector2.ZERO
 	
 	var new_position = get_viewport().get_mouse_position()
 	PositionArray.insert(0, new_position)

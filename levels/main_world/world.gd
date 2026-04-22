@@ -7,6 +7,9 @@ func _ready():
 	var viewport2 = get_node("FogViewport")
 	var viewport3 = get_node("VisibilityViewport")
 	var viewport_dim_split = get_node("OtherDimension/DimensionsParser")
+	var od_viewport1 = get_node("OtherDimension/ODSeenViewport")
+	var od_viewport2 = get_node("OtherDimension/ODFogViewport")
+	var od_viewport3 = get_node("OtherDimension/ODVisibilityViewport")
 	var player: CharacterBody2D = get_tree().get_first_node_in_group("player")
 	#setting viewports size to match project size
 	var view_size = get_viewport().get_visible_rect().size
@@ -14,31 +17,43 @@ func _ready():
 	viewport2.size = view_size
 	viewport3.size = view_size
 	viewport_dim_split.size = view_size
+	od_viewport1.size = view_size
+	od_viewport2.size = view_size
+	od_viewport3.size = view_size
 	
-	viewport1 = get_node("MainLevelViewport/SubViewport").get_child(0)
 	#connecting viewport cameras
 	var cam_main = viewport1.get_node_or_null("PlayerCamera")
 	var cam_fog = viewport2.get_node_or_null("Camera2D")
 	var cam_view = viewport3.get_node_or_null("Camera2D")
 	var cam_dim_split = viewport_dim_split.get_node_or_null("Camera2D")
+	var cam_od_main = od_viewport1.get_node_or_null("Camera2D")
+	var cam_od_fog = od_viewport2.get_node_or_null("Camera2D")
+	var cam_od_view = od_viewport3.get_node_or_null("Camera2D")
 	
 	if(cam_main and cam_fog and cam_view):
 		cam_main.vision_camera = cam_view
 		cam_main.fog_camera = cam_fog
-	if(cam_dim_split):
+	if(cam_main and cam_dim_split):
 		cam_main.dim_split_camera = cam_dim_split
+	if(cam_main and cam_od_main and cam_od_fog and cam_od_view):
+		cam_main.od_main_camera = cam_od_main
+		cam_main.od_fog_camera = cam_od_fog
+		cam_main.od_vision_camera = cam_od_view
 	
 	#connecting VisionViewport lights to player
 	var view_light = viewport3.get_node_or_null("ViewLight")
 	var light_dim_split = viewport_dim_split.get_node_or_null("ViewDimensionLight")
+	var od_view_light = od_viewport3.get_node_or_null("ViewLight")
 	if(player and view_light):
 		player.view_light = view_light
-		if(light_dim_split):
+		if(light_dim_split and od_view_light):
 			player.dim_split_light = light_dim_split
+			player.od_view_light = od_view_light
 	
 	
 	#connecting tilemap to player footsteps
 	var tilemap = null
+	viewport1 = get_node("MainLevelViewport/SubViewport").get_child(0)
 	if viewport1.get_child(0).get_child(0).get_node("Tilemap").get_child_count() > 0:
 		tilemap = viewport1.get_child(0).get_child(0).get_node("Tilemap").get_child(0)
 	var footnode = player.get_node("Footsteps")
@@ -92,6 +107,7 @@ func _ready():
 	#setting materials in viewport3 to white
 	change_material_to_white(viewport3.get_child(0))
 	change_material_to_white(viewport_dim_split.get_child(0))
+	change_material_to_white(od_viewport3.get_child(0))
 	
 	
 	# Connecting movable blocks and doors
@@ -172,7 +188,7 @@ func change_material_to_white(node):
 		change_material_to_white(child)
 
 
-func change_level(player_pos,level_high,level_mid,level_low):
+func change_level(player_pos,level_high,level_mid,level_low): #TODO add other dimension to level load
 	get_node("MainLevelViewport/SubViewport").get_child(0).queue_free()
 	get_node("FogViewport").get_child(0).queue_free()
 	get_node("VisibilityViewport").get_child(0).queue_free()
@@ -182,6 +198,9 @@ func change_level(player_pos,level_high,level_mid,level_low):
 	var viewport2 = get_node("FogViewport")
 	var viewport3 = get_node("VisibilityViewport")
 	var viewport_dim_split = get_node_or_null("OtherDimension/DimensionsParser")
+	var od_viewport1 = get_node_or_null("OtherDimension/ODSeenViewport")
+	var od_viewport2 = get_node_or_null("OtherDimension/ODFogViewport")
+	var od_viewport3 = get_node_or_null("OtherDimension/ODVisibilityViewport")
 	
 	var instance_high = load(level_high).instantiate()
 	var instance_mid = load(level_mid).instantiate()

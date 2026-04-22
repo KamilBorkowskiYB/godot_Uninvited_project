@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://dbs8dbmepbxnh"]
+[gd_scene load_steps=30 format=3 uid="uid://dbs8dbmepbxnh"]
 
 [ext_resource type="Script" path="res://levels/main_world/world.gd" id="1_eb6ap"]
 [ext_resource type="Shader" path="res://shaders/maskView.gdshader" id="2_hpucc"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dv1g3h6sswoha" path="res://characters/player/graphic/view_cone.png" id="3_wk82u"]
 [ext_resource type="Shader" path="res://shaders/visibilityMapShader.gdshader" id="4_thh5m"]
 [ext_resource type="PackedScene" uid="uid://c8bitsc7ybbya" path="res://characters/player/player.tscn" id="5_5swua"]
+[ext_resource type="Script" path="res://characters/player/Camera2D.gd" id="5_64hr0"]
 [ext_resource type="Texture2D" uid="uid://cgkk6a01eg81t" path="res://characters/player/graphic/aim_assinst_line.png" id="6_6svyg"]
 [ext_resource type="PackedScene" uid="uid://02ixg6ydcbav" path="res://levels/test_level1/test_level_1_gray.tscn" id="6_76trs"]
 [ext_resource type="PackedScene" uid="uid://b7iklrlyc5m55" path="res://levels/test_level1/test_level_1_low.tscn" id="8_apxvq"]
@@ -41,6 +42,9 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.862385, 0.178899)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_la02u"]
+shader = ExtResource("4_thh5m")
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_d736h"]
 shader = ExtResource("4_thh5m")
 
@@ -58,6 +62,15 @@ viewport_path = NodePath("VisibilityViewport")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_bsdqd"]
 viewport_path = NodePath("OtherDimension/DimensionsParser")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_36kmu"]
+viewport_path = NodePath("OtherDimension/ODSeenViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_h0pcv"]
+viewport_path = NodePath("OtherDimension/ODFogViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_3heoh"]
+viewport_path = NodePath("OtherDimension/ODVisibilityViewport")
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_eb6ap")
@@ -82,6 +95,9 @@ visibility_layer = 897
 
 [node name="Player" parent="MainLevelViewport/SubViewport" instance=ExtResource("5_5swua")]
 position = Vector2(400, 450)
+
+[node name="PlayerCamera" type="Camera2D" parent="MainLevelViewport/SubViewport"]
+script = ExtResource("5_64hr0")
 
 [node name="FogViewport" type="SubViewport" parent="."]
 transparent_bg = true
@@ -120,19 +136,28 @@ texture_scale = 0.7
 [node name="OtherDimension" type="Node" parent="."]
 
 [node name="ODSeenViewport" type="SubViewport" parent="OtherDimension"]
+transparent_bg = true
+handle_input_locally = false
 
 [node name="OD_test_level_high" parent="OtherDimension/ODSeenViewport" instance=ExtResource("9_g4b45")]
 script = null
 
+[node name="Camera2D" type="Camera2D" parent="OtherDimension/ODSeenViewport"]
+
 [node name="ODFogViewport" type="SubViewport" parent="OtherDimension"]
+transparent_bg = true
+handle_input_locally = false
 
 [node name="OD_test_level_gray" parent="OtherDimension/ODFogViewport" instance=ExtResource("9_wea03")]
 
 [node name="Camera2D" type="Camera2D" parent="OtherDimension/ODFogViewport"]
 
 [node name="ODVisibilityViewport" type="SubViewport" parent="OtherDimension"]
+transparent_bg = true
+handle_input_locally = false
 
 [node name="OD_test_level_low" parent="OtherDimension/ODVisibilityViewport" instance=ExtResource("10_avuqo")]
+material = SubResource("ShaderMaterial_la02u")
 
 [node name="ViewLight" type="PointLight2D" parent="OtherDimension/ODVisibilityViewport"]
 scale = Vector2(1.5, 1.5)
@@ -334,6 +359,21 @@ texture = SubResource("ViewportTexture_8ptiq")
 position = Vector2(213, 362)
 scale = Vector2(0.2, 0.2)
 texture = SubResource("ViewportTexture_bsdqd")
+
+[node name="DebbugODHigh" type="Sprite2D" parent="Debug"]
+position = Vector2(1721, 125.2)
+scale = Vector2(0.2, 0.2)
+texture = SubResource("ViewportTexture_36kmu")
+
+[node name="DebbugODMid" type="Sprite2D" parent="Debug"]
+position = Vector2(1721, 375.2)
+scale = Vector2(0.2, 0.2)
+texture = SubResource("ViewportTexture_h0pcv")
+
+[node name="DebbugODLow" type="Sprite2D" parent="Debug"]
+position = Vector2(1721, 633.2)
+scale = Vector2(0.2, 0.2)
+texture = SubResource("ViewportTexture_3heoh")
 
 [connection signal="timeout" from="ItemsObtained/UI/PickUpTimer" to="ItemsObtained/UI" method="hide"]
 [connection signal="pressed" from="DeathScreen/DeathScreen/Panel/Button" to="." method="restart"]

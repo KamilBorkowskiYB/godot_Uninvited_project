@@ -4,8 +4,9 @@ extends Camera2D
 @export var fog_camera: Camera2D #viewPorty
 
 @export var dim_split_camera: Camera2D #viewPorty
-
-
+@export var od_main_camera: Camera2D #viewPorty
+@export var od_fog_camera: Camera2D #viewPorty
+@export var od_vision_camera: Camera2D #viewPorty
 
 func _process(_delta):
 	if vision_camera != null:
@@ -17,3 +18,12 @@ func _process(_delta):
 	if dim_split_camera != null:
 		dim_split_camera.position = self.position
 		dim_split_camera.offset = self.offset
+	if od_main_camera != null:
+		od_main_camera.position = self.position
+		od_main_camera.offset = self.offset
+	if od_fog_camera != null:
+		od_fog_camera.position = self.position
+		od_fog_camera.offset = self.offset
+	if od_vision_camera != null:
+		od_vision_camera.position = self.position
+		od_vision_camera.offset = self.offset
