@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dbs8dbmepbxnh"]
+[gd_scene load_steps=25 format=3 uid="uid://dbs8dbmepbxnh"]
 
 [ext_resource type="Script" path="res://levels/main_world/world.gd" id="1_eb6ap"]
 [ext_resource type="Shader" path="res://shaders/maskView.gdshader" id="2_hpucc"]
@@ -9,6 +9,9 @@
 [ext_resource type="Texture2D" uid="uid://cgkk6a01eg81t" path="res://characters/player/graphic/aim_assinst_line.png" id="6_6svyg"]
 [ext_resource type="PackedScene" uid="uid://02ixg6ydcbav" path="res://levels/test_level1/test_level_1_gray.tscn" id="6_76trs"]
 [ext_resource type="PackedScene" uid="uid://b7iklrlyc5m55" path="res://levels/test_level1/test_level_1_low.tscn" id="8_apxvq"]
+[ext_resource type="PackedScene" uid="uid://03blcfs0r0g4" path="res://levels/test_level_other_dimension1/other_dimension_test_level_high.tscn" id="9_g4b45"]
+[ext_resource type="PackedScene" uid="uid://dgp6ohfyhf7rm" path="res://levels/test_level_other_dimension1/other_dimension_test_level_gray.tscn" id="9_wea03"]
+[ext_resource type="PackedScene" uid="uid://bxokw5ag0urqt" path="res://levels/test_level_other_dimension1/other_dimension_test_level_low.tscn" id="10_avuqo"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_urhso"]
 viewport_path = NodePath("VisibilityViewport")
@@ -118,9 +121,33 @@ texture_scale = 0.7
 
 [node name="ODSeenViewport" type="SubViewport" parent="OtherDimension"]
 
+[node name="OD_test_level_high" parent="OtherDimension/ODSeenViewport" instance=ExtResource("9_g4b45")]
+script = null
+
 [node name="ODFogViewport" type="SubViewport" parent="OtherDimension"]
 
+[node name="OD_test_level_gray" parent="OtherDimension/ODFogViewport" instance=ExtResource("9_wea03")]
+
+[node name="Camera2D" type="Camera2D" parent="OtherDimension/ODFogViewport"]
+
 [node name="ODVisibilityViewport" type="SubViewport" parent="OtherDimension"]
+
+[node name="OD_test_level_low" parent="OtherDimension/ODVisibilityViewport" instance=ExtResource("10_avuqo")]
+
+[node name="ViewLight" type="PointLight2D" parent="OtherDimension/ODVisibilityViewport"]
+scale = Vector2(1.5, 1.5)
+blend_mode = 1
+shadow_enabled = true
+texture = ExtResource("3_wk82u")
+texture_scale = 3.5
+
+[node name="PointLight2D" type="PointLight2D" parent="OtherDimension/ODVisibilityViewport/ViewLight"]
+blend_mode = 1
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_ifk28")
+texture_scale = 0.7
+
+[node name="Camera2D" type="Camera2D" parent="OtherDimension/ODVisibilityViewport"]
 
 [node name="DimensionsParser" type="SubViewport" parent="OtherDimension"]
 transparent_bg = true

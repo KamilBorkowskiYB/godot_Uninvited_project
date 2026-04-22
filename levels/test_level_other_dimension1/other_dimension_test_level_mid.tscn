@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://d1iqnm05uvq1w"]
+
+[ext_resource type="PackedScene" uid="uid://bbmb7rfl6hr0t" path="res://levels/preset_level/preset_level_mid.tscn" id="1_u0378"]
+[ext_resource type="PackedScene" uid="uid://bxokw5ag0urqt" path="res://levels/test_level_other_dimension1/other_dimension_test_level_low.tscn" id="2_q44ms"]
+
+[node name="OD_test_level_mid" instance=ExtResource("1_u0378")]
+
+[node name="OD_test_level_low" parent="." index="0" instance=ExtResource("2_q44ms")]
+
+[node name="preset_level_low" parent="." index="1"]
+visible = false

@@ -7,3 +7,9 @@
 [node name="preset_level_mid" parent="." instance=ExtResource("1_th2y4")]
 
 [node name="out_of_view_overlay" type="Node2D" parent="."]
+
+[node name="SecretsColor" type="Node2D" parent="out_of_view_overlay"]
+
+[node name="SecretsModulate" type="Node2D" parent="out_of_view_overlay"]
+
+[node name="TerrainOverlays" type="Node2D" parent="out_of_view_overlay"]

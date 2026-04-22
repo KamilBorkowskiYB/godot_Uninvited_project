@@ -7,7 +7,7 @@
 [node name="preset_level_low" parent="." instance=ExtResource("1_h24jq")]
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-color = Color(0.439216, 0.439216, 0.439216, 1)
+color = Color(0.764706, 0.764706, 0.764706, 1)
 
 [node name="AmbientDark" type="Node2D" parent="."]
 

@@ -21,18 +21,20 @@ func _ready():
 	var cam_fog = viewport2.get_node_or_null("Camera2D")
 	var cam_view = viewport3.get_node_or_null("Camera2D")
 	var cam_dim_split = viewport_dim_split.get_node_or_null("Camera2D")
-	var light_dim_split = viewport_dim_split.get_node_or_null("ViewDimensionLight")
+	
 	if(cam_main and cam_fog and cam_view):
 		cam_main.vision_camera = cam_view
 		cam_main.fog_camera = cam_fog
-	if(cam_dim_split and light_dim_split):
+	if(cam_dim_split):
 		cam_main.dim_split_camera = cam_dim_split
-		cam_main.dim_split_light = light_dim_split
 	
 	#connecting VisionViewport lights to player
 	var view_light = viewport3.get_node_or_null("ViewLight")
+	var light_dim_split = viewport_dim_split.get_node_or_null("ViewDimensionLight")
 	if(player and view_light):
 		player.view_light = view_light
+		if(light_dim_split):
+			player.dim_split_light = light_dim_split
 	
 	
 	#connecting tilemap to player footsteps

@@ -8,6 +8,8 @@
 
 [node name="Walls" type="Node2D" parent="Static"]
 
+[node name="DimensionSplits" type="Node2D" parent="Static"]
+
 [node name="Doors" type="Node2D" parent="."]
 
 [node name="MovingBlocks" type="Node2D" parent="."]

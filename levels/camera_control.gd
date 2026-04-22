@@ -20,7 +20,7 @@ func _ready():
 
 func _process(_delta):
 	var player: CharacterBody2D = get_tree().get_first_node_in_group("player")
-	if player == null:
+	if player == null: # or not get_parent().get_parent().is_ancestor_of(self)
 		return
 	var mouse_position = get_global_mouse_position()
 	var player_position = player.global_position
