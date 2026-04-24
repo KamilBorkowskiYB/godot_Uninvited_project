@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://dbs8dbmepbxnh"]
+[gd_scene load_steps=36 format=3 uid="uid://dbs8dbmepbxnh"]
 
 [ext_resource type="Script" path="res://levels/main_world/world.gd" id="1_eb6ap"]
 [ext_resource type="Shader" path="res://shaders/maskView.gdshader" id="2_hpucc"]
@@ -17,6 +17,21 @@
 [sub_resource type="ViewportTexture" id="ViewportTexture_urhso"]
 viewport_path = NodePath("VisibilityViewport")
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_s1qdr"]
+viewport_path = NodePath("OtherDimension/ODVisibilityViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_j13h8"]
+viewport_path = NodePath("OtherDimension/DimensionsParserOccluders")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_7wl7d"]
+viewport_path = NodePath("OtherDimension/DimensionsParser")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_qw7fn"]
+viewport_path = NodePath("OtherDimension/ODSeenViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_nhp0d"]
+viewport_path = NodePath("OtherDimension/ODFogViewport")
+
 [sub_resource type="ViewportTexture" id="ViewportTexture_nggp3"]
 viewport_path = NodePath("FogViewport")
 
@@ -25,6 +40,11 @@ resource_local_to_scene = true
 shader = ExtResource("2_hpucc")
 shader_parameter/mask_texture = SubResource("ViewportTexture_urhso")
 shader_parameter/unseen = SubResource("ViewportTexture_nggp3")
+shader_parameter/od_portal = SubResource("ViewportTexture_7wl7d")
+shader_parameter/od_occluders = SubResource("ViewportTexture_j13h8")
+shader_parameter/od_mask_texture = SubResource("ViewportTexture_s1qdr")
+shader_parameter/od_seen = SubResource("ViewportTexture_qw7fn")
+shader_parameter/od_unseen = SubResource("ViewportTexture_nhp0d")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nmqhj"]
 shader = ExtResource("4_thh5m")
@@ -207,7 +227,13 @@ blend_mode = 1
 shadow_enabled = true
 shadow_item_cull_mask = 256
 texture = ExtResource("3_wk82u")
-texture_scale = 15.0
+texture_scale = 3.5
+
+[node name="PointLight2D" type="PointLight2D" parent="OtherDimension/DimensionsParserOccluders/ViewDimensionLight"]
+blend_mode = 1
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_ifk28")
+texture_scale = 0.7
 
 [node name="Camera2D" type="Camera2D" parent="OtherDimension/DimensionsParserOccluders"]
 
@@ -376,6 +402,7 @@ scale = Vector2(0.2, 0.2)
 texture = SubResource("ViewportTexture_8ptiq")
 
 [node name="DebbugDimensionParser" type="Sprite2D" parent="Debug"]
+visible = false
 position = Vector2(213, 362)
 scale = Vector2(0.2, 0.2)
 texture = SubResource("ViewportTexture_bsdqd")
@@ -386,16 +413,19 @@ scale = Vector2(0.2, 0.2)
 texture = SubResource("ViewportTexture_m0nsu")
 
 [node name="DebbugODHigh" type="Sprite2D" parent="Debug"]
+visible = false
 position = Vector2(1721, 125.2)
 scale = Vector2(0.2, 0.2)
 texture = SubResource("ViewportTexture_36kmu")
 
 [node name="DebbugODMid" type="Sprite2D" parent="Debug"]
+visible = false
 position = Vector2(1721, 375.2)
 scale = Vector2(0.2, 0.2)
 texture = SubResource("ViewportTexture_h0pcv")
 
 [node name="DebbugODLow" type="Sprite2D" parent="Debug"]
+visible = false
 position = Vector2(1721, 633.2)
 scale = Vector2(0.2, 0.2)
 texture = SubResource("ViewportTexture_3heoh")
