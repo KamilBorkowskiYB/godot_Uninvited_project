@@ -7,6 +7,7 @@ func _ready():
 	var viewport2 = get_node("FogViewport")
 	var viewport3 = get_node("VisibilityViewport")
 	var viewport_dim_split = get_node("OtherDimension/DimensionsParser")
+	var viewport_dim_split_occluders = get_node("OtherDimension/DimensionsParserOccluders")
 	var od_viewport1 = get_node("OtherDimension/ODSeenViewport")
 	var od_viewport2 = get_node("OtherDimension/ODFogViewport")
 	var od_viewport3 = get_node("OtherDimension/ODVisibilityViewport")
@@ -17,6 +18,7 @@ func _ready():
 	viewport2.size = view_size
 	viewport3.size = view_size
 	viewport_dim_split.size = view_size
+	viewport_dim_split_occluders.size = view_size
 	od_viewport1.size = view_size
 	od_viewport2.size = view_size
 	od_viewport3.size = view_size
@@ -26,6 +28,7 @@ func _ready():
 	var cam_fog = viewport2.get_node_or_null("Camera2D")
 	var cam_view = viewport3.get_node_or_null("Camera2D")
 	var cam_dim_split = viewport_dim_split.get_node_or_null("Camera2D")
+	var cam_dim_split_occluders = viewport_dim_split_occluders.get_node_or_null("Camera2D")
 	var cam_od_main = od_viewport1.get_node_or_null("Camera2D")
 	var cam_od_fog = od_viewport2.get_node_or_null("Camera2D")
 	var cam_od_view = od_viewport3.get_node_or_null("Camera2D")
@@ -33,8 +36,9 @@ func _ready():
 	if(cam_main and cam_fog and cam_view):
 		cam_main.vision_camera = cam_view
 		cam_main.fog_camera = cam_fog
-	if(cam_main and cam_dim_split):
+	if(cam_main and cam_dim_split and cam_dim_split_occluders):
 		cam_main.dim_split_camera = cam_dim_split
+		cam_main.dim_split_camera_occluders = cam_dim_split_occluders
 	if(cam_main and cam_od_main and cam_od_fog and cam_od_view):
 		cam_main.od_main_camera = cam_od_main
 		cam_main.od_fog_camera = cam_od_fog
@@ -43,11 +47,13 @@ func _ready():
 	#connecting VisionViewport lights to player
 	var view_light = viewport3.get_node_or_null("ViewLight")
 	var light_dim_split = viewport_dim_split.get_node_or_null("ViewDimensionLight")
+	var light_dim_split_occluders = viewport_dim_split_occluders.get_node_or_null("ViewDimensionLight")
 	var od_view_light = od_viewport3.get_node_or_null("ViewLight")
 	if(player and view_light):
 		player.view_light = view_light
-		if(light_dim_split and od_view_light):
+		if(light_dim_split and od_view_light and light_dim_split_occluders):
 			player.dim_split_light = light_dim_split
+			player.dim_split_light_occluders = light_dim_split_occluders
 			player.od_view_light = od_view_light
 	
 	
@@ -107,6 +113,7 @@ func _ready():
 	#setting materials in viewport3 to white
 	change_material_to_white(viewport3.get_child(0))
 	change_material_to_white(viewport_dim_split.get_child(0))
+	change_material_to_white(viewport_dim_split_occluders.get_child(0))
 	change_material_to_white(od_viewport3.get_child(0))
 	
 	
@@ -151,7 +158,9 @@ func _ready():
 			node.hide()
 		if viewport_dim_split.is_ancestor_of(node):
 			node.hide()
-				# Disabling transparency in FogViewport
+		if viewport_dim_split_occluders.is_ancestor_of(node):
+			node.hide()
+		# Disabling transparency in FogViewport
 		if viewport2.is_ancestor_of(node):
 			var mat: Material = node.material
 			if mat and mat is ShaderMaterial:

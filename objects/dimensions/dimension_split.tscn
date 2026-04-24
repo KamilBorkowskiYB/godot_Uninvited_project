@@ -1,10 +1,19 @@
-[gd_scene load_steps=2 format=3 uid="uid://dnwmh62tvl3p"]
+[gd_scene load_steps=3 format=3 uid="uid://dnwmh62tvl3p"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_38mmk"]
 polygon = PackedVector2Array(0, 0, 133, 0, 133, 0, 0, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jfyvb"]
+size = Vector2(135, 20)
 
 [node name="DimensionSplit" type="Node2D"]
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 occluder = SubResource("OccluderPolygon2D_38mmk")
 occluder_light_mask = 128
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(67.5, 0)
+shape = SubResource("RectangleShape2D_jfyvb")

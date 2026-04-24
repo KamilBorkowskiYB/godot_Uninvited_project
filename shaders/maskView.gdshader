@@ -2,6 +2,10 @@ shader_type canvas_item;
 
 uniform sampler2D mask_texture;
 uniform sampler2D unseen;
+
+uniform sampler2D od_portal;
+uniform sampler2D od_occluders;
+
 uniform sampler2D od_mask_texture;
 uniform sampler2D od_seen;
 uniform sampler2D od_unseen;
@@ -16,6 +20,9 @@ void fragment() {
 	vec4 od_color = texture(od_seen, UV);
 	vec4 od_mask = texture(od_mask_texture, UV);
 	vec4 od_outview = texture(od_unseen, UV);
+	
+	vec4 dim_split = texture(od_portal, UV);
+	vec4 dim_occluders = texture(od_occluders, UV);
 	
 	float blend = mask.r;
 	float lumi = (outview.r + outview.g + outview.b) / 3.0 * darkness;

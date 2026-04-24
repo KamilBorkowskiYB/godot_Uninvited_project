@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://cxiu2kws8f1xm"]
+[gd_scene load_steps=5 format=3 uid="uid://cxiu2kws8f1xm"]
 
+[ext_resource type="Script" path="res://objects/dimensions/dimension_occluders.gd" id="1_78ef4"]
 [ext_resource type="Texture2D" uid="uid://cma5kmw10jghr" path="res://white_sq.png" id="1_gt8fi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f4jwm"]
@@ -10,6 +11,7 @@ polygon = PackedVector2Array(-32, -32, -32, 32, 32, 32, 32, -32)
 
 [node name="staticBlock" type="StaticBody2D"]
 use_parent_material = true
+script = ExtResource("1_78ef4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_f4jwm")
@@ -21,3 +23,4 @@ texture = ExtResource("1_gt8fi")
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 occluder = SubResource("OccluderPolygon2D_2xtxr")
+occluder_light_mask = 257

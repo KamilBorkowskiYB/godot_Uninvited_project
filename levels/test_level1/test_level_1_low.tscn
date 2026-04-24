@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://b7iklrlyc5m55"]
+[gd_scene load_steps=11 format=3 uid="uid://b7iklrlyc5m55"]
 
 [ext_resource type="PackedScene" uid="uid://ckpdtj6bvcm5m" path="res://objects/tree/tree.tscn" id="2_nn3gb"]
 [ext_resource type="PackedScene" uid="uid://cng2o48wdswvk" path="res://objects/door/door.tscn" id="3_44mhx"]
 [ext_resource type="PackedScene" uid="uid://cdjrccvmnvd0y" path="res://objects/floor/water.tscn" id="3_dfka1"]
 [ext_resource type="PackedScene" uid="uid://dnwmh62tvl3p" path="res://objects/dimensions/dimension_split.tscn" id="3_lbr5p"]
 [ext_resource type="PackedScene" uid="uid://wnfv8t4fomvg" path="res://objects/door/double_door.tscn" id="4_a0d8x"]
+[ext_resource type="PackedScene" uid="uid://cxiu2kws8f1xm" path="res://objects/staticBlock.tscn" id="4_v3f8p"]
 [ext_resource type="PackedScene" uid="uid://bef12d8fnd3pw" path="res://objects/grabable/wardrobe.tscn" id="5_58tq3"]
 [ext_resource type="PackedScene" uid="uid://djd0wpqb3yhqj" path="res://objects/grabable/crate_small.tscn" id="5_syhhd"]
 [ext_resource type="PackedScene" uid="uid://c33j86e6f8mi7" path="res://levels/atlases/atlas_one.tscn" id="6_jx3yk"]
@@ -38,7 +39,35 @@ position = Vector2(-261, 610)
 [node name="DimensionsSplits" type="Node2D" parent="Static"]
 
 [node name="DimensionSplit" parent="Static/DimensionsSplits" instance=ExtResource("3_lbr5p")]
-position = Vector2(1585, 1219)
+position = Vector2(1774, 1296)
+
+[node name="staticBlock" parent="Static/DimensionsSplits" instance=ExtResource("4_v3f8p")]
+position = Vector2(1842, 1562)
+scale = Vector2(5.84, 1)
+vertical = false
+
+[node name="staticBlock5" parent="Static/DimensionsSplits" instance=ExtResource("4_v3f8p")]
+position = Vector2(1969, 1295)
+scale = Vector2(1.87999, 0.55999)
+vertical = false
+vis_from_right_or_bottom = false
+
+[node name="staticBlock6" parent="Static/DimensionsSplits" instance=ExtResource("4_v3f8p")]
+position = Vector2(1715, 1295)
+scale = Vector2(1.87999, 0.55999)
+vertical = false
+vis_from_right_or_bottom = false
+
+[node name="staticBlock2" parent="Static/DimensionsSplits" instance=ExtResource("4_v3f8p")]
+position = Vector2(1997, 1426)
+rotation = 1.5708
+scale = Vector2(3.5354, 1)
+
+[node name="staticBlock3" parent="Static/DimensionsSplits" instance=ExtResource("4_v3f8p")]
+position = Vector2(1687, 1427)
+rotation = 1.5708
+scale = Vector2(3.55928, 1)
+vis_from_right_or_bottom = false
 
 [node name="Doors" type="Node2D" parent="."]
 z_index = 1
