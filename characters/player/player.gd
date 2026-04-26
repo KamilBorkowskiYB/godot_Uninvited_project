@@ -320,8 +320,8 @@ func shoot(ray_casts,ammo_type):
 		top.get_node("MuzzleFlash/Timer").start()
 		$Sounds/ShootSound.play()
 		
-		var level = get_parent().get_child(0) #level always should be first node of viewport
-		level.start_shake(10, 0.1) 
+		var camera = get_parent().get_node("PlayerCamera")
+		camera.start_shake(10, 0.1) 
 		recoil = min(max_recoil, recoil + max_recoil * 0.7)
 		ammo_type -= 1
 		# Iterate through all RayCast2D
@@ -334,6 +334,7 @@ func shoot(ray_casts,ammo_type):
 			var shot_trail = bullet_trail.instantiate()
 			
 			# Setting bullet trail points
+			var level = get_parent().get_child(0)
 			shot_trail.add_point(level.to_local(ray_cast.global_position) + offset)
 			if ray_cast.is_colliding():
 				shot_trail.add_point(level.to_local(ray_cast.get_collision_point()))

@@ -36,34 +36,34 @@ position = Vector2(604, 555)
 [node name="Tree7" parent="Static/Trees" instance=ExtResource("2_nn3gb")]
 position = Vector2(-261, 610)
 
-[node name="DimensionsSplits" type="Node2D" parent="Static"]
+[node name="DimensionSplits" type="Node2D" parent="Static"]
 
-[node name="DimensionSplit" parent="Static/DimensionsSplits" instance=ExtResource("3_lbr5p")]
+[node name="DimensionSplit" parent="Static/DimensionSplits" instance=ExtResource("3_lbr5p")]
 position = Vector2(1774, 1296)
 
-[node name="staticBlock" parent="Static/DimensionsSplits" instance=ExtResource("4_v3f8p")]
+[node name="staticBlock" parent="Static/DimensionSplits" instance=ExtResource("4_v3f8p")]
 position = Vector2(1842, 1562)
 scale = Vector2(5.84, 1)
 vertical = false
 
-[node name="staticBlock5" parent="Static/DimensionsSplits" instance=ExtResource("4_v3f8p")]
+[node name="staticBlock5" parent="Static/DimensionSplits" instance=ExtResource("4_v3f8p")]
 position = Vector2(1969, 1295)
 scale = Vector2(1.87999, 0.55999)
 vertical = false
 vis_from_right_or_bottom = false
 
-[node name="staticBlock6" parent="Static/DimensionsSplits" instance=ExtResource("4_v3f8p")]
+[node name="staticBlock6" parent="Static/DimensionSplits" instance=ExtResource("4_v3f8p")]
 position = Vector2(1715, 1295)
 scale = Vector2(1.87999, 0.55999)
 vertical = false
 vis_from_right_or_bottom = false
 
-[node name="staticBlock2" parent="Static/DimensionsSplits" instance=ExtResource("4_v3f8p")]
+[node name="staticBlock2" parent="Static/DimensionSplits" instance=ExtResource("4_v3f8p")]
 position = Vector2(1997, 1426)
 rotation = 1.5708
 scale = Vector2(3.5354, 1)
 
-[node name="staticBlock3" parent="Static/DimensionsSplits" instance=ExtResource("4_v3f8p")]
+[node name="staticBlock3" parent="Static/DimensionSplits" instance=ExtResource("4_v3f8p")]
 position = Vector2(1687, 1427)
 rotation = 1.5708
 scale = Vector2(3.55928, 1)

@@ -110,6 +110,12 @@ func _ready():
 		if child.get_child(0).has_signal("reveal_area"):
 			child.get_child(0).reveal_area.connect(reveal_area)
 	
+	#connecting signals from Dimension Splits
+	viewport1 = get_node("MainLevelViewport/SubViewport").get_child(0).get_child(0).get_child(0).get_node("Static/DimensionSplits")
+	for child in viewport1.get_children():
+		if child.has_signal("swap_dimensions"):
+			child.swap_dimensions.connect(swap_dimensions)
+	
 	#setting materials in viewport3 to white
 	change_material_to_white(viewport3.get_child(0))
 	change_material_to_white(viewport_dim_split.get_child(0))
@@ -165,7 +171,8 @@ func _ready():
 			var mat: Material = node.material
 			if mat and mat is ShaderMaterial:
 				mat.set_shader_parameter("fog_dont_show", true)
-	viewport1.get_child(0)._ready() # reloads transparency calculation on level change
+	#viewport1.get_child(0)._ready() # reloads transparency calculation on level change
+	viewport1.get_node("PlayerCamera")._ready() # reloads transparency calculation on level change
 
 
 func _process(_delta):
@@ -237,6 +244,61 @@ func change_level(player_pos,level_high,level_mid,level_low): #TODO add other di
 	InteractionManager.active_areas = []
 	InteractionManager.mouse_range = []
 
+
+func swap_dimensions():
+	print("SWAP DIMENSIONS")
+	var viewport1 = get_node("MainLevelViewport/SubViewport")
+	var viewport2 = get_node("FogViewport")
+	var viewport3 = get_node("VisibilityViewport")
+	var viewport_dim_split = get_node_or_null("OtherDimension/DimensionsParser")
+	var viewport_dim_split_occluders = get_node_or_null("OtherDimension/DimensionsParserOccluders")
+	var od_viewport1 = get_node_or_null("OtherDimension/ODSeenViewport")
+	var od_viewport2 = get_node_or_null("OtherDimension/ODFogViewport")
+	var od_viewport3 = get_node_or_null("OtherDimension/ODVisibilityViewport")
+	
+	#seen dimensions
+	var main_dim_seen = viewport1.get_child(0)
+	var other_dim_seen = od_viewport1.get_child(0)
+	viewport1.remove_child(main_dim_seen)
+	od_viewport1.remove_child(other_dim_seen)
+	viewport1.add_child(other_dim_seen)
+	od_viewport1.add_child(main_dim_seen)
+	viewport1.move_child(other_dim_seen, 0)
+	od_viewport1.move_child(main_dim_seen, 0)
+	
+	#unseen dimensions
+	var main_unseen = viewport2.get_child(0)
+	var other_unseen = od_viewport2.get_child(0)
+	viewport2.remove_child(main_unseen)
+	od_viewport2.remove_child(other_unseen)
+	viewport2.add_child(other_unseen)
+	od_viewport2.add_child(main_unseen)
+	viewport2.move_child(other_unseen, 0)
+	od_viewport2.move_child(main_unseen, 0)
+	
+	#masks
+	var main_mask = viewport3.get_child(0)
+	var other_mask = od_viewport3.get_child(0)
+	viewport3.remove_child(main_mask)
+	od_viewport3.remove_child(other_mask)
+	viewport3.add_child(other_mask)
+	od_viewport3.add_child(main_mask)
+	viewport3.move_child(other_mask, 0)
+	od_viewport3.move_child(main_mask, 0)
+	
+	#dimension split
+	var old_parser = viewport_dim_split.get_child(0)
+	var old_occluders = viewport_dim_split_occluders.get_child(0)
+	viewport_dim_split.remove_child(old_parser)
+	viewport_dim_split_occluders.remove_child(old_occluders)
+	old_parser.queue_free()
+	old_occluders.queue_free()
+	var new_dim_parser = other_mask.duplicate()
+	var new_dim_occluders =other_mask.duplicate()
+	viewport_dim_split.add_child(new_dim_parser)
+	viewport_dim_split_occluders.add_child(new_dim_occluders)
+	viewport_dim_split.move_child(new_dim_parser, 0)
+	viewport_dim_split_occluders.move_child(new_dim_occluders, 0)
 
 func reveal_area(secret_name: String):
 	#TILESET MUST BE NAMED JUST LIKE SECRET 
