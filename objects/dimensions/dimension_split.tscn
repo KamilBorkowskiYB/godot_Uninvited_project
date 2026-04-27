@@ -23,3 +23,4 @@ position = Vector2(67.5, 0)
 shape = SubResource("RectangleShape2D_jfyvb")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

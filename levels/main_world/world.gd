@@ -115,6 +115,10 @@ func _ready():
 	for child in viewport1.get_children():
 		if child.has_signal("swap_dimensions"):
 			child.swap_dimensions.connect(swap_dimensions)
+	od_viewport1 = get_node("OtherDimension/ODSeenViewport").get_child(0).get_child(0).get_child(0).get_node("Static/DimensionSplits")
+	for child in od_viewport1.get_children():
+		if child.has_signal("swap_dimensions"):
+			child.swap_dimensions.connect(swap_dimensions)
 	
 	#setting materials in viewport3 to white
 	change_material_to_white(viewport3.get_child(0))
