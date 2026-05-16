@@ -61,12 +61,12 @@ vis_from_right_or_bottom = false
 [node name="staticBlock2" parent="Static/DimensionSplits" instance=ExtResource("4_v3f8p")]
 position = Vector2(1997, 1426)
 rotation = 1.5708
-scale = Vector2(3.5354, 1)
+scale = Vector2(4.6154, 1)
 
 [node name="staticBlock3" parent="Static/DimensionSplits" instance=ExtResource("4_v3f8p")]
 position = Vector2(1687, 1427)
 rotation = 1.5708
-scale = Vector2(3.55928, 1)
+scale = Vector2(4.51927, 1)
 vis_from_right_or_bottom = false
 
 [node name="Doors" type="Node2D" parent="."]

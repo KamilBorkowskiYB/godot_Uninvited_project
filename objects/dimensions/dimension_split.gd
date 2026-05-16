@@ -1,46 +1,47 @@
 extends Node2D
 
 signal swap_dimensions
+#Occluder shold be static and area should be offset based on player direction
+var swap_distance := 12.0
+var occluder_offset := 15.0
+var entered_from_top = false
+var border_width = 135.0
+@onready var lightOccluder = $LightOccluder2D
+@export var lightOccRestPos = 1296.0
+@onready var area = $Area2D
 
-# Stores which side each body entered from
-var entered_from := {}
 
 func _on_area_2d_body_entered(body):
-	if !body.is_in_group("player"):
-		return
-	
-	var area = $Area2D
-	var center_y = area.global_position.y
+	if body.is_in_group("player"):
+		entered_from_top = body.global_position.y < area.global_position.y
 
-	if body.global_position.y < center_y:
-		entered_from[body] = "top"
+
+func _process(_delta):
+	var overlapping_bodies = area.get_overlapping_bodies()
+	var player = get_tree().get_first_node_in_group("player")
+	
+	#moving dimension border for better visibility
+	if abs(player.global_position.y - lightOccRestPos) <= swap_distance:
+		if abs(player.global_position.x - lightOccluder.global_position.x) < border_width:
+			if player.global_position.y < lightOccRestPos:
+				lightOccluder.global_position.y = lightOccRestPos + occluder_offset
+			else:
+				lightOccluder.global_position.y = lightOccRestPos - occluder_offset
 	else:
-		entered_from[body] = "bottom"
-
-
-func _on_area_2d_body_exited(body):
-	if !body.is_in_group("player"):
-		return
+		lightOccluder.global_position.y = lightOccRestPos
 	
-	if !entered_from.has(body):
-		return
-	
-	var area = $Area2D
-	var center_y = area.global_position.y
-	
-	var exit_side = ""
-	if body.global_position.y < center_y:
-		exit_side = "top"
-	else:
-		exit_side = "bottom"
-	
-	var enter_side = entered_from[body]
-	
-	# only swap if exited opposite side
-	if enter_side != exit_side:
-		call_deferred("emit_swap")
-	
-	entered_from.erase(body)
+	#swaping dimensions
+	for body in overlapping_bodies:
+		if body.is_in_group("player"):
+			var center_y = area.global_position.y
+			#enter from top
+			if entered_from_top:
+				if body.global_position.y > center_y:
+					call_deferred("emit_swap")
+			#enter from bottom
+			else:
+				if body.global_position.y < center_y:
+					call_deferred("emit_swap")
 
 
 func emit_swap():

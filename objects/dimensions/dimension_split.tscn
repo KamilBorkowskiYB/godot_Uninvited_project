@@ -6,7 +6,7 @@
 polygon = PackedVector2Array(0, 0, 133, 0, 133, 0, 0, 0)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jfyvb"]
-size = Vector2(135, 20)
+size = Vector2(135, 16)
 
 [node name="DimensionSplit" type="Node2D"]
 script = ExtResource("1_c83i6")
@@ -22,5 +22,7 @@ collision_mask = 2
 position = Vector2(67.5, 0)
 shape = SubResource("RectangleShape2D_jfyvb")
 
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

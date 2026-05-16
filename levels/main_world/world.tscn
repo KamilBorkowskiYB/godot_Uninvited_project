@@ -234,7 +234,6 @@ texture_scale = 3.5
 blend_mode = 1
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_ifk28")
-texture_scale = 0.7
 
 [node name="Camera2D" type="Camera2D" parent="OtherDimension/DimensionsParserOccluders"]
 
