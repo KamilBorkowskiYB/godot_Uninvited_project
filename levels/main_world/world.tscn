@@ -38,6 +38,7 @@ viewport_path = NodePath("FogViewport")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qgts6"]
 resource_local_to_scene = true
 shader = ExtResource("2_hpucc")
+shader_parameter/swap_fog_progress = 0.0
 shader_parameter/mask_texture = SubResource("ViewportTexture_urhso")
 shader_parameter/unseen = SubResource("ViewportTexture_nggp3")
 shader_parameter/od_portal = SubResource("ViewportTexture_7wl7d")

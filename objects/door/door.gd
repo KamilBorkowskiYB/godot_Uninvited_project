@@ -2,6 +2,7 @@ extends Node2D
 
 var linkedView: Node2D
 var linkedFog: Node2D
+var linkedDimOcc: Node2D
 @export var hidden_area_name: String
 var hidden_area: Node2D
 
@@ -13,9 +14,13 @@ func _process(_delta):
 		linkedView.get_node("Door").transform = $Door.transform
 	if linkedFog != null:
 		linkedFog.get_node("Door").transform = $Door.transform
+	if linkedDimOcc != null:
+		linkedDimOcc.get_node("Door").transform = $Door.transform
 
 func destroyed():
 	if linkedView != null:
 		linkedView.queue_free()
 	if linkedFog != null:
 		linkedFog.queue_free()
+	if linkedDimOcc != null:
+		linkedDimOcc.queue_free()

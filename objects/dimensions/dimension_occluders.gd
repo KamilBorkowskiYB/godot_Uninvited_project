@@ -2,9 +2,11 @@ extends Node2D
 
 @export var vertical:bool = true
 @export var vis_from_right_or_bottom:bool = true
+@export var always_visible:bool = false
 
 
 func _process(_delta):
+	if always_visible: return
 	var player: CharacterBody2D = get_tree().get_first_node_in_group("player")
 	if vertical:
 		if vis_from_right_or_bottom:

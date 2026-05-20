@@ -2,6 +2,7 @@ extends Node2D
 
 @export var linkedView: Node2D
 @export var linkedFog: Node2D
+var linkedDimOcc: Node2D #used only for doors
 @export var high: bool
 @export var release_force = 5000
 @export var grabable: bool # for feture use case

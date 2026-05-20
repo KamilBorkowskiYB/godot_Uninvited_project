@@ -131,35 +131,13 @@ func _ready():
 	viewport1 = get_node("MainLevelViewport/SubViewport")
 	viewport2 = get_node("FogViewport")
 	viewport3 = get_node("VisibilityViewport")
-	var all_movable = get_tree().get_nodes_in_group("movable_blocks")
+	od_viewport1 = get_node("OtherDimension/ODSeenViewport")
+	od_viewport2 = get_node("OtherDimension/ODFogViewport")
+	od_viewport3 = get_node("OtherDimension/ODVisibilityViewport")
+	connect_movable_objects_between_viewports(viewport1, viewport2, viewport3)
+	connect_movable_objects_between_viewports(od_viewport1, od_viewport2, od_viewport3)
+	connect_dim_occluders(viewport1)
 	
-	for node1 in all_movable:
-		if not viewport1.is_ancestor_of(node1):
-			continue
-		
-		var target_name = node1.name
-		var node2 = null
-		var node3 = null
-		
-		for candidate in all_movable:
-			if candidate.name == target_name and viewport2.is_ancestor_of(candidate):
-				node2 = candidate
-				break
-		for candidate in all_movable:
-			if candidate.name == target_name and viewport3.is_ancestor_of(candidate):
-				node3 = candidate
-				break
-		
-		if node2 and node3:
-			node1.linkedView = node2
-			node1.linkedFog = node3
-		
-		#Connecting doors with hiden areas
-		var ha1 = node1.get("hidden_area_name")
-		if ha1 != null and ha1 != "": 
-			node1.hidden_area = get_node("MainLevelViewport/SubViewport").get_child(0).get_child(0).get_node(node1.hidden_area_name)
-		
-		node1.remove_from_group("movable_blocks")
 	
 	# Hidding front elements in Visibility Viewport
 	var transparent = get_tree().get_nodes_in_group("Transparent")
@@ -175,7 +153,6 @@ func _ready():
 			var mat: Material = node.material
 			if mat and mat is ShaderMaterial:
 				mat.set_shader_parameter("fog_dont_show", true)
-	#viewport1.get_child(0)._ready() # reloads transparency calculation on level change
 	viewport1.get_node("PlayerCamera")._ready() # reloads transparency calculation on level change
 
 
@@ -248,16 +225,27 @@ func change_level(player_pos,level_high,level_mid,level_low): #TODO add other di
 	InteractionManager.active_areas = []
 	InteractionManager.mouse_range = []
 
-
+var what_dimenstion = 0.0
 func swap_dimensions():
-	print("SWAP DIMENSIONS")
+	var material = $MainLevelViewport.material
+	material.set_shader_parameter("swap_fog_progress", what_dimenstion)
+	
+	var tween = create_tween()
+	tween.tween_method(
+		func(value):
+			material.set_shader_parameter("swap_fog_progress", value),
+		what_dimenstion,
+		abs(what_dimenstion-1.0),
+		0.5
+	)
+	what_dimenstion = abs(what_dimenstion-1.0)
+	
 	var viewport1 = get_node("MainLevelViewport/SubViewport")
-	var viewport2 = get_node("FogViewport")
+	#viewports2 are animeted in the above tween
 	var viewport3 = get_node("VisibilityViewport")
 	var viewport_dim_split = get_node_or_null("OtherDimension/DimensionsParser")
 	var viewport_dim_split_occluders = get_node_or_null("OtherDimension/DimensionsParserOccluders")
 	var od_viewport1 = get_node_or_null("OtherDimension/ODSeenViewport")
-	var od_viewport2 = get_node_or_null("OtherDimension/ODFogViewport")
 	var od_viewport3 = get_node_or_null("OtherDimension/ODVisibilityViewport")
 	
 	#seen dimensions
@@ -269,16 +257,6 @@ func swap_dimensions():
 	od_viewport1.add_child(main_dim_seen)
 	viewport1.move_child(other_dim_seen, 0)
 	od_viewport1.move_child(main_dim_seen, 0)
-	
-	#unseen dimensions
-	var main_unseen = viewport2.get_child(0)
-	var other_unseen = od_viewport2.get_child(0)
-	viewport2.remove_child(main_unseen)
-	od_viewport2.remove_child(other_unseen)
-	viewport2.add_child(other_unseen)
-	od_viewport2.add_child(main_unseen)
-	viewport2.move_child(other_unseen, 0)
-	od_viewport2.move_child(main_unseen, 0)
 	
 	#masks
 	var main_mask = viewport3.get_child(0)
@@ -303,6 +281,9 @@ func swap_dimensions():
 	viewport_dim_split_occluders.add_child(new_dim_occluders)
 	viewport_dim_split.move_child(new_dim_parser, 0)
 	viewport_dim_split_occluders.move_child(new_dim_occluders, 0)
+	connect_dim_occluders(viewport1)
+
+
 
 func reveal_area(secret_name: String):
 	#TILESET MUST BE NAMED JUST LIKE SECRET 
@@ -328,3 +309,54 @@ func reveal_area(secret_name: String):
 		var tween3 = create_tween()
 		tween3.tween_property(node3, "modulate:a", 0.0, tween_timer)
 		tween3.tween_callback(func(): node3.queue_free()) 
+
+func connect_movable_objects_between_viewports(viewport1, viewport2, viewport3): # Connecting movable blocks and doors
+	var all_movable = get_tree().get_nodes_in_group("movable_blocks")
+	for node1 in all_movable:
+		if not viewport1.is_ancestor_of(node1):
+			continue
+		
+		var target_name = node1.name
+		var node2 = null
+		var node3 = null
+		
+		for candidate in all_movable:
+			if candidate.name == target_name and viewport2.is_ancestor_of(candidate):
+				node2 = candidate
+				break
+		for candidate in all_movable:
+			if candidate.name == target_name and viewport3.is_ancestor_of(candidate):
+				node3 = candidate
+				break
+		
+		if node2 and node3:
+			node1.linkedView = node2
+			node1.linkedFog = node3
+			
+		#Connecting doors with hiden areas
+		var ha1 = node1.get("hidden_area_name")
+		if ha1 != null and ha1 != "": 
+			node1.hidden_area = viewport1.get_child(0).get_child(0).get_node(node1.hidden_area_name)
+
+
+func connect_dim_occluders(viewport_main): #connects movable objects from main viewport to coresponding ones from DimensionParserOccluders
+	var viewport_dim_split_occluders = get_node("OtherDimension/DimensionsParserOccluders")
+	var all_movable = get_tree().get_nodes_in_group("movable_blocks")
+	for node1 in all_movable:
+		if not viewport_main.is_ancestor_of(node1):
+			continue
+		
+		var target_name = node1.name
+		var node2 = null
+		
+		for candidate in all_movable:
+			if candidate.name == target_name and viewport_dim_split_occluders.is_ancestor_of(candidate):
+				node2 = candidate
+				break
+		
+		if node2:
+			node1.linkedDimOcc = node2
+
+
+func connect_dim_occluder_doors(): #connects doors from main viewports to the corresponding ones from the other_dim_main
+	pass #TODO

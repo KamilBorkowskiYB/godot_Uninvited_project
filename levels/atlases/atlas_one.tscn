@@ -1248,6 +1248,7 @@ sources/0 = SubResource("TileSetAtlasSource_kkena")
 sources/1 = SubResource("TileSetAtlasSource_fssy2")
 
 [node name="Atlas_one" type="TileMap"]
+z_index = -2
 material = SubResource("ShaderMaterial_x8pmb")
 position = Vector2(307, 228)
 scale = Vector2(1.5, 1.5)
