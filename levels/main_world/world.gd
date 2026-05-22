@@ -136,8 +136,8 @@ func _ready():
 	od_viewport3 = get_node("OtherDimension/ODVisibilityViewport")
 	connect_movable_objects_between_viewports(viewport1, viewport2, viewport3)
 	connect_movable_objects_between_viewports(od_viewport1, od_viewport2, od_viewport3)
-	connect_dim_occluders(viewport1)
-	
+	connect_dim_occluders()
+	connect_dim_occluder_doors()
 	
 	# Hidding front elements in Visibility Viewport
 	var transparent = get_tree().get_nodes_in_group("Transparent")
@@ -281,7 +281,8 @@ func swap_dimensions():
 	viewport_dim_split_occluders.add_child(new_dim_occluders)
 	viewport_dim_split.move_child(new_dim_parser, 0)
 	viewport_dim_split_occluders.move_child(new_dim_occluders, 0)
-	connect_dim_occluders(viewport1)
+	connect_dim_occluders()
+	connect_dim_occluder_doors()
 
 
 
@@ -339,7 +340,8 @@ func connect_movable_objects_between_viewports(viewport1, viewport2, viewport3):
 			node1.hidden_area = viewport1.get_child(0).get_child(0).get_node(node1.hidden_area_name)
 
 
-func connect_dim_occluders(viewport_main): #connects movable objects from main viewport to coresponding ones from DimensionParserOccluders
+func connect_dim_occluders(): #connects movable objects from main viewport to coresponding ones from DimensionParserOccluders
+	var viewport_main = get_node('MainLevelViewport/SubViewport')
 	var viewport_dim_split_occluders = get_node("OtherDimension/DimensionsParserOccluders")
 	var all_movable = get_tree().get_nodes_in_group("movable_blocks")
 	for node1 in all_movable:
@@ -359,4 +361,21 @@ func connect_dim_occluders(viewport_main): #connects movable objects from main v
 
 
 func connect_dim_occluder_doors(): #connects doors from main viewports to the corresponding ones from the other_dim_main
-	pass #TODO
+	var viewport_main = get_node('MainLevelViewport/SubViewport')
+	var viewport_other_dim = get_node("OtherDimension/ODSeenViewport")
+	var all_movable = get_tree().get_nodes_in_group("movable_blocks")
+	for node1 in all_movable:
+		if not viewport_main.is_ancestor_of(node1):
+			continue
+		
+		var target_name = node1.name
+		var node2 = null
+		
+		for candidate in all_movable:
+			if candidate.name == target_name and viewport_other_dim.is_ancestor_of(candidate):
+				node2 = candidate
+				break
+		
+		if node2:
+			node1.linkedOtherDim = node2
+			node2.linkedOtherDim = null

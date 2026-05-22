@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://dbs8dbmepbxnh"]
+[gd_scene load_steps=39 format=3 uid="uid://dbs8dbmepbxnh"]
 
 [ext_resource type="Script" path="res://levels/main_world/world.gd" id="1_eb6ap"]
 [ext_resource type="Shader" path="res://shaders/maskView.gdshader" id="2_hpucc"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://03blcfs0r0g4" path="res://levels/test_level_other_dimension1/other_dimension_test_level_high.tscn" id="9_g4b45"]
 [ext_resource type="PackedScene" uid="uid://dgp6ohfyhf7rm" path="res://levels/test_level_other_dimension1/other_dimension_test_level_gray.tscn" id="9_wea03"]
 [ext_resource type="PackedScene" uid="uid://bxokw5ag0urqt" path="res://levels/test_level_other_dimension1/other_dimension_test_level_low.tscn" id="10_avuqo"]
+[ext_resource type="PackedScene" uid="uid://b3neiyorjbtx4" path="res://characters/player/dummy_player.tscn" id="11_fx6md"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_urhso"]
 viewport_path = NodePath("VisibilityViewport")
@@ -62,6 +63,19 @@ height = 256
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.862385, 0.178899)
+
+[sub_resource type="Gradient" id="Gradient_wei4d"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0.727273, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_20lm8"]
+gradient = SubResource("Gradient_wei4d")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.798165, 0.201835)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_la02u"]
 shader = ExtResource("4_thh5m")
@@ -168,6 +182,18 @@ handle_input_locally = false
 script = null
 
 [node name="Camera2D" type="Camera2D" parent="OtherDimension/ODSeenViewport"]
+
+[node name="zone_light" type="PointLight2D" parent="OtherDimension/ODSeenViewport/Camera2D"]
+light_mask = 524291
+visibility_layer = 524289
+scale = Vector2(1.5, 1.5)
+color = Color(1, 1, 1, 0.333333)
+shadow_enabled = true
+shadow_item_cull_mask = 524291
+texture = SubResource("GradientTexture2D_20lm8")
+texture_scale = 0.7
+
+[node name="DummyPlayer" parent="OtherDimension/ODSeenViewport/Camera2D" instance=ExtResource("11_fx6md")]
 
 [node name="ODFogViewport" type="SubViewport" parent="OtherDimension"]
 transparent_bg = true

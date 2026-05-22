@@ -1,36 +1,31 @@
-[gd_scene load_steps=60 format=3 uid="uid://c8bitsc7ybbya"]
+[gd_scene load_steps=53 format=3 uid="uid://b3neiyorjbtx4"]
 
-[ext_resource type="Script" path="res://characters/player/player.gd" id="1_bf8ru"]
-[ext_resource type="Texture2D" uid="uid://f5sx516ofsyb" path="res://characters/player/graphic/legs.png" id="2_qgy1a"]
-[ext_resource type="Texture2D" uid="uid://c52fuv8m14np1" path="res://characters/player/graphic/pelvis.png" id="3_0tow6"]
-[ext_resource type="Texture2D" uid="uid://dp05qdlei2vkx" path="res://characters/player/graphic/aim_sheet.png" id="3_wpnqy"]
-[ext_resource type="Texture2D" uid="uid://bkm43cnbgvxrn" path="res://characters/zombie/dead_body.png" id="4_kohlt"]
-[ext_resource type="Texture2D" uid="uid://s0wyegweg08b" path="res://characters/player/graphic/player_sprite_sheet.png" id="5_8ch4w"]
-[ext_resource type="Texture2D" uid="uid://cx53kc3c1yvij" path="res://characters/zombie/blood_splatter.png" id="5_ilehf"]
-[ext_resource type="Texture2D" uid="uid://b5ugqtcggs4u2" path="res://characters/player/graphic/light.png" id="6_f1jbg"]
-[ext_resource type="Texture2D" uid="uid://crt2dknkpsnhb" path="res://characters/player/graphic/sprites 5.0/torso.png" id="6_jfaka"]
-[ext_resource type="Texture2D" uid="uid://drk2mv03m6kde" path="res://characters/player/graphic/sprites 5.0/head.png" id="7_m0xtm"]
-[ext_resource type="Texture2D" uid="uid://yvb8nqnn0ejw" path="res://characters/player/graphic/muzzle_flash.png" id="7_pvwq1"]
-[ext_resource type="Texture2D" uid="uid://knoh284ar337" path="res://characters/player/graphic/sprites 5.0/arm_H.png" id="8_5glyb"]
-[ext_resource type="AudioStream" uid="uid://bomrfapdkjghu" path="res://characters/zombie/death_noise1.wav" id="8_xyryx"]
-[ext_resource type="Texture2D" uid="uid://cgkk6a01eg81t" path="res://characters/player/graphic/aim_assinst_line.png" id="9_4hpk5"]
-[ext_resource type="Texture2D" uid="uid://dlr0xclf0f272" path="res://characters/player/graphic/sprites 5.0/arm_L.png" id="9_4s14i"]
-[ext_resource type="Texture2D" uid="uid://bospbgeryyshp" path="res://characters/player/graphic/sprites 5.0/hand_one.png" id="10_7jlag"]
-[ext_resource type="Texture2D" uid="uid://b0qytmr1grapk" path="res://characters/player/graphic/sprites 5.0/weapons/weapons.png" id="11_aeyh7"]
-[ext_resource type="AudioStream" uid="uid://b0ptr56jwws0u" path="res://characters/player/sounds/shotgun_shot1.wav" id="11_gs5cp"]
-[ext_resource type="AudioStream" uid="uid://6pn5lbj8i2ch" path="res://characters/player/sounds/concrete_footstep.mp3" id="12_qa0mu"]
-[ext_resource type="Texture2D" uid="uid://bnqfnayjmpmap" path="res://characters/player/graphic/sprites 5.0/weapons/shotgun_pump.png" id="12_xuust"]
-[ext_resource type="AudioStream" uid="uid://baanxyc2vjxhr" path="res://characters/player/sounds/grass_footsteps.mp3" id="13_1127d"]
-[ext_resource type="PackedScene" uid="uid://cjgla4gkbb8u2" path="res://Interactions/footsteps.tscn" id="14_xbjs0"]
-[ext_resource type="PackedScene" uid="uid://b4hop5ypxtvrs" path="res://characters/water_splash.tscn" id="15_vfyxc"]
+[ext_resource type="Script" path="res://characters/player/dummy_player.gd" id="1_annop"]
+[ext_resource type="Texture2D" uid="uid://f5sx516ofsyb" path="res://characters/player/graphic/legs.png" id="1_pdmwg"]
+[ext_resource type="Texture2D" uid="uid://c52fuv8m14np1" path="res://characters/player/graphic/pelvis.png" id="2_1owwl"]
+[ext_resource type="Texture2D" uid="uid://dp05qdlei2vkx" path="res://characters/player/graphic/aim_sheet.png" id="3_vda75"]
+[ext_resource type="Texture2D" uid="uid://s0wyegweg08b" path="res://characters/player/graphic/player_sprite_sheet.png" id="4_aayee"]
+[ext_resource type="Texture2D" uid="uid://yvb8nqnn0ejw" path="res://characters/player/graphic/muzzle_flash.png" id="5_5s1jj"]
+[ext_resource type="Texture2D" uid="uid://crt2dknkpsnhb" path="res://characters/player/graphic/sprites 5.0/torso.png" id="6_klajf"]
+[ext_resource type="Texture2D" uid="uid://knoh284ar337" path="res://characters/player/graphic/sprites 5.0/arm_H.png" id="7_r6o0j"]
+[ext_resource type="Texture2D" uid="uid://dlr0xclf0f272" path="res://characters/player/graphic/sprites 5.0/arm_L.png" id="8_16ibw"]
+[ext_resource type="Texture2D" uid="uid://bospbgeryyshp" path="res://characters/player/graphic/sprites 5.0/hand_one.png" id="9_kv0r7"]
+[ext_resource type="Texture2D" uid="uid://b0qytmr1grapk" path="res://characters/player/graphic/sprites 5.0/weapons/weapons.png" id="10_ppvci"]
+[ext_resource type="Texture2D" uid="uid://bnqfnayjmpmap" path="res://characters/player/graphic/sprites 5.0/weapons/shotgun_pump.png" id="11_yvhqw"]
+[ext_resource type="Texture2D" uid="uid://drk2mv03m6kde" path="res://characters/player/graphic/sprites 5.0/head.png" id="12_1nxcf"]
+[ext_resource type="Texture2D" uid="uid://bkm43cnbgvxrn" path="res://characters/zombie/dead_body.png" id="13_dmdgq"]
+[ext_resource type="Texture2D" uid="uid://cx53kc3c1yvij" path="res://characters/zombie/blood_splatter.png" id="14_lbqlb"]
+[ext_resource type="Texture2D" uid="uid://b5ugqtcggs4u2" path="res://characters/player/graphic/light.png" id="15_vtvj4"]
+[ext_resource type="Texture2D" uid="uid://cgkk6a01eg81t" path="res://characters/player/graphic/aim_assinst_line.png" id="16_y2usx"]
+[ext_resource type="PackedScene" uid="uid://b4hop5ypxtvrs" path="res://characters/water_splash.tscn" id="17_3vsdt"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_f7cyc"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_q1053"]
 radius = 40.0125
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_iro56"]
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_7v8mj"]
 light_mode = 1
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ppqp4"]
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_pd5p6"]
 light_mode = 1
 
 [sub_resource type="Animation" id="Animation_syd44"]
@@ -5352,25 +5347,11 @@ _data = {
 "run_rotate": SubResource("Animation_2h6ly")
 }
 
-[sub_resource type="Gradient" id="Gradient_xh2ys"]
-interpolation_mode = 2
-offsets = PackedFloat32Array(0.727273, 1)
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_0f7kp"]
-gradient = SubResource("Gradient_xh2ys")
-width = 256
-height = 256
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0.798165, 0.201835)
-
-[node name="Player" type="CharacterBody2D" groups=["player"]]
-collision_layer = 2
-collision_mask = 7
-motion_mode = 1
-script = ExtResource("1_bf8ru")
-can_shoot = true
+[node name="DummyPlayer" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 0
+slide_on_ceiling = false
+script = ExtResource("1_annop")
 
 [node name="Bottom" type="Node2D" parent="."]
 position = Vector2(0, 4.76837e-07)
@@ -5383,17 +5364,17 @@ position = Vector2(-8, 0)
 
 [node name="thighL" type="Sprite2D" parent="Bottom/Legs/LegL"]
 texture_filter = 1
-texture = ExtResource("2_qgy1a")
+texture = ExtResource("1_pdmwg")
 region_enabled = true
 region_rect = Rect2(32, 88, 15, 17)
 
 [node name="calfL" type="Sprite2D" parent="Bottom/Legs/LegL/thighL"]
-texture = ExtResource("2_qgy1a")
+texture = ExtResource("1_pdmwg")
 region_enabled = true
 region_rect = Rect2(32, 50, 15, 17)
 
 [node name="footL" type="Sprite2D" parent="Bottom/Legs/LegL/thighL/calfL"]
-texture = ExtResource("2_qgy1a")
+texture = ExtResource("1_pdmwg")
 region_enabled = true
 region_rect = Rect2(34, 16, 9, 15)
 
@@ -5402,34 +5383,34 @@ position = Vector2(8, 0)
 
 [node name="thighR" type="Sprite2D" parent="Bottom/Legs/LegR"]
 texture_filter = 1
-texture = ExtResource("2_qgy1a")
+texture = ExtResource("1_pdmwg")
 region_enabled = true
 region_rect = Rect2(81, 88, 15, 17)
 
 [node name="calfR" type="Sprite2D" parent="Bottom/Legs/LegR/thighR"]
-texture = ExtResource("2_qgy1a")
+texture = ExtResource("1_pdmwg")
 region_enabled = true
 region_rect = Rect2(81, 50, 15, 17)
 
 [node name="footR" type="Sprite2D" parent="Bottom/Legs/LegR/thighR/calfR"]
-texture = ExtResource("2_qgy1a")
+texture = ExtResource("1_pdmwg")
 region_enabled = true
 region_rect = Rect2(85, 16, 9, 15)
 
 [node name="Pelvis" type="Sprite2D" parent="Bottom/Legs"]
 texture_filter = 1
 position = Vector2(-1, 0)
-texture = ExtResource("3_0tow6")
+texture = ExtResource("2_1owwl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_f7cyc")
+shape = SubResource("CircleShape2D_q1053")
 
 [node name="Top" type="Node2D" parent="."]
 
 [node name="Alive" type="Sprite2D" parent="Top"]
 visible = false
 texture_filter = 1
-texture = ExtResource("3_wpnqy")
+texture = ExtResource("3_vda75")
 offset = Vector2(0, -38)
 hframes = 13
 vframes = 8
@@ -5437,7 +5418,7 @@ vframes = 8
 [node name="Alive_New" type="Sprite2D" parent="Top"]
 visible = false
 texture_filter = 2
-texture = ExtResource("5_8ch4w")
+texture = ExtResource("4_aayee")
 offset = Vector2(0, -38)
 hframes = 13
 vframes = 8
@@ -5447,7 +5428,7 @@ visible = false
 self_modulate = Color(1, 1, 0.172549, 1)
 position = Vector2(3, -85)
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("7_pvwq1")
+texture = ExtResource("5_5s1jj")
 
 [node name="Timer" type="Timer" parent="Top/MuzzleFlash"]
 wait_time = 0.05
@@ -5455,70 +5436,70 @@ one_shot = true
 
 [node name="Alive_New_New" type="Sprite2D" parent="Top"]
 scale = Vector2(0.8, 0.8)
-texture = ExtResource("6_jfaka")
+texture = ExtResource("6_klajf")
 
 [node name="LeftArm" type="Sprite2D" parent="Top/Alive_New_New"]
 position = Vector2(-43, -2)
-texture = ExtResource("8_5glyb")
+texture = ExtResource("7_r6o0j")
 
 [node name="LowerLeftArm" type="Sprite2D" parent="Top/Alive_New_New/LeftArm"]
 position = Vector2(-6, -30)
-texture = ExtResource("9_4s14i")
+texture = ExtResource("8_16ibw")
 
 [node name="LeftHand" type="Sprite2D" parent="Top/Alive_New_New/LeftArm/LowerLeftArm"]
 position = Vector2(5, -33)
-texture = ExtResource("10_7jlag")
+texture = ExtResource("9_kv0r7")
 
 [node name="WeaponCopy" type="Sprite2D" parent="Top/Alive_New_New/LeftArm/LowerLeftArm/LeftHand"]
 visible = false
 z_index = 1
 position = Vector2(11.1909, 49.5065)
 rotation = 4.57003
-texture = ExtResource("11_aeyh7")
+texture = ExtResource("10_ppvci")
 hframes = 3
 
 [node name="RightArm" type="Sprite2D" parent="Top/Alive_New_New"]
 position = Vector2(43, -2)
-texture = ExtResource("8_5glyb")
+texture = ExtResource("7_r6o0j")
 flip_h = true
 
 [node name="LowerRightArm" type="Sprite2D" parent="Top/Alive_New_New/RightArm"]
 position = Vector2(6, -30)
-texture = ExtResource("9_4s14i")
+texture = ExtResource("8_16ibw")
 flip_h = true
 
 [node name="RightHand" type="Sprite2D" parent="Top/Alive_New_New/RightArm/LowerRightArm"]
 position = Vector2(-5, -33)
-texture = ExtResource("10_7jlag")
+texture = ExtResource("9_kv0r7")
 flip_h = true
 
 [node name="Weapon" type="Sprite2D" parent="Top/Alive_New_New/RightArm/LowerRightArm/RightHand"]
 z_index = 1
 position = Vector2(-3.75835, -18.8597)
-texture = ExtResource("11_aeyh7")
+texture = ExtResource("10_ppvci")
 hframes = 3
 
 [node name="ShotgunPunmp" type="Sprite2D" parent="Top/Alive_New_New/RightArm/LowerRightArm/RightHand/Weapon"]
 z_index = -1
 position = Vector2(56.8853, 0.0732778)
-texture = ExtResource("12_xuust")
+texture = ExtResource("11_yvhqw")
 
 [node name="Head" type="Sprite2D" parent="Top/Alive_New_New"]
 z_index = 1
-texture = ExtResource("7_m0xtm")
+texture = ExtResource("12_1nxcf")
 
 [node name="Dead" type="Sprite2D" parent="Top"]
 visible = false
 z_index = -1
 position = Vector2(0, -14)
 scale = Vector2(1.5, 1.5)
-texture = ExtResource("4_kohlt")
+texture = ExtResource("13_dmdgq")
 
 [node name="BloodSplatter" type="Sprite2D" parent="Top/Dead"]
 self_modulate = Color(0.615686, 0.184314, 0.207843, 1)
 position = Vector2(-1, 0)
 rotation = 1.42139
-texture = ExtResource("5_ilehf")
+texture = ExtResource("14_lbqlb")
 
 [node name="FlashLight" type="PointLight2D" parent="Top"]
 visible = false
@@ -5527,23 +5508,23 @@ scale = Vector2(1.5, 1.5)
 color = Color(1, 1, 1, 0.741176)
 blend_mode = 2
 shadow_enabled = true
-texture = ExtResource("6_f1jbg")
+texture = ExtResource("15_vtvj4")
 texture_scale = 10.05
 
 [node name="AimAssistR" type="Sprite2D" parent="Top"]
 visible = false
 z_index = 100
-material = SubResource("CanvasItemMaterial_iro56")
+material = SubResource("CanvasItemMaterial_7v8mj")
 scale = Vector2(0.5, 0.8)
-texture = ExtResource("9_4hpk5")
+texture = ExtResource("16_y2usx")
 offset = Vector2(0, -300)
 
 [node name="AimAssistL" type="Sprite2D" parent="Top"]
 visible = false
 z_index = 100
-material = SubResource("CanvasItemMaterial_ppqp4")
+material = SubResource("CanvasItemMaterial_pd5p6")
 scale = Vector2(0.5, 0.8)
-texture = ExtResource("9_4hpk5")
+texture = ExtResource("16_y2usx")
 offset = Vector2(0, -300)
 
 [node name="RayCasts" type="Node2D" parent="Top"]
@@ -5583,37 +5564,7 @@ libraries = {
 "": SubResource("AnimationLibrary_raa63")
 }
 
-[node name="zone_light" type="PointLight2D" parent="."]
-light_mask = 524291
-visibility_layer = 524289
-scale = Vector2(1.5, 1.5)
-color = Color(1, 1, 1, 0.333333)
-shadow_enabled = true
-shadow_item_cull_mask = 524291
-texture = SubResource("GradientTexture2D_0f7kp")
-texture_scale = 0.7
-
-[node name="Sounds" type="Node" parent="."]
-
-[node name="DeafSound" type="AudioStreamPlayer" parent="Sounds"]
-stream = ExtResource("8_xyryx")
-bus = &"sfx"
-
-[node name="ShootSound" type="AudioStreamPlayer" parent="Sounds"]
-stream = ExtResource("11_gs5cp")
-bus = &"sfx"
-
-[node name="ConcreteFootstep" type="AudioStreamPlayer" parent="Sounds"]
-stream = ExtResource("12_qa0mu")
-bus = &"sfx"
-
-[node name="GrassFootstep" type="AudioStreamPlayer" parent="Sounds"]
-stream = ExtResource("13_1127d")
-bus = &"sfx"
-
-[node name="Footsteps" parent="." instance=ExtResource("14_xbjs0")]
-
-[node name="WaterSplash" parent="." instance=ExtResource("15_vfyxc")]
+[node name="WaterSplash" parent="." instance=ExtResource("17_3vsdt")]
 scale = Vector2(1.5, 1.5)
 
 [connection signal="timeout" from="Top/MuzzleFlash/Timer" to="Top/MuzzleFlash" method="hide"]
