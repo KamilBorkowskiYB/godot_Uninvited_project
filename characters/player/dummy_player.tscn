@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://b3neiyorjbtx4"]
+[gd_scene load_steps=55 format=3 uid="uid://b3neiyorjbtx4"]
 
 [ext_resource type="Script" path="res://characters/player/dummy_player.gd" id="1_annop"]
 [ext_resource type="Texture2D" uid="uid://f5sx516ofsyb" path="res://characters/player/graphic/legs.png" id="1_pdmwg"]
@@ -5347,6 +5347,19 @@ _data = {
 "run_rotate": SubResource("Animation_2h6ly")
 }
 
+[sub_resource type="Gradient" id="Gradient_xh2ys"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0.727273, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_uv0te"]
+gradient = SubResource("Gradient_xh2ys")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.798165, 0.201835)
+
 [node name="DummyPlayer" type="CharacterBody2D"]
 collision_layer = 0
 collision_mask = 0
@@ -5527,28 +5540,6 @@ scale = Vector2(0.5, 0.8)
 texture = ExtResource("16_y2usx")
 offset = Vector2(0, -300)
 
-[node name="RayCasts" type="Node2D" parent="Top"]
-
-[node name="RayCast2D" type="RayCast2D" parent="Top/RayCasts"]
-target_position = Vector2(0, -1400)
-collision_mask = 3
-collide_with_areas = true
-
-[node name="RayCast2D2" type="RayCast2D" parent="Top/RayCasts"]
-target_position = Vector2(0, -1400)
-collision_mask = 3
-collide_with_areas = true
-
-[node name="RayCast2D3" type="RayCast2D" parent="Top/RayCasts"]
-target_position = Vector2(0, -1400)
-collision_mask = 3
-collide_with_areas = true
-
-[node name="RayCast2D4" type="RayCast2D" parent="Top/RayCasts"]
-target_position = Vector2(0, -1400)
-collision_mask = 3
-collide_with_areas = true
-
 [node name="AnimationPlayerTOP" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_2yjhd")
@@ -5566,6 +5557,16 @@ libraries = {
 
 [node name="WaterSplash" parent="." instance=ExtResource("17_3vsdt")]
 scale = Vector2(1.5, 1.5)
+
+[node name="zone_light" type="PointLight2D" parent="."]
+light_mask = 524291
+visibility_layer = 524289
+scale = Vector2(1.5, 1.5)
+color = Color(1, 1, 1, 0.333333)
+shadow_enabled = true
+shadow_item_cull_mask = 524291
+texture = SubResource("GradientTexture2D_uv0te")
+texture_scale = 0.7
 
 [connection signal="timeout" from="Top/MuzzleFlash/Timer" to="Top/MuzzleFlash" method="hide"]
 [connection signal="timeout" from="Top/MuzzleFlash/Timer" to="Top/FlashLight" method="hide"]

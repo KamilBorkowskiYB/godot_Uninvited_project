@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://dbs8dbmepbxnh"]
+[gd_scene load_steps=37 format=3 uid="uid://dbs8dbmepbxnh"]
 
 [ext_resource type="Script" path="res://levels/main_world/world.gd" id="1_eb6ap"]
 [ext_resource type="Shader" path="res://shaders/maskView.gdshader" id="2_hpucc"]
@@ -63,19 +63,6 @@ height = 256
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.862385, 0.178899)
-
-[sub_resource type="Gradient" id="Gradient_wei4d"]
-interpolation_mode = 2
-offsets = PackedFloat32Array(0.727273, 1)
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_20lm8"]
-gradient = SubResource("Gradient_wei4d")
-width = 256
-height = 256
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0.798165, 0.201835)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_la02u"]
 shader = ExtResource("4_thh5m")
@@ -183,17 +170,7 @@ script = null
 
 [node name="Camera2D" type="Camera2D" parent="OtherDimension/ODSeenViewport"]
 
-[node name="zone_light" type="PointLight2D" parent="OtherDimension/ODSeenViewport/Camera2D"]
-light_mask = 524291
-visibility_layer = 524289
-scale = Vector2(1.5, 1.5)
-color = Color(1, 1, 1, 0.333333)
-shadow_enabled = true
-shadow_item_cull_mask = 524291
-texture = SubResource("GradientTexture2D_20lm8")
-texture_scale = 0.7
-
-[node name="DummyPlayer" parent="OtherDimension/ODSeenViewport/Camera2D" instance=ExtResource("11_fx6md")]
+[node name="DummyPlayer" parent="OtherDimension/ODSeenViewport" instance=ExtResource("11_fx6md")]
 
 [node name="ODFogViewport" type="SubViewport" parent="OtherDimension"]
 transparent_bg = true
@@ -422,6 +399,7 @@ texture = ExtResource("6_6svyg")
 offset = Vector2(0, -350)
 
 [node name="Debug" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="DebugViewVision" type="Sprite2D" parent="Debug"]
 position = Vector2(213, 130)

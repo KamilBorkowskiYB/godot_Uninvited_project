@@ -2,7 +2,7 @@ extends Node2D
 
 @export var linkedView: Node2D
 @export var linkedFog: Node2D
-var linkedDimOcc: Node2D #used only for doors
+var linkedDimOcc: Node2D
 @export var high: bool
 @export var release_force = 5000
 @export var grabable: bool # for feture use case
@@ -38,6 +38,8 @@ func _process(_delta):
 		linkedView.transform = self.transform
 	if linkedFog != null:
 		linkedFog.transform = self.transform
+	if linkedDimOcc != null:
+		linkedDimOcc.transform = self.transform
 	
 	if standing_on == "water":
 		self.mass = initial_mass * 2

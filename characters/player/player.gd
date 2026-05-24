@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 signal player_has_died
 signal weapon_info_on
+signal shot_fired(shots_data)
 
 var view_light: Node2D #Connects view with player
 var dim_split_light: Node2D
@@ -324,6 +325,7 @@ func shoot(ray_casts,ammo_type):
 		camera.start_shake(10, 0.1) 
 		recoil = min(max_recoil, recoil + max_recoil * 0.7)
 		ammo_type -= 1
+		var shots_data = []
 		# Iterate through all RayCast2D
 		for ray_cast in ray_casts:
 			var direction = ray_cast.global_position - get_global_mouse_position() # where player looks, not where raycast shoots
@@ -335,11 +337,13 @@ func shoot(ray_casts,ammo_type):
 			
 			# Setting bullet trail points
 			var level = get_parent().get_child(0)
-			shot_trail.add_point(level.to_local(ray_cast.global_position) + offset)
+			shot_trail.add_point(level.to_local(ray_cast.global_position + offset))
+			var end_point
 			if ray_cast.is_colliding():
-				shot_trail.add_point(level.to_local(ray_cast.get_collision_point()))
+				end_point = ray_cast.get_collision_point()
+				shot_trail.add_point(level.to_local(end_point))
 			else:
-				var end_point = ray_cast.global_position + shoot_dir * 2000.0
+				end_point = ray_cast.global_position + shoot_dir * 2000.0
 				shot_trail.add_point(level.to_local(end_point))
 			level.add_child(shot_trail)
 			
@@ -350,6 +354,16 @@ func shoot(ray_casts,ammo_type):
 					attack.attack_damage = damage
 					attack.attack_direction = direction
 					ray_cast.get_collider().kill(attack)
+			
+			# Pass shot info to dummy player in the other dimension
+			shots_data.append({
+				"start": ray_cast.global_position + offset,
+				"end": end_point,
+				"damage": damage,
+				"length": 2000.0
+			})
+			
+		shot_fired.emit(shots_data)
 	return ammo_type
 
 func aim():

@@ -40,6 +40,7 @@ texture = ExtResource("2_4l7cw")
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="BlockSprite"]
 occluder = SubResource("OccluderPolygon2D_8mmyc")
+occluder_light_mask = 257
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 0)

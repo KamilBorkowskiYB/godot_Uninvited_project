@@ -5,24 +5,74 @@ extends CharacterBody2D
 @onready var player_top_sprite = $Top/Alive_New
 @onready var bottom = $Bottom
 @onready var legs = $Bottom/Legs
-@onready var ray_cast1 = top.get_node("RayCasts/RayCast2D")
-@onready var ray_cast2 = top.get_node("RayCasts/RayCast2D2")
-@onready var ray_cast3 = top.get_node("RayCasts/RayCast2D3")
-@onready var ray_cast4 = top.get_node("RayCasts/RayCast2D4")
 @onready var animation_player = $AnimationPlayerTOP
 @onready var animation_playerLegs = $AnimationPlayerLEGS
 @onready var animation_run_rotation = $AnimationPlayerRUNROT
 @onready var bullet_trail = load("res://characters/player/misc/shot_trail.tscn")
 
+func _ready():
+	var player = get_tree().get_first_node_in_group("player")
+	player.shot_fired.connect(shoot)
+
 
 func _process(_delta):
-	pass
+	var player_help = get_tree().get_first_node_in_group("player")
+	top.rotation = player_help.top.rotation
+	position = player_help.position
+	
+	sync_animation(animation_player, player_help.animation_player)
+	sync_animation(animation_playerLegs, player_help.animation_playerLegs)
+	sync_animation(animation_run_rotation, player_help.animation_run_rotation)
 
 
-func _physics_process(_delta):
-	pass
+func sync_animation(local_anim: AnimationPlayer, target_anim: AnimationPlayer):
+	if !target_anim.is_playing():
+		if local_anim.is_playing():
+			local_anim.stop()
+		return
+
+	var current = target_anim.current_animation
+	if current == "":
+		return
+	# animation changed
+	if local_anim.current_animation != current:
+		local_anim.play(current)
+	# sync playback position
+	local_anim.seek(
+		target_anim.current_animation_position,
+		true
+	)
 
 
-func shoot(): #should shoot at the same time as player - create the same trail and deal damage (with the same values as the player)
-	pass
-
+func shoot(shots_data):
+	var space_state = get_world_2d().direct_space_state
+	var level = get_parent().get_child(0)
+	
+	for shot in shots_data:
+		var origin = shot.start
+		var end = shot.end
+		var direction = (end - origin).normalized()
+		var length = shot.length
+		var damage = shot.damage
+		
+		# REAL raycast in dummy world
+		var query = PhysicsRayQueryParameters2D.create(origin, origin + direction * length)
+		var result = space_state.intersect_ray(query)
+		var end_point = origin + direction * length
+		if !result.is_empty():
+			end_point = result.position
+		
+		# TRAIL
+		var shot_trail = bullet_trail.instantiate()
+		shot_trail.add_point(level.to_local(origin))
+		shot_trail.add_point(level.to_local(end_point))
+		level.add_child(shot_trail)
+		
+		# DAMAGE
+		if !result.is_empty():
+			var collider = result.collider
+			if collider and collider.has_method("kill"):
+				var attack = Attack.new()
+				attack.attack_damage = damage
+				attack.attack_direction = -direction
+				collider.kill(attack)

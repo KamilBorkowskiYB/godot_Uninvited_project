@@ -5352,13 +5352,13 @@ _data = {
 "run_rotate": SubResource("Animation_2h6ly")
 }
 
-[sub_resource type="Gradient" id="Gradient_xh2ys"]
+[sub_resource type="Gradient" id="Gradient_jtmfc"]
 interpolation_mode = 2
 offsets = PackedFloat32Array(0.727273, 1)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_0f7kp"]
-gradient = SubResource("Gradient_xh2ys")
+gradient = SubResource("Gradient_jtmfc")
 width = 256
 height = 256
 fill = 1
