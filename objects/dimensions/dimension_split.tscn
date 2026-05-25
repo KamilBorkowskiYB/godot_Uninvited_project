@@ -9,7 +9,7 @@ polygon = PackedVector2Array(0, 0, 133, 0, 133, 0, 0, 0)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jfyvb"]
 size = Vector2(135, 16)
 
-[node name="DimensionSplit" type="Node2D"]
+[node name="DimensionSplit" type="Node2D" groups=["dimension_split"]]
 script = ExtResource("1_c83i6")
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
