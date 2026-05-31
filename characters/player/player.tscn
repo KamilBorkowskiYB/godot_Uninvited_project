@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://c8bitsc7ybbya"]
+[gd_scene load_steps=61 format=3 uid="uid://c8bitsc7ybbya"]
 
 [ext_resource type="Script" path="res://characters/player/player.gd" id="1_bf8ru"]
 [ext_resource type="Texture2D" uid="uid://f5sx516ofsyb" path="res://characters/player/graphic/legs.png" id="2_qgy1a"]
@@ -23,6 +23,7 @@
 [ext_resource type="AudioStream" uid="uid://baanxyc2vjxhr" path="res://characters/player/sounds/grass_footsteps.mp3" id="13_1127d"]
 [ext_resource type="PackedScene" uid="uid://cjgla4gkbb8u2" path="res://Interactions/footsteps.tscn" id="14_xbjs0"]
 [ext_resource type="PackedScene" uid="uid://b4hop5ypxtvrs" path="res://characters/water_splash.tscn" id="15_vfyxc"]
+[ext_resource type="AudioStream" uid="uid://811q3c1e8tgi" path="res://characters/player/sounds/WoodPanelFootstep.mp3" id="22_l1tl4"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_f7cyc"]
 radius = 40.0125
@@ -5454,7 +5455,6 @@ wait_time = 0.05
 one_shot = true
 
 [node name="Alive_New_New" type="Sprite2D" parent="Top"]
-scale = Vector2(0.8, 0.8)
 texture = ExtResource("6_jfaka")
 
 [node name="LeftArm" type="Sprite2D" parent="Top/Alive_New_New"]
@@ -5609,6 +5609,10 @@ bus = &"sfx"
 
 [node name="GrassFootstep" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("13_1127d")
+bus = &"sfx"
+
+[node name="WoodPanelFootstep" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("22_l1tl4")
 bus = &"sfx"
 
 [node name="Footsteps" parent="." instance=ExtResource("14_xbjs0")]

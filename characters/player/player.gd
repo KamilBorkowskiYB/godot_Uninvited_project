@@ -471,3 +471,6 @@ func step():
 	if standing_on == "grass":
 		$Sounds/GrassFootstep.pitch_scale = randf_range(0.8, 1.2)
 		$Sounds/GrassFootstep.play()
+	if standing_on == "wood":
+		$Sounds/WoodPanelFootstep.pitch_scale = randf_range(0.8, 1.2)
+		$Sounds/WoodPanelFootstep.play()

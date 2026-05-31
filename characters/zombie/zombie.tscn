@@ -88,6 +88,30 @@ tracks/5/keys = {
 "update": 0,
 "values": [Vector2(5, 69)]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Graphics/Legs/LegL:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2, 17)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Graphics/Legs/LegR:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 12)]
+}
 
 [sub_resource type="Animation" id="Animation_hhe2l"]
 resource_name = "walk"
@@ -182,6 +206,30 @@ tracks/6/keys = {
 "method": &"step"
 }]
 }
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Graphics/Legs/LegL:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(2, 17), Vector2(2, -3)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Graphics/Legs/LegR:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0.5), Vector2(0, 12)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mqaf6"]
 _data = {
@@ -205,6 +253,7 @@ position = Vector2(6, -32)
 [node name="Legs" type="Node2D" parent="Graphics"]
 
 [node name="LegL" type="Node2D" parent="Graphics/Legs"]
+position = Vector2(2, 17)
 
 [node name="thighL" type="Sprite2D" parent="Graphics/Legs/LegL"]
 position = Vector2(-17, 29)
@@ -225,6 +274,7 @@ region_enabled = true
 region_rect = Rect2(29.9481, 11.6814, 18.2017, 23.9392)
 
 [node name="LegR" type="Node2D" parent="Graphics/Legs"]
+position = Vector2(0, 12)
 
 [node name="thighR" type="Sprite2D" parent="Graphics/Legs/LegR"]
 position = Vector2(5, 44)

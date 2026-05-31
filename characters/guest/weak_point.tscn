@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://drtyrflnj08vn"]
+
+[ext_resource type="Texture2D" uid="uid://bpt4jmnoatubq" path="res://characters/guest/weakpoint.png" id="1_j34wp"]
+[ext_resource type="Script" path="res://characters/guest/weak_point.gd" id="1_kcu7l"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hio27"]
+radius = 19.44
+
+[sub_resource type="Curve" id="Curve_plnwe"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="WeakPoint" type="Area2D" groups=["weak_point"]]
+script = ExtResource("1_kcu7l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_hio27")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(0.72549, 0.403922, 0.129412, 1)
+texture_filter = 1
+texture = ExtResource("1_j34wp")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 293
+lifetime = 0.5
+one_shot = true
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 191.39
+initial_velocity_max = 191.39
+scale_amount_max = 5.78
+scale_amount_curve = SubResource("Curve_plnwe")
+color = Color(0.950309, 0.550053, 0.287181, 1)
