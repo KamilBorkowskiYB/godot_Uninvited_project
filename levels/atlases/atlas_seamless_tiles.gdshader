@@ -2,6 +2,7 @@ shader_type canvas_item;
 
 uniform sampler2D overlay_texture_one: repeat_enable, filter_nearest;
 uniform sampler2D overlay_texture_two: repeat_enable, filter_nearest;
+uniform sampler2D overlay_texture_three: repeat_enable, filter_nearest;
 uniform sampler2D water_noise: repeat_enable, filter_nearest;
 uniform sampler2D water_noise2: repeat_enable, filter_nearest;
 
@@ -30,6 +31,12 @@ void fragment() {
 		mix_amount = float(distance(COLOR.rgb, mask_color) < 0.01);
 		vec4 overlay_color_two = texture(overlay_texture_two, world_pos * scale);
 		COLOR = mix(COLOR, overlay_color_two, mix_amount);
+		
+		// WoodPanels overlay
+		mask_color = vec3(0.59608, 0.38431, 0.11373);
+		mix_amount = float(distance(COLOR.rgb, mask_color) < 0.01);
+		vec4 overlay_color_three = texture(overlay_texture_three, world_pos * scale);
+		COLOR = mix(COLOR, overlay_color_three, mix_amount);
 		
 		// Water overlay on tiles with #1f10bd
 		mask_color = vec3(0.7412, 0.0627, 0.0627);
