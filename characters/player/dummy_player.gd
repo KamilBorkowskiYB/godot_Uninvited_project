@@ -2,7 +2,6 @@ extends CharacterBody2D
 
 ##########        PLAYER NODES        ##########
 @onready var top = $Top
-@onready var player_top_sprite = $Top/Alive_New
 @onready var bottom = $Bottom
 @onready var legs = $Bottom/Legs
 @onready var animation_player = $AnimationPlayerTOP

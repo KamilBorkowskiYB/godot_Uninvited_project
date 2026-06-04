@@ -227,13 +227,13 @@ func change_level(player_pos,level_high,level_mid,level_low): #TODO add other di
 
 var what_dimenstion = 0.0
 func swap_dimensions():
-	var material = $MainLevelViewport.material
-	material.set_shader_parameter("swap_fog_progress", what_dimenstion)
+	var shader_material = $MainLevelViewport.material
+	shader_material.set_shader_parameter("swap_fog_progress", what_dimenstion)
 	
 	var tween = create_tween()
 	tween.tween_method(
 		func(value):
-			material.set_shader_parameter("swap_fog_progress", value),
+			shader_material.set_shader_parameter("swap_fog_progress", value),
 		what_dimenstion,
 		abs(what_dimenstion-1.0),
 		0.5

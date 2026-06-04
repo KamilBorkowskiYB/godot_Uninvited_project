@@ -5377,7 +5377,7 @@ can_shoot = true
 position = Vector2(0, 4.76837e-07)
 
 [node name="Legs" type="Node2D" parent="Bottom"]
-scale = Vector2(1.2, 1.5)
+scale = Vector2(1.8, 2.2)
 
 [node name="LegL" type="Node2D" parent="Bottom/Legs"]
 position = Vector2(-8, 0)
@@ -5591,7 +5591,6 @@ color = Color(1, 1, 1, 0.333333)
 shadow_enabled = true
 shadow_item_cull_mask = 524291
 texture = SubResource("GradientTexture2D_0f7kp")
-texture_scale = 0.7
 
 [node name="Sounds" type="Node" parent="."]
 
