@@ -9,6 +9,8 @@ var linkedDimOcc: Node2D
 
 @onready var interaction_area: InteractionArea = $interaction_area
 @onready var mouse_interaction_area = $MouseRangeInteraction
+@onready var light_occ = $BlockSprite/LightOccluder2D
+
 
 var health = 150
 var standing_on = "grass"
@@ -47,6 +49,43 @@ func _process(_delta):
 	else:
 		self.mass = initial_mass
 		$WaterSplash.emitting = false
+	
+	var player: CharacterBody2D = get_tree().get_first_node_in_group("player")
+	var dim_occ_viewport = get_tree().root.get_node_or_null("World/OtherDimension/DimensionsParserOccluders")
+	var same_dim_viewport = get_tree().root.get_node_or_null("World/MainLevelViewport/SubViewport")
+	var other_dim_viewport = get_tree().root.get_node_or_null("World/OtherDimension/ODVisibilityViewport") 
+	var closest_distance = INF
+	var closest_dimension_border = null
+	
+	for node in get_tree().get_nodes_in_group("dimension_split"):
+		var dist = global_position.distance_to(node.global_position)
+		if dist < closest_distance:
+			closest_distance = dist
+			closest_dimension_border = node
+	
+	var player_side = player.position.y - closest_dimension_border.position.y
+	var self_side = position.y - closest_dimension_border.position.y
+	#hide collision on close objects on the other side of the dim portal on the same dim as player
+	if same_dim_viewport and same_dim_viewport.is_ancestor_of(self):
+		if player_side * self_side > 0 and high:
+			$".".set_collision_layer_value(2, true)
+		elif high:
+			$".".set_collision_layer_value(2, false)
+			
+	#hide dim occ on objects on the same side of the dim portal as player in the other dim
+	if other_dim_viewport and other_dim_viewport.is_ancestor_of(self):
+		if player_side * self_side > 0:
+			light_occ.occluder_light_mask = 0
+	else:
+		light_occ.occluder_light_mask = 257# 1 and 9
+	
+	#hide dim occ on objects on the same side of the dim portal as player
+	if dim_occ_viewport and dim_occ_viewport.is_ancestor_of(self):
+		if player_side * self_side > 0:
+			light_occ.occluder_light_mask = 257# 1 and 9
+		else:
+			light_occ.occluder_light_mask = 1
+
 
 
 func _physics_process(delta):
