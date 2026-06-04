@@ -1,14 +1,6 @@
 extends Area2D
 
 
-func _ready():
-	pass
-
-
-func _process(delta):
-	pass
-
-
 func kill(attack: Attack):
 	print("Weak point hit!")
 	$Sprite2D.hide()
