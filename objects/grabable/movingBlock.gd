@@ -33,7 +33,7 @@ func _ready():
 	else:
 		$".".set_collision_layer_value(2, false)
 		$".".set_collision_layer_value(3, true)
-		$BlockSprite/LightOccluder2D.set_occluder_light_mask(2)
+		light_occ.set_occluder_light_mask(2)
 
 func _process(_delta):
 	if linkedView != null:
@@ -67,9 +67,9 @@ func _process(_delta):
 	var self_side = position.y - closest_dimension_border.position.y
 	#hide collision on close objects on the other side of the dim portal on the same dim as player
 	if same_dim_viewport and same_dim_viewport.is_ancestor_of(self):
-		if player_side * self_side > 0 and high:
+		if player_side * self_side > 0:
 			$".".set_collision_layer_value(2, true)
-		elif high:
+		else:
 			$".".set_collision_layer_value(2, false)
 			
 	#hide dim occ on objects on the same side of the dim portal as player in the other dim
@@ -77,7 +77,10 @@ func _process(_delta):
 		if player_side * self_side > 0:
 			light_occ.occluder_light_mask = 0
 	else:
-		light_occ.occluder_light_mask = 257# 1 and 9
+		if high:
+			light_occ.occluder_light_mask = 257# 1 and 9
+		else:
+			light_occ.occluder_light_mask = 258# 2 and 9
 	
 	#hide dim occ on objects on the same side of the dim portal as player
 	if dim_occ_viewport and dim_occ_viewport.is_ancestor_of(self):
