@@ -68,9 +68,15 @@ func _process(_delta):
 	#hide collision on close objects on the other side of the dim portal on the same dim as player
 	if same_dim_viewport and same_dim_viewport.is_ancestor_of(self):
 		if player_side * self_side > 0:
-			$".".set_collision_layer_value(2, true)
+			if high:
+				$".".set_collision_layer_value(2, true)
+				$".".set_collision_layer_value(3, false)
+			else:
+				$".".set_collision_layer_value(3, true)
+				$".".set_collision_layer_value(2, false)
 		else:
 			$".".set_collision_layer_value(2, false)
+			$".".set_collision_layer_value(3, false)
 			
 	#hide dim occ on objects on the same side of the dim portal as player in the other dim
 	if other_dim_viewport and other_dim_viewport.is_ancestor_of(self):
