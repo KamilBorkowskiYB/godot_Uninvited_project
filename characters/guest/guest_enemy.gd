@@ -1,18 +1,25 @@
 extends CharacterBody2D
 
-@onready var ray_cast_2d = $RayCast2D
 
 @export var move_speed = 100
 @onready var animation_player_top = $AnimationPlayerTop
 @onready var animation_player_legs = $AnimationPlayerLegs
+@onready var view_area = $ViewNodes/ViewArea
+@onready var view_raycast = $ViewNodes/ViewRayCast
+@onready var agro_raycast = $AgroRayCast
 var dead = false
 @export var push_force = 10.0
 var move_direction = Vector2(0,0)
 var standing_on :String = "grass"
 var floor_move_speed_debuff = 1.0
+var anim_move_speed_debuff = 1.0
+var move_speed_debuff = floor_move_speed_debuff * anim_move_speed_debuff
 var weak_points = []
 var keep_count
-#TODO Lounge attack and mutant like aggro
+enum State { CHASE, IDLE, ATTACK, DEAD }
+var current_state: State = State.IDLE  
+
+
 func _ready():
 	find_weak_points(self)
 	keep_count = randi_range(3, 5)
@@ -23,9 +30,9 @@ func _ready():
 		var s = randf_range(0.7, 1.3)
 		weak_points[i].scale = Vector2(s, s)
 		weak_points[i].show()
-	animation_player_top.play("chase")
-	animation_player_legs.play("walk")
-	
+	animation_player_top.play("idle")
+
+
 func _physics_process(_delta):
 	if dead:
 		animation_player_top.stop()
@@ -39,19 +46,37 @@ func _physics_process(_delta):
 		floor_move_speed_debuff = 1.0
 		$Graphics/Legs.show()
 		$WaterSplash.emitting = false
+	
+	move_speed_debuff = floor_move_speed_debuff * anim_move_speed_debuff
 	var player: CharacterBody2D = get_tree().get_first_node_in_group("player")
-	move_direction = global_position.direction_to(player.global_position)
-	velocity = move_speed * move_direction * floor_move_speed_debuff
-	move_and_slide()
-	for i in get_slide_collision_count():
-		var c = get_slide_collision(i)
-		if c.get_collider() is RigidBody2D:
-			c.get_collider().apply_central_impulse(-c.get_normal() * push_force)
+	if player:
+		view_raycast.target_position = view_raycast.to_local(player.global_position)
 	
-	global_rotation = move_direction.angle() + PI/2.0
+	if  player in view_area.get_overlapping_bodies() and view_raycast.get_collider() == player:
+		player_spoted()
+	else:
+		player_lost()
 	
-	if ray_cast_2d.is_colliding() and ray_cast_2d.get_collider() == player:
-		player.kill()
+	if current_state == State.CHASE:
+		move_direction = global_position.direction_to(player.global_position)
+		velocity = move_speed * move_direction * move_speed_debuff
+		move_and_slide()
+		for i in get_slide_collision_count():
+			var c = get_slide_collision(i)
+			if c.get_collider() is RigidBody2D:
+				c.get_collider().apply_central_impulse(-c.get_normal() * push_force)
+		global_rotation = move_direction.angle() + PI/2.0
+	elif current_state == State.ATTACK:
+		move_direction = global_position.direction_to(agro_raycast.to_global(agro_raycast.target_position))
+		velocity = move_speed * move_direction * move_speed_debuff
+		move_and_slide()
+		for i in get_slide_collision_count():
+			var c = get_slide_collision(i)
+			if c.get_collider() is RigidBody2D:
+				c.get_collider().apply_central_impulse(-c.get_normal() * push_force)
+	
+	if agro_raycast.is_colliding() and agro_raycast.get_collider() == player and current_state == State.CHASE:
+		attack()
 
 
 func kill(attack: Attack):
@@ -82,3 +107,35 @@ func step():
 		$GrassFootstep.pitch_scale = randf_range(0.8, 1.2)
 		$GrassFootstep.play()
 
+
+func player_spoted():
+	if current_state == State.ATTACK:
+		return
+	current_state = State.CHASE
+	animation_player_top.play("chase")
+	animation_player_top.speed_scale = 1.3
+	animation_player_legs.play("walk")
+	anim_move_speed_debuff = 2.2
+
+
+func player_lost():
+	if current_state == State.ATTACK:
+		return
+	current_state = State.IDLE
+	animation_player_top.play("idle")
+	animation_player_top.speed_scale = 1.0
+	animation_player_legs.stop()
+	anim_move_speed_debuff = 1.0
+
+
+func attack():
+	#player.kill()
+	current_state = State.ATTACK
+	anim_move_speed_debuff = 4.0
+	if !(animation_player_top.current_animation  == "lunge"):
+		animation_player_top.play("lunge")
+
+
+func attack_ended():# should be called in the lunge anim at the end
+	current_state = State.IDLE
+	player_spoted()

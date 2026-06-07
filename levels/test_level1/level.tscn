@@ -29,7 +29,8 @@ position = Vector2(1733, -612)
 rotation = -3.12884
 
 [node name="guest_enemy" parent="Enemies" instance=ExtResource("4_ve2pi")]
-position = Vector2(602, 112)
+position = Vector2(1354, 427)
+rotation = -2.15863
 
 [node name="LightSource" parent="." instance=ExtResource("4_n3l4b")]
 z_index = -2
