@@ -16,9 +16,11 @@ var anim_move_speed_debuff = 1.0
 var move_speed_debuff = floor_move_speed_debuff * anim_move_speed_debuff
 var weak_points = []
 var keep_count
-enum State { CHASE, IDLE, ATTACK, DEAD }
+enum State { CHASE, IDLE, ATTACK, LUNGE, DEAD }
 var current_state: State = State.IDLE  
-
+var lost_sight_time := 0.0
+const LOST_AGRO_DELAY := 3.0
+var turn_speed := 5.0
 
 func _ready():
 	find_weak_points(self)
@@ -53,10 +55,12 @@ func _physics_process(_delta):
 		view_raycast.target_position = view_raycast.to_local(player.global_position)
 	
 	if  player in view_area.get_overlapping_bodies() and view_raycast.get_collider() == player:
+		lost_sight_time = 0.0
 		player_spoted()
 	else:
-		player_lost()
-	
+		lost_sight_time += _delta
+		if lost_sight_time >= LOST_AGRO_DELAY:
+			player_lost()
 	if current_state == State.CHASE:
 		move_direction = global_position.direction_to(player.global_position)
 		velocity = move_speed * move_direction * move_speed_debuff
@@ -65,8 +69,13 @@ func _physics_process(_delta):
 			var c = get_slide_collision(i)
 			if c.get_collider() is RigidBody2D:
 				c.get_collider().apply_central_impulse(-c.get_normal() * push_force)
-		global_rotation = move_direction.angle() + PI/2.0
-	elif current_state == State.ATTACK:
+		
+		global_rotation = lerp_angle(
+			global_rotation,
+			move_direction.angle() + PI/2.0,
+			turn_speed * _delta
+		)
+	elif current_state == State.LUNGE:
 		move_direction = global_position.direction_to(agro_raycast.to_global(agro_raycast.target_position))
 		velocity = move_speed * move_direction * move_speed_debuff
 		move_and_slide()
@@ -76,7 +85,11 @@ func _physics_process(_delta):
 				c.get_collider().apply_central_impulse(-c.get_normal() * push_force)
 	
 	if agro_raycast.is_colliding() and agro_raycast.get_collider() == player and current_state == State.CHASE:
-		attack()
+		var dist_to_player = global_position.distance_to(player.global_position)
+		if dist_to_player >= 200:
+			attack_lunge()
+		else:
+			attack()
 
 
 func kill(attack: Attack):
@@ -109,7 +122,7 @@ func step():
 
 
 func player_spoted():
-	if current_state == State.ATTACK:
+	if current_state == State.LUNGE or current_state == State.ATTACK:
 		return
 	current_state = State.CHASE
 	animation_player_top.play("chase")
@@ -119,7 +132,7 @@ func player_spoted():
 
 
 func player_lost():
-	if current_state == State.ATTACK:
+	if current_state == State.LUNGE or current_state == State.ATTACK:
 		return
 	current_state = State.IDLE
 	animation_player_top.play("idle")
@@ -129,8 +142,13 @@ func player_lost():
 
 
 func attack():
-	#player.kill()
 	current_state = State.ATTACK
+	if !(animation_player_top.current_animation  == "attack"):
+		animation_player_top.play("attack")
+
+
+func attack_lunge():
+	current_state = State.LUNGE
 	anim_move_speed_debuff = 4.0
 	if !(animation_player_top.current_animation  == "lunge"):
 		animation_player_top.play("lunge")
