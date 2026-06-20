@@ -16,7 +16,7 @@
 position = Vector2(4, 5)
 
 [node name="Zombie" parent="Enemies" instance=ExtResource("3_7x6e1")]
-position = Vector2(778, -77)
+position = Vector2(1157, -312)
 
 [node name="Zombie2" parent="Enemies" instance=ExtResource("3_7x6e1")]
 position = Vector2(-288, 221)
@@ -25,11 +25,11 @@ position = Vector2(-288, 221)
 position = Vector2(1177, 192)
 
 [node name="Mutant" parent="Enemies" instance=ExtResource("4_78ckn")]
-position = Vector2(1733, -612)
+position = Vector2(2162, -691)
 rotation = -3.12884
 
 [node name="guest_enemy" parent="Enemies" instance=ExtResource("4_ve2pi")]
-position = Vector2(1354, 427)
+position = Vector2(1710, 668)
 rotation = -2.15863
 
 [node name="LightSource" parent="." instance=ExtResource("4_n3l4b")]
@@ -48,7 +48,7 @@ position = Vector2(38, 282)
 position = Vector2(-82, -66)
 
 [node name="PickUp" parent="PickUps" instance=ExtResource("7_0crg7")]
-position = Vector2(543, -6)
+position = Vector2(475, 33)
 item_selected = 4
 
 [node name="ShotgunShells" parent="PickUps" instance=ExtResource("7_0crg7")]
@@ -124,7 +124,7 @@ item_selected = 2
 position = Vector2(-184, -5)
 
 [node name="change_scene" parent="LevelExits" instance=ExtResource("8_smc70")]
-position = Vector2(2177, 549)
+position = Vector2(2529, 861)
 scale = Vector2(1.72, 5.48)
 level_high = "res://levels/test_level2/forest_lvl_high.tscn"
 level_mid = "res://levels/test_level2/forest_lvl_mid.tscn"

@@ -1347,7 +1347,7 @@ texture_region_size = Vector2i(48, 48)
 [sub_resource type="TileSet" id="TileSet_v06ea"]
 tile_size = Vector2i(48, 48)
 occlusion_layer_0/light_mask = 1
-physics_layer_0/collision_layer = 3
+physics_layer_0/collision_layer = 1
 physics_layer_0/collision_mask = 7
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "48Walls"
@@ -1369,9 +1369,10 @@ sources/1 = SubResource("TileSetAtlasSource_fssy2")
 
 [node name="Atlas_one" type="TileMap"]
 z_index = -2
+texture_filter = 1
 material = SubResource("ShaderMaterial_x8pmb")
 position = Vector2(307, 228)
-scale = Vector2(1.5, 1.5)
+scale = Vector2(2, 2)
 tile_set = SubResource("TileSet_v06ea")
 format = 2
 layer_0/name = "0"

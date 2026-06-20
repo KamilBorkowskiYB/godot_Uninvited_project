@@ -12,7 +12,7 @@
 position = Vector2(1774, 1296)
 
 [node name="staticBlock5" parent="Static/DimensionSplits" index="1" instance=ExtResource("3_31umf")]
-position = Vector2(1928, 1295)
+position = Vector2(1964, 1295)
 scale = Vector2(0.59999, 0.55999)
 vertical = false
 vis_from_right_or_bottom = false

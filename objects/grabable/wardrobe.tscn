@@ -9,23 +9,25 @@ polygon = PackedVector2Array(74, -26, 73, 25, -72, 25, -72, -26)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y47cv"]
 resource_local_to_scene = true
-size = Vector2(160, 64)
+size = Vector2(258, 100)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tte8g"]
-radius = 59.9997
-height = 225.999
+radius = 108.006
+height = 433.998
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hoqa7"]
 resource_local_to_scene = true
-size = Vector2(159, 64)
+size = Vector2(257, 102)
 
 [node name="Wardrobe" instance=ExtResource("1_1g66k")]
-mass = 5.0
+mass = 20.0
 linear_damp = 5.0
 angular_damp = 5.0
 high = true
 
 [node name="BlockSprite" parent="." index="0"]
+texture_filter = 1
+scale = Vector2(1.6, 1.6)
 texture = ExtResource("2_rmofc")
 
 [node name="LightOccluder2D" parent="BlockSprite" index="0"]

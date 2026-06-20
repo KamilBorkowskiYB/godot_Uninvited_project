@@ -121,7 +121,7 @@ light_mask = 897
 visibility_layer = 897
 
 [node name="Player" parent="MainLevelViewport/SubViewport" instance=ExtResource("5_5swua")]
-position = Vector2(400, 450)
+position = Vector2(400, 800)
 
 [node name="PlayerCamera" type="Camera2D" parent="MainLevelViewport/SubViewport"]
 script = ExtResource("5_64hr0")
