@@ -9,7 +9,7 @@ var border_width = 135.0
 var occluder_speed := 240.0
 var min_distance := 5.0
 @onready var lightOccluder = $LightOccluder2D
-@export var lightOccRestPos = 1296.0
+@export var lightOccRestPos = 1786.0
 @onready var area = $Area2D
 
 

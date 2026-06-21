@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 
 @export var move_speed = 100
+@onready var graphics = $CanvasGroup/Graphics
 @onready var animation_player_top = $AnimationPlayerTop
 @onready var animation_player_legs = $AnimationPlayerLegs
 @onready var view_area = $ViewNodes/ViewArea
@@ -21,6 +22,7 @@ var current_state: State = State.IDLE
 var lost_sight_time := 0.0
 const LOST_AGRO_DELAY := 3.0
 var turn_speed := 5.0
+var health = 100
 
 func _ready():
 	find_weak_points(self)
@@ -32,6 +34,7 @@ func _ready():
 		var s = randf_range(0.7, 1.3)
 		weak_points[i].scale = Vector2(s, s)
 		weak_points[i].show()
+		weak_points[i].got_shot.connect(take_damage)
 	animation_player_top.play("idle")
 
 
@@ -42,11 +45,11 @@ func _physics_process(_delta):
 		return
 	if standing_on == "water":
 		floor_move_speed_debuff = 0.3
-		$Graphics/Legs.hide()
+		graphics.get_node("Legs").hide()
 		$WaterSplash.emitting = true
 	else:
 		floor_move_speed_debuff = 1.0
-		$Graphics/Legs.show()
+		graphics.get_node("Legs").show()
 		$WaterSplash.emitting = false
 	
 	move_speed_debuff = floor_move_speed_debuff * anim_move_speed_debuff
@@ -63,6 +66,10 @@ func _physics_process(_delta):
 			player_lost()
 	if current_state == State.CHASE:
 		move_direction = global_position.direction_to(player.global_position)
+	elif current_state == State.LUNGE:
+		move_direction = global_position.direction_to(agro_raycast.to_global(agro_raycast.target_position))
+		
+	if current_state == State.CHASE or current_state == State.LUNGE:
 		velocity = move_speed * move_direction * move_speed_debuff
 		move_and_slide()
 		for i in get_slide_collision_count():
@@ -75,14 +82,6 @@ func _physics_process(_delta):
 			move_direction.angle() + PI/2.0,
 			turn_speed * _delta
 		)
-	elif current_state == State.LUNGE:
-		move_direction = global_position.direction_to(agro_raycast.to_global(agro_raycast.target_position))
-		velocity = move_speed * move_direction * move_speed_debuff
-		move_and_slide()
-		for i in get_slide_collision_count():
-			var c = get_slide_collision(i)
-			if c.get_collider() is RigidBody2D:
-				c.get_collider().apply_central_impulse(-c.get_normal() * push_force)
 	
 	if agro_raycast.is_colliding() and agro_raycast.get_collider() == player and current_state == State.CHASE:
 		var dist_to_player = global_position.distance_to(player.global_position)
@@ -90,6 +89,15 @@ func _physics_process(_delta):
 			attack_lunge()
 		else:
 			attack()
+
+
+func take_damage(attack: Attack):
+	health -= attack.attack_damage
+	print("health: " + str(health))
+	lost_sight_time = 0.0
+	player_spoted()
+	if health <= 0:
+		kill(attack)
 
 
 func kill(attack: Attack):
@@ -100,7 +108,7 @@ func kill(attack: Attack):
 			weak_points[i].queue_free()
 	dead = true
 	$DeathSound.play()
-	$Graphics.hide()
+	start_death_effect()
 	$CollisionShape2D.disabled = true
 	z_index = -1
 
@@ -157,3 +165,19 @@ func attack_lunge():
 func attack_ended():# should be called in the lunge anim at the end
 	current_state = State.IDLE
 	player_spoted()
+
+
+func start_death_effect():
+	var mat = $CanvasGroup.material
+	
+	var tween = create_tween()
+	tween.tween_method(
+		func(v):
+			mat.set_shader_parameter("dissolve", v),
+		0.0,
+		1.0,
+		1.0
+	)
+	
+	await tween.finished
+	queue_free()
