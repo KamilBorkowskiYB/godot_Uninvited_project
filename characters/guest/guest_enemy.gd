@@ -25,6 +25,7 @@ var turn_speed := 5.0
 var health = 100
 
 func _ready():
+	connect_signals_bodyparts_recursive(self)
 	find_weak_points(self)
 	keep_count = randi_range(3, 5)
 	weak_points.shuffle()
@@ -169,15 +170,20 @@ func attack_ended():# should be called in the lunge anim at the end
 
 func start_death_effect():
 	var mat = $CanvasGroup.material
-	
 	var tween = create_tween()
 	tween.tween_method(
 		func(v):
 			mat.set_shader_parameter("dissolve", v),
 		0.0,
 		1.0,
-		1.0
+		0.6
 	)
 	
 	await tween.finished
 	queue_free()
+
+func connect_signals_bodyparts_recursive(node: Node):
+	for child in node.get_children():
+		if child.has_signal("got_hit_head"):
+			child.got_hit_head.connect(take_damage)
+		connect_signals_bodyparts_recursive(child)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://bf4qoj3d4egrk"]
+[gd_scene load_steps=29 format=3 uid="uid://bf4qoj3d4egrk"]
 
 [ext_resource type="Shader" path="res://characters/guest/perish.gdshader" id="1_73okw"]
 [ext_resource type="Script" path="res://characters/guest/guest_enemy.gd" id="1_l1ot1"]
@@ -16,9 +16,15 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_dx05a"]
 radius = 52.47
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_x8skp"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_wi13x"]
+noise = SubResource("FastNoiseLite_x8skp")
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hvveh"]
 shader = ExtResource("1_73okw")
 shader_parameter/dissolve = 0.0
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_wi13x")
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ajbsa"]
 resource_local_to_scene = true
