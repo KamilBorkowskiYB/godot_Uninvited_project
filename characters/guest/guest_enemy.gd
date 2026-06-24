@@ -23,6 +23,8 @@ var lost_sight_time := 0.0
 const LOST_AGRO_DELAY := 3.0
 var turn_speed := 5.0
 var health = 100
+var tween_done := false
+var sound_done := false
 
 func _ready():
 	connect_signals_bodyparts_recursive(self)
@@ -37,6 +39,7 @@ func _ready():
 		weak_points[i].show()
 		weak_points[i].got_shot.connect(take_damage)
 	animation_player_top.play("idle")
+	$DeathSound.finished.connect(on_sound_done)
 
 
 func _physics_process(_delta):
@@ -108,6 +111,7 @@ func kill(attack: Attack):
 		if is_instance_valid(weak_points[i]):
 			weak_points[i].queue_free()
 	dead = true
+	
 	$DeathSound.play()
 	start_death_effect()
 	$CollisionShape2D.disabled = true
@@ -173,17 +177,31 @@ func start_death_effect():
 	var tween = create_tween()
 	tween.tween_method(
 		func(v):
-			mat.set_shader_parameter("dissolve", v),
+			mat.set_shader_parameter("strength", v),
 		0.0,
 		1.0,
-		0.6
+		0.5
 	)
 	
 	await tween.finished
-	queue_free()
+	on_tween_done()
 
 func connect_signals_bodyparts_recursive(node: Node):
 	for child in node.get_children():
 		if child.has_signal("got_hit_head"):
 			child.got_hit_head.connect(take_damage)
 		connect_signals_bodyparts_recursive(child)
+
+func on_tween_done():
+	tween_done = true
+	check_death_cleanup()
+
+
+func on_sound_done():
+	sound_done = true
+	check_death_cleanup()
+
+
+func check_death_cleanup():
+	if tween_done and sound_done:
+		queue_free()
