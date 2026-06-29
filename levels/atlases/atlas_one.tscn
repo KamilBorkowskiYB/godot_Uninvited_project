@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://c33j86e6f8mi7"]
+[gd_scene load_steps=53 format=3 uid="uid://c33j86e6f8mi7"]
 
 [ext_resource type="Texture2D" uid="uid://bjr3ejsaqdpfr" path="res://levels/atlases/atlas1.png" id="1_acdnv"]
 [ext_resource type="Shader" path="res://levels/atlases/atlas_seamless_tiles.gdshader" id="1_woa2i"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dxp8maf0hliwp" path="res://levels/atlases/atlas2.png" id="2_x3213"]
 [ext_resource type="Texture2D" uid="uid://c40b70qxi65ge" path="res://levels/atlases/seamless tiles/ps1style/concrete.png" id="3_irn6k"]
 [ext_resource type="Texture2D" uid="uid://bifwg3bk636b6" path="res://levels/atlases/seamless tiles/ps1style/wooden_planks.png" id="3_xk3nk"]
+[ext_resource type="Script" path="res://levels/atlases/atlas_navigation.gd" id="7_38do4"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_4rypi"]
 noise_type = 2
@@ -1379,7 +1380,7 @@ custom_data_layer_0/type = 4
 sources/0 = SubResource("TileSetAtlasSource_kkena")
 sources/1 = SubResource("TileSetAtlasSource_fssy2")
 
-[node name="Atlas_one" type="TileMap"]
+[node name="Atlas_one" type="TileMap" groups=["navigation_group"]]
 z_index = -2
 texture_filter = 1
 material = SubResource("ShaderMaterial_x8pmb")
@@ -1387,10 +1388,13 @@ position = Vector2(307, 228)
 scale = Vector2(2, 2)
 tile_set = SubResource("TileSet_v06ea")
 format = 2
-layer_0/name = "0"
-layer_1/name = "1"
+layer_0/name = "0(water)"
+layer_1/name = "1(ground)"
 layer_1/tile_data = PackedInt32Array()
-layer_2/name = "2"
+layer_2/name = "2(floor)"
 layer_2/tile_data = PackedInt32Array()
-layer_3/name = "3(walls)"
+layer_3/name = "2.5(paths)"
 layer_3/tile_data = PackedInt32Array()
+layer_4/name = "3(walls)"
+layer_4/tile_data = PackedInt32Array()
+script = ExtResource("7_38do4")

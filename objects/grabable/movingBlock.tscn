@@ -23,7 +23,7 @@ radius = 84.0952
 resource_local_to_scene = true
 size = Vector2(65, 64)
 
-[node name="MovingBlock" type="RigidBody2D" groups=["movable_blocks"]]
+[node name="MovingBlock" type="RigidBody2D" groups=["movable_blocks", "navigation_group"]]
 use_parent_material = true
 collision_layer = 0
 collision_mask = 7
@@ -62,3 +62,7 @@ shape = SubResource("CircleShape2D_0ki3b")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MouseRangeInteraction"]
 position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_g5pct")
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
+radius = 62.79
+vertices = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)

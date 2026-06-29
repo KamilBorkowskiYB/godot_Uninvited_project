@@ -9,7 +9,7 @@ size = Vector2(64, 64)
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_2xtxr"]
 polygon = PackedVector2Array(-32, -32, -32, 32, 32, 32, 32, -32)
 
-[node name="staticBlock" type="StaticBody2D"]
+[node name="staticBlock" type="StaticBody2D" groups=["navigation_group"]]
 use_parent_material = true
 script = ExtResource("1_78ef4")
 

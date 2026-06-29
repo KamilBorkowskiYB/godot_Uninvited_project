@@ -8,6 +8,7 @@ extends CharacterBody2D
 @onready var view_area = $ViewNodes/ViewArea
 @onready var view_raycast = $ViewNodes/ViewRayCast
 @onready var agro_raycast = $AgroRayCast
+@onready var navigation_agent = $NavigationAgent2D
 var dead = false
 @export var push_force = 10.0
 var move_direction = Vector2(0,0)
@@ -17,8 +18,12 @@ var anim_move_speed_debuff = 1.0
 var move_speed_debuff = floor_move_speed_debuff * anim_move_speed_debuff
 var weak_points = []
 var keep_count
-enum State { CHASE, IDLE, ATTACK, LUNGE, DEAD }
+enum State { CHASE, IDLE, ATTACK, LUNGE, DEAD, WALK }
 var current_state: State = State.IDLE  
+enum Return_State { RETURN_TO_ORIGIN, HANG_AROUND}
+@export var ruturn_state: Return_State = Return_State.RETURN_TO_ORIGIN
+@onready var origin_pos = global_position
+var walk_to_pos = Vector2(0.0, 0.0) #unused, maybe usefull with nav node
 var lost_sight_time := 0.0
 const LOST_AGRO_DELAY := 3.0
 var turn_speed := 5.0
@@ -60,20 +65,30 @@ func _physics_process(_delta):
 	var player: CharacterBody2D = get_tree().get_first_node_in_group("player")
 	if player:
 		view_raycast.target_position = view_raycast.to_local(player.global_position)
+		if navigation_agent.target_position.distance_to(player.global_position) > 16:
+			navigation_agent.target_position = player.global_position
 	
 	if  player in view_area.get_overlapping_bodies() and view_raycast.get_collider() == player:
 		lost_sight_time = 0.0
 		player_spoted()
-	else:
+	elif current_state == State.CHASE:
 		lost_sight_time += _delta
 		if lost_sight_time >= LOST_AGRO_DELAY:
 			player_lost()
 	if current_state == State.CHASE:
-		move_direction = global_position.direction_to(player.global_position)
+		#move_direction = global_position.direction_to(player.global_position)
+		var next_point = navigation_agent.get_next_path_position()
+		move_direction = global_position.direction_to(next_point)
 	elif current_state == State.LUNGE:
 		move_direction = global_position.direction_to(agro_raycast.to_global(agro_raycast.target_position))
+	elif current_state == State.WALK:
+		move_direction = global_position.direction_to(origin_pos)
 		
-	if current_state == State.CHASE or current_state == State.LUNGE:
+	if current_state == State.CHASE or current_state == State.LUNGE or current_state == State.WALK:
+		if current_state == State.WALK and global_position.distance_to(origin_pos) < 30:
+			current_state = State.IDLE
+			set_idle()
+		
 		velocity = move_speed * move_direction * move_speed_debuff
 		move_and_slide()
 		for i in get_slide_collision_count():
@@ -140,13 +155,25 @@ func player_spoted():
 	current_state = State.CHASE
 	animation_player_top.play("chase")
 	animation_player_top.speed_scale = 1.3
+	animation_player_legs.speed_scale = 1.0
 	animation_player_legs.play("walk")
 	anim_move_speed_debuff = 2.2
 
 
 func player_lost():
-	if current_state == State.LUNGE or current_state == State.ATTACK:
+	if current_state == State.LUNGE or current_state == State.ATTACK or current_state == State.WALK:
 		return
+	if ruturn_state  == Return_State.HANG_AROUND:
+		set_idle()
+	if ruturn_state == Return_State.RETURN_TO_ORIGIN:
+		current_state = State.WALK
+		animation_player_top.play("idle")
+		animation_player_top.speed_scale = 1.0
+		animation_player_legs.speed_scale = 0.7
+		anim_move_speed_debuff = 1.0
+
+
+func set_idle():
 	current_state = State.IDLE
 	animation_player_top.play("idle")
 	animation_player_top.speed_scale = 1.0

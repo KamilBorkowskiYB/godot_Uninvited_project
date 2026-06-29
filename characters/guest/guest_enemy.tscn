@@ -1584,7 +1584,7 @@ libraries = {
 
 [node name="AgroRayCast" type="RayCast2D" parent="."]
 target_position = Vector2(0, -250)
-collision_mask = 3
+collision_mask = 11
 
 [node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_l436g")
@@ -1604,7 +1604,7 @@ bus = &"sfx"
 visible = false
 
 [node name="ViewRayCast" type="RayCast2D" parent="ViewNodes"]
-collision_mask = 3
+collision_mask = 11
 
 [node name="ViewArea" type="Area2D" parent="ViewNodes"]
 collision_layer = 0
@@ -1612,3 +1612,8 @@ collision_mask = 2
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ViewNodes/ViewArea"]
 polygon = PackedVector2Array(-1, -640, 205, -613, 349, -552, 446, -478, 510, -399, 522, -353, 0, 2, -515, -315, -485, -451, -364, -542, -233, -598)
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+avoidance_enabled = true
+radius = 60.0
+debug_enabled = true

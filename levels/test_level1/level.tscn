@@ -18,9 +18,6 @@ position = Vector2(4, 5)
 [node name="Zombie" parent="Enemies" instance=ExtResource("3_7x6e1")]
 position = Vector2(1157, -312)
 
-[node name="Zombie2" parent="Enemies" instance=ExtResource("3_7x6e1")]
-position = Vector2(-288, 221)
-
 [node name="Zombie4" parent="Enemies" instance=ExtResource("3_7x6e1")]
 position = Vector2(1177, 192)
 
@@ -31,6 +28,10 @@ rotation = -3.12884
 [node name="guest_enemy" parent="Enemies" instance=ExtResource("4_ve2pi")]
 position = Vector2(1710, 668)
 rotation = -2.15863
+
+[node name="guest_enemy2" parent="Enemies" instance=ExtResource("4_ve2pi")]
+position = Vector2(-355, 246)
+rotation = -3.89008
 
 [node name="LightSource" parent="." instance=ExtResource("4_n3l4b")]
 z_index = -2
