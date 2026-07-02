@@ -35,11 +35,11 @@ rotation = -3.89008
 
 [node name="LightSource" parent="." instance=ExtResource("4_n3l4b")]
 z_index = -2
-position = Vector2(1122, 62)
+position = Vector2(1310, 670)
 
 [node name="LightSource2" parent="." instance=ExtResource("4_n3l4b")]
 z_index = -2
-position = Vector2(569, 409)
+position = Vector2(535, 129)
 
 [node name="LightSource3" parent="." instance=ExtResource("4_n3l4b")]
 z_index = -2

@@ -6,6 +6,7 @@ var linkedDimOcc: Node2D
 @export var high: bool
 @export var release_force = 5000
 @export var grabable: bool # for feture use case
+@export var hide_light_occ: bool
 
 @onready var interaction_area: InteractionArea = $interaction_area
 @onready var mouse_interaction_area = $MouseRangeInteraction
@@ -34,6 +35,9 @@ func _ready():
 		$".".set_collision_layer_value(2, false)
 		$".".set_collision_layer_value(3, true)
 		light_occ.set_occluder_light_mask(2)
+	if hide_light_occ:
+		light_occ.occluder_light_mask = 0
+		
 
 func _process(_delta):
 	if linkedView != null:
@@ -79,6 +83,8 @@ func _process(_delta):
 			$".".set_collision_layer_value(3, false)
 			
 	#hide dim occ on objects on the same side of the dim portal as player in the other dim
+	if hide_light_occ:
+		return
 	if other_dim_viewport and other_dim_viewport.is_ancestor_of(self):
 		if player_side * self_side > 0:
 			light_occ.occluder_light_mask = 0
@@ -146,23 +152,41 @@ func kill(attack: Attack):
 
 func _on_interact():
 	var player: CharacterBody2D = get_tree().get_first_node_in_group("player")
-	if !grabbed:
-		player.top.rotation = player.global_position.direction_to(global_position).angle() + PI/2
-		previous_player_rotation = player.top.rotation
-		grabbed = true
-		interaction_area.action_name = "Let go"
-		self.mass = initial_mass * 10 #changing mass for slowing player
-		self.linear_velocity = Vector2(0,0)
-		initial_angle_to_player = (global_position - player.global_position).angle()
-		player.grab_object(self)
-	else:
-		self.mass = initial_mass
-		interaction_area.action_name = "Grab"
-		grabbed = false
-		player.realese_object()
-		
-		var rotation_speed = player.top.rotation - previous_player_rotation
-		var direction = (global_position - player.global_position).normalized()
-		var force_direction = direction.rotated(sign(rotation_speed) * PI / 2)
-		var force_strength = abs(rotation_speed) * release_force
-		$".".apply_impulse(force_direction * force_strength)
+	if interaction_area.action_name == "Grab" or interaction_area.action_name == "Let go": #Grabing
+		if !grabbed:
+			player.top.rotation = player.global_position.direction_to(global_position).angle() + PI/2
+			previous_player_rotation = player.top.rotation
+			grabbed = true
+			interaction_area.action_name = "Let go"
+			self.mass = initial_mass * 10 #changing mass for slowing player
+			self.linear_velocity = Vector2(0,0)
+			initial_angle_to_player = (global_position - player.global_position).angle()
+			player.grab_object(self)
+		else:
+			self.mass = initial_mass
+			interaction_area.action_name = "Grab"
+			grabbed = false
+			player.realese_object()
+			
+			var rotation_speed = player.top.rotation - previous_player_rotation
+			var direction = (global_position - player.global_position).normalized()
+			var force_direction = direction.rotated(sign(rotation_speed) * PI / 2)
+			var force_strength = abs(rotation_speed) * release_force
+			$".".apply_impulse(force_direction * force_strength)
+	elif interaction_area.action_name == "Turn on" or interaction_area.action_name == "Turn off": #Turning on
+		var light_source = get_node_or_null("LightSource")
+		var LinkedLight = linkedView.get_node_or_null("LightSource")
+		var LinkedLightBulb = linkedView.get_node_or_null("Lightbulb")
+		if light_source:
+			if light_source.enabled == true:
+				light_source.enabled = false
+				LinkedLight.enabled = false
+				LinkedLightBulb.hide()
+				$Lightbulb.hide()
+				interaction_area.action_name = "Turn on"
+			else:
+				light_source.enabled = true
+				LinkedLight.enabled = true
+				LinkedLightBulb.show()
+				$Lightbulb.show()
+				interaction_area.action_name = "Turn off"

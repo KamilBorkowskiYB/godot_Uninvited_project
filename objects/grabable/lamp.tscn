@@ -1,0 +1,60 @@
+[gd_scene load_steps=9 format=3 uid="uid://bsevhsmxnwj1b"]
+
+[ext_resource type="PackedScene" uid="uid://cv46bl48bc1fk" path="res://objects/grabable/movingBlock.tscn" id="1_vk57s"]
+[ext_resource type="Texture2D" uid="uid://dprf52lpbwc8a" path="res://objects/grabable/lamp.png" id="2_ssx4k"]
+[ext_resource type="Texture2D" uid="uid://b5ugqtcggs4u2" path="res://characters/player/graphic/light.png" id="3_7v0s6"]
+[ext_resource type="Texture2D" uid="uid://c81efo3urc6nt" path="res://characters/player/legacy/view_cone_redo.png" id="4_65gxg"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_cmd6i"]
+resource_local_to_scene = true
+polygon = PackedVector2Array(25, -24, 25, 24, -24, 24, -24, -24)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5uuks"]
+radius = 49.5101
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7txqp"]
+resource_local_to_scene = true
+radius = 84.0952
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vhggm"]
+radius = 49.5101
+
+[node name="Lamp" instance=ExtResource("1_vk57s")]
+mass = 4.0
+hide_light_occ = true
+
+[node name="BlockSprite" parent="." index="0"]
+texture = ExtResource("2_ssx4k")
+
+[node name="LightOccluder2D" parent="BlockSprite" index="0"]
+occluder = SubResource("OccluderPolygon2D_cmd6i")
+occluder_light_mask = 0
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("CircleShape2D_5uuks")
+
+[node name="interaction_area" parent="." index="4"]
+action_name = "Turn off"
+
+[node name="CollisionShape2D" parent="interaction_area" index="0"]
+shape = SubResource("CircleShape2D_7txqp")
+
+[node name="CollisionShape2D" parent="MouseRangeInteraction" index="0"]
+shape = SubResource("CircleShape2D_vhggm")
+
+[node name="NavigationObstacle2D" parent="." index="6"]
+visible = false
+
+[node name="LightSource" type="PointLight2D" parent="." index="7"]
+light_mask = 0
+visibility_layer = 0
+blend_mode = 2
+shadow_enabled = true
+shadow_item_cull_mask = 3
+texture = ExtResource("3_7v0s6")
+texture_scale = 2.9
+
+[node name="Lightbulb" type="Sprite2D" parent="." index="8"]
+self_modulate = Color(1, 0.686275, 0.0705882, 1)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("4_65gxg")

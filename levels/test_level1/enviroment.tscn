@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bnppgiphfgo5q"]
+[gd_scene load_steps=6 format=3 uid="uid://bnppgiphfgo5q"]
 
 [ext_resource type="PackedScene" uid="uid://b7iklrlyc5m55" path="res://levels/test_level1/test_level_1_low.tscn" id="1_4so2i"]
 [ext_resource type="PackedScene" uid="uid://bkv3a0k14fqnv" path="res://Interactions/SecretArea.tscn" id="2_nvptp"]
+[ext_resource type="PackedScene" uid="uid://bsevhsmxnwj1b" path="res://objects/grabable/lamp.tscn" id="3_o8shj"]
 
 [sub_resource type="Gradient" id="Gradient_hm63i"]
 offsets = PackedFloat32Array(0.987013, 0.993506, 1)
@@ -27,7 +28,7 @@ scale = Vector2(1.36722, 0.411714)
 [node name="PointLight2D" type="PointLight2D" parent="AmbientDark"]
 position = Vector2(675.824, 123.872)
 scale = Vector2(1.25662, 3.03009)
-energy = 0.2
+energy = 0.64
 blend_mode = 1
 texture = SubResource("GradientTexture2D_c1o86")
 texture_scale = 14.18
@@ -48,3 +49,6 @@ scale = Vector2(0.888333, 0.584)
 visible = false
 position = Vector2(576, -72)
 scale = Vector2(0.739998, 1.184)
+
+[node name="Lamp" parent="." instance=ExtResource("3_o8shj")]
+position = Vector2(1448, 264)

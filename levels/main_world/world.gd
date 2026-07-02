@@ -330,8 +330,9 @@ func connect_movable_objects_between_viewports(viewport1, viewport2, viewport3):
 				node3 = candidate
 				break
 		
-		if node2 and node3:
+		if node2:
 			node1.linkedView = node2
+		if node3:
 			node1.linkedFog = node3
 			
 		#Connecting doors with hiden areas
