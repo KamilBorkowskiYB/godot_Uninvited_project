@@ -38,7 +38,7 @@ func _physics_process(_delta):
 	if ray_cast_2d.is_colliding() and ray_cast_2d.get_collider() == player:
 		player.kill()
 		
-func kill(attack: Attack):
+func kill(_attack_info: Attack):
 	if dead:
 		return
 	dead = true

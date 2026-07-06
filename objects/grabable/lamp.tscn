@@ -42,10 +42,7 @@ shape = SubResource("CircleShape2D_7txqp")
 [node name="CollisionShape2D" parent="MouseRangeInteraction" index="0"]
 shape = SubResource("CircleShape2D_vhggm")
 
-[node name="NavigationObstacle2D" parent="." index="6"]
-visible = false
-
-[node name="LightSource" type="PointLight2D" parent="." index="7"]
+[node name="LightSource" type="PointLight2D" parent="." index="6"]
 light_mask = 0
 visibility_layer = 0
 blend_mode = 2
@@ -54,7 +51,7 @@ shadow_item_cull_mask = 3
 texture = ExtResource("3_7v0s6")
 texture_scale = 2.9
 
-[node name="Lightbulb" type="Sprite2D" parent="." index="8"]
+[node name="Lightbulb" type="Sprite2D" parent="." index="7"]
 self_modulate = Color(1, 0.686275, 0.0705882, 1)
 scale = Vector2(0.05, 0.05)
 texture = ExtResource("4_65gxg")

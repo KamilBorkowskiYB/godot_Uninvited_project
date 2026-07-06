@@ -110,16 +110,16 @@ func _physics_process(_delta):
 			attack()
 
 
-func take_damage(attack: Attack):
-	health -= attack.attack_damage
+func take_damage(attack_info: Attack):
+	health -= attack_info.attack_damage
 	print("health: " + str(health))
 	lost_sight_time = 0.0
 	player_spoted()
 	if health <= 0:
-		kill(attack)
+		kill(attack_info)
 
 
-func kill(attack: Attack):
+func kill(_attack: Attack):
 	if dead:
 		return
 	for i in range(0, keep_count):

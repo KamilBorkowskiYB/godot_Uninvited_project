@@ -7,6 +7,7 @@ extends Node2D
 @onready var cursor_normal = load("res://cursor/cursor_normal.png")
 
 const base_text = "[LMB] to "
+const second_text = "[E] to "
 
 var active_areas = []#in player range
 var mouse_range = []#in mouse range
@@ -52,10 +53,15 @@ func _process(_delta):
 			intersecting_areas.insert(0, grabbed_area)
 		
 		var area = intersecting_areas[0]
-		label.text = base_text + area.action_name
+		var text := ""
+		if area.main_action_name != "null" and !player_help.grabbing:
+			text += base_text + area.main_action_name + "\n"
+		if area.second_action_name != "null":
+			text += second_text + area.second_action_name
+		label.text = text
 		
 		var mouse_pos = get_viewport().get_mouse_position()
-		label.global_position = mouse_pos - label.size / 2 + Vector2(0, 30)
+		label.global_position = mouse_pos - label.size / 2 + Vector2(0, 40) 
 		
 		if player_help.cursor_current != cursor_aim:
 			label.show()
@@ -80,9 +86,13 @@ func _sort_by_distance_to_player(area1, area2):
 func _input(event):
 	var player_help = get_tree().get_first_node_in_group("player") #after restart player is freed 
 	
-	if event.is_action_pressed("shoot") and can_interact and player_help.cursor_current != cursor_aim and intersecting_areas.size() > 0:
+	if can_interact and player_help.cursor_current != cursor_aim and intersecting_areas.size() > 0:
 		var area_to_interact = intersecting_areas[0]
 		can_interact = false
 		label.hide()
-		await area_to_interact.interact.call()
+		if event.is_action_pressed("shoot") and !player_help.grabbing:
+			await area_to_interact.interact.call()
+		elif event.is_action_pressed("interact"):
+			await area_to_interact.second_interact.call()
 		can_interact = true
+

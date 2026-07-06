@@ -14,7 +14,7 @@ signal change_level
 func _ready():
 	interaction_area.interact = Callable(self,"_on_interact")
 	mouse_interaction_area.parent_interaction = interaction_area
-	interaction_area.action_name = "Enter " + level_name
+	interaction_area.main_action_name = "Enter " + level_name
 
 func _on_interact():
 	change_level.emit(player_position,level_high,level_mid,level_low)

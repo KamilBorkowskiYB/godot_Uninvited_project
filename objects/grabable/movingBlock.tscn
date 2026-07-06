@@ -52,7 +52,6 @@ shape = SubResource("RectangleShape2D_5p00n")
 emitting = false
 
 [node name="interaction_area" parent="." instance=ExtResource("5_lx4jv")]
-action_name = "Grab"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="interaction_area"]
 shape = SubResource("CircleShape2D_0ki3b")
@@ -62,7 +61,3 @@ shape = SubResource("CircleShape2D_0ki3b")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MouseRangeInteraction"]
 position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_g5pct")
-
-[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
-radius = 62.79
-vertices = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)

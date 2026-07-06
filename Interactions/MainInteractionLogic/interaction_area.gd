@@ -1,8 +1,11 @@
 extends Area2D
 class_name InteractionArea
 
-@export var action_name: String = "Open/Close"
+@export var main_action_name: String = "null"
+@export var second_action_name: String = "null"
 var interact: Callable = func():
+	pass
+var second_interact: Callable = func():
 	pass
 
 func _on_body_entered(_body):

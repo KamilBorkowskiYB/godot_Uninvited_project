@@ -20,6 +20,7 @@ signal item_picked_up(is_space,item_name)
 func _ready():
 	interaction_area.interact = Callable(self,"_on_interact")
 	mouse_interaction_area.parent_interaction = interaction_area
+	interaction_area.main_action_name = "Pick up"
 	
 	match item_selected:
 		items.Rifle_Ammo:

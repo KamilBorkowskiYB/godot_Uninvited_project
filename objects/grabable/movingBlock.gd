@@ -24,8 +24,12 @@ var initial_angle_to_player := 0.0
 var initial_mass
 
 func _ready():
-	interaction_area.interact = Callable(self,"_on_interact")
+	interaction_area.interact = Callable(self,"_on_interact_toggle_light")
+	interaction_area.second_interact = Callable(self,"_on_interact_grab")
 	mouse_interaction_area.parent_interaction = interaction_area
+	if hide_light_occ:
+		interaction_area.main_action_name = "Turn off"
+	interaction_area.second_action_name = "Grab"
 	
 	initial_mass = self.mass
 	if high:
@@ -131,12 +135,14 @@ func _physics_process(delta):
 				player_in_area = true
 				break
 		if !player_in_area:
-			_on_interact()
+			#_on_interact()
+			_on_interact_grab()
 		else:  #realese grab if rotation of player and object aren't matching
 			var current_angle_to_player = (global_position - player.global_position).angle()
 			var angle_diff = abs(wrapf(current_angle_to_player - initial_angle_to_player, -PI, PI))
 			if angle_diff > 0.3:
-				_on_interact()
+				#_on_interact()
+				_on_interact_grab()
 	
 	previous_player_position = player.global_position
 	previous_player_rotation = player.top.rotation
@@ -150,43 +156,46 @@ func kill(attack: Attack):
 		linkedFog.queue_free()
 		queue_free()
 
-func _on_interact():
+
+func _on_interact_grab():
 	var player: CharacterBody2D = get_tree().get_first_node_in_group("player")
-	if interaction_area.action_name == "Grab" or interaction_area.action_name == "Let go": #Grabing
-		if !grabbed:
-			player.top.rotation = player.global_position.direction_to(global_position).angle() + PI/2
-			previous_player_rotation = player.top.rotation
-			grabbed = true
-			interaction_area.action_name = "Let go"
-			self.mass = initial_mass * 10 #changing mass for slowing player
-			self.linear_velocity = Vector2(0,0)
-			initial_angle_to_player = (global_position - player.global_position).angle()
-			player.grab_object(self)
+	if !grabbed:
+		player.top.rotation = player.global_position.direction_to(global_position).angle() + PI/2
+		previous_player_rotation = player.top.rotation
+		grabbed = true
+		interaction_area.second_action_name = "Let go"
+		self.mass = initial_mass * 10 #changing mass for slowing player
+		self.linear_velocity = Vector2(0,0)
+		initial_angle_to_player = (global_position - player.global_position).angle()
+		player.grab_object(self)
+	else:
+		self.mass = initial_mass
+		interaction_area.second_action_name = "Grab"
+		grabbed = false
+		player.realese_object()
+		
+		var rotation_speed = player.top.rotation - previous_player_rotation
+		var direction = (global_position - player.global_position).normalized()
+		var force_direction = direction.rotated(sign(rotation_speed) * PI / 2)
+		var force_strength = abs(rotation_speed) * release_force
+		$".".apply_impulse(force_direction * force_strength)
+
+
+func _on_interact_toggle_light():
+	var player: CharacterBody2D = get_tree().get_first_node_in_group("player")
+	var light_source = get_node_or_null("LightSource")
+	var LinkedLight = linkedView.get_node_or_null("LightSource")
+	var LinkedLightBulb = linkedView.get_node_or_null("Lightbulb")
+	if light_source:
+		if light_source.enabled == true:
+			light_source.enabled = false
+			LinkedLight.enabled = false
+			LinkedLightBulb.hide()
+			$Lightbulb.hide()
+			interaction_area.main_action_name = "Turn on"
 		else:
-			self.mass = initial_mass
-			interaction_area.action_name = "Grab"
-			grabbed = false
-			player.realese_object()
-			
-			var rotation_speed = player.top.rotation - previous_player_rotation
-			var direction = (global_position - player.global_position).normalized()
-			var force_direction = direction.rotated(sign(rotation_speed) * PI / 2)
-			var force_strength = abs(rotation_speed) * release_force
-			$".".apply_impulse(force_direction * force_strength)
-	elif interaction_area.action_name == "Turn on" or interaction_area.action_name == "Turn off": #Turning on
-		var light_source = get_node_or_null("LightSource")
-		var LinkedLight = linkedView.get_node_or_null("LightSource")
-		var LinkedLightBulb = linkedView.get_node_or_null("Lightbulb")
-		if light_source:
-			if light_source.enabled == true:
-				light_source.enabled = false
-				LinkedLight.enabled = false
-				LinkedLightBulb.hide()
-				$Lightbulb.hide()
-				interaction_area.action_name = "Turn on"
-			else:
-				light_source.enabled = true
-				LinkedLight.enabled = true
-				LinkedLightBulb.show()
-				$Lightbulb.show()
-				interaction_area.action_name = "Turn off"
+			light_source.enabled = true
+			LinkedLight.enabled = true
+			LinkedLightBulb.show()
+			$Lightbulb.show()
+			interaction_area.main_action_name = "Turn off"
