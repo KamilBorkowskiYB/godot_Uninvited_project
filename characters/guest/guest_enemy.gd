@@ -23,13 +23,14 @@ var current_state: State = State.IDLE
 enum Return_State { RETURN_TO_ORIGIN, HANG_AROUND}
 @export var ruturn_state: Return_State = Return_State.RETURN_TO_ORIGIN
 @onready var origin_pos = global_position
-var walk_to_pos = Vector2(0.0, 0.0) #unused, maybe usefull with nav node
+var walk_to_pos = Vector2(0.0, 0.0)
 var lost_sight_time := 0.0
 const LOST_AGRO_DELAY := 3.0
 var turn_speed := 5.0
 var health = 100
 var tween_done := false
 var sound_done := false
+
 
 func _ready():
 	connect_signals_bodyparts_recursive(self)
@@ -45,6 +46,11 @@ func _ready():
 		weak_points[i].got_shot.connect(take_damage)
 	animation_player_top.play("idle")
 	$DeathSound.finished.connect(on_sound_done)
+	
+	walk_timer = Timer.new()
+	walk_timer.one_shot = true
+	add_child(walk_timer)
+	walk_timer.timeout.connect(return_to_origin)
 
 
 func _physics_process(_delta):
@@ -65,8 +71,6 @@ func _physics_process(_delta):
 	var player: CharacterBody2D = get_tree().get_first_node_in_group("player")
 	if player:
 		view_raycast.target_position = view_raycast.to_local(player.global_position)
-		if navigation_agent.target_position.distance_to(player.global_position) > 16:
-			navigation_agent.target_position = player.global_position
 	
 	if  player in view_area.get_overlapping_bodies() and view_raycast.get_collider() == player:
 		lost_sight_time = 0.0
@@ -75,18 +79,19 @@ func _physics_process(_delta):
 		lost_sight_time += _delta
 		if lost_sight_time >= LOST_AGRO_DELAY:
 			player_lost()
-	if current_state == State.CHASE:
-		#move_direction = global_position.direction_to(player.global_position)
+	if current_state == State.CHASE and navigation_agent.target_position.distance_to(player.global_position) > 16:
+		navigation_agent.target_position = player.global_position
 		var next_point = navigation_agent.get_next_path_position()
 		move_direction = global_position.direction_to(next_point)
 	elif current_state == State.LUNGE:
 		move_direction = global_position.direction_to(agro_raycast.to_global(agro_raycast.target_position))
 	elif current_state == State.WALK:
-		move_direction = global_position.direction_to(origin_pos)
+		navigation_agent.target_position = walk_to_pos
+		var next_point = navigation_agent.get_next_path_position()
+		move_direction = global_position.direction_to(next_point)
 		
 	if current_state == State.CHASE or current_state == State.LUNGE or current_state == State.WALK:
-		if current_state == State.WALK and global_position.distance_to(origin_pos) < 30:
-			current_state = State.IDLE
+		if current_state == State.WALK and global_position.distance_to(walk_to_pos) < 30:
 			set_idle()
 		
 		velocity = move_speed * move_direction * move_speed_debuff
@@ -166,11 +171,7 @@ func player_lost():
 	if ruturn_state  == Return_State.HANG_AROUND:
 		set_idle()
 	if ruturn_state == Return_State.RETURN_TO_ORIGIN:
-		current_state = State.WALK
-		animation_player_top.play("idle")
-		animation_player_top.speed_scale = 1.0
-		animation_player_legs.speed_scale = 0.7
-		anim_move_speed_debuff = 1.0
+		walk_to(origin_pos, true)
 
 
 func set_idle():
@@ -179,6 +180,27 @@ func set_idle():
 	animation_player_top.speed_scale = 1.0
 	animation_player_legs.stop()
 	anim_move_speed_debuff = 1.0
+
+var walk_timer: Timer
+func walk_to(destination, persistent):
+	if walk_timer:
+		walk_timer.stop()
+	if !persistent:
+		walk_timer.start(3.0)
+	current_state = State.WALK
+	walk_to_pos = destination
+	animation_player_top.play("idle")
+	animation_player_top.speed_scale = 1.0
+	animation_player_legs.play("walk")
+	animation_player_legs.speed_scale = 0.7
+	anim_move_speed_debuff = 1.0
+
+func return_to_origin():
+	walk_to(origin_pos, true)
+
+
+func investigate_noise(noise_pos):
+	walk_to(noise_pos, false)
 
 
 func attack():

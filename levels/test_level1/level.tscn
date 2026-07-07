@@ -1,7 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://d1oul8y1hqgln"]
+[gd_scene load_steps=7 format=3 uid="uid://d1oul8y1hqgln"]
 
 [ext_resource type="PackedScene" uid="uid://bnppgiphfgo5q" path="res://levels/test_level1/enviroment.tscn" id="1_aqhqd"]
-[ext_resource type="PackedScene" uid="uid://dss4qi31e3k2u" path="res://characters/zombie/zombie.tscn" id="3_7x6e1"]
 [ext_resource type="PackedScene" uid="uid://86mkpqtpfq1p" path="res://characters/mutant/mutant.tscn" id="4_78ckn"]
 [ext_resource type="PackedScene" uid="uid://shqgwjseluto" path="res://objects/light_source.tscn" id="4_n3l4b"]
 [ext_resource type="PackedScene" uid="uid://bf4qoj3d4egrk" path="res://characters/guest/guest_enemy.tscn" id="4_ve2pi"]
@@ -15,12 +14,6 @@
 [node name="Enemies" type="Node2D" parent="."]
 position = Vector2(4, 5)
 
-[node name="Zombie" parent="Enemies" instance=ExtResource("3_7x6e1")]
-position = Vector2(1157, -312)
-
-[node name="Zombie4" parent="Enemies" instance=ExtResource("3_7x6e1")]
-position = Vector2(1177, 192)
-
 [node name="Mutant" parent="Enemies" instance=ExtResource("4_78ckn")]
 position = Vector2(2162, -691)
 rotation = -3.12884
@@ -29,6 +22,10 @@ rotation = -3.12884
 position = Vector2(1710, 668)
 rotation = -2.15863
 
+[node name="guest_enemy3" parent="Enemies" instance=ExtResource("4_ve2pi")]
+position = Vector2(1604, 100)
+rotation = -5.57701
+
 [node name="guest_enemy2" parent="Enemies" instance=ExtResource("4_ve2pi")]
 position = Vector2(-355, 246)
 rotation = -3.89008
@@ -36,10 +33,6 @@ rotation = -3.89008
 [node name="LightSource" parent="." instance=ExtResource("4_n3l4b")]
 z_index = -2
 position = Vector2(1310, 670)
-
-[node name="LightSource2" parent="." instance=ExtResource("4_n3l4b")]
-z_index = -2
-position = Vector2(535, 129)
 
 [node name="LightSource3" parent="." instance=ExtResource("4_n3l4b")]
 z_index = -2

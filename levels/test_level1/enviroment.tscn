@@ -52,3 +52,9 @@ scale = Vector2(0.739998, 1.184)
 
 [node name="Lamp" parent="." instance=ExtResource("3_o8shj")]
 position = Vector2(1448, 264)
+
+[node name="Lamp2" parent="." instance=ExtResource("3_o8shj")]
+position = Vector2(776, 384)
+
+[node name="Lamp3" parent="." instance=ExtResource("3_o8shj")]
+position = Vector2(347, 384)

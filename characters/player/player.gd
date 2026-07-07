@@ -320,6 +320,8 @@ func shoot(ray_casts,ammo_type):
 		top.get_node("FlashLight").show()
 		top.get_node("MuzzleFlash/Timer").start()
 		$Sounds/ShootSound.play()
+		make_noise(1000.0)
+		
 		
 		var camera = get_parent().get_node("PlayerCamera")
 		camera.start_shake(10, 0.1) 
@@ -465,6 +467,7 @@ func stop_run():
 		player_top_sprite.frame = 0;
 
 func step():
+	make_noise(300.0)
 	if standing_on == "brick":
 		$Sounds/ConcreteFootstep.pitch_scale = randf_range(0.8, 1.2)
 		$Sounds/ConcreteFootstep.play()
@@ -474,3 +477,9 @@ func step():
 	if standing_on == "wood":
 		$Sounds/WoodPanelFootstep.pitch_scale = randf_range(0.8, 1.2)
 		$Sounds/WoodPanelFootstep.play()
+
+func make_noise(noise_radius):
+	var listners = get_tree().get_nodes_in_group("hears_sounds")
+	for node in listners:
+		if node.has_method("investigate_noise") and global_position.distance_to(node.global_position) <= noise_radius:
+			node.investigate_noise(global_position)
