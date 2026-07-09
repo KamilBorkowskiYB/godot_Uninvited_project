@@ -22,13 +22,13 @@ rotation = -3.12884
 position = Vector2(1710, 668)
 rotation = -2.15863
 
-[node name="guest_enemy3" parent="Enemies" instance=ExtResource("4_ve2pi")]
-position = Vector2(1604, 100)
-rotation = -5.57701
-
 [node name="guest_enemy2" parent="Enemies" instance=ExtResource("4_ve2pi")]
-position = Vector2(-355, 246)
-rotation = -3.89008
+position = Vector2(1621, 99.9999)
+rotation = 0.554071
+
+[node name="guest_enemy3" parent="Enemies" instance=ExtResource("4_ve2pi")]
+position = Vector2(-311, 298)
+rotation = 2.40725
 
 [node name="LightSource" parent="." instance=ExtResource("4_n3l4b")]
 z_index = -2
@@ -111,7 +111,7 @@ position = Vector2(1311, -8)
 position = Vector2(1311, -8)
 
 [node name="PickUp14" parent="PickUps" instance=ExtResource("7_0crg7")]
-position = Vector2(311, 348)
+position = Vector2(380, 504)
 item_selected = 2
 
 [node name="LevelExits" type="Node2D" parent="."]

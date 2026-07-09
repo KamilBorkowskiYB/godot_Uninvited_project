@@ -1616,4 +1616,3 @@ polygon = PackedVector2Array(-1, -640, 205, -613, 349, -552, 446, -478, 510, -39
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 avoidance_enabled = true
 radius = 60.0
-debug_enabled = true

@@ -72,7 +72,7 @@ func _physics_process(_delta):
 	if player:
 		view_raycast.target_position = view_raycast.to_local(player.global_position)
 	
-	if  player in view_area.get_overlapping_bodies() and view_raycast.get_collider() == player:
+	if player in view_area.get_overlapping_bodies() and view_raycast.get_collider() == player:
 		lost_sight_time = 0.0
 		player_spoted()
 	elif current_state == State.CHASE:
@@ -155,10 +155,11 @@ func step():
 
 
 func player_spoted():
-	if current_state == State.LUNGE or current_state == State.ATTACK:
+	if current_state == State.LUNGE or current_state == State.ATTACK or current_state == State.CHASE:
 		return
 	current_state = State.CHASE
-	animation_player_top.play("chase")
+	if animation_player_top.current_animation != "chase":
+		animation_player_top.play("chase")
 	animation_player_top.speed_scale = 1.3
 	animation_player_legs.speed_scale = 1.0
 	animation_player_legs.play("walk")
@@ -175,14 +176,19 @@ func player_lost():
 
 
 func set_idle():
+	if current_state == State.LUNGE or current_state == State.ATTACK:
+		return
 	current_state = State.IDLE
 	animation_player_top.play("idle")
 	animation_player_top.speed_scale = 1.0
 	animation_player_legs.stop()
 	anim_move_speed_debuff = 1.0
 
+
 var walk_timer: Timer
 func walk_to(destination, persistent):
+	if current_state == State.LUNGE or current_state == State.ATTACK:
+		return
 	if walk_timer:
 		walk_timer.stop()
 	if !persistent:
@@ -195,21 +201,28 @@ func walk_to(destination, persistent):
 	animation_player_legs.speed_scale = 0.7
 	anim_move_speed_debuff = 1.0
 
+
 func return_to_origin():
 	walk_to(origin_pos, true)
 
 
 func investigate_noise(noise_pos):
+	if current_state == State.CHASE or current_state == State.ATTACK or current_state == State.LUNGE:
+		return
 	walk_to(noise_pos, false)
 
 
 func attack():
+	if current_state == State.LUNGE or current_state == State.ATTACK:
+		return
 	current_state = State.ATTACK
 	if !(animation_player_top.current_animation  == "attack"):
 		animation_player_top.play("attack")
 
 
 func attack_lunge():
+	if current_state == State.LUNGE or current_state == State.ATTACK:
+		return
 	current_state = State.LUNGE
 	anim_move_speed_debuff = 4.0
 	if !(animation_player_top.current_animation  == "lunge"):
