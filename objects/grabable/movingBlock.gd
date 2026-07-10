@@ -7,10 +7,12 @@ var linkedDimOcc: Node2D
 @export var release_force = 5000
 @export var grabable: bool # for feture use case
 @export var hide_light_occ: bool
+@export var object_material: String = "Wood"
 
 @onready var interaction_area: InteractionArea = $interaction_area
 @onready var mouse_interaction_area = $MouseRangeInteraction
 @onready var light_occ = $BlockSprite/LightOccluder2D
+@onready var sounds = $Sounds
 
 
 var health = 150
@@ -111,6 +113,10 @@ func _physics_process(delta):
 	var player: CharacterBody2D = get_tree().get_first_node_in_group("player")
 	if player == null:
 		return
+	if self.linear_velocity.length() > 5.0:
+		play_sound("ObjectDrag", 200)
+	else:
+		stop_sound("ObjectDrag")
 	
 	if grabbed:
 		var rotation_delta = player.top.rotation - previous_player_rotation
@@ -151,10 +157,41 @@ func _physics_process(delta):
 func kill(attack: Attack):
 	$".".apply_central_impulse(-attack.attack_direction * 500)
 	health -= attack.attack_damage
+	play_sound("ObjectHit", 200)
 	if health <= 0:
 		linkedView.queue_free()
 		linkedFog.queue_free()
 		queue_free()
+
+
+func play_sound(audio_name, noise_radius, material_related = true):
+	#add alerting enemies within noise_radius
+	var sound
+	if material_related:
+		sound = sounds.get_node_or_null(object_material+audio_name)
+	else:
+		sound = sounds.get_node_or_null(audio_name)
+	if sound.playing == true and audio_name == "ObjectDrag":
+		return
+	sound.pitch_scale = randf_range(0.8, 1.2)
+	if sound:
+		sound.playing = true
+
+
+var fading = false
+func stop_sound(audio_name):
+	var sound: AudioStreamPlayer2D = sounds.get_node_or_null(object_material + audio_name)
+	if sound == null or !sound.playing or fading:
+		return
+	
+	fading = true
+	var tween = create_tween()
+	tween.tween_property(sound, "volume_db", -80.0, 0.5)
+	await tween.finished
+	if sound.volume_db <= -79.0:
+		sound.playing = false
+		sound.volume_db = 0.0
+		fading = false
 
 
 func _on_interact_grab():
@@ -192,10 +229,12 @@ func _on_interact_toggle_light():
 			LinkedLight.enabled = false
 			LinkedLightBulb.hide()
 			$Lightbulb.hide()
+			play_sound("Switch", 10, false)
 			interaction_area.main_action_name = "Turn on"
 		else:
 			light_source.enabled = true
 			LinkedLight.enabled = true
 			LinkedLightBulb.show()
 			$Lightbulb.show()
+			play_sound("Switch", 10, false)
 			interaction_area.main_action_name = "Turn off"

@@ -33,9 +33,6 @@ occluder_light_mask = 0
 [node name="CollisionShape2D" parent="." index="1"]
 shape = SubResource("CircleShape2D_5uuks")
 
-[node name="interaction_area" parent="." index="4"]
-action_name = "Turn off"
-
 [node name="CollisionShape2D" parent="interaction_area" index="0"]
 shape = SubResource("CircleShape2D_7txqp")
 

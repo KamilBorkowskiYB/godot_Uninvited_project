@@ -3,6 +3,7 @@ extends RigidBody2D
 @onready var interaction_area: InteractionArea = $interaction_area
 @onready var mouse_interaction_area = $MouseRangeInteraction
 @onready var potential_double_doors = get_parent().get_parent()
+@onready var sounds = $"../Sounds"
 
 var transform_to
 var isClosed = true
@@ -42,6 +43,7 @@ func kill(attack: Attack):
 		freeze = false
 	if potential_double_doors.has_method("doors_shot"):
 		potential_double_doors.doors_shot(self, attack.attack_direction)
+	play_sound("DoorHit", 200)
 	trigger_linked_event()
 	apply_central_impulse(-attack.attack_direction * 500)
 	health -= attack.attack_damage
@@ -56,6 +58,7 @@ func open():
 	var player: CharacterBody2D = get_tree().get_first_node_in_group("player")
 	isClosed = false
 	freeze = false
+	play_sound("DoorOpen", 200)
 	if(player.global_position.y > self.global_position.y):
 		apply_central_impulse(Vector2(0,-450))
 	else:
@@ -72,10 +75,11 @@ func close():
 	set_angular_velocity(0)
 	self.transform = transform_to
 	freeze = true
-	
+	play_sound("DoorClose", 200)
 	for body in interaction_area.get_overlapping_bodies(): #apply impulse to push object out of the door
 		if body is RigidBody2D:
 			body.apply_impulse(Vector2.ZERO, Vector2(1,1))
+
 
 func trigger_linked_event():
 	var parent = get_parent() #Trigger an event
@@ -83,3 +87,11 @@ func trigger_linked_event():
 		var trigger = parent.hidden_area.get_node_or_null("TriggerEvent")
 		if trigger:
 			trigger.trigger_event()
+
+
+func play_sound(audio_name, noise_radius):
+	#add alerting enemies within noise_radius
+	var sound = sounds.get_node_or_null(audio_name)
+	sound.pitch_scale = randf_range(0.8, 1.2)
+	if sound:
+		sound.playing = true

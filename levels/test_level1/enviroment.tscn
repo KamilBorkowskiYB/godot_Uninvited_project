@@ -26,9 +26,9 @@ position = Vector2(84, -115)
 scale = Vector2(1.36722, 0.411714)
 
 [node name="PointLight2D" type="PointLight2D" parent="AmbientDark"]
-position = Vector2(675.824, 123.872)
-scale = Vector2(1.25662, 3.03009)
-energy = 0.64
+position = Vector2(675.824, 92.3935)
+scale = Vector2(1.25662, 3.09946)
+energy = 0.5
 blend_mode = 1
 texture = SubResource("GradientTexture2D_c1o86")
 texture_scale = 14.18
