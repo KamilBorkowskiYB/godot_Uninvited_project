@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://bf4qoj3d4egrk"]
+[gd_scene load_steps=29 format=3 uid="uid://bf4qoj3d4egrk"]
 
 [ext_resource type="Script" path="res://characters/guest/guest_enemy.gd" id="1_l1ot1"]
 [ext_resource type="Texture2D" uid="uid://dy4befcrs41er" path="res://characters/guest/guest_atlas.png" id="1_waigw"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://drtyrflnj08vn" path="res://characters/guest/weak_point.tscn" id="5_pjtur"]
 [ext_resource type="Script" path="res://characters/mutant/HurtBoxArea.gd" id="6_intjx"]
 [ext_resource type="AudioStream" uid="uid://71k1d45tql15" path="res://characters/zombie/monster_die.wav" id="6_l436g"]
+[ext_resource type="Script" path="res://characters/mutant/AttackArea2D.gd" id="7_fq165"]
 [ext_resource type="AudioStream" uid="uid://6pn5lbj8i2ch" path="res://characters/player/sounds/concrete_footstep.mp3" id="7_n140f"]
 [ext_resource type="AudioStream" uid="uid://baanxyc2vjxhr" path="res://characters/player/sounds/grass_footsteps.mp3" id="8_ergsx"]
 
@@ -23,6 +24,9 @@ shader_parameter/strength = 0.0
 shader_parameter/seed = 0.938
 shader_parameter/mask_vignette_strength = 0.0
 shader_parameter/mask_vignette_center = Vector2(0.5, 0.5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_us0sc"]
+radius = 21.0238
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ajbsa"]
 resource_local_to_scene = true
@@ -1410,6 +1414,15 @@ texture = ExtResource("1_waigw")
 region_enabled = true
 region_rect = Rect2(183, 145, 52, 60)
 
+[node name="AttackArea" type="Area2D" parent="CanvasGroup/Graphics/Torso/LeftArm/LeftHighArm/LeftLowerArm/LeftLowerArm/Hand"]
+position = Vector2(10.4468, -17.0548)
+collision_layer = 0
+collision_mask = 15
+script = ExtResource("7_fq165")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasGroup/Graphics/Torso/LeftArm/LeftHighArm/LeftLowerArm/LeftLowerArm/Hand/AttackArea"]
+shape = SubResource("CircleShape2D_us0sc")
+
 [node name="WeakPoint" parent="CanvasGroup/Graphics/Torso/LeftArm/LeftHighArm/LeftLowerArm" instance=ExtResource("5_pjtur")]
 visible = false
 position = Vector2(22.9778, -18.0682)
@@ -1584,7 +1597,7 @@ libraries = {
 
 [node name="AgroRayCast" type="RayCast2D" parent="."]
 target_position = Vector2(0, -250)
-collision_mask = 11
+collision_mask = 15
 
 [node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_l436g")
@@ -1616,3 +1629,5 @@ polygon = PackedVector2Array(-1, -640, 205, -613, 349, -552, 446, -478, 510, -39
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 avoidance_enabled = true
 radius = 60.0
+
+[connection signal="body_entered" from="CanvasGroup/Graphics/Torso/LeftArm/LeftHighArm/LeftLowerArm/LeftLowerArm/Hand/AttackArea" to="CanvasGroup/Graphics/Torso/LeftArm/LeftHighArm/LeftLowerArm/LeftLowerArm/Hand/AttackArea" method="_on_body_entered"]

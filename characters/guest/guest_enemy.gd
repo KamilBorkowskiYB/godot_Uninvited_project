@@ -9,6 +9,7 @@ extends CharacterBody2D
 @onready var view_raycast = $ViewNodes/ViewRayCast
 @onready var agro_raycast = $AgroRayCast
 @onready var navigation_agent = $NavigationAgent2D
+@onready var attack_area = $CanvasGroup/Graphics/Torso/LeftArm/LeftHighArm/LeftLowerArm/LeftLowerArm/Hand/AttackArea
 var dead = false
 @export var push_force = 10.0
 var move_direction = Vector2(0,0)
@@ -28,6 +29,7 @@ var lost_sight_time := 0.0
 const LOST_AGRO_DELAY := 3.0
 var turn_speed := 5.0
 var health = 100
+var damage = 30
 var tween_done := false
 var sound_done := false
 
@@ -51,6 +53,8 @@ func _ready():
 	walk_timer.one_shot = true
 	add_child(walk_timer)
 	walk_timer.timeout.connect(return_to_origin)
+	
+	attack_area.body_attacked.connect(deal_damage)
 
 
 func _physics_process(_delta):
@@ -90,7 +94,7 @@ func _physics_process(_delta):
 		var next_point = navigation_agent.get_next_path_position()
 		move_direction = global_position.direction_to(next_point)
 		
-	if current_state == State.CHASE or current_state == State.LUNGE or current_state == State.WALK:
+	if current_state == State.CHASE or current_state == State.LUNGE or current_state == State.WALK or current_state == State.ATTACK:
 		if current_state == State.WALK and global_position.distance_to(walk_to_pos) < 30:
 			set_idle()
 		
@@ -107,17 +111,22 @@ func _physics_process(_delta):
 			turn_speed * _delta
 		)
 	
-	if agro_raycast.is_colliding() and agro_raycast.get_collider() == player and current_state == State.CHASE:
-		var dist_to_player = global_position.distance_to(player.global_position)
-		if dist_to_player >= 200:
-			attack_lunge()
-		else:
-			attack()
+	if agro_raycast.is_colliding() and current_state == State.CHASE:
+		var target = agro_raycast.get_collider()
+		if target == null: return
+		var dist_to_target = global_position.distance_to(target.global_position)
+		if target == player:
+			if dist_to_target >= 200:
+				attack_lunge()
+			else:
+				attack()
+		elif target.is_in_group("movable_blocks"):
+			if dist_to_target < 150: attack()
 
 
 func take_damage(attack_info: Attack):
 	health -= attack_info.attack_damage
-	print("health: " + str(health))
+	print(self.name + " health: " + str(health))
 	lost_sight_time = 0.0
 	player_spoted()
 	if health <= 0:
@@ -229,9 +238,21 @@ func attack_lunge():
 		animation_player_top.play("lunge")
 
 
-func attack_ended():# should be called in the lunge anim at the end
+func attack_ended():#called in the lunge anim at the end
 	current_state = State.IDLE
 	player_spoted()
+
+
+func deal_damage(body):
+	print(body.name + " hit by " + self.name)
+	var direction = (global_position - body.global_position).normalized()
+	var attack = Attack.new()
+	attack.attack_damage = damage
+	attack.attack_direction = direction
+	if body.has_method("take_damage"):
+		body.take_damage(attack)
+	elif body.has_method("kill"):
+		body.kill(attack)
 
 
 func start_death_effect():

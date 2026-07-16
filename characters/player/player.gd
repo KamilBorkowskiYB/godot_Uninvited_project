@@ -301,6 +301,12 @@ func _physics_process(_delta):
 		if c.get_collider() is RigidBody2D:
 			c.get_collider().apply_central_impulse(-c.get_normal() * push_force)
 
+
+func take_damage(attack_info):
+	#TODO implement taking damage
+	print("player got hit, damage: " + str(attack_info.attack_damage))
+
+
 func kill():
 	if dead:
 		return
@@ -351,11 +357,12 @@ func shoot(ray_casts,ammo_type):
 			
 			# Killing
 			if ray_cast.is_colliding():
-				if ray_cast.get_collider().has_method("kill"):
+				if ray_cast.get_collider().has_method("take_damage"): #"kill"
 					var attack = Attack.new()
 					attack.attack_damage = damage
 					attack.attack_direction = direction
-					ray_cast.get_collider().kill(attack)
+					#ray_cast.get_collider().kill(attack)
+					ray_cast.get_collider().take_damage(attack)
 			
 			# Pass shot info to dummy player in the other dimension
 			shots_data.append({

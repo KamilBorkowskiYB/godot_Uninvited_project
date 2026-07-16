@@ -159,8 +159,8 @@ func kill(attack: Attack):
 	health -= attack.attack_damage
 	play_sound("ObjectHit", 200)
 	if health <= 0:
-		linkedView.queue_free()
-		linkedFog.queue_free()
+		if linkedView: linkedView.queue_free()
+		if linkedFog: linkedFog.queue_free()
 		queue_free()
 
 
