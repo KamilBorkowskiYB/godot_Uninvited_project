@@ -17,10 +17,8 @@ func _ready():
 
 func _process(_delta):
 	if freeze == false:
-		#interaction_area.action_name = "Close"
 		interaction_area.main_action_name = "Close"
 	else:
-		#interaction_area.action_name = "Open"
 		interaction_area.main_action_name = "Open"
 
 
@@ -37,16 +35,21 @@ func _on_interact():
 			close()
 
 
-func kill(attack: Attack):
+func take_damage(attack: Attack):
 	if isClosed:
 		isClosed = false
 		freeze = false
 	if potential_double_doors.has_method("doors_shot"):
-		potential_double_doors.doors_shot(self, attack.attack_direction)
+		potential_double_doors.doors_shot(self, attack.attack_direction, attack.attack_damage)
 	play_sound("DoorHit", 200)
-	trigger_linked_event()
+	if attack.attack_source_name == "player":
+		trigger_linked_event()
 	apply_central_impulse(-attack.attack_direction * 500)
-	health -= attack.attack_damage
+	calc_health(attack.attack_damage)
+
+
+func calc_health(damage_taken):
+	health -= damage_taken
 	if health <= 0:
 		destroyed.emit()
 		get_parent().queue_free()

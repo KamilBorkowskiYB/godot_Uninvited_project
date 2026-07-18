@@ -154,14 +154,18 @@ func _physics_process(delta):
 	previous_player_rotation = player.top.rotation
 
 
-func kill(attack: Attack):
+func kill():
+	if linkedView: linkedView.queue_free()
+	if linkedFog: linkedFog.queue_free()
+	queue_free()
+
+
+func take_damage(attack: Attack):
 	$".".apply_central_impulse(-attack.attack_direction * 500)
 	health -= attack.attack_damage
 	play_sound("ObjectHit", 200)
 	if health <= 0:
-		if linkedView: linkedView.queue_free()
-		if linkedFog: linkedFog.queue_free()
-		queue_free()
+		kill()
 
 
 func play_sound(audio_name, noise_radius, material_related = true):

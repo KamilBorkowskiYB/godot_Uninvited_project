@@ -10,3 +10,6 @@ func kill(attack: Attack):
 	$CPUParticles2D.emitting = true
 	attack.attack_damage = attack.attack_damage * damage_multiplier
 	got_shot.emit(attack)
+
+func take_damage(attack: Attack):
+	kill(attack)

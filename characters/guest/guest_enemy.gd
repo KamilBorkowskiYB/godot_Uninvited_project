@@ -29,7 +29,7 @@ var lost_sight_time := 0.0
 const LOST_AGRO_DELAY := 3.0
 var turn_speed := 5.0
 var health = 100
-var damage = 30
+var damage = 5
 var tween_done := false
 var sound_done := false
 
@@ -126,7 +126,6 @@ func _physics_process(_delta):
 
 func take_damage(attack_info: Attack):
 	health -= attack_info.attack_damage
-	print(self.name + " health: " + str(health))
 	lost_sight_time = 0.0
 	player_spoted()
 	if health <= 0:
@@ -244,11 +243,12 @@ func attack_ended():#called in the lunge anim at the end
 
 
 func deal_damage(body):
-	print(body.name + " hit by " + self.name)
+	await get_tree().physics_frame
 	var direction = (global_position - body.global_position).normalized()
 	var attack = Attack.new()
 	attack.attack_damage = damage
 	attack.attack_direction = direction
+	attack.attack_source_name = self.name
 	if body.has_method("take_damage"):
 		body.take_damage(attack)
 	elif body.has_method("kill"):

@@ -361,6 +361,7 @@ func shoot(ray_casts,ammo_type):
 					var attack = Attack.new()
 					attack.attack_damage = damage
 					attack.attack_direction = direction
+					attack.attack_source_name = self.name
 					#ray_cast.get_collider().kill(attack)
 					ray_cast.get_collider().take_damage(attack)
 			

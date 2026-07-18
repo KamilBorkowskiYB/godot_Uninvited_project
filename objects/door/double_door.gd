@@ -22,7 +22,7 @@ func close_doors():
 	Ldoor_physics.close()
 
 
-func doors_shot(shot_door, attack_dir):
+func doors_shot(shot_door, attack_dir, attack_dmg):
 	if shot_door == Rdoor_physics and Ldoor_physics.isClosed:
 		Ldoor_physics.isClosed = false
 		Ldoor_physics.freeze = false
@@ -33,3 +33,8 @@ func doors_shot(shot_door, attack_dir):
 		Rdoor_physics.freeze = false
 		Rdoor_physics.trigger_linked_event()
 		Rdoor_physics.apply_central_impulse(-attack_dir * 250)
+	if shot_door == Rdoor_physics:
+		Ldoor_physics.calc_health(attack_dmg)
+	if shot_door == Ldoor_physics:
+		Rdoor_physics.calc_health(attack_dmg)
+
