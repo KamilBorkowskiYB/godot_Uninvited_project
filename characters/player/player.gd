@@ -258,8 +258,8 @@ func _process(delta):
 			ray_cast4.rotation_degrees = randf_range(-recoil, recoil)
 	else:
 		recoil = lerp(recoil, max_recoil, recoil_focus_speed * delta)
-	aim_assistR.rotation_degrees = recoil
-	aim_assistL.rotation_degrees = -recoil
+	if aim_assistR: aim_assistR.rotation_degrees = recoil
+	if aim_assistL: aim_assistL.rotation_degrees = -recoil
 	
 	if Input.is_action_just_released("Aim"):
 		unaim()

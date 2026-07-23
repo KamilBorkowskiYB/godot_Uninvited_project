@@ -73,8 +73,11 @@ func _process(_delta):
 			closest_distance = dist
 			closest_dimension_border = node
 	
-	var player_side = player.position.y - closest_dimension_border.position.y
-	var self_side = position.y - closest_dimension_border.position.y
+	var player_side = player.position.y
+	var self_side = position.y
+	if closest_dimension_border:
+		player_side = player.position.y - closest_dimension_border.position.y
+		self_side = position.y - closest_dimension_border.position.y
 	#hide collision on close objects on the other side of the dim portal on the same dim as player
 	if same_dim_viewport and same_dim_viewport.is_ancestor_of(self):
 		if player_side * self_side > 0:
@@ -231,6 +234,8 @@ func _on_interact_toggle_light():
 		if light_source.enabled == true:
 			light_source.enabled = false
 			LinkedLight.enabled = false
+			light_source.hide()
+			LinkedLight.hide()
 			LinkedLightBulb.hide()
 			$Lightbulb.hide()
 			play_sound("Switch", 10, false)
@@ -238,6 +243,8 @@ func _on_interact_toggle_light():
 		else:
 			light_source.enabled = true
 			LinkedLight.enabled = true
+			light_source.show()
+			LinkedLight.show()
 			LinkedLightBulb.show()
 			$Lightbulb.show()
 			play_sound("Switch", 10, false)

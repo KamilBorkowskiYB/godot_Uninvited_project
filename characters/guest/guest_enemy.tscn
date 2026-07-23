@@ -1284,7 +1284,7 @@ _data = {
 }
 
 [node name="guest_enemy" type="CharacterBody2D" groups=["hears_sounds"]]
-collision_layer = 2
+collision_layer = 0
 collision_mask = 15
 motion_mode = 1
 script = ExtResource("1_l1ot1")

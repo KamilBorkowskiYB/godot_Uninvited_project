@@ -48,6 +48,14 @@ shadow_item_cull_mask = 3
 texture = ExtResource("3_7v0s6")
 texture_scale = 2.9
 
+[node name="LightSourceThrouhgLowerBlocks" type="PointLight2D" parent="LightSource" index="0"]
+light_mask = 0
+visibility_layer = 0
+blend_mode = 2
+shadow_enabled = true
+texture = ExtResource("3_7v0s6")
+texture_scale = 2.9
+
 [node name="Lightbulb" type="Sprite2D" parent="." index="7"]
 self_modulate = Color(1, 0.686275, 0.0705882, 1)
 scale = Vector2(0.05, 0.05)
