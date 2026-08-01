@@ -275,8 +275,8 @@ func swap_dimensions():
 	viewport_dim_split_occluders.remove_child(old_occluders)
 	old_parser.queue_free()
 	old_occluders.queue_free()
-	var new_dim_parser = other_mask.duplicate()
-	var new_dim_occluders =other_mask.duplicate()
+	var new_dim_parser = other_mask.duplicate(7)
+	var new_dim_occluders = other_mask.duplicate(7)
 	viewport_dim_split.add_child(new_dim_parser)
 	viewport_dim_split_occluders.add_child(new_dim_occluders)
 	viewport_dim_split.move_child(new_dim_parser, 0)
@@ -311,7 +311,7 @@ func reveal_area(secret_name: String):
 		tween3.tween_property(node3, "modulate:a", 0.0, tween_timer)
 		tween3.tween_callback(func(): node3.queue_free()) 
 
-func connect_movable_objects_between_viewports(viewport1, viewport2, viewport3): # Connecting movable blocks and doors
+func connect_movable_objects_between_viewports(viewport1, viewport2, viewport3): # Connecting movable blocks and doors within one dimension
 	var all_movable = get_tree().get_nodes_in_group("movable_blocks")
 	for node1 in all_movable:
 		if not viewport1.is_ancestor_of(node1):
@@ -321,14 +321,24 @@ func connect_movable_objects_between_viewports(viewport1, viewport2, viewport3):
 		var node2 = null
 		var node3 = null
 		
-		for candidate in all_movable:
-			if candidate.name == target_name and viewport2.is_ancestor_of(candidate):
-				node2 = candidate
-				break
-		for candidate in all_movable:
-			if candidate.name == target_name and viewport3.is_ancestor_of(candidate):
-				node3 = candidate
-				break
+		#add case for dimension splits
+		if node1.get_parent().name.contains("DoubleDoor") or node1.get_parent().name.contains("DimensionSplit"):
+			for candidate in all_movable:
+				if candidate.name == target_name and candidate.get_parent().name == node1.get_parent().name and viewport2.is_ancestor_of(candidate):
+					node2 = candidate
+			for candidate in all_movable:
+				if candidate.name == target_name and candidate.get_parent().name == node1.get_parent().name and viewport3.is_ancestor_of(candidate):
+					node3 = candidate
+					break
+		else:
+			for candidate in all_movable:
+				if candidate.name == target_name and viewport2.is_ancestor_of(candidate):
+					node2 = candidate
+					break
+			for candidate in all_movable:
+				if candidate.name == target_name and viewport3.is_ancestor_of(candidate):
+					node3 = candidate
+					break
 		
 		if node2:
 			node1.linkedView = node2
@@ -352,10 +362,16 @@ func connect_dim_occluders(): #connects movable objects from main viewport to co
 		var target_name = node1.name
 		var node2 = null
 		
-		for candidate in all_movable:
-			if candidate.name == target_name and viewport_dim_split_occluders.is_ancestor_of(candidate):
-				node2 = candidate
-				break
+		if node1.get_parent().name.contains("DimensionSplit"):
+			for candidate in all_movable:
+				if candidate.get_parent().name == node1.get_parent().name and candidate.name == target_name and viewport_dim_split_occluders.is_ancestor_of(candidate):
+					node2 = candidate
+					break
+		else:
+			for candidate in all_movable:
+				if candidate.name == target_name and viewport_dim_split_occluders.is_ancestor_of(candidate):
+					node2 = candidate
+					break
 		
 		if node2:
 			node1.linkedDimOcc = node2
@@ -373,7 +389,7 @@ func connect_dim_occluder_doors(): #connects doors from main viewports to the co
 		var node2 = null
 		
 		for candidate in all_movable:
-			if candidate.name == target_name and viewport_other_dim.is_ancestor_of(candidate):
+			if candidate.name == target_name and candidate.get_parent().name == node1.get_parent().name and viewport_other_dim.is_ancestor_of(candidate):
 				node2 = candidate
 				break
 		

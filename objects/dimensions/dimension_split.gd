@@ -4,49 +4,96 @@ signal swap_dimensions
 
 var swap_distance := 17.0
 var occluder_offset := 15.0
-var entered_from_top = false
+var entered_from_top_or_left = false
 var border_width = 135.0
 var occluder_speed := 240.0
 var min_distance := 5.0
 @onready var lightOccluder = $LightOccluder2D
-@export var lightOccRestPos = 1786.0
+var lightOccRestPos
 @onready var area = $Area2D
+@export var has_door: bool = true
+@export var horizontal: bool = true
 
 
 func _on_area_2d_body_entered(body):
 	if body.is_in_group("player"):
-		entered_from_top = body.global_position.y < area.global_position.y
+		if horizontal:
+			entered_from_top_or_left = body.global_position.y < area.global_position.y
+		else:
+			entered_from_top_or_left = body.global_position.x < area.global_position.x
 
 
+func _ready():
+	var door = get_node_or_null("DimensionDoor/Door")
+	if horizontal : lightOccRestPos = position.y
+	else : lightOccRestPos = position.x
+	# set border_width TODO
+	
+	await get_tree().physics_frame
+	if !has_door and door:
+		door.calc_health(900)
+
+var target
+var player_pos
+var player_width_pos
+var light_occ_pos
+var light_occ_width_pos
 func _process(delta):
 	var overlapping_bodies = area.get_overlapping_bodies()
 	var player = get_tree().get_first_node_in_group("player")
 	
-	#moving dimension border for better visibility
-	var target_y = lightOccRestPos
-	if abs(player.global_position.y - lightOccRestPos) <= swap_distance:
-		if abs(player.global_position.x - lightOccluder.global_position.x) < border_width:
-			if player.global_position.y < lightOccRestPos:
-				target_y = lightOccRestPos + occluder_offset
-				target_y = max(target_y, player.global_position.y + min_distance)
-			else:
-				target_y = lightOccRestPos - occluder_offset
-				target_y = min(target_y, player.global_position.y - min_distance)
+	target = lightOccRestPos
+	if horizontal:
+		player_pos = player.global_position.y
+		player_width_pos = player.global_position.x
+		light_occ_pos = lightOccluder.global_position.y
+		light_occ_width_pos = lightOccluder.global_position.x
 	else:
-		target_y = lightOccRestPos
-	lightOccluder.global_position.y = move_toward(lightOccluder.global_position.y, target_y, occluder_speed * delta)
+		player_pos = player.global_position.x
+		player_width_pos = player.global_position.y
+		light_occ_pos = lightOccluder.global_position.x
+		light_occ_width_pos = lightOccluder.global_position.y
+	
+	if abs(player_pos - lightOccRestPos) <= swap_distance:
+		if abs(player_width_pos - light_occ_width_pos) < border_width:
+			if player_pos < lightOccRestPos:
+				target = lightOccRestPos + occluder_offset
+				target = max(target, player_pos + min_distance)
+			else:
+				target = lightOccRestPos - occluder_offset
+				target = min(target, player_pos - min_distance)
+	else:
+		target = lightOccRestPos
+	
+	if horizontal: lightOccluder.global_position.y = move_toward(light_occ_pos, target, occluder_speed * delta)
+	else: lightOccluder.global_position.x = move_toward(light_occ_pos, target, occluder_speed * delta)
+	
+	#var target_y = lightOccRestPos
+	#if abs(player.global_position.y - lightOccRestPos) <= swap_distance:
+		#if abs(player.global_position.x - lightOccluder.global_position.x) < border_width:
+			#if player.global_position.y < lightOccRestPos:
+				#target_y = lightOccRestPos + occluder_offset
+				#target_y = max(target_y, player.global_position.y + min_distance)
+			#else:
+				#target_y = lightOccRestPos - occluder_offset
+				#target_y = min(target_y, player.global_position.y - min_distance)
+	#else:
+		#target_y = lightOccRestPos
+	#lightOccluder.global_position.y = move_toward(lightOccluder.global_position.y, target_y, occluder_speed * delta)
 	
 	#swaping dimensions
 	for body in overlapping_bodies:
 		if body.is_in_group("player"):
-			var center_y = area.global_position.y
+			#var center_y = area.global_position.y
+			var center = area.global_position.y if horizontal else area.global_position.x
+			var player_pos = body.global_position.y if horizontal else body.global_position.x
 			#enter from top
-			if entered_from_top:
-				if body.global_position.y > center_y:
+			if entered_from_top_or_left:
+				if player_pos > center:
 					call_deferred("emit_swap")
 			#enter from bottom
 			else:
-				if body.global_position.y < center_y:
+				if player_pos < center:
 					call_deferred("emit_swap")
 
 

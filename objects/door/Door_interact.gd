@@ -9,6 +9,7 @@ var transform_to
 var isClosed = true
 var health = 100
 signal destroyed
+
 func _ready():
 	interaction_area.interact = Callable(self,"_on_interact")
 	mouse_interaction_area.parent_interaction = interaction_area
@@ -51,6 +52,7 @@ func take_damage(attack: Attack):
 func calc_health(damage_taken):
 	health -= damage_taken
 	if health <= 0:
+		#await get_tree().physics_frame
 		destroyed.emit()
 		get_parent().queue_free()
 

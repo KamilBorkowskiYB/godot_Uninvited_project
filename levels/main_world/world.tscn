@@ -94,7 +94,7 @@ viewport_path = NodePath("OtherDimension/DimensionsParserOccluders")
 viewport_path = NodePath("OtherDimension/ODSeenViewport")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_h0pcv"]
-viewport_path = NodePath("OtherDimension/ODFogViewport")
+viewport_path = NodePath("OtherDimension/ODVisibilityViewport")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_3heoh"]
 viewport_path = NodePath("OtherDimension/ODVisibilityViewport")
@@ -242,6 +242,13 @@ shadow_item_cull_mask = 256
 texture = SubResource("GradientTexture2D_ifk28")
 
 [node name="Camera2D" type="Camera2D" parent="OtherDimension/DimensionsParserOccluders"]
+
+[node name="ODParserOccStorage" type="SubViewport" parent="OtherDimension"]
+transparent_bg = true
+handle_input_locally = false
+
+[node name="OD_test_level_low" parent="OtherDimension/ODParserOccStorage" instance=ExtResource("10_avuqo")]
+material = SubResource("ShaderMaterial_la02u")
 
 [node name="ItemsObtained" type="CanvasLayer" parent="."]
 
@@ -409,7 +416,6 @@ scale = Vector2(0.2, 0.2)
 texture = SubResource("ViewportTexture_8ptiq")
 
 [node name="DebbugDimensionParser" type="Sprite2D" parent="Debug"]
-visible = false
 position = Vector2(213, 362)
 scale = Vector2(0.2, 0.2)
 texture = SubResource("ViewportTexture_bsdqd")
@@ -420,7 +426,6 @@ scale = Vector2(0.2, 0.2)
 texture = SubResource("ViewportTexture_m0nsu")
 
 [node name="DebbugODHigh" type="Sprite2D" parent="Debug"]
-visible = false
 position = Vector2(1721, 125.2)
 scale = Vector2(0.2, 0.2)
 texture = SubResource("ViewportTexture_36kmu")
@@ -432,7 +437,6 @@ scale = Vector2(0.2, 0.2)
 texture = SubResource("ViewportTexture_h0pcv")
 
 [node name="DebbugODLow" type="Sprite2D" parent="Debug"]
-visible = false
 position = Vector2(1721, 633.2)
 scale = Vector2(0.2, 0.2)
 texture = SubResource("ViewportTexture_3heoh")

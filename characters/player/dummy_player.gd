@@ -74,4 +74,5 @@ func shoot(shots_data):
 				var attack = Attack.new()
 				attack.attack_damage = damage
 				attack.attack_direction = -direction
-				collider.kill(attack)
+				collider.take_damage(attack)
+				#collider.kill(attack)

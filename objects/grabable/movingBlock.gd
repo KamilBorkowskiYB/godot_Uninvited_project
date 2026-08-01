@@ -160,6 +160,7 @@ func _physics_process(delta):
 func kill():
 	if linkedView: linkedView.queue_free()
 	if linkedFog: linkedFog.queue_free()
+	if linkedDimOcc: linkedDimOcc.queue_free()
 	queue_free()
 
 

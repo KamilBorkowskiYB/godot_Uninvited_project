@@ -7,6 +7,7 @@ var linkedOtherDim: Node2D
 @export var hidden_area_name: String
 var hidden_area: Node2D
 
+
 func _ready():
 	$Door.destroyed.connect(destroyed)
 
@@ -22,6 +23,7 @@ func _process(_delta):
 		linkedOtherDim.get_node("Door").isClosed = $Door.isClosed
 		linkedOtherDim.get_node("Door").freeze = $Door.freeze
 
+
 func destroyed():
 	if linkedView != null:
 		linkedView.queue_free()
@@ -30,4 +32,6 @@ func destroyed():
 	if linkedDimOcc != null:
 		linkedDimOcc.queue_free()
 	if linkedOtherDim != null:
+		linkedOtherDim.get_node("Door").calc_health(900)
 		linkedOtherDim.queue_free()
+
