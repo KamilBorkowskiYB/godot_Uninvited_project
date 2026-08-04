@@ -15,110 +15,110 @@
 position = Vector2(4, 5)
 
 [node name="Mutant" parent="Enemies" instance=ExtResource("4_78ckn")]
-position = Vector2(2162, -691)
+position = Vector2(1414, -378)
 rotation = -3.12884
 
 [node name="guest_enemy" parent="Enemies" instance=ExtResource("4_ve2pi")]
-position = Vector2(1710, 668)
+position = Vector2(962, 981)
 rotation = -2.15863
 
 [node name="guest_enemy2" parent="Enemies" instance=ExtResource("4_ve2pi")]
-position = Vector2(1621, 99.9999)
+position = Vector2(873, 413)
 rotation = 0.554071
 
 [node name="guest_enemy3" parent="Enemies" instance=ExtResource("4_ve2pi")]
-position = Vector2(-311, 298)
+position = Vector2(-1059, 611)
 rotation = 2.40725
 
 [node name="LightSource" parent="." instance=ExtResource("4_n3l4b")]
 z_index = -2
-position = Vector2(1310, 670)
+position = Vector2(557, 993)
 
 [node name="LightSource3" parent="." instance=ExtResource("4_n3l4b")]
 z_index = -2
-position = Vector2(38, 282)
+position = Vector2(-715, 605)
 
 [node name="PickUps" type="Node2D" parent="."]
 position = Vector2(-82, -66)
 
 [node name="PickUp" parent="PickUps" instance=ExtResource("7_0crg7")]
-position = Vector2(475, 33)
+position = Vector2(-294, 356)
 item_selected = 4
 
 [node name="ShotgunShells" parent="PickUps" instance=ExtResource("7_0crg7")]
-position = Vector2(1495, -162)
+position = Vector2(726, 161)
 item_selected = 1
 
 [node name="ShotgunShells2" parent="PickUps" instance=ExtResource("7_0crg7")]
-position = Vector2(1089, 628)
+position = Vector2(424, 1050)
 item_selected = 1
 
 [node name="ShotgunShells3" parent="PickUps" instance=ExtResource("7_0crg7")]
-position = Vector2(1089, 628)
+position = Vector2(424, 1050)
 item_selected = 1
 
 [node name="ShotgunShells4" parent="PickUps" instance=ExtResource("7_0crg7")]
-position = Vector2(1089, 628)
+position = Vector2(424, 1050)
 item_selected = 1
 
 [node name="ShotgunShells5" parent="PickUps" instance=ExtResource("7_0crg7")]
-position = Vector2(1089, 628)
+position = Vector2(424, 1050)
 item_selected = 1
 
 [node name="ShotgunShells6" parent="PickUps" instance=ExtResource("7_0crg7")]
-position = Vector2(1089, 628)
+position = Vector2(424, 1050)
 item_selected = 1
 
 [node name="ShotgunShells7" parent="PickUps" instance=ExtResource("7_0crg7")]
-position = Vector2(1089, 628)
+position = Vector2(424, 1050)
 item_selected = 1
 
 [node name="ShotgunShells8" parent="PickUps" instance=ExtResource("7_0crg7")]
-position = Vector2(1089, 628)
+position = Vector2(424, 1050)
 item_selected = 1
 
 [node name="PickUp3" parent="PickUps" instance=ExtResource("7_0crg7")]
-position = Vector2(1311, -8)
+position = Vector2(326, 774)
 
 [node name="PickUp4" parent="PickUps" instance=ExtResource("7_0crg7")]
-position = Vector2(1311, -8)
+position = Vector2(326, 774)
 
 [node name="PickUp5" parent="PickUps" instance=ExtResource("7_0crg7")]
-position = Vector2(1311, -8)
+position = Vector2(326, 774)
 
 [node name="PickUp6" parent="PickUps" instance=ExtResource("7_0crg7")]
-position = Vector2(1311, -8)
+position = Vector2(326, 774)
 
 [node name="PickUp7" parent="PickUps" instance=ExtResource("7_0crg7")]
-position = Vector2(1311, -8)
+position = Vector2(326, 774)
 
 [node name="PickUp8" parent="PickUps" instance=ExtResource("7_0crg7")]
-position = Vector2(1311, -8)
+position = Vector2(326, 774)
 
 [node name="PickUp9" parent="PickUps" instance=ExtResource("7_0crg7")]
-position = Vector2(1311, -8)
+position = Vector2(326, 774)
 
 [node name="PickUp10" parent="PickUps" instance=ExtResource("7_0crg7")]
-position = Vector2(1311, -8)
+position = Vector2(326, 774)
 
 [node name="PickUp11" parent="PickUps" instance=ExtResource("7_0crg7")]
-position = Vector2(1311, -8)
+position = Vector2(326, 774)
 
 [node name="PickUp12" parent="PickUps" instance=ExtResource("7_0crg7")]
-position = Vector2(1311, -8)
+position = Vector2(326, 774)
 
 [node name="PickUp13" parent="PickUps" instance=ExtResource("7_0crg7")]
-position = Vector2(1311, -8)
+position = Vector2(326, 774)
 
 [node name="PickUp14" parent="PickUps" instance=ExtResource("7_0crg7")]
-position = Vector2(380, 504)
+position = Vector2(-389, 827)
 item_selected = 2
 
 [node name="LevelExits" type="Node2D" parent="."]
 position = Vector2(-184, -5)
 
 [node name="change_scene" parent="LevelExits" instance=ExtResource("8_smc70")]
-position = Vector2(2529, 861)
+position = Vector2(1649, 1246)
 scale = Vector2(1.72, 5.48)
 level_high = "res://levels/test_level2/forest_lvl_high.tscn"
 level_mid = "res://levels/test_level2/forest_lvl_mid.tscn"

@@ -26,7 +26,7 @@ position = Vector2(84, -115)
 scale = Vector2(1.36722, 0.411714)
 
 [node name="PointLight2D" type="PointLight2D" parent="AmbientDark"]
-position = Vector2(675.824, 92.3935)
+position = Vector2(114.1, 876.822)
 scale = Vector2(1.25662, 3.09946)
 energy = 0.5
 blend_mode = 1
@@ -37,24 +37,24 @@ texture_scale = 14.18
 
 [node name="SecretArea" parent="Secrets" instance=ExtResource("2_nvptp")]
 visible = false
-position = Vector2(1352, -360)
+position = Vector2(587.199, -41.3406)
 scale = Vector2(0.9, 0.634707)
 
 [node name="SecretArea2" parent="Secrets" instance=ExtResource("2_nvptp")]
 visible = false
-position = Vector2(1344, 208)
+position = Vector2(579.199, 526.659)
 scale = Vector2(0.888333, 0.584)
 
 [node name="SecretArea3" parent="Secrets" instance=ExtResource("2_nvptp")]
 visible = false
-position = Vector2(576, -72)
+position = Vector2(-188.801, 246.659)
 scale = Vector2(0.739998, 1.184)
 
 [node name="Lamp" parent="." instance=ExtResource("3_o8shj")]
-position = Vector2(1448, 264)
+position = Vector2(693, 592)
 
 [node name="Lamp2" parent="." instance=ExtResource("3_o8shj")]
-position = Vector2(776, 384)
+position = Vector2(21, 712)
 
 [node name="Lamp3" parent="." instance=ExtResource("3_o8shj")]
-position = Vector2(347, 384)
+position = Vector2(-408, 712)
