@@ -24,6 +24,7 @@ func _ready():
 	od_viewport3.size = view_size
 	
 	#connecting viewport cameras
+	viewport1 = get_node("MainLevelViewport/SubViewport/MainScene")
 	var cam_main = viewport1.get_node_or_null("PlayerCamera")
 	var cam_fog = viewport2.get_node_or_null("Camera2D")
 	var cam_view = viewport3.get_node_or_null("Camera2D")
@@ -59,7 +60,7 @@ func _ready():
 	
 	#connecting tilemap to player footsteps
 	var tilemap = null
-	viewport1 = get_node("MainLevelViewport/SubViewport").get_child(0)
+	viewport1 = get_node("MainLevelViewport/SubViewport/MainScene").get_child(0)
 	if viewport1.get_child(0).get_child(0).get_node("Tilemap").get_child_count() > 0:
 		tilemap = viewport1.get_child(0).get_child(0).get_node("Tilemap").get_child(0)
 	var footnode = player.get_node("Footsteps")
@@ -67,13 +68,13 @@ func _ready():
 		footnode.tilemap = tilemap
 	
 	#connecting tilemap to enemies footsteps
-	viewport1 = get_node("MainLevelViewport/SubViewport").get_child(0).get_node("Enemies")
+	viewport1 = get_node("MainLevelViewport/SubViewport/MainScene").get_child(0).get_node("Enemies")
 	for child in viewport1.get_children():
 		if(child and tilemap):
 			child.get_node_or_null("Footsteps").tilemap = tilemap
 	
 	#connecting tilemap to movingblocks
-	viewport1 = get_node("MainLevelViewport/SubViewport").get_child(0).get_child(0).get_child(0).get_node("MovingBlocks") #First get_child - lvl_hight, second - lvl_middium, third - lvl_low
+	viewport1 = get_node("MainLevelViewport/SubViewport/MainScene").get_child(0).get_child(0).get_child(0).get_node("MovingBlocks") #First get_child - lvl_hight, second - lvl_middium, third - lvl_low
 	for child in viewport1.get_children():
 		if(child and tilemap):
 			child.get_node_or_null("Footsteps").tilemap = tilemap
@@ -93,25 +94,25 @@ func _ready():
 		player.weapon_info_on.connect(weapon_info_visible)
 	
 	#connecting signals from pickUps
-	viewport1 = get_node("MainLevelViewport/SubViewport").get_child(0).get_node("PickUps")
+	viewport1 = get_node("MainLevelViewport/SubViewport/MainScene").get_child(0).get_node("PickUps")
 	for child in viewport1.get_children():
 		if child.has_signal("item_picked_up"):
 			child.item_picked_up.connect(item_picked_up)
 	
 	#connecting signals from LevelExits
-	viewport1 = get_node("MainLevelViewport/SubViewport").get_child(0).get_node("LevelExits")
+	viewport1 = get_node("MainLevelViewport/SubViewport/MainScene").get_child(0).get_node("LevelExits")
 	for child in viewport1.get_children():
 		if child.has_signal("change_level"):
 			child.change_level.connect(change_level)
 	
 	#connecting signals from Secrets
-	viewport1 = get_node("MainLevelViewport/SubViewport").get_child(0).get_child(0).get_node("Secrets")
+	viewport1 = get_node("MainLevelViewport/SubViewport/MainScene").get_child(0).get_child(0).get_node("Secrets")
 	for child in viewport1.get_children():
 		if child.get_child(0).has_signal("reveal_area"):
 			child.get_child(0).reveal_area.connect(reveal_area)
 	
 	#connecting signals from Dimension Splits
-	viewport1 = get_node("MainLevelViewport/SubViewport").get_child(0).get_child(0).get_child(0).get_node("Static/DimensionSplits")
+	viewport1 = get_node("MainLevelViewport/SubViewport/MainScene").get_child(0).get_child(0).get_child(0).get_node("Static/DimensionSplits")
 	for child in viewport1.get_children():
 		if child.has_signal("swap_dimensions"):
 			child.swap_dimensions.connect(swap_dimensions)
@@ -128,7 +129,7 @@ func _ready():
 	
 	
 	# Connecting movable blocks and doors
-	viewport1 = get_node("MainLevelViewport/SubViewport")
+	viewport1 = get_node("MainLevelViewport/SubViewport/MainScene")
 	viewport2 = get_node("FogViewport")
 	viewport3 = get_node("VisibilityViewport")
 	od_viewport1 = get_node("OtherDimension/ODSeenViewport")
@@ -186,12 +187,12 @@ func change_material_to_white(node):
 
 
 func change_level(player_pos,level_high,level_mid,level_low): #TODO add other dimension to level load
-	get_node("MainLevelViewport/SubViewport").get_child(0).queue_free()
+	get_node("MainLevelViewport/SubViewport/MainScene").get_child(0).queue_free()
 	get_node("FogViewport").get_child(0).queue_free()
 	get_node("VisibilityViewport").get_child(0).queue_free()
 	get_node("OtherDimension/DimensionsParser").get_child(0).queue_free()
 	
-	var viewport1 = get_node("MainLevelViewport/SubViewport")
+	var viewport1 = get_node("MainLevelViewport/SubViewport/MainScene")
 	var viewport2 = get_node("FogViewport")
 	var viewport3 = get_node("VisibilityViewport")
 	var viewport_dim_split = get_node_or_null("OtherDimension/DimensionsParser")
@@ -225,22 +226,10 @@ func change_level(player_pos,level_high,level_mid,level_low): #TODO add other di
 	InteractionManager.active_areas = []
 	InteractionManager.mouse_range = []
 
+
 var what_dimenstion = 0.0
 func swap_dimensions():
-	var shader_material = $MainLevelViewport.material
-	shader_material.set_shader_parameter("swap_fog_progress", what_dimenstion)
-	
-	var tween = create_tween()
-	tween.tween_method(
-		func(value):
-			shader_material.set_shader_parameter("swap_fog_progress", value),
-		what_dimenstion,
-		abs(what_dimenstion-1.0),
-		0.5
-	)
-	what_dimenstion = abs(what_dimenstion-1.0)
-	
-	var viewport1 = get_node("MainLevelViewport/SubViewport")
+	var viewport1 = get_node("MainLevelViewport/SubViewport/MainScene")
 	#viewports2 are animeted in the above tween
 	var viewport3 = get_node("VisibilityViewport")
 	var viewport_dim_split = get_node_or_null("OtherDimension/DimensionsParser")
@@ -281,6 +270,19 @@ func swap_dimensions():
 	viewport_dim_split_occluders.add_child(new_dim_occluders)
 	viewport_dim_split.move_child(new_dim_parser, 0)
 	viewport_dim_split_occluders.move_child(new_dim_occluders, 0)
+	
+	var shader_material = $MainLevelViewport.material
+	shader_material.set_shader_parameter("swap_fog_progress", what_dimenstion)
+	var tween = create_tween()
+	tween.tween_method(
+		func(value):
+			shader_material.set_shader_parameter("swap_fog_progress", value),
+		what_dimenstion,
+		abs(what_dimenstion-1.0),
+		0.5
+	)
+	what_dimenstion = abs(what_dimenstion-1.0)
+	
 	connect_dim_occluders()
 	connect_dim_occluder_doors()
 
@@ -288,7 +290,7 @@ func swap_dimensions():
 
 func reveal_area(secret_name: String):
 	#TILESET MUST BE NAMED JUST LIKE SECRET 
-	var viewport1 = get_node("MainLevelViewport/SubViewport").get_child(0).get_child(0).get_node("Secrets")
+	var viewport1 = get_node("MainLevelViewport/SubViewport/MainScene").get_child(0).get_child(0).get_node("Secrets")
 	var viewport2 = get_node("FogViewport").get_child(0).get_node("out_of_view_overlay").get_node("SecretsColor") #lights secrets   #get_node("FogViewport").get_child(0).get_child(0).get_node("Secrets")
 	var viewport2prim = get_node("FogViewport").get_child(0).get_node("out_of_view_overlay").get_node("SecretsModulate") #tileset and other overlay
 	
@@ -352,7 +354,7 @@ func connect_movable_objects_between_viewports(viewport1, viewport2, viewport3):
 
 
 func connect_dim_occluders(): #connects movable objects from main viewport to coresponding ones from DimensionParserOccluders
-	var viewport_main = get_node('MainLevelViewport/SubViewport')
+	var viewport_main = get_node('MainLevelViewport/SubViewport/MainScene')
 	var viewport_dim_split_occluders = get_node("OtherDimension/DimensionsParserOccluders")
 	var all_movable = get_tree().get_nodes_in_group("movable_blocks")
 	for node1 in all_movable:
@@ -378,7 +380,7 @@ func connect_dim_occluders(): #connects movable objects from main viewport to co
 
 
 func connect_dim_occluder_doors(): #connects doors from main viewports to the corresponding ones from the other_dim_main
-	var viewport_main = get_node('MainLevelViewport/SubViewport')
+	var viewport_main = get_node('MainLevelViewport/SubViewport/MainScene')
 	var viewport_other_dim = get_node("OtherDimension/ODSeenViewport")
 	var all_movable = get_tree().get_nodes_in_group("movable_blocks")
 	for node1 in all_movable:

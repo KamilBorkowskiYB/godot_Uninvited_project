@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://dronghrmiipwt"]
+
+[ext_resource type="PackedScene" uid="uid://d1oul8y1hqgln" path="res://levels/test_level1/level.tscn" id="1_eiecu"]
+[ext_resource type="PackedScene" uid="uid://c8bitsc7ybbya" path="res://characters/player/player.tscn" id="2_lksa6"]
+[ext_resource type="Script" path="res://characters/player/Camera2D.gd" id="3_f3dea"]
+
+[node name="MainScene" type="Node2D"]
+
+[node name="Level" parent="." instance=ExtResource("1_eiecu")]
+light_mask = 897
+visibility_layer = 897
+
+[node name="Player" parent="." instance=ExtResource("2_lksa6")]
+position = Vector2(-297, -2267)
+
+[node name="PlayerCamera" type="Camera2D" parent="."]
+script = ExtResource("3_f3dea")
