@@ -50,14 +50,14 @@ position = Vector2(956, 901)
 [node name="DimensionSplit" parent="Static/DimensionSplits" instance=ExtResource("3_lbr5p")]
 position = Vector2(1300, 2083)
 
-[node name="DimensionSplit3" parent="Static/DimensionSplits" instance=ExtResource("3_lbr5p")]
-position = Vector2(-779, -3282)
-scale = Vector2(2.00519, 0.854318)
+[node name="DimensionSplit5" parent="Static/DimensionSplits" instance=ExtResource("3_lbr5p")]
+position = Vector2(-785, -3269)
+scale = Vector2(1.8, 1)
 has_door = false
 
 [node name="DimensionSplit4" parent="Static/DimensionSplits" instance=ExtResource("3_lbr5p")]
-position = Vector2(-105, -3282)
-scale = Vector2(2.00519, 0.854318)
+position = Vector2(-105, -3270)
+scale = Vector2(2.005, 1)
 has_door = false
 
 [node name="staticBlock" parent="Static/DimensionSplits" instance=ExtResource("4_v3f8p")]

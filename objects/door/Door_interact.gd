@@ -43,7 +43,7 @@ func take_damage(attack: Attack):
 	if potential_double_doors.has_method("doors_shot"):
 		potential_double_doors.doors_shot(self, attack.attack_direction, attack.attack_damage)
 	play_sound("DoorHit", 200)
-	if attack.attack_source_name == "player":
+	if attack.attack_source_name == "Player":
 		trigger_linked_event()
 	apply_central_impulse(-attack.attack_direction * 500)
 	calc_health(attack.attack_damage)
@@ -52,7 +52,6 @@ func take_damage(attack: Attack):
 func calc_health(damage_taken):
 	health -= damage_taken
 	if health <= 0:
-		#await get_tree().physics_frame
 		destroyed.emit()
 		get_parent().queue_free()
 

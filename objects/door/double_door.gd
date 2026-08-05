@@ -9,7 +9,7 @@ extends Node2D
 
 func _ready():
 	Rdoor.hidden_area_name = hidden_area_name
-	#Ldoor.hidden_area_name = hidden_area_name
+	Ldoor.hidden_area_name = hidden_area_name
 
 
 func open_doors():

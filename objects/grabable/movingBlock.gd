@@ -114,8 +114,6 @@ func _process(_delta):
 
 func _physics_process(delta):
 	var player: CharacterBody2D = get_tree().get_first_node_in_group("player")
-	if player == null:
-		return
 	if self.linear_velocity.length() > 5.0:
 		play_sound("ObjectDrag", 200)
 	else:

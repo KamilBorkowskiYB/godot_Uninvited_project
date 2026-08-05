@@ -27,7 +27,7 @@ func _ready():
 	var door = get_node_or_null("DimensionDoor/Door")
 	if horizontal : lightOccRestPos = position.y
 	else : lightOccRestPos = position.x
-	# set border_width TODO
+	border_width = 171 * scale.x # 171 is a width of light occ (x of point 1)
 	
 	await get_tree().physics_frame
 	if !has_door and door:
@@ -40,19 +40,9 @@ var light_occ_pos
 var light_occ_width_pos
 func _process(delta):
 	var overlapping_bodies = area.get_overlapping_bodies()
-	var player = get_tree().get_first_node_in_group("player")
 	
 	target = lightOccRestPos
-	if horizontal:
-		player_pos = player.global_position.y
-		player_width_pos = player.global_position.x
-		light_occ_pos = lightOccluder.global_position.y
-		light_occ_width_pos = lightOccluder.global_position.x
-	else:
-		player_pos = player.global_position.x
-		player_width_pos = player.global_position.y
-		light_occ_pos = lightOccluder.global_position.x
-		light_occ_width_pos = lightOccluder.global_position.y
+	set_horizontal_vars()
 	
 	if abs(player_pos - lightOccRestPos) <= swap_distance:
 		if abs(player_width_pos - light_occ_width_pos) < border_width:
@@ -65,26 +55,12 @@ func _process(delta):
 	else:
 		target = lightOccRestPos
 	
-	if horizontal: lightOccluder.global_position.y = move_toward(light_occ_pos, target, occluder_speed * delta)
-	else: lightOccluder.global_position.x = move_toward(light_occ_pos, target, occluder_speed * delta)
-	
-	#var target_y = lightOccRestPos
-	#if abs(player.global_position.y - lightOccRestPos) <= swap_distance:
-		#if abs(player.global_position.x - lightOccluder.global_position.x) < border_width:
-			#if player.global_position.y < lightOccRestPos:
-				#target_y = lightOccRestPos + occluder_offset
-				#target_y = max(target_y, player.global_position.y + min_distance)
-			#else:
-				#target_y = lightOccRestPos - occluder_offset
-				#target_y = min(target_y, player.global_position.y - min_distance)
-	#else:
-		#target_y = lightOccRestPos
-	#lightOccluder.global_position.y = move_toward(lightOccluder.global_position.y, target_y, occluder_speed * delta)
+	if horizontal: lightOccluder.global_position.y = target #TODO zamiast przesuwać wizualną granicę poprzez move() lepiej będzie dodać "próg" w aktualnym dimension, który wygląda jak other dimension i jest widziany jedynie przed granicą
+	else: lightOccluder.global_position.x = target          #wsm to nie - nie zadziała jeśli gracz jest przed granicą ale na nią nie patrzy - trzeba zadbać aby wszystkie progi były takie same między dimensions
 	
 	#swaping dimensions
 	for body in overlapping_bodies:
 		if body.is_in_group("player"):
-			#var center_y = area.global_position.y
 			var center = area.global_position.y if horizontal else area.global_position.x
 			var player_pos = body.global_position.y if horizontal else body.global_position.x
 			#enter from top
@@ -99,3 +75,17 @@ func _process(delta):
 
 func emit_swap():
 	swap_dimensions.emit()
+
+
+func set_horizontal_vars():
+	var player = get_tree().get_first_node_in_group("player")
+	if horizontal:
+		player_pos = player.global_position.y
+		player_width_pos = player.global_position.x
+		light_occ_pos = lightOccluder.global_position.y
+		light_occ_width_pos = lightOccluder.global_position.x
+	else:
+		player_pos = player.global_position.x
+		player_width_pos = player.global_position.y
+		light_occ_pos = lightOccluder.global_position.x
+		light_occ_width_pos = lightOccluder.global_position.y

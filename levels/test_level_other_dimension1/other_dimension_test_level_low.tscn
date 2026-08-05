@@ -9,16 +9,16 @@
 [node name="OD_test_level_low" instance=ExtResource("1_vm8s1")]
 
 [node name="DimensionSplit" parent="Static/DimensionSplits" index="0" instance=ExtResource("2_l0i62")]
-position = Vector2(1110, 2083)
+position = Vector2(1300, 2083)
 
 [node name="staticBlock5" parent="Static/DimensionSplits" index="1" instance=ExtResource("3_31umf")]
-position = Vector2(1090, 2083)
+position = Vector2(1280, 2083)
 scale = Vector2(0.59999, 0.55999)
 vis_from_right_or_bottom = false
 always_visible = true
 
 [node name="staticBlock6" parent="Static/DimensionSplits" index="2" instance=ExtResource("3_31umf")]
-position = Vector2(1300, 2083)
+position = Vector2(1490, 2083)
 scale = Vector2(0.55999, 0.55999)
 vis_from_right_or_bottom = false
 always_visible = true
