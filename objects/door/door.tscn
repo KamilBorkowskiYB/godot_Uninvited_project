@@ -17,7 +17,7 @@ size = Vector2(176.47, 10)
 polygon = PackedVector2Array(225.636, -3.9644, 225.636, 7.9288, -5.60587, 7.9288, -5.9992, -4.6359)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_weep1"]
-size = Vector2(33.3168, 36.0623)
+size = Vector2(38.1386, 45.5881)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hre1s"]
 size = Vector2(183, 58)
@@ -68,7 +68,7 @@ scale = Vector2(1.2, 1)
 collision_mask = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Door/interaction_area"]
-position = Vector2(15.7499, 3.99289e-05)
+position = Vector2(28.6666, 7.26751e-05)
 rotation = -3.14159
 scale = Vector2(5.35766, -2.93936)
 shape = SubResource("RectangleShape2D_weep1")
