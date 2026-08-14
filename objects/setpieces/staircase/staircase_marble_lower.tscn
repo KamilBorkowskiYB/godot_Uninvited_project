@@ -1,0 +1,62 @@
+[gd_scene load_steps=4 format=3 uid="uid://bwcsl6ytq8xyn"]
+
+[ext_resource type="Texture2D" uid="uid://b78d3ouohw51i" path="res://objects/setpieces/staircase/staircase_marble_low.png" id="1_uhnye"]
+[ext_resource type="PackedScene" uid="uid://d32q58d334dfd" path="res://objects/floor/floor.tscn" id="2_b38ae"]
+[ext_resource type="PackedScene" uid="uid://cxiu2kws8f1xm" path="res://objects/staticBlock.tscn" id="3_skg3l"]
+
+[node name="StaircaseMarbleLower" type="Node2D"]
+z_index = -1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_uhnye")
+
+[node name="Floor" parent="." instance=ExtResource("2_b38ae")]
+position = Vector2(0, 27)
+scale = Vector2(16.76, 10.96)
+stands_on = "marble"
+
+[node name="Walls" type="Node2D" parent="."]
+
+[node name="staticBlock4" parent="Walls" instance=ExtResource("3_skg3l")]
+position = Vector2(-548, 30.9994)
+rotation = 1.5708
+scale = Vector2(11.072, -0.365)
+vis_from_right_or_bottom = false
+always_visible = true
+
+[node name="staticBlock9" parent="Walls" instance=ExtResource("3_skg3l")]
+position = Vector2(548, 31)
+rotation = 1.5708
+scale = Vector2(11.072, -0.364508)
+always_visible = true
+
+[node name="staticBlock10" parent="Walls" instance=ExtResource("3_skg3l")]
+position = Vector2(-191, 185)
+rotation = 1.5708
+scale = Vector2(6.232, -0.245)
+always_visible = true
+
+[node name="staticBlock11" parent="Walls" instance=ExtResource("3_skg3l")]
+position = Vector2(192, 185)
+rotation = 1.5708
+scale = Vector2(6.232, -0.245)
+vis_from_right_or_bottom = false
+always_visible = true
+
+[node name="staticBlock12" parent="Walls" instance=ExtResource("3_skg3l")]
+position = Vector2(-372, 370)
+scale = Vector2(5.872, -0.443)
+vertical = false
+
+[node name="staticBlock13" parent="Walls" instance=ExtResource("3_skg3l")]
+position = Vector2(372, 372)
+scale = Vector2(5.87201, -0.364508)
+vertical = false
+
+[node name="staticBlock14" parent="Walls" instance=ExtResource("3_skg3l")]
+position = Vector2(3.55271e-15, -331)
+scale = Vector2(17.512, -0.364514)
+vertical = false
+vis_from_right_or_bottom = false
+always_visible = true

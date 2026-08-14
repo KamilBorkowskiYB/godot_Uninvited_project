@@ -57,27 +57,8 @@ func _ready():
 			player.dim_split_light_occluders = light_dim_split_occluders
 			player.od_view_light = od_view_light
 	
-	
-	#connecting tilemap to player footsteps
-	var tilemap = null
-	viewport1 = get_node("MainLevelViewport/SubViewport/MainScene").get_child(0)
-	if viewport1.get_child(0).get_child(0).get_node("Tilemap").get_child_count() > 0:
-		tilemap = viewport1.get_child(0).get_child(0).get_node("Tilemap").get_child(0)
-	var footnode = player.get_node("Footsteps")
-	if(footnode and tilemap):
-		footnode.tilemap = tilemap
-	
-	#connecting tilemap to enemies footsteps
-	viewport1 = get_node("MainLevelViewport/SubViewport/MainScene").get_child(0).get_node("Enemies")
-	for child in viewport1.get_children():
-		if(child and tilemap):
-			child.get_node_or_null("Footsteps").tilemap = tilemap
-	
-	#connecting tilemap to movingblocks
-	viewport1 = get_node("MainLevelViewport/SubViewport/MainScene").get_child(0).get_child(0).get_child(0).get_node("MovingBlocks") #First get_child - lvl_hight, second - lvl_middium, third - lvl_low
-	for child in viewport1.get_children():
-		if(child and tilemap):
-			child.get_node_or_null("Footsteps").tilemap = tilemap
+	##connecting tilemap to player footsteps
+	connect_tilemap_to_footsteps()
 	
 	#connecting aim assist to player 
 	var aim = $WeaponSelected/AimAssist
@@ -285,6 +266,7 @@ func swap_dimensions():
 	
 	connect_dim_occluders()
 	connect_dim_occluder_doors()
+	connect_tilemap_to_footsteps()
 
 
 
@@ -398,3 +380,27 @@ func connect_dim_occluder_doors(): #connects doors from main viewports to the co
 		if node2:
 			node1.linkedOtherDim = node2
 			node2.linkedOtherDim = null
+
+
+func connect_tilemap_to_footsteps():
+	#connecting tilemap to player footsteps
+	var tilemap = null
+	var player: CharacterBody2D = get_tree().get_first_node_in_group("player")
+	var viewport1 = get_node("MainLevelViewport/SubViewport/MainScene").get_child(0)
+	if viewport1.get_child(0).get_child(0).get_node("Tilemap").get_child_count() > 0:
+		tilemap = viewport1.get_child(0).get_child(0).get_node("Tilemap").get_child(0)
+	var footnode = player.get_node("Footsteps")
+	if(footnode and tilemap):
+		footnode.tilemap = tilemap
+	
+	#connecting tilemap to enemies footsteps
+	viewport1 = get_node("MainLevelViewport/SubViewport/MainScene").get_child(0).get_node("Enemies")
+	for child in viewport1.get_children():
+		if(child and tilemap):
+			child.get_node_or_null("Footsteps").tilemap = tilemap
+	
+	#connecting tilemap to movingblocks
+	viewport1 = get_node("MainLevelViewport/SubViewport/MainScene").get_child(0).get_child(0).get_child(0).get_node("MovingBlocks") #First get_child - lvl_hight, second - lvl_middium, third - lvl_low
+	for child in viewport1.get_children():
+		if(child and tilemap):
+			child.get_node_or_null("Footsteps").tilemap = tilemap

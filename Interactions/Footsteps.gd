@@ -14,9 +14,13 @@ func _process(_delta):
 				found_tile = true
 				get_parent().standing_on = tile_id.get_custom_data("footsteps")
 				break
-	if !found_tile:
-		for area in get_overlapping_areas():
-			get_parent().standing_on = area.get_parent().stands_on
+	#following for overides found tile material - used for setpieces on top of tiles
+	for area in get_overlapping_areas():
+		get_parent().standing_on = area.get_parent().stands_on
+	#following if statement checks areas if no tiles ware found, like water area
+	#if !found_tile: 
+		#for area in get_overlapping_areas():
+			#get_parent().standing_on = area.get_parent().stands_on
 	found_tile = false
 
 
