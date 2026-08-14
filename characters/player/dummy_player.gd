@@ -18,6 +18,9 @@ func _process(_delta):
 	var player_help = get_tree().get_first_node_in_group("player")
 	top.rotation = player_help.top.rotation
 	position = player_help.position
+	bottom.position = player_help.bottom.position
+	bottom.rotation = player_help.bottom.rotation
+	legs.rotation = player_help.legs.rotation
 	
 	sync_animation(animation_player, player_help.animation_player)
 	sync_animation(animation_playerLegs, player_help.animation_playerLegs)

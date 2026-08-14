@@ -26,17 +26,17 @@ func _process(_delta):#some code could be moved into onready func if changing le
 	
 	if other_dim_viewport and other_dim_viewport.is_ancestor_of(self):
 		#warunek if poniższe ma sie wykonać jesli gracz i self są po tej samej stronie na osi y wzgledem closest_dimension_border
-		var player_side = player.position.y - closest_dimension_border.position.y
-		var self_side = position.y - closest_dimension_border.position.y #TODO jesli border jest horyzontaly, przeciwnie powinno byc po x
+		var player_side = player.global_position.y - closest_dimension_border.global_position.y
+		var self_side = global_position.y - closest_dimension_border.global_position.y #TODO jesli border jest horyzontaly, przeciwnie powinno byc po x
 		
 		if player_side * self_side > 0:
 			light_occ.occluder_light_mask = 0
 			return
 	
 	if vertical:
-		set_occ_mask(player.position.x - self.position.x)
+		set_occ_mask(player.global_position.x - self.global_position.x)
 	else:
-		set_occ_mask(player.position.y - self.position.y)
+		set_occ_mask(player.global_position.y - self.global_position.y)
 
 func set_occ_mask(player_distance):
 	if vis_from_right_or_bottom:

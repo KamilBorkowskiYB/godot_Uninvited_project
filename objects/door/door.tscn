@@ -17,7 +17,7 @@ size = Vector2(176.47, 10)
 polygon = PackedVector2Array(225.636, -3.9644, 225.636, 7.9288, -5.60587, 7.9288, -5.9992, -4.6359)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_weep1"]
-size = Vector2(38.1386, 45.5881)
+size = Vector2(38.1386, 66.6811)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hre1s"]
 size = Vector2(183, 58)

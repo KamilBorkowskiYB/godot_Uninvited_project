@@ -192,7 +192,7 @@ func _process(delta):
 		var target_rotation = global_position.direction_to(get_global_mouse_position()).angle() + PI/2
 		top.rotation = lerp_angle(top.rotation, target_rotation, 0.01 / grabbed_object.mass)
 	move_direction = Input.get_vector("move_left","move_right","move_down","move_up")
-	legs.rotation = move_direction.angle() + PI/2 - bottom.rotation
+	legs.rotation = move_direction.angle() + PI/2 - bottom.rotation #TODO legs aren't rotating when player isn't walking
 	bottom.rotation = top.rotation
 	
 	if velocity.length() > 0:
@@ -485,6 +485,9 @@ func step():
 	if standing_on == "wood":
 		$Sounds/WoodPanelFootstep.pitch_scale = randf_range(0.8, 1.2)
 		$Sounds/WoodPanelFootstep.play()
+	if standing_on == "marble":
+		$Sounds/MarbleFootstep.pitch_scale = randf_range(0.8, 1.2)
+		$Sounds/MarbleFootstep.play()
 
 func make_noise(noise_radius):
 	var listners = get_tree().get_nodes_in_group("hears_sounds")
