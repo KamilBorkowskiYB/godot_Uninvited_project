@@ -192,15 +192,16 @@ func _process(delta):
 		var target_rotation = global_position.direction_to(get_global_mouse_position()).angle() + PI/2
 		top.rotation = lerp_angle(top.rotation, target_rotation, 0.01 / grabbed_object.mass)
 	move_direction = Input.get_vector("move_left","move_right","move_down","move_up")
-	legs.rotation = move_direction.angle() + PI/2 - bottom.rotation #TODO legs aren't rotating when player isn't walking
 	bottom.rotation = top.rotation
 	
 	if velocity.length() > 0:
+		legs.rotation = move_direction.angle() + PI/2 - bottom.rotation
 		animation_playerLegs.play(animation_walk)
 		min_recoil = min_recoil_walking
 		if(recoil < min_recoil):
 			recoil = min_recoil
 	else:
+		legs.rotation = 0.0
 		animation_playerLegs.stop()
 		min_recoil = floor_min_recoil
 	

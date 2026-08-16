@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://w8uwankiro78" path="res://levels/atlases/seamless tiles/ps1style/grass.png" id="2_hh73a"]
 [ext_resource type="Texture2D" uid="uid://dxp8maf0hliwp" path="res://levels/atlases/atlas2.png" id="2_x3213"]
 [ext_resource type="Texture2D" uid="uid://c40b70qxi65ge" path="res://levels/atlases/seamless tiles/ps1style/concrete.png" id="3_irn6k"]
-[ext_resource type="Texture2D" uid="uid://bifwg3bk636b6" path="res://levels/atlases/seamless tiles/ps1style/wooden_planks.png" id="3_xk3nk"]
+[ext_resource type="Texture2D" uid="uid://dg4m2rs6u0ssb" path="res://levels/atlases/seamless tiles/ps1style/planksv2.png" id="3_tr6b7"]
 [ext_resource type="Script" path="res://levels/atlases/atlas_navigation.gd" id="7_38do4"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_4rypi"]
@@ -31,7 +31,7 @@ shader = ExtResource("1_woa2i")
 shader_parameter/scale = 0.002
 shader_parameter/overlay_texture_one = ExtResource("2_hh73a")
 shader_parameter/overlay_texture_two = ExtResource("3_irn6k")
-shader_parameter/overlay_texture_three = ExtResource("3_xk3nk")
+shader_parameter/overlay_texture_three = ExtResource("3_tr6b7")
 shader_parameter/water_noise = SubResource("NoiseTexture2D_lg2yt")
 shader_parameter/water_noise2 = SubResource("NoiseTexture2D_wa5cy")
 

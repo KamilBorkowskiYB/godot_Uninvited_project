@@ -37,12 +37,18 @@ rotation = 1.5708
 scale = Vector2(6.232, -0.245)
 always_visible = true
 
+[node name="Sprite2D" parent="Walls/staticBlock10" index="1"]
+visible = false
+
 [node name="staticBlock11" parent="Walls" instance=ExtResource("3_skg3l")]
 position = Vector2(192, 185)
 rotation = 1.5708
 scale = Vector2(6.232, -0.245)
 vis_from_right_or_bottom = false
 always_visible = true
+
+[node name="Sprite2D" parent="Walls/staticBlock11" index="1"]
+visible = false
 
 [node name="staticBlock12" parent="Walls" instance=ExtResource("3_skg3l")]
 position = Vector2(-372, 370)
@@ -60,3 +66,6 @@ scale = Vector2(17.512, -0.364514)
 vertical = false
 vis_from_right_or_bottom = false
 always_visible = true
+
+[editable path="Walls/staticBlock10"]
+[editable path="Walls/staticBlock11"]

@@ -1,9 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://b7iklrlyc5m55"]
+[gd_scene load_steps=13 format=3 uid="uid://b7iklrlyc5m55"]
 
 [ext_resource type="PackedScene" uid="uid://ckpdtj6bvcm5m" path="res://objects/tree/tree.tscn" id="2_nn3gb"]
 [ext_resource type="PackedScene" uid="uid://428ovsu8nqlh" path="res://objects/window.tscn" id="2_wm65m"]
 [ext_resource type="PackedScene" uid="uid://cng2o48wdswvk" path="res://objects/door/door.tscn" id="3_44mhx"]
-[ext_resource type="PackedScene" uid="uid://cdjrccvmnvd0y" path="res://objects/floor/water.tscn" id="3_dfka1"]
 [ext_resource type="PackedScene" uid="uid://dnwmh62tvl3p" path="res://objects/dimensions/dimension_split.tscn" id="3_lbr5p"]
 [ext_resource type="PackedScene" uid="uid://wnfv8t4fomvg" path="res://objects/door/double_door.tscn" id="4_a0d8x"]
 [ext_resource type="PackedScene" uid="uid://bwcsl6ytq8xyn" path="res://objects/setpieces/staircase/staircase_marble_lower.tscn" id="4_prm62"]
@@ -28,12 +27,6 @@ use_parent_material = true
 
 [node name="Floors" type="Node2D" parent="Static"]
 use_parent_material = true
-
-[node name="Water" parent="Static/Floors" instance=ExtResource("3_dfka1")]
-visible = false
-z_index = 1
-position = Vector2(381, -52)
-scale = Vector2(49.8, 32.88)
 
 [node name="Walls" type="Node2D" parent="Static"]
 use_parent_material = true
