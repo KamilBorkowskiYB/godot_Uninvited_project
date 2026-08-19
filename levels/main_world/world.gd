@@ -162,6 +162,7 @@ func weapon_info_visible():
 
 
 func change_material_to_white(node):
+	if node.name.contains("Sounds"): return
 	node.use_parent_material = true
 	for child in node.get_children():
 		change_material_to_white(child)
@@ -305,7 +306,6 @@ func connect_movable_objects_between_viewports(viewport1, viewport2, viewport3):
 		var node2 = null
 		var node3 = null
 		
-		#add case for dimension splits
 		if node1.get_parent().name.contains("DoubleDoor") or node1.get_parent().name.contains("DimensionSplit"):
 			for candidate in all_movable:
 				if candidate.name == target_name and candidate.get_parent().name == node1.get_parent().name and viewport2.is_ancestor_of(candidate):
@@ -315,14 +315,20 @@ func connect_movable_objects_between_viewports(viewport1, viewport2, viewport3):
 					node3 = candidate
 					break
 		else:
-			for candidate in all_movable:
-				if candidate.name == target_name and viewport2.is_ancestor_of(candidate):
-					node2 = candidate
-					break
-			for candidate in all_movable:
-				if candidate.name == target_name and viewport3.is_ancestor_of(candidate):
-					node3 = candidate
-					break
+			if node1.name.contains("GlassArea"):#windows
+				for candidate in all_movable:
+					if candidate.get_parent().name == node1.get_parent().name and viewport2.is_ancestor_of(candidate):
+						node2 = candidate
+						break
+			else: #classic moving blocks - crates, normal doors, etc
+				for candidate in all_movable:
+					if candidate.name == target_name and viewport2.is_ancestor_of(candidate):
+						node2 = candidate
+						break
+				for candidate in all_movable:
+					if candidate.name == target_name and viewport3.is_ancestor_of(candidate):
+						node3 = candidate
+						break
 		
 		if node2:
 			node1.linkedView = node2
@@ -340,7 +346,7 @@ func connect_dim_occluders(): #connects movable objects from main viewport to co
 	var viewport_dim_split_occluders = get_node("OtherDimension/DimensionsParserOccluders")
 	var all_movable = get_tree().get_nodes_in_group("movable_blocks")
 	for node1 in all_movable:
-		if not viewport_main.is_ancestor_of(node1):
+		if not viewport_main.is_ancestor_of(node1) or node1.name.contains("GlassArea"):
 			continue
 		
 		var target_name = node1.name

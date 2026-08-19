@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://b7iklrlyc5m55"]
 
+[ext_resource type="PackedScene" uid="uid://428ovsu8nqlh" path="res://objects/window/window.tscn" id="1_w4y8g"]
 [ext_resource type="PackedScene" uid="uid://ckpdtj6bvcm5m" path="res://objects/tree/tree.tscn" id="2_nn3gb"]
-[ext_resource type="PackedScene" uid="uid://428ovsu8nqlh" path="res://objects/window.tscn" id="2_wm65m"]
 [ext_resource type="PackedScene" uid="uid://cng2o48wdswvk" path="res://objects/door/door.tscn" id="3_44mhx"]
 [ext_resource type="PackedScene" uid="uid://dnwmh62tvl3p" path="res://objects/dimensions/dimension_split.tscn" id="3_lbr5p"]
 [ext_resource type="PackedScene" uid="uid://wnfv8t4fomvg" path="res://objects/door/double_door.tscn" id="4_a0d8x"]
@@ -31,31 +31,31 @@ use_parent_material = true
 [node name="Walls" type="Node2D" parent="Static"]
 use_parent_material = true
 
-[node name="window" parent="Static/Walls" instance=ExtResource("2_wm65m")]
+[node name="window" parent="Static/Walls" instance=ExtResource("1_w4y8g")]
 position = Vector2(-1776, -1680)
 
-[node name="window2" parent="Static/Walls" instance=ExtResource("2_wm65m")]
+[node name="window2" parent="Static/Walls" instance=ExtResource("1_w4y8g")]
 position = Vector2(-2160, -1680)
 
-[node name="window3" parent="Static/Walls" instance=ExtResource("2_wm65m")]
+[node name="window3" parent="Static/Walls" instance=ExtResource("1_w4y8g")]
 position = Vector2(-3024, -1680)
 
-[node name="window4" parent="Static/Walls" instance=ExtResource("2_wm65m")]
+[node name="window4" parent="Static/Walls" instance=ExtResource("1_w4y8g")]
 position = Vector2(-2640, -1680)
 
-[node name="window5" parent="Static/Walls" instance=ExtResource("2_wm65m")]
+[node name="window5" parent="Static/Walls" instance=ExtResource("1_w4y8g")]
 position = Vector2(-1392, -1296)
 
-[node name="window6" parent="Static/Walls" instance=ExtResource("2_wm65m")]
+[node name="window6" parent="Static/Walls" instance=ExtResource("1_w4y8g")]
 position = Vector2(-912, -1392)
 
-[node name="window7" parent="Static/Walls" instance=ExtResource("2_wm65m")]
+[node name="window7" parent="Static/Walls" instance=ExtResource("1_w4y8g")]
 position = Vector2(-912, -1776)
 
-[node name="window8" parent="Static/Walls" instance=ExtResource("2_wm65m")]
+[node name="window8" parent="Static/Walls" instance=ExtResource("1_w4y8g")]
 position = Vector2(336, -1392)
 
-[node name="window9" parent="Static/Walls" instance=ExtResource("2_wm65m")]
+[node name="window9" parent="Static/Walls" instance=ExtResource("1_w4y8g")]
 position = Vector2(336, -1776)
 
 [node name="Trees" type="Node2D" parent="Static"]

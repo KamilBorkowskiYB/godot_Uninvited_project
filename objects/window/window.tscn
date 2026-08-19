@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=3 uid="uid://428ovsu8nqlh"]
+
+[ext_resource type="Texture2D" uid="uid://cma5kmw10jghr" path="res://white_sq.png" id="1_4c2an"]
+[ext_resource type="Script" path="res://objects/window/window.gd" id="2_gpvuu"]
+[ext_resource type="AudioStream" uid="uid://b667mpkpplamy" path="res://objects/window/GlassDestroy.mp3" id="3_me15b"]
+[ext_resource type="AudioStream" uid="uid://q0y22num28j0" path="res://objects/window/GlassHitHeavy.mp3" id="4_ivxfm"]
+[ext_resource type="AudioStream" uid="uid://2kxc5c3u4fwr" path="res://objects/window/GlassHitSoft.mp3" id="5_ybwfk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ecp80"]
+size = Vector2(160, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_le3ba"]
+size = Vector2(160, 12)
+
+[node name="window" type="StaticBody2D"]
+collision_layer = 4
+collision_mask = 3
+
+[node name="ParapetSprite" type="Sprite2D" parent="."]
+self_modulate = Color(0, 0, 0, 1)
+scale = Vector2(2.5, 1)
+texture = ExtResource("1_4c2an")
+
+[node name="GlassSprite" type="Sprite2D" parent="."]
+scale = Vector2(2.5, 0.2)
+texture = ExtResource("1_4c2an")
+
+[node name="ParapetCollision" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ecp80")
+
+[node name="GlassArea" type="Area2D" parent="." groups=["movable_blocks"]]
+script = ExtResource("2_gpvuu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GlassArea"]
+shape = SubResource("RectangleShape2D_le3ba")
+
+[node name="Sounds" type="Node2D" parent="."]
+
+[node name="GlassDestroy" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("3_me15b")
+volume_db = -4.0
+bus = &"sfx"
+
+[node name="GlassHitHeavy" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("4_ivxfm")
+bus = &"sfx"
+
+[node name="GlassHitSoft" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("5_ybwfk")
+bus = &"sfx"
