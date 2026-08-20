@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://c8bitsc7ybbya"]
+[gd_scene load_steps=63 format=3 uid="uid://c8bitsc7ybbya"]
 
 [ext_resource type="Script" path="res://characters/player/player.gd" id="1_bf8ru"]
 [ext_resource type="Texture2D" uid="uid://f5sx516ofsyb" path="res://characters/player/graphic/legs.png" id="2_qgy1a"]
@@ -25,6 +25,7 @@
 [ext_resource type="PackedScene" uid="uid://b4hop5ypxtvrs" path="res://characters/water_splash.tscn" id="15_vfyxc"]
 [ext_resource type="AudioStream" uid="uid://811q3c1e8tgi" path="res://characters/player/sounds/WoodPanelFootstep.mp3" id="22_l1tl4"]
 [ext_resource type="AudioStream" uid="uid://byh7s8fu1wg52" path="res://characters/player/sounds/marble_footstep.wav" id="23_navd7"]
+[ext_resource type="AudioStream" uid="uid://bwndx6yp80cxt" path="res://characters/player/sounds/GlassFootsteps.mp3" id="24_d3tns"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_f7cyc"]
 radius = 40.0125
@@ -5652,6 +5653,10 @@ bus = &"sfx"
 
 [node name="MarbleFootstep" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("23_navd7")
+bus = &"sfx"
+
+[node name="GlassFootstep" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("24_d3tns")
 bus = &"sfx"
 
 [node name="Footsteps" parent="." instance=ExtResource("14_xbjs0")]

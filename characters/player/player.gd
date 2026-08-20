@@ -489,6 +489,9 @@ func step():
 	if standing_on == "marble":
 		$Sounds/MarbleFootstep.pitch_scale = randf_range(0.8, 1.2)
 		$Sounds/MarbleFootstep.play()
+	if standing_on == "glass":
+		$Sounds/GlassFootstep.pitch_scale = randf_range(0.8, 1.2)
+		$Sounds/GlassFootstep.play()
 
 func make_noise(noise_radius):
 	var listners = get_tree().get_nodes_in_group("hears_sounds")

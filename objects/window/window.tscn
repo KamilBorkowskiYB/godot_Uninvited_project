@@ -1,10 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://428ovsu8nqlh"]
+[gd_scene load_steps=11 format=3 uid="uid://428ovsu8nqlh"]
 
 [ext_resource type="Texture2D" uid="uid://cma5kmw10jghr" path="res://white_sq.png" id="1_4c2an"]
+[ext_resource type="Texture2D" uid="uid://bs0p7ej2qbyeu" path="res://objects/window/window_sprites.png" id="2_froq1"]
 [ext_resource type="Script" path="res://objects/window/window.gd" id="2_gpvuu"]
 [ext_resource type="AudioStream" uid="uid://b667mpkpplamy" path="res://objects/window/GlassDestroy.mp3" id="3_me15b"]
 [ext_resource type="AudioStream" uid="uid://q0y22num28j0" path="res://objects/window/GlassHitHeavy.mp3" id="4_ivxfm"]
 [ext_resource type="AudioStream" uid="uid://2kxc5c3u4fwr" path="res://objects/window/GlassHitSoft.mp3" id="5_ybwfk"]
+[ext_resource type="Texture2D" uid="uid://cghym0clr5rux" path="res://objects/window/shattered_glass.png" id="6_wwkre"]
+[ext_resource type="PackedScene" uid="uid://d32q58d334dfd" path="res://objects/floor/floor.tscn" id="7_ullcm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ecp80"]
 size = Vector2(160, 64)
@@ -22,8 +25,9 @@ scale = Vector2(2.5, 1)
 texture = ExtResource("1_4c2an")
 
 [node name="GlassSprite" type="Sprite2D" parent="."]
-scale = Vector2(2.5, 0.2)
-texture = ExtResource("1_4c2an")
+texture_filter = 1
+texture = ExtResource("2_froq1")
+hframes = 3
 
 [node name="ParapetCollision" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_ecp80")
@@ -48,3 +52,52 @@ bus = &"sfx"
 [node name="GlassHitSoft" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("5_ybwfk")
 bus = &"sfx"
+
+[node name="ShatteredGlass" type="Node2D" parent="."]
+visible = false
+
+[node name="shattered_glass" type="Sprite2D" parent="ShatteredGlass"]
+z_index = -1
+texture_filter = 1
+position = Vector2(-77, -67)
+rotation = 0.247938
+texture = ExtResource("6_wwkre")
+
+[node name="shattered_glass3" type="Sprite2D" parent="ShatteredGlass"]
+z_index = -1
+texture_filter = 1
+position = Vector2(18, -36)
+rotation = 1.37594
+scale = Vector2(1.08983, 1.08983)
+texture = ExtResource("6_wwkre")
+flip_h = true
+
+[node name="shattered_glass4" type="Sprite2D" parent="ShatteredGlass"]
+z_index = -1
+texture_filter = 1
+position = Vector2(-62, 42)
+rotation = 0.154824
+scale = Vector2(0.80587, 0.80587)
+texture = ExtResource("6_wwkre")
+flip_h = true
+
+[node name="shattered_glass2" type="Sprite2D" parent="ShatteredGlass"]
+z_index = -1
+texture_filter = 1
+position = Vector2(34, 61)
+rotation = 6.37705
+scale = Vector2(1.26798, 1.26798)
+texture = ExtResource("6_wwkre")
+
+[node name="ShatteredGlassFloorArea" parent="." instance=ExtResource("7_ullcm")]
+visible = false
+scale = Vector2(3.64109, 3.44832)
+stands_on = "glass"
+
+[node name="FloorSprite" parent="ShatteredGlassFloorArea" index="0"]
+visible = false
+
+[node name="Area2D" parent="ShatteredGlassFloorArea" index="1"]
+collision_layer = 0
+
+[editable path="ShatteredGlassFloorArea"]
