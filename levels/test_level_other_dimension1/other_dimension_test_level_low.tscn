@@ -52,6 +52,8 @@ position = Vector2(1, -2)
 
 [node name="CrateBig" parent="MovingBlocks" index="0" instance=ExtResource("5_flq35")]
 position = Vector2(944, 1836)
+collision_layer = 0
+collision_mask = 7
 
 [node name="Atlas_one" parent="Tilemap" index="0" instance=ExtResource("2_rbpnr")]
 position = Vector2(0, 0)

@@ -52,9 +52,15 @@ scale = Vector2(0.739998, 1.184)
 
 [node name="Lamp" parent="." instance=ExtResource("3_o8shj")]
 position = Vector2(693, 592)
+collision_layer = 0
+collision_mask = 7
 
 [node name="Lamp2" parent="." instance=ExtResource("3_o8shj")]
 position = Vector2(21, 712)
+collision_layer = 0
+collision_mask = 7
 
 [node name="Lamp3" parent="." instance=ExtResource("3_o8shj")]
 position = Vector2(-408, 712)
+collision_layer = 0
+collision_mask = 7

@@ -28,8 +28,8 @@ size = Vector2(65, 64)
 
 [node name="MovingBlock" type="RigidBody2D" groups=["movable_blocks", "navigation_group"]]
 use_parent_material = true
-collision_layer = 0
-collision_mask = 7
+collision_layer = 8
+collision_mask = 15
 gravity_scale = 0.0
 linear_damp = 2.0
 angular_damp = 20.0

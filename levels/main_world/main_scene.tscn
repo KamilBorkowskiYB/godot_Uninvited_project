@@ -11,7 +11,7 @@ light_mask = 897
 visibility_layer = 897
 
 [node name="Player" parent="." instance=ExtResource("2_lksa6")]
-position = Vector2(-297, -2267)
+position = Vector2(-221, 1167)
 
 [node name="PlayerCamera" type="Camera2D" parent="."]
 script = ExtResource("3_f3dea")

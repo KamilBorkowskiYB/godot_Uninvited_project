@@ -12,11 +12,11 @@ func _process(_delta):
 			var tile_id = tilemap.get_cell_tile_data(i, map_position)
 			if tile_id and tile_id.get_custom_data("footsteps"):
 				found_tile = true
-				get_parent().standing_on = tile_id.get_custom_data("footsteps")
+				get_parent().get_parent().standing_on = tile_id.get_custom_data("footsteps")
 				break
 	#following for overides found tile material - used for setpieces on top of tiles
 	for area in get_overlapping_areas():
-		get_parent().standing_on = area.get_parent().stands_on
+		get_parent().get_parent().standing_on = area.get_parent().stands_on
 	#following if statement checks areas if no tiles ware found, like water area
 	#if !found_tile: 
 		#for area in get_overlapping_areas():

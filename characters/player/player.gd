@@ -20,6 +20,7 @@ var cursor_current = null
 
 ##########        FOOTSTEPS        ##########
 var standing_on :String = "grass"
+@onready var foot_step = $Footsteps
 
 ##########        PICK UPS        ##########
 var pistol_unlock = 1
@@ -193,6 +194,7 @@ func _process(delta):
 		top.rotation = lerp_angle(top.rotation, target_rotation, 0.01 / grabbed_object.mass)
 	move_direction = Input.get_vector("move_left","move_right","move_down","move_up")
 	bottom.rotation = top.rotation
+	foot_step.rotation = legs.rotation + bottom.rotation
 	
 	if velocity.length() > 0:
 		legs.rotation = move_direction.angle() + PI/2 - bottom.rotation

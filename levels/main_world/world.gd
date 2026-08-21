@@ -395,7 +395,7 @@ func connect_tilemap_to_footsteps():
 	var viewport1 = get_node("MainLevelViewport/SubViewport/MainScene").get_child(0)
 	if viewport1.get_child(0).get_child(0).get_node("Tilemap").get_child_count() > 0:
 		tilemap = viewport1.get_child(0).get_child(0).get_node("Tilemap").get_child(0)
-	var footnode = player.get_node("Footsteps")
+	var footnode = player.get_node("Footsteps").get_child(0)
 	if(footnode and tilemap):
 		footnode.tilemap = tilemap
 	
@@ -403,10 +403,10 @@ func connect_tilemap_to_footsteps():
 	viewport1 = get_node("MainLevelViewport/SubViewport/MainScene").get_child(0).get_node("Enemies")
 	for child in viewport1.get_children():
 		if(child and tilemap):
-			child.get_node_or_null("Footsteps").tilemap = tilemap
+			child.get_node_or_null("Footsteps").get_child(0).tilemap = tilemap
 	
 	#connecting tilemap to movingblocks
 	viewport1 = get_node("MainLevelViewport/SubViewport/MainScene").get_child(0).get_child(0).get_child(0).get_node("MovingBlocks") #First get_child - lvl_hight, second - lvl_middium, third - lvl_low
 	for child in viewport1.get_children():
 		if(child and tilemap):
-			child.get_node_or_null("Footsteps").tilemap = tilemap
+			child.get_node_or_null("Footsteps").get_child(0).tilemap = tilemap

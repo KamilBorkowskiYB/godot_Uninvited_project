@@ -245,14 +245,14 @@ func attack_ended():#called in the lunge anim at the end
 func deal_damage(body):
 	await get_tree().physics_frame
 	var direction = (global_position - body.global_position).normalized()
-	var attack = Attack.new()
-	attack.attack_damage = damage
-	attack.attack_direction = direction
-	attack.attack_source_name = self.name
+	var attack_info = Attack.new()
+	attack_info.attack_damage = damage
+	attack_info.attack_direction = direction
+	attack_info.attack_source_name = self.name
 	if body.has_method("take_damage"):
-		body.take_damage(attack)
+		body.take_damage(attack_info)
 	elif body.has_method("kill"):
-		body.kill(attack)
+		body.kill(attack_info)
 
 
 func start_death_effect():

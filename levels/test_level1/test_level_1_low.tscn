@@ -221,30 +221,48 @@ position = Vector2(-977, -2221)
 
 [node name="Wardrobe" parent="MovingBlocks" instance=ExtResource("5_58tq3")]
 position = Vector2(616, 326)
+collision_layer = 0
+collision_mask = 7
 
 [node name="CreateSmall" parent="MovingBlocks" instance=ExtResource("5_syhhd")]
 position = Vector2(-983, 740)
+collision_layer = 0
+collision_mask = 7
 
 [node name="CreateSmall2" parent="MovingBlocks" instance=ExtResource("5_syhhd")]
 position = Vector2(-374, 293)
+collision_layer = 0
+collision_mask = 7
 
 [node name="CreateSmall3" parent="MovingBlocks" instance=ExtResource("5_syhhd")]
 position = Vector2(-74, -13)
+collision_layer = 0
+collision_mask = 7
 
 [node name="CreateSmall4" parent="MovingBlocks" instance=ExtResource("5_syhhd")]
 position = Vector2(30, 56)
+collision_layer = 0
+collision_mask = 7
 
 [node name="CreateBig" parent="MovingBlocks" instance=ExtResource("6_qey61")]
 position = Vector2(41, -214)
+collision_layer = 0
+collision_mask = 7
 
 [node name="CreateBig3" parent="MovingBlocks" instance=ExtResource("6_qey61")]
 position = Vector2(46, -75)
+collision_layer = 0
+collision_mask = 7
 
 [node name="CreateBig4" parent="MovingBlocks" instance=ExtResource("6_qey61")]
 position = Vector2(-93, -139)
+collision_layer = 0
+collision_mask = 7
 
 [node name="CreateBig2" parent="MovingBlocks" instance=ExtResource("6_qey61")]
 position = Vector2(361, 994)
+collision_layer = 0
+collision_mask = 7
 
 [node name="Tilemap" type="Node2D" parent="."]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bkgyrpsl6ytcq"
-path="res://.godot/imported/MM_grass2.png-bcc13c335e5626db640a4fe4cfa27378.ctex"
+uid="uid://dprs7k6p0cypd"
+path="res://.godot/imported/grassv2.png-74bba3d3e71462c184b90a60dbc48484.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://levels/atlases/seamless tiles/MM_grass2.png"
-dest_files=["res://.godot/imported/MM_grass2.png-bcc13c335e5626db640a4fe4cfa27378.ctex"]
+source_file="res://levels/atlases/seamless tiles/ps1style/grassv2.png"
+dest_files=["res://.godot/imported/grassv2.png-74bba3d3e71462c184b90a60dbc48484.ctex"]
 
 [params]
 
