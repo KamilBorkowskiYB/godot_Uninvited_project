@@ -339,6 +339,9 @@ func connect_movable_objects_between_viewports(viewport1, viewport2, viewport3):
 		var ha1 = node1.get("hidden_area_name")
 		if ha1 != null and ha1 != "": 
 			node1.hidden_area = viewport1.get_child(0).get_child(0).get_node(node1.hidden_area_name)
+		var ha2 = node1.get("hidden_area_name_two")
+		if ha2 != null and ha2 != "": 
+			node1.hidden_area_two = viewport1.get_child(0).get_child(0).get_node(node1.hidden_area_name_two)
 
 
 func connect_dim_occluders(): #connects movable objects from main viewport to coresponding ones from DimensionParserOccluders

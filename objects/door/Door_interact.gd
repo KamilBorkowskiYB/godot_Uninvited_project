@@ -91,6 +91,10 @@ func trigger_linked_event():
 		var trigger = parent.hidden_area.get_node_or_null("TriggerEvent")
 		if trigger:
 			trigger.trigger_event()
+	if parent.hidden_area_two and is_instance_valid(parent.hidden_area_two):
+		var trigger = parent.hidden_area_two.get_node_or_null("TriggerEvent")
+		if trigger:
+			trigger.trigger_event()
 
 
 func play_sound(audio_name, noise_radius):

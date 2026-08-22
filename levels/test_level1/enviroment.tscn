@@ -50,6 +50,66 @@ visible = false
 position = Vector2(-188.801, 246.659)
 scale = Vector2(0.739998, 1.184)
 
+[node name="SecretArea4" parent="Secrets" instance=ExtResource("2_nvptp")]
+visible = false
+position = Vector2(-2160, -3124)
+scale = Vector2(1.23333, 1.025)
+
+[node name="SecretArea5" parent="Secrets" instance=ExtResource("2_nvptp")]
+visible = false
+position = Vector2(-1972, -2160)
+scale = Vector2(0.825, 1.03333)
+
+[node name="SecretArea6" parent="Secrets" instance=ExtResource("2_nvptp")]
+visible = false
+position = Vector2(-2836, -2165)
+scale = Vector2(1.025, 1.03958)
+
+[node name="SecretArea7" parent="Secrets" instance=ExtResource("2_nvptp")]
+visible = false
+position = Vector2(-3030, -3127.5)
+scale = Vector2(0.629167, 1.01771)
+
+[node name="SecretArea8" parent="Secrets" instance=ExtResource("2_nvptp")]
+visible = false
+position = Vector2(-1392, -3312)
+scale = Vector2(0.414583, 0.616667)
+
+[node name="SecretArea9" parent="Secrets" instance=ExtResource("2_nvptp")]
+visible = false
+position = Vector2(808, -3312)
+scale = Vector2(0.414583, 0.616667)
+
+[node name="SecretArea10" parent="Secrets" instance=ExtResource("2_nvptp")]
+visible = false
+position = Vector2(1296, -3312)
+scale = Vector2(0.6, 0.616667)
+
+[node name="SecretArea11" parent="Secrets" instance=ExtResource("2_nvptp")]
+visible = false
+position = Vector2(1776, -3312)
+scale = Vector2(0.416667, 0.616667)
+
+[node name="SecretArea12" parent="Secrets" instance=ExtResource("2_nvptp")]
+visible = false
+position = Vector2(2356, -3312)
+scale = Vector2(0.791667, 0.616667)
+
+[node name="SecretArea13" parent="Secrets" instance=ExtResource("2_nvptp")]
+visible = false
+position = Vector2(2444, -2162)
+scale = Vector2(0.608333, 1.02083)
+
+[node name="SecretArea14" parent="Secrets" instance=ExtResource("2_nvptp")]
+visible = false
+position = Vector2(1584, -2162)
+scale = Vector2(1.23333, 1.02083)
+
+[node name="SecretArea15" parent="Secrets" instance=ExtResource("2_nvptp")]
+visible = false
+position = Vector2(1872, -2832)
+scale = Vector2(1.83333, 0.416667)
+
 [node name="Lamp" parent="." instance=ExtResource("3_o8shj")]
 position = Vector2(693, 592)
 collision_layer = 0

@@ -5,7 +5,9 @@ var linkedFog: Node2D
 var linkedDimOcc: Node2D
 var linkedOtherDim: Node2D
 @export var hidden_area_name: String
+@export var hidden_area_name_two: String
 var hidden_area: Node2D
+var hidden_area_two: Node2D
 
 
 func _ready():
