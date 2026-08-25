@@ -72,6 +72,18 @@ scale = Vector2(1.23333, 1.02083)
 position = Vector2(1864, -2832)
 scale = Vector2(1.85, 0.416667)
 
+[node name="SecretArea16" parent="out_of_view_overlay/SecretsColor" instance=ExtResource("3_bw1wj")]
+position = Vector2(-288, -2398)
+scale = Vector2(2.8, 1.32917)
+
+[node name="SecretArea17" parent="out_of_view_overlay/SecretsColor/SecretArea16" instance=ExtResource("3_bw1wj")]
+position = Vector2(395.714, 646.269)
+scale = Vector2(0.151786, 0.393417)
+
+[node name="SecretArea18" parent="out_of_view_overlay/SecretsColor/SecretArea16" instance=ExtResource("3_bw1wj")]
+position = Vector2(-394.286, 646.269)
+scale = Vector2(0.151786, 0.393417)
+
 [node name="SecretsModulate" type="Node2D" parent="out_of_view_overlay"]
 
 [node name="SecretArea" parent="out_of_view_overlay/SecretsModulate" instance=ExtResource("2_i0fpy")]

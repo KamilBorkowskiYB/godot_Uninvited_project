@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bxokw5ag0urqt"]
+[gd_scene load_steps=8 format=3 uid="uid://bxokw5ag0urqt"]
 
 [ext_resource type="PackedScene" uid="uid://drjtbe7lus5v0" path="res://levels/preset_level/preset_level_low.tscn" id="1_vm8s1"]
 [ext_resource type="PackedScene" uid="uid://bl202pp4e45fs" path="res://objects/setpieces/staircase/staircase_marble_high.tscn" id="2_kr5li"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://c33j86e6f8mi7" path="res://levels/atlases/atlas_one.tscn" id="2_rbpnr"]
 [ext_resource type="PackedScene" uid="uid://cxiu2kws8f1xm" path="res://objects/staticBlock.tscn" id="3_31umf"]
 [ext_resource type="PackedScene" uid="uid://c2m7t1akvxu2e" path="res://objects/grabable/crate_big.tscn" id="5_flq35"]
+[ext_resource type="PackedScene" uid="uid://djd0wpqb3yhqj" path="res://objects/grabable/crate_small.tscn" id="6_n1p3p"]
 
 [node name="OD_test_level_low" instance=ExtResource("1_vm8s1")]
 
@@ -54,6 +55,20 @@ position = Vector2(1, -2)
 position = Vector2(944, 1836)
 collision_layer = 0
 collision_mask = 7
+
+[node name="CrateBig2" parent="MovingBlocks" index="1" instance=ExtResource("5_flq35")]
+position = Vector2(1402, 2350)
+collision_layer = 0
+collision_mask = 7
+
+[node name="CrateSmall" parent="MovingBlocks" index="2" instance=ExtResource("6_n1p3p")]
+position = Vector2(1308, 2223)
+
+[node name="CrateSmall2" parent="MovingBlocks" index="3" instance=ExtResource("6_n1p3p")]
+position = Vector2(1517, 2232)
+
+[node name="CrateSmall3" parent="MovingBlocks" index="4" instance=ExtResource("6_n1p3p")]
+position = Vector2(1468, 1884)
 
 [node name="Atlas_one" parent="Tilemap" index="0" instance=ExtResource("2_rbpnr")]
 position = Vector2(0, 0)

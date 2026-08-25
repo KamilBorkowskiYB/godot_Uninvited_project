@@ -46,6 +46,9 @@ position = Vector2(-2640, -1680)
 [node name="window5" parent="Static/Walls" instance=ExtResource("1_w4y8g")]
 position = Vector2(-1392, -1296)
 
+[node name="window32" parent="Static/Walls" instance=ExtResource("1_w4y8g")]
+position = Vector2(816, -1296)
+
 [node name="window6" parent="Static/Walls" instance=ExtResource("1_w4y8g")]
 position = Vector2(-912, -1392)
 
@@ -57,6 +60,81 @@ position = Vector2(336, -1392)
 
 [node name="window9" parent="Static/Walls" instance=ExtResource("1_w4y8g")]
 position = Vector2(336, -1776)
+
+[node name="window10" parent="Static/Walls" instance=ExtResource("1_w4y8g")]
+position = Vector2(-3024, -3600)
+
+[node name="window11" parent="Static/Walls" instance=ExtResource("1_w4y8g")]
+position = Vector2(-2544, -3600)
+
+[node name="window12" parent="Static/Walls" instance=ExtResource("1_w4y8g")]
+position = Vector2(-2160, -3600)
+
+[node name="window13" parent="Static/Walls" instance=ExtResource("1_w4y8g")]
+position = Vector2(-1776, -3600)
+
+[node name="window14" parent="Static/Walls" instance=ExtResource("1_w4y8g")]
+position = Vector2(-1392, -3600)
+
+[node name="window15" parent="Static/Walls" instance=ExtResource("1_w4y8g")]
+position = Vector2(816, -3600)
+
+[node name="window16" parent="Static/Walls" instance=ExtResource("1_w4y8g")]
+position = Vector2(1296, -3600)
+
+[node name="window20" parent="Static/Walls" instance=ExtResource("1_w4y8g")]
+position = Vector2(1296, -1680)
+
+[node name="window21" parent="Static/Walls" instance=ExtResource("1_w4y8g")]
+position = Vector2(1680, -1680)
+
+[node name="window23" parent="Static/Walls" instance=ExtResource("1_w4y8g")]
+position = Vector2(2448, -1680)
+
+[node name="window24" parent="Static/Walls" instance=ExtResource("1_w4y8g")]
+position = Vector2(2736, -1968)
+rotation = 1.5708
+
+[node name="window25" parent="Static/Walls" instance=ExtResource("1_w4y8g")]
+position = Vector2(2736, -2352)
+rotation = 1.5708
+
+[node name="window26" parent="Static/Walls" instance=ExtResource("1_w4y8g")]
+position = Vector2(2736, -2832)
+rotation = 1.5708
+
+[node name="window27" parent="Static/Walls" instance=ExtResource("1_w4y8g")]
+position = Vector2(2736, -3312)
+rotation = 1.5708
+
+[node name="window28" parent="Static/Walls" instance=ExtResource("1_w4y8g")]
+position = Vector2(-3312, -1968)
+rotation = 1.5708
+
+[node name="window29" parent="Static/Walls" instance=ExtResource("1_w4y8g")]
+position = Vector2(-3312, -2352)
+rotation = 1.5708
+
+[node name="window30" parent="Static/Walls" instance=ExtResource("1_w4y8g")]
+position = Vector2(-3312, -2928)
+rotation = 1.5708
+
+[node name="window31" parent="Static/Walls" instance=ExtResource("1_w4y8g")]
+position = Vector2(-3312, -3312)
+rotation = 1.5708
+
+[node name="window22" parent="Static/Walls" instance=ExtResource("1_w4y8g")]
+position = Vector2(2069, -1680)
+rotation = 0.841638
+
+[node name="window17" parent="Static/Walls" instance=ExtResource("1_w4y8g")]
+position = Vector2(1776, -3600)
+
+[node name="window18" parent="Static/Walls" instance=ExtResource("1_w4y8g")]
+position = Vector2(2160, -3600)
+
+[node name="window19" parent="Static/Walls" instance=ExtResource("1_w4y8g")]
+position = Vector2(2544, -3600)
 
 [node name="Trees" type="Node2D" parent="Static"]
 position = Vector2(546, -44)
@@ -144,11 +222,13 @@ hidden_area_name = "Secrets/SecretArea2"
 position = Vector2(-1866, -2835)
 rotation = -1.5708
 hidden_area_name = "Secrets/SecretArea5"
+hidden_area_name_two = "Secrets/SecretArea16"
 
 [node name="Door4" parent="Doors" instance=ExtResource("3_44mhx")]
 position = Vector2(-1866, -3219)
 rotation = -1.5708
 hidden_area_name = "Secrets/SecretArea4"
+hidden_area_name_two = "Secrets/SecretArea16"
 
 [node name="Door5" parent="Doors" instance=ExtResource("3_44mhx")]
 position = Vector2(-3017, -3219)
@@ -172,11 +252,13 @@ hidden_area_name_two = "Secrets/SecretArea6"
 position = Vector2(726, -2835)
 rotation = -1.5708
 hidden_area_name = "Secrets/SecretArea14"
+hidden_area_name_two = "Secrets/SecretArea16"
 
 [node name="Door9" parent="Doors" instance=ExtResource("3_44mhx")]
 position = Vector2(725, -3219)
 rotation = -1.5708
 hidden_area_name = "Secrets/SecretArea15"
+hidden_area_name_two = "Secrets/SecretArea16"
 
 [node name="Door10" parent="Doors" instance=ExtResource("3_44mhx")]
 position = Vector2(1878, -2355)
@@ -207,10 +289,12 @@ hidden_area_name_two = "Secrets/SecretArea15"
 [node name="Door15" parent="Doors" instance=ExtResource("3_44mhx")]
 position = Vector2(449, -3496)
 hidden_area_name = "Secrets/SecretArea9"
+hidden_area_name_two = "Secrets/SecretArea16"
 
 [node name="Door16" parent="Doors" instance=ExtResource("3_44mhx")]
 position = Vector2(-1759, -3496)
 hidden_area_name = "Secrets/SecretArea8"
+hidden_area_name_two = "Secrets/SecretArea16"
 
 [node name="Door17" parent="Doors" instance=ExtResource("3_44mhx")]
 position = Vector2(-2527, -3112)
@@ -237,9 +321,11 @@ position = Vector2(-497, -1839)
 
 [node name="DoubleDoor4" parent="Doors" instance=ExtResource("4_a0d8x")]
 position = Vector2(-497, -2221)
+hidden_area_name = "Secrets/SecretArea16"
 
 [node name="DoubleDoor5" parent="Doors" instance=ExtResource("4_a0d8x")]
 position = Vector2(-977, -2221)
+hidden_area_name = "Secrets/SecretArea16"
 
 [node name="MovingBlocks" type="Node2D" parent="."]
 

@@ -6,6 +6,8 @@ extends Camera2D
 
 @export var dim_split_camera: Camera2D
 @export var dim_split_camera_occluders: Camera2D
+@export var od_dim_split_camera: Camera2D
+@export var od_dim_split_camera_occluders: Camera2D
 
 @export var od_main_camera: Camera2D
 @export var od_fog_camera: Camera2D
@@ -81,6 +83,8 @@ func connect_other_viewports_cameras():
 		fog_camera,
 		dim_split_camera,
 		dim_split_camera_occluders,
+		od_dim_split_camera,
+		od_dim_split_camera_occluders,
 		od_main_camera,
 		od_fog_camera,
 		od_vision_camera

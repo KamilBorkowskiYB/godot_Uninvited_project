@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://dbs8dbmepbxnh"]
+[gd_scene load_steps=45 format=3 uid="uid://dbs8dbmepbxnh"]
 
 [ext_resource type="Script" path="res://levels/main_world/world.gd" id="1_eb6ap"]
 [ext_resource type="Shader" path="res://shaders/maskView.gdshader" id="2_hpucc"]
@@ -28,7 +28,7 @@ viewport_path = NodePath("OtherDimension/DimensionsParserOccluders")
 viewport_path = NodePath("OtherDimension/DimensionsParser")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_qw7fn"]
-viewport_path = NodePath("OtherDimension/ODSeenViewport")
+viewport_path = NodePath("OtherDimension/SubLevelViewport/ODSeenViewport")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_nhp0d"]
 viewport_path = NodePath("OtherDimension/ODFogViewport")
@@ -50,6 +50,39 @@ shader_parameter/od_unseen = SubResource("ViewportTexture_nhp0d")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nmqhj"]
 shader = ExtResource("4_thh5m")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_infs1"]
+viewport_path = NodePath("OtherDimension/ODVisibilityViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_2wtyu"]
+viewport_path = NodePath("VisibilityViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_0xh1q"]
+viewport_path = NodePath("OtherDimension/ODDimensionsParserOccluders")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_1h4vc"]
+viewport_path = NodePath("OtherDimension/ODDimensionsParser")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_lebl6"]
+viewport_path = NodePath("MainLevelViewport/SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_7exbx"]
+viewport_path = NodePath("FogViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_5tgjq"]
+viewport_path = NodePath("OtherDimension/ODFogViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lqs4s"]
+resource_local_to_scene = true
+shader = ExtResource("2_hpucc")
+shader_parameter/swap_fog_progress = 1.0
+shader_parameter/mask_texture = SubResource("ViewportTexture_infs1")
+shader_parameter/unseen = SubResource("ViewportTexture_5tgjq")
+shader_parameter/od_portal = SubResource("ViewportTexture_1h4vc")
+shader_parameter/od_occluders = SubResource("ViewportTexture_0xh1q")
+shader_parameter/od_mask_texture = SubResource("ViewportTexture_2wtyu")
+shader_parameter/od_seen = SubResource("ViewportTexture_lebl6")
+shader_parameter/od_unseen = SubResource("ViewportTexture_7exbx")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_la02u"]
 shader = ExtResource("4_thh5m")
@@ -83,13 +116,13 @@ light_mode = 1
 viewport_path = NodePath("VisibilityViewport")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_bsdqd"]
-viewport_path = NodePath("OtherDimension/DimensionsParser")
+viewport_path = NodePath("OtherDimension/ODDimensionsParser")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_m0nsu"]
-viewport_path = NodePath("OtherDimension/DimensionsParserOccluders")
+viewport_path = NodePath("OtherDimension/ODDimensionsParserOccluders")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_36kmu"]
-viewport_path = NodePath("OtherDimension/ODSeenViewport")
+viewport_path = NodePath("OtherDimension/SubLevelViewport/ODSeenViewport")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_h0pcv"]
 viewport_path = NodePath("OtherDimension/ODVisibilityViewport")
@@ -150,18 +183,28 @@ texture_scale = 0.45
 
 [node name="Camera2D" type="Camera2D" parent="VisibilityViewport"]
 
-[node name="OtherDimension" type="Node" parent="."]
+[node name="OtherDimension" type="Node2D" parent="."]
 
-[node name="ODSeenViewport" type="SubViewport" parent="OtherDimension"]
+[node name="SubLevelViewport" type="SubViewportContainer" parent="OtherDimension"]
+z_index = -1
+material = SubResource("ShaderMaterial_lqs4s")
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="ODSeenViewport" type="SubViewport" parent="OtherDimension/SubLevelViewport"]
 transparent_bg = true
 handle_input_locally = false
+audio_listener_enable_2d = true
+physics_object_picking = true
+canvas_cull_mask = 4294966399
+render_target_update_mode = 4
 
-[node name="OD_test_level_high" parent="OtherDimension/ODSeenViewport" instance=ExtResource("9_g4b45")]
+[node name="OD_test_level_high" parent="OtherDimension/SubLevelViewport/ODSeenViewport" instance=ExtResource("9_g4b45")]
 script = null
 
-[node name="Camera2D" type="Camera2D" parent="OtherDimension/ODSeenViewport"]
+[node name="Camera2D" type="Camera2D" parent="OtherDimension/SubLevelViewport/ODSeenViewport"]
 
-[node name="DummyPlayer" parent="OtherDimension/ODSeenViewport" instance=ExtResource("11_fx6md")]
+[node name="DummyPlayer" parent="OtherDimension/SubLevelViewport/ODSeenViewport" instance=ExtResource("11_fx6md")]
 
 [node name="ODFogViewport" type="SubViewport" parent="OtherDimension"]
 transparent_bg = true
@@ -233,12 +276,45 @@ texture = SubResource("GradientTexture2D_ifk28")
 
 [node name="Camera2D" type="Camera2D" parent="OtherDimension/DimensionsParserOccluders"]
 
-[node name="ODParserOccStorage" type="SubViewport" parent="OtherDimension"]
+[node name="ODDimensionsParser" type="SubViewport" parent="OtherDimension"]
 transparent_bg = true
 handle_input_locally = false
 
-[node name="OD_test_level_low" parent="OtherDimension/ODParserOccStorage" instance=ExtResource("10_avuqo")]
+[node name="OD_test_level_low" parent="OtherDimension/ODDimensionsParser" instance=ExtResource("10_avuqo")]
 material = SubResource("ShaderMaterial_la02u")
+
+[node name="ViewDimensionLight" type="PointLight2D" parent="OtherDimension/ODDimensionsParser"]
+scale = Vector2(1.5, 1.5)
+blend_mode = 1
+shadow_enabled = true
+shadow_item_cull_mask = 128
+texture = SubResource("GradientTexture2D_ifk28")
+texture_scale = 15.0
+
+[node name="Camera2D" type="Camera2D" parent="OtherDimension/ODDimensionsParser"]
+
+[node name="ODDimensionsParserOccluders" type="SubViewport" parent="OtherDimension"]
+transparent_bg = true
+handle_input_locally = false
+
+[node name="OD_test_level_low" parent="OtherDimension/ODDimensionsParserOccluders" instance=ExtResource("10_avuqo")]
+material = SubResource("ShaderMaterial_la02u")
+
+[node name="ViewDimensionLight" type="PointLight2D" parent="OtherDimension/ODDimensionsParserOccluders"]
+scale = Vector2(1.5, 1.5)
+blend_mode = 1
+shadow_enabled = true
+shadow_item_cull_mask = 256
+texture = ExtResource("3_wk82u")
+texture_scale = 3.5
+
+[node name="PointLight2D" type="PointLight2D" parent="OtherDimension/ODDimensionsParserOccluders/ViewDimensionLight"]
+blend_mode = 1
+shadow_enabled = true
+shadow_item_cull_mask = 256
+texture = SubResource("GradientTexture2D_ifk28")
+
+[node name="Camera2D" type="Camera2D" parent="OtherDimension/ODDimensionsParserOccluders"]
 
 [node name="ItemsObtained" type="CanvasLayer" parent="."]
 
@@ -416,6 +492,7 @@ scale = Vector2(0.2, 0.2)
 texture = SubResource("ViewportTexture_m0nsu")
 
 [node name="DebbugODHigh" type="Sprite2D" parent="Debug"]
+visible = false
 position = Vector2(1721, 125.2)
 scale = Vector2(0.2, 0.2)
 texture = SubResource("ViewportTexture_36kmu")
@@ -427,6 +504,7 @@ scale = Vector2(0.2, 0.2)
 texture = SubResource("ViewportTexture_h0pcv")
 
 [node name="DebbugODLow" type="Sprite2D" parent="Debug"]
+visible = false
 position = Vector2(1721, 633.2)
 scale = Vector2(0.2, 0.2)
 texture = SubResource("ViewportTexture_3heoh")

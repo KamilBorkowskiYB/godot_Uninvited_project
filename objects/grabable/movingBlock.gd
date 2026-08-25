@@ -61,9 +61,17 @@ func _process(_delta):
 		$WaterSplash.emitting = false
 	
 	var player: CharacterBody2D = get_tree().get_first_node_in_group("player")
-	var dim_occ_viewport = get_tree().root.get_node_or_null("World/OtherDimension/DimensionsParserOccluders")
-	var same_dim_viewport = get_tree().root.get_node_or_null("World/MainLevelViewport/SubViewport")
-	var other_dim_viewport = get_tree().root.get_node_or_null("World/OtherDimension/ODVisibilityViewport") 
+	var dim_occ_viewport
+	var same_dim_viewport
+	var other_dim_viewport
+	if player.get_parent().get_parent().name.contains("SubViewport"):
+		dim_occ_viewport = get_tree().root.get_node_or_null("World/OtherDimension/DimensionsParserOccluders")
+		same_dim_viewport = get_tree().root.get_node_or_null("World/MainLevelViewport/SubViewport")
+		other_dim_viewport = get_tree().root.get_node_or_null("World/OtherDimension/ODVisibilityViewport")
+	else:
+		dim_occ_viewport = get_tree().root.get_node_or_null("World/OtherDimension/ODDimensionsParserOccluders")
+		same_dim_viewport = get_tree().root.get_node_or_null("World/OtherDimension/SubLevelViewport/ODSeenViewport")
+		other_dim_viewport = get_tree().root.get_node_or_null("World/VisibilityViewport")
 	var closest_distance = INF
 	var closest_dimension_border = null
 	
