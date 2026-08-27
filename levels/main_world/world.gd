@@ -70,10 +70,6 @@ func _ready():
 			player.od_dim_split_light = od_light_dim_split
 			player.od_dim_split_light_occluders = od_light_dim_split_occluders
 			player.od_view_light = od_view_light
-	print(player.dim_split_light.name)
-	print(player.dim_split_light_occluders.name)
-	print(player.od_dim_split_light.name)
-	print(player.od_dim_split_light_occluders.name)
 	
 	##connecting tilemap to player footsteps
 	connect_tilemap_to_footsteps(viewport1.get_child(0))

@@ -25,6 +25,8 @@ enum Return_State { RETURN_TO_ORIGIN, HANG_AROUND}
 @export var ruturn_state: Return_State = Return_State.RETURN_TO_ORIGIN
 @onready var origin_pos = global_position
 var walk_to_pos = Vector2(0.0, 0.0)
+var investigating := false
+@onready var rot_to = global_rotation
 var lost_sight_time := 0.0
 const LOST_AGRO_DELAY := 3.0
 var turn_speed := 5.0
@@ -105,11 +107,13 @@ func _physics_process(_delta):
 			if c.get_collider() is RigidBody2D:
 				c.get_collider().apply_central_impulse(-c.get_normal() * push_force)
 		
-		global_rotation = lerp_angle(
-			global_rotation,
-			move_direction.angle() + PI/2.0,
-			turn_speed * _delta
-		)
+		rot_to = move_direction.angle() + PI/2.0
+	
+	global_rotation = lerp_angle(
+		global_rotation,
+		rot_to,
+		turn_speed * _delta
+	)
 	
 	if agro_raycast.is_colliding() and current_state == State.CHASE:
 		var target = agro_raycast.get_collider()
@@ -177,6 +181,8 @@ func player_spoted():
 func player_lost():
 	if current_state == State.LUNGE or current_state == State.ATTACK or current_state == State.WALK:
 		return
+	investigating = false
+	curr_noise_lvl = 0
 	if ruturn_state  == Return_State.HANG_AROUND:
 		set_idle()
 	if ruturn_state == Return_State.RETURN_TO_ORIGIN:
@@ -209,15 +215,68 @@ func walk_to(destination, persistent):
 	animation_player_legs.speed_scale = 0.7
 	anim_move_speed_debuff = 1.0
 
-
+var return_timer: SceneTreeTimer
+var return_id := 0
 func return_to_origin():
-	walk_to(origin_pos, true)
-
-
-func investigate_noise(noise_pos):
-	if current_state == State.CHASE or current_state == State.ATTACK or current_state == State.LUNGE:
+	if current_state != State.WALK:
 		return
-	walk_to(noise_pos, false)
+	set_idle()
+	return_id += 1
+	var my_id := return_id
+	return_timer = get_tree().create_timer(2.0)
+	await return_timer.timeout
+	
+	if my_id != return_id:
+		return
+	if current_state != State.IDLE and current_state != State.WALK:
+		return
+	
+	investigating = false
+	curr_noise_lvl = 0
+	walk_to(origin_pos, true)
+	return_timer = null
+
+
+var investigate_timer: SceneTreeTimer
+var investigate_id := 0
+var curr_noise_lvl = 0
+func investigate_noise(noise_pos: Vector2, noise_lvl):
+	if current_state != State.IDLE and current_state != State.WALK:
+		return
+	if !investigating:
+		set_idle()
+	if walk_timer:
+		walk_timer.stop()
+	return_id += 1
+	var my_id
+	if curr_noise_lvl <= noise_lvl:
+		curr_noise_lvl = noise_lvl
+		investigate_id += 1
+		my_id = investigate_id
+		
+		rot_to = global_position.direction_to(noise_pos).angle() + PI / 2.0
+	
+	if !investigating:
+		investigate_timer = get_tree().create_timer(2.0)
+		await investigate_timer.timeout
+		
+	var chance = randi_range(0, 1)
+	if my_id != investigate_id and chance == 1:
+		return
+	if current_state != State.IDLE and current_state != State.WALK:
+		return
+	
+	if investigating and noise_lvl >= curr_noise_lvl:
+		investigating = true
+		walk_to(noise_pos, false)
+	else:
+		if chance == 0:
+			investigating = true
+			walk_to(noise_pos, false)
+		else:
+			rot_to = randf_range(global_rotation - 30.0, global_rotation + 30.0)
+			player_lost()
+	investigate_timer = null
 
 
 func attack():
