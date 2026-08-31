@@ -38,7 +38,7 @@ var player_pos
 var player_width_pos
 var light_occ_pos
 var light_occ_width_pos
-func _process(delta):
+func _process(_delta):
 	var overlapping_bodies = area.get_overlapping_bodies()
 	
 	target = lightOccRestPos

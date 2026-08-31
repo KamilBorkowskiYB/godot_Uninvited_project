@@ -72,13 +72,13 @@ scale = Vector2(0.629167, 1.01771)
 
 [node name="SecretArea8" parent="Secrets" instance=ExtResource("2_nvptp")]
 visible = false
-position = Vector2(-1392, -3312)
-scale = Vector2(0.414583, 0.616667)
+position = Vector2(-1200, -3312)
+scale = Vector2(0.814583, 0.616667)
 
 [node name="SecretArea9" parent="Secrets" instance=ExtResource("2_nvptp")]
 visible = false
-position = Vector2(808, -3312)
-scale = Vector2(0.414583, 0.616667)
+position = Vector2(619.5, -3312)
+scale = Vector2(0.807292, 0.616667)
 
 [node name="SecretArea10" parent="Secrets" instance=ExtResource("2_nvptp")]
 visible = false

@@ -1,0 +1,34 @@
+[gd_scene load_steps=9 format=3 uid="uid://ch002exwj6aab"]
+
+[ext_resource type="Shader" path="res://objects/floor/floor_merger.gdshader" id="1_lqvh3"]
+[ext_resource type="Texture2D" uid="uid://w8uwankiro78" path="res://levels/atlases/seamless tiles/ps1style/grass.png" id="2_vcjwk"]
+[ext_resource type="Texture2D" uid="uid://dprs7k6p0cypd" path="res://levels/atlases/seamless tiles/ps1style/grassv2.png" id="3_71owv"]
+[ext_resource type="Texture2D" uid="uid://bcbe5d4d5h8ut" path="res://white_sq_1280.png" id="4_wjpd4"]
+[ext_resource type="PackedScene" uid="uid://c8bitsc7ybbya" path="res://characters/player/player.tscn" id="5_8i00e"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_171ku"]
+frequency = 0.0043
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_lb6lv"]
+width = 1280
+height = 1280
+seamless = true
+noise = SubResource("FastNoiseLite_171ku")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_352qf"]
+shader = ExtResource("1_lqvh3")
+shader_parameter/blend_threshold = 0.5
+shader_parameter/blend_softness = 0.426
+shader_parameter/texture_a = ExtResource("2_vcjwk")
+shader_parameter/texture_b = ExtResource("3_71owv")
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_lb6lv")
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+material = SubResource("ShaderMaterial_352qf")
+texture = ExtResource("4_wjpd4")
+
+[node name="Player" parent="." instance=ExtResource("5_8i00e")]
+position = Vector2(25, 114)

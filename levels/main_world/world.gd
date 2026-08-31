@@ -327,11 +327,14 @@ func reveal_area(secret_name: String):
 	tween1.tween_property(node1, "color:a", 0.0, tween_timer) 
 	tween1.tween_callback(func(): node1.queue_free())
 	
-	if node2: #light node in gray_viewport
+	
+	if node2:
 		var tween2 = create_tween()
-		tween2.tween_property(node2, "color:a", 0.0, tween_timer) 
-		tween2.tween_callback(func(): node2.queue_free()) 
-		#TODO light child areas
+		for child in node2.find_children("*", "PointLight2D", true, false):
+			tween2.parallel().tween_property(child, "color:a", 0.0, tween_timer)
+		tween2.parallel().tween_property(node2, "color:a", 0.0, tween_timer)
+		tween2.tween_callback(func(): node2.queue_free())
+	
 	
 	if node3: #tilemap node in gray_viewport
 		var tween3 = create_tween()

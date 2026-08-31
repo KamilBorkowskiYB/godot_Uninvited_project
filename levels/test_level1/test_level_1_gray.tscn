@@ -41,12 +41,12 @@ position = Vector2(-3030, -3127.5)
 scale = Vector2(0.629167, 1.01771)
 
 [node name="SecretArea8" parent="out_of_view_overlay/SecretsColor" instance=ExtResource("3_bw1wj")]
-position = Vector2(-1392, -3312)
-scale = Vector2(0.414583, 0.616667)
+position = Vector2(-1199.5, -3312)
+scale = Vector2(0.815625, 0.616667)
 
 [node name="SecretArea9" parent="out_of_view_overlay/SecretsColor" instance=ExtResource("3_bw1wj")]
-position = Vector2(808, -3312)
-scale = Vector2(0.414583, 0.616667)
+position = Vector2(619.5, -3312)
+scale = Vector2(0.807292, 0.616667)
 
 [node name="SecretArea10" parent="out_of_view_overlay/SecretsColor" instance=ExtResource("3_bw1wj")]
 position = Vector2(1296, -3312)
