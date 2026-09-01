@@ -7,6 +7,7 @@ uniform sampler2D overlay_texture_two: repeat_enable, filter_nearest;
 uniform sampler2D overlay_texture_three: repeat_enable, filter_nearest;
 uniform sampler2D water_noise: repeat_enable, filter_nearest;
 uniform sampler2D water_noise2: repeat_enable, filter_nearest;
+uniform sampler2D hedge_texture: repeat_enable, filter_nearest;
 
 uniform float scale = 0.01;
 const float grass_blend_threshold = 0.5;
@@ -55,6 +56,14 @@ void fragment() {
 		mix_amount = float(distance(COLOR.rgb, mask_color) < 0.01);
 		vec4 overlay_color_three = texture(overlay_texture_three, world_pos * scale);
 		COLOR = mix(COLOR, overlay_color_three, mix_amount);
+		COLOR.a = original_alpha;
+		
+		// Hedge overlay
+		mask_color = vec3(0.188, 0.247, 0.078);
+		original_alpha = COLOR.a;
+		mix_amount = float(distance(COLOR.rgb, mask_color) < 0.01);
+		vec4 overlay_color_hedge = texture(hedge_texture, world_pos * scale);
+		COLOR = mix(COLOR, overlay_color_hedge, mix_amount);
 		COLOR.a = original_alpha;
 		
 		// Water overlay on tiles with #1f10bd
