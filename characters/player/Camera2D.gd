@@ -94,6 +94,7 @@ func connect_other_viewports_cameras():
 		if cam:
 			cam.position = position
 			cam.offset = offset
+			cam.zoom = zoom
 
 
 func update_shader_positions():

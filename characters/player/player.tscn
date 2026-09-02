@@ -28,7 +28,7 @@
 [ext_resource type="AudioStream" uid="uid://bwndx6yp80cxt" path="res://characters/player/sounds/GlassFootsteps.mp3" id="24_d3tns"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_f7cyc"]
-radius = 40.0125
+radius = 45.0
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_iro56"]
 light_mode = 1
