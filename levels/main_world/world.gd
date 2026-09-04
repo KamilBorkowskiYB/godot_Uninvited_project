@@ -156,6 +156,10 @@ func _ready():
 	var player_camera = viewport1.get_node_or_null("PlayerCamera")
 	if player_camera == null: player_camera = od_viewport1.get_node("PlayerCamera")
 	player_camera._ready()
+	
+	#set tilemap z order to -12 in fogvp to show objects on top of overlay
+	set_tilemap_z_order(viewport2)
+	set_tilemap_z_order(od_viewport2)
 
 
 func _process(_delta):
@@ -221,6 +225,9 @@ func change_level(player_pos,level_high,level_mid,level_low): #TODO add other di
 	viewport2.move_child(instance_mid,0)
 	viewport3.move_child(instance_low,0)
 	viewport_dim_split.move_child(instance_dim_split,0)
+	
+	set_tilemap_z_order(viewport2)
+	set_tilemap_z_order(od_viewport2)
 	
 	var player: CharacterBody2D = get_tree().get_first_node_in_group("player")
 	player.position = player_pos
@@ -453,3 +460,8 @@ func connect_tilemap_to_footsteps(viewport):
 	for child in viewport.get_children():
 		if(child and tilemap):
 			child.get_node_or_null("Footsteps").get_child(0).tilemap = tilemap
+
+
+func set_tilemap_z_order(viewport):
+	var tilemap_in_lvl_low = viewport.get_child(0).get_child(0).get_child(0).get_node_or_null("Tilemap").get_child(0)
+	tilemap_in_lvl_low.z_index = -15 #-12 should be enough, but for some reason some older walls persist untill -15

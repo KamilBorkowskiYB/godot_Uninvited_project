@@ -81,6 +81,10 @@ item_selected = 1
 position = Vector2(424, 1050)
 item_selected = 1
 
+[node name="ShotgunShells9" parent="PickUps" instance=ExtResource("7_0crg7")]
+position = Vector2(-4859, -174)
+item_selected = 1
+
 [node name="PickUp3" parent="PickUps" instance=ExtResource("7_0crg7")]
 position = Vector2(326, 774)
 
@@ -125,7 +129,7 @@ position = Vector2(-184, -5)
 position = Vector2(1649, 1246)
 scale = Vector2(1.72, 5.48)
 level_high = "res://levels/test_level2/forest_lvl_high.tscn"
-level_mid = "res://levels/test_level2/forest_lvl_mid.tscn"
+level_mid = "res://levels/test_level2/forest_lvl_gray.tscn"
 level_low = "res://levels/test_level2/forest_lvl_low.tscn"
 player_position = Vector2(5, 420)
 level_name = "Woods"

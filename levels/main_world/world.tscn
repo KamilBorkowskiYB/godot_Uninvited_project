@@ -200,7 +200,6 @@ canvas_cull_mask = 4294966399
 render_target_update_mode = 4
 
 [node name="OD_test_level_high" parent="OtherDimension/SubLevelViewport/ODSeenViewport" instance=ExtResource("9_g4b45")]
-script = null
 
 [node name="Camera2D" type="Camera2D" parent="OtherDimension/SubLevelViewport/ODSeenViewport"]
 

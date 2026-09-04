@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://d2m8vcnjyrx0x"]
+
+[ext_resource type="PackedScene" uid="uid://68vxx7afs0bf" path="res://levels/preset_level/preset_level_gray.tscn" id="1_h0b5w"]
+[ext_resource type="PackedScene" uid="uid://c75nbwovmfxni" path="res://levels/test_level2/forest_lvl_mid.tscn" id="2_54125"]
+
+[node name="forest_lvl_gray" instance=ExtResource("1_h0b5w")]
+
+[node name="forest_lvl_mid" parent="." index="0" instance=ExtResource("2_54125")]
