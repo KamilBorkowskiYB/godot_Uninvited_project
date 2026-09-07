@@ -1,0 +1,56 @@
+[gd_scene load_steps=7 format=3 uid="uid://cod5rylci7a2c"]
+
+[ext_resource type="Texture2D" uid="uid://cl22omvenbysq" path="res://objects/setpieces/fountain/fountain_marble_low.png" id="1_fvsle"]
+[ext_resource type="Texture2D" uid="uid://dcoaeqy8lpede" path="res://objects/setpieces/fountain/fountain_marble_high.png" id="2_cmkm5"]
+[ext_resource type="AudioStream" uid="uid://c8hoo2yrp1uph" path="res://objects/setpieces/fountain/fountain.mp3" id="3_fjckr"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6uy5o"]
+radius = 220.009
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_n2g0v"]
+polygon = PackedVector2Array(0, -14, -9, -11, -13, -1, -8, 9, 1, 13, 9, 8, 13, 0, 9, -10)
+
+[sub_resource type="Curve" id="Curve_xd2b8"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="FountainMarble" type="StaticBody2D" groups=["navigation_group"]]
+collision_layer = 4
+collision_mask = 15
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_6uy5o")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_n2g0v")
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
+radius = 219.35
+avoidance_layers = 4294967295
+
+[node name="FountainGraphics" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_fvsle")
+
+[node name="FountainHigh" type="Sprite2D" parent="FountainGraphics"]
+texture_filter = 1
+texture = ExtResource("2_cmkm5")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+amount = 30
+lifetime = 3.0
+speed_scale = 4.58
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 46.05
+initial_velocity_max = 46.05
+scale_amount_max = 37.18
+scale_amount_curve = SubResource("Curve_xd2b8")
+color = Color(0.469401, 0.557446, 0.817448, 1)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_fjckr")
+volume_db = 20.0
+autoplay = true
+max_distance = 700.0
+bus = &"sfx"

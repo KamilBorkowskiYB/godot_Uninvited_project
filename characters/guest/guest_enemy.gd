@@ -12,6 +12,8 @@ extends CharacterBody2D
 @onready var attack_area = $CanvasGroup/Graphics/Torso/LeftArm/LeftHighArm/LeftLowerArm/LeftLowerArm/Hand/AttackArea
 var dead = false
 @export var push_force = 10.0
+@export var investigation_time = 5.0
+@export var LOST_AGRO_DELAY := 3.0
 var move_direction = Vector2(0,0)
 var standing_on :String = "grass"
 var floor_move_speed_debuff = 1.0
@@ -28,7 +30,6 @@ var walk_to_pos = Vector2(0.0, 0.0)
 var investigating := false
 @onready var rot_to = global_rotation
 var lost_sight_time := 0.0
-const LOST_AGRO_DELAY := 3.0
 var turn_speed := 5.0
 var health = 100
 var damage = 5
@@ -85,8 +86,9 @@ func _physics_process(_delta):
 		lost_sight_time += _delta
 		if lost_sight_time >= LOST_AGRO_DELAY:
 			player_lost()
-	if current_state == State.CHASE and navigation_agent.target_position.distance_to(player.global_position) > 16:
-		navigation_agent.target_position = player.global_position
+	if current_state == State.CHASE:
+		if navigation_agent.target_position.distance_to(player.global_position) > 16.0:
+			navigation_agent.target_position = player.global_position
 		var next_point = navigation_agent.get_next_path_position()
 		move_direction = global_position.direction_to(next_point)
 	elif current_state == State.LUNGE:
@@ -206,7 +208,7 @@ func walk_to(destination, persistent):
 	if walk_timer:
 		walk_timer.stop()
 	if !persistent:
-		walk_timer.start(3.0)
+		walk_timer.start(investigation_time)
 	current_state = State.WALK
 	walk_to_pos = destination
 	animation_player_top.play("idle")
@@ -296,7 +298,8 @@ func attack_lunge():
 		animation_player_top.play("lunge")
 
 
-func attack_ended():#called in the lunge anim at the end
+func attack_ended():#called in the lunge and basic attack anim at the end
+	#Recover/ Stun itself after attack, so it won't spam, let player push it away
 	current_state = State.IDLE
 	player_spoted()
 

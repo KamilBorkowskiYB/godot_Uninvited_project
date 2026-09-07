@@ -4,6 +4,7 @@ extends Node2D
 @export var linkedFog: Node2D
 var linkedDimOcc: Node2D
 @export var high: bool
+@export var lock_rotation: bool = false
 @export var release_force = 5000
 @export var grabable: bool # for feture use case
 @export var hide_light_occ: bool
@@ -33,6 +34,7 @@ func _ready():
 		interaction_area.main_action_name = "Turn off"
 	interaction_area.second_action_name = "Grab"
 	
+	self.lock_rotation = lock_rotation
 	initial_mass = self.mass
 	if high:
 		$".".set_collision_layer_value(2, true)
@@ -59,6 +61,9 @@ func _process(_delta):
 	else:
 		self.mass = initial_mass
 		$WaterSplash.emitting = false
+	
+	#if lock_rotation:
+		#rotation = 0.0
 	
 	var player: CharacterBody2D = get_tree().get_first_node_in_group("player")
 	var dim_occ_viewport
@@ -142,7 +147,10 @@ func _physics_process(delta):
 		$".".apply_central_force(force)
 		
 		#Rotacja
-		rotation += rotation_delta
+		if !lock_rotation:
+			rotation += rotation_delta
+		else:
+			rotation = 0.0
 		
 		var player_in_area := false
 		for body in interaction_area.get_overlapping_bodies(): #realese grab if player isn't in the interaction zone

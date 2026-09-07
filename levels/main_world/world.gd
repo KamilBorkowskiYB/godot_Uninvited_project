@@ -430,7 +430,7 @@ func connect_dim_occluder_doors(main_viewport, other_main_viewport): #connects d
 		var node2 = null
 		
 		for candidate in all_movable:
-			if candidate.name == target_name and candidate.get_parent().name == node1.get_parent().name and other_main_viewport.is_ancestor_of(candidate):
+			if candidate.name == target_name and candidate.get_parent().name == node1.get_parent().name and other_main_viewport.is_ancestor_of(candidate) and candidate.name.contains("Door"):
 				node2 = candidate
 				break
 		
@@ -464,4 +464,4 @@ func connect_tilemap_to_footsteps(viewport):
 
 func set_tilemap_z_order(viewport):
 	var tilemap_in_lvl_low = viewport.get_child(0).get_child(0).get_child(0).get_node_or_null("Tilemap").get_child(0)
-	tilemap_in_lvl_low.z_index = -15 #-12 should be enough, but for some reason some older walls persist untill -15
+	tilemap_in_lvl_low.z_index = -12 #if overlay doesn't cover make sure overlay is on is max on -1 layer than the one covered

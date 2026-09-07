@@ -123,6 +123,11 @@ scale = Vector2(0.151786, 0.393417)
 position = Vector2(-394.286, 646.269)
 scale = Vector2(0.151786, 0.393417)
 
+[node name="SecretArea17" parent="Secrets" instance=ExtResource("2_nvptp")]
+visible = false
+position = Vector2(-5064, 304)
+scale = Vector2(0.466666, 0.3)
+
 [node name="Lamp" parent="." instance=ExtResource("3_o8shj")]
 position = Vector2(693, 592)
 collision_layer = 0
