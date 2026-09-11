@@ -24,10 +24,6 @@ shape = SubResource("CircleShape2D_6uy5o")
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 occluder = SubResource("OccluderPolygon2D_n2g0v")
 
-[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
-radius = 219.35
-avoidance_layers = 4294967295
-
 [node name="FountainGraphics" type="Sprite2D" parent="."]
 texture_filter = 1
 texture = ExtResource("1_fvsle")

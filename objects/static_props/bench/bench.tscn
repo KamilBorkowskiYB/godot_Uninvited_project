@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bx0ymu8rf1y1h"]
+
+[ext_resource type="Texture2D" uid="uid://ftb6ubfevidi" path="res://objects/static_props/bench/bench.png" id="1_q0yy5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y1j1b"]
+size = Vector2(236, 73)
+
+[node name="Bench" type="StaticBody2D" groups=["navigation_group"]]
+collision_layer = 4
+collision_mask = 15
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_y1j1b")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_q0yy5")
