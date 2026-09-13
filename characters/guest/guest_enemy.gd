@@ -21,7 +21,7 @@ var anim_move_speed_debuff = 1.0
 var move_speed_debuff = floor_move_speed_debuff * anim_move_speed_debuff
 var weak_points = []
 var keep_count
-enum State { CHASE, IDLE, ATTACK, LUNGE, DEAD, WALK }
+enum State { CHASE, IDLE, ATTACK, LUNGE, DEAD, WALK, RECOVER }
 var current_state: State = State.IDLE  
 enum Return_State { RETURN_TO_ORIGIN, HANG_AROUND}
 @export var ruturn_state: Return_State = Return_State.RETURN_TO_ORIGIN
@@ -50,7 +50,7 @@ func _ready():
 		weak_points[i].show()
 		weak_points[i].got_shot.connect(take_damage)
 	animation_player_top.play("idle")
-	$DeathSound.finished.connect(on_sound_done)
+	$Sounds/DeathSound.finished.connect(on_sound_done)
 	
 	walk_timer = Timer.new()
 	walk_timer.one_shot = true
@@ -86,7 +86,7 @@ func _physics_process(_delta):
 		lost_sight_time += _delta
 		if lost_sight_time >= LOST_AGRO_DELAY:
 			player_lost()
-	if current_state == State.CHASE:
+	if current_state == State.CHASE or current_state == State.RECOVER:
 		if navigation_agent.target_position.distance_to(player.global_position) > 16.0:
 			navigation_agent.target_position = player.global_position
 		var next_point = navigation_agent.get_next_path_position()
@@ -111,6 +111,11 @@ func _physics_process(_delta):
 		
 		rot_to = move_direction.angle() + PI/2.0
 	
+	if current_state == State.RECOVER:
+		rot_to = move_direction.angle() + PI/2.0
+		turn_speed = 0.3
+	else:
+		turn_speed = 5.0
 	global_rotation = lerp_angle(
 		global_rotation,
 		rot_to,
@@ -131,6 +136,7 @@ func _physics_process(_delta):
 
 
 func take_damage(attack_info: Attack):
+	$Sounds/DamageTaken.play()
 	health -= attack_info.attack_damage
 	lost_sight_time = 0.0
 	player_spoted()
@@ -146,7 +152,7 @@ func kill(_attack: Attack):
 			weak_points[i].queue_free()
 	dead = true
 	
-	$DeathSound.play()
+	$Sounds/DeathSound.play()
 	start_death_effect()
 	$CollisionShape2D.disabled = true
 	z_index = -1
@@ -161,15 +167,15 @@ func find_weak_points(node: Node):
 
 func step():
 	if standing_on == "brick":
-		$ConcreteFootstep.pitch_scale = randf_range(0.8, 1.2)
-		$ConcreteFootstep.play()
+		$Sounds/ConcreteFootstep.pitch_scale = randf_range(0.8, 1.2)
+		$Sounds/ConcreteFootstep.play()
 	if standing_on == "grass":
-		$GrassFootstep.pitch_scale = randf_range(0.8, 1.2)
-		$GrassFootstep.play()
+		$Sounds/GrassFootstep.pitch_scale = randf_range(0.8, 1.2)
+		$Sounds/GrassFootstep.play()
 
 
 func player_spoted():
-	if current_state == State.LUNGE or current_state == State.ATTACK or current_state == State.CHASE:
+	if current_state == State.LUNGE or current_state == State.ATTACK or current_state == State.CHASE or current_state == State.RECOVER:
 		return
 	current_state = State.CHASE
 	if animation_player_top.current_animation != "chase":
@@ -293,13 +299,21 @@ func attack_lunge():
 	if current_state == State.LUNGE or current_state == State.ATTACK:
 		return
 	current_state = State.LUNGE
-	anim_move_speed_debuff = 4.0
+	anim_move_speed_debuff = 5.0
 	if !(animation_player_top.current_animation  == "lunge"):
 		animation_player_top.play("lunge")
 
 
-func attack_ended():#called in the lunge and basic attack anim at the end
-	#Recover/ Stun itself after attack, so it won't spam, let player push it away
+func attack_ended():
+	#Recovery
+	velocity = Vector2.ZERO
+	current_state = State.RECOVER
+	animation_player_top.play("idle")
+	animation_player_top.speed_scale = 1.0
+	animation_player_legs.stop()
+	anim_move_speed_debuff = 1.0
+	await get_tree().create_timer(2.0).timeout
+	
 	current_state = State.IDLE
 	player_spoted()
 

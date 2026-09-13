@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://bf4qoj3d4egrk"]
+[gd_scene load_steps=30 format=3 uid="uid://bf4qoj3d4egrk"]
 
 [ext_resource type="Script" path="res://characters/guest/guest_enemy.gd" id="1_l1ot1"]
 [ext_resource type="Texture2D" uid="uid://dy4befcrs41er" path="res://characters/guest/guest_atlas.png" id="1_waigw"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" path="res://characters/mutant/AttackArea2D.gd" id="7_fq165"]
 [ext_resource type="AudioStream" uid="uid://6pn5lbj8i2ch" path="res://characters/player/sounds/concrete_footstep.mp3" id="7_n140f"]
 [ext_resource type="AudioStream" uid="uid://baanxyc2vjxhr" path="res://characters/player/sounds/grass_footsteps.mp3" id="8_ergsx"]
+[ext_resource type="AudioStream" uid="uid://dr7bvggxwkhqw" path="res://characters/player/sounds/damage_taken.wav" id="14_3be34"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dx05a"]
 radius = 59.0
@@ -236,6 +237,18 @@ tracks/15/keys = {
 "update": 0,
 "values": [0.0939106]
 }
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("CanvasGroup/Graphics/Torso/LeftArm/LeftHighArm/LeftLowerArm/LeftLowerArm/Hand/AttackArea:monitoring")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_fjcqm"]
 resource_name = "attack"
@@ -446,6 +459,18 @@ tracks/16/keys = {
 "args": [],
 "method": &"attack_ended"
 }]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("CanvasGroup/Graphics/Torso/LeftArm/LeftHighArm/LeftLowerArm/LeftLowerArm/Hand/AttackArea:monitoring")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
 }
 
 [sub_resource type="Animation" id="Animation_v57d8"]
@@ -1050,6 +1075,18 @@ tracks/16/keys = {
 "method": &"attack_ended"
 }]
 }
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("CanvasGroup/Graphics/Torso/LeftArm/LeftHighArm/LeftLowerArm/LeftLowerArm/Hand/AttackArea:monitoring")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(0.6, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2p7fh"]
 _data = {
@@ -1418,6 +1455,7 @@ region_rect = Rect2(183, 145, 52, 60)
 position = Vector2(10.4468, -17.0548)
 collision_layer = 0
 collision_mask = 15
+monitoring = false
 script = ExtResource("7_fq165")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasGroup/Graphics/Torso/LeftArm/LeftHighArm/LeftLowerArm/LeftLowerArm/Hand/AttackArea"]
@@ -1599,20 +1637,6 @@ libraries = {
 target_position = Vector2(0, -250)
 collision_mask = 15
 
-[node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("6_l436g")
-bus = &"sfx"
-
-[node name="ConcreteFootstep" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("7_n140f")
-max_distance = 500.0
-bus = &"sfx"
-
-[node name="GrassFootstep" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("8_ergsx")
-max_distance = 500.0
-bus = &"sfx"
-
 [node name="ViewNodes" type="Node2D" parent="."]
 visible = false
 
@@ -1629,5 +1653,26 @@ polygon = PackedVector2Array(-1, -640, 205, -613, 349, -552, 446, -478, 510, -39
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 avoidance_enabled = true
 radius = 60.0
+
+[node name="Sounds" type="Node2D" parent="."]
+
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("6_l436g")
+bus = &"sfx"
+
+[node name="ConcreteFootstep" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("7_n140f")
+max_distance = 500.0
+bus = &"sfx"
+
+[node name="GrassFootstep" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("8_ergsx")
+max_distance = 500.0
+bus = &"sfx"
+
+[node name="DamageTaken" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("14_3be34")
+max_distance = 500.0
+bus = &"sfx"
 
 [connection signal="body_entered" from="CanvasGroup/Graphics/Torso/LeftArm/LeftHighArm/LeftLowerArm/LeftLowerArm/Hand/AttackArea" to="CanvasGroup/Graphics/Torso/LeftArm/LeftHighArm/LeftLowerArm/LeftLowerArm/Hand/AttackArea" method="_on_body_entered"]

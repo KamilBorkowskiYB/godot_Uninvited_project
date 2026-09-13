@@ -313,6 +313,9 @@ func _physics_process(_delta):
 
 func take_damage(attack_info):
 	#TODO implement taking damage
+	$Sounds/DamageHit.play()
+	var camera = get_parent().get_node("PlayerCamera")
+	camera.start_shake(20, 0.2) 
 	print("player got hit, damage: " + str(attack_info.attack_damage))
 
 
@@ -320,7 +323,7 @@ func kill():
 	if dead:
 		return
 	dead = true
-	$Sounds/DeafSound.play()
+	$Sounds/DeathSound.play()
 	top.get_node("Dead").show()
 	player_top_sprite.hide()
 	legs.hide()
