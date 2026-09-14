@@ -304,11 +304,15 @@ func attack_lunge():
 		animation_player_top.play("lunge")
 
 
-func attack_ended():
+func attack_ended(attack_type): #1-attack, 2-lunge
 	#Recovery
 	velocity = Vector2.ZERO
 	current_state = State.RECOVER
-	animation_player_top.play("idle")
+	if attack_type == 1:
+		animation_player_top.play("recovery_attack")
+		animation_player_top.queue("idle")
+	else:
+		animation_player_top.play("idle")
 	animation_player_top.speed_scale = 1.0
 	animation_player_legs.stop()
 	anim_move_speed_debuff = 1.0

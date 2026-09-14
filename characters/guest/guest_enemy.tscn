@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://bf4qoj3d4egrk"]
+[gd_scene load_steps=31 format=3 uid="uid://bf4qoj3d4egrk"]
 
 [ext_resource type="Script" path="res://characters/guest/guest_enemy.gd" id="1_l1ot1"]
 [ext_resource type="Texture2D" uid="uid://dy4befcrs41er" path="res://characters/guest/guest_atlas.png" id="1_waigw"]
@@ -253,7 +253,6 @@ tracks/16/keys = {
 [sub_resource type="Animation" id="Animation_fjcqm"]
 resource_name = "attack"
 length = 0.6
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -273,10 +272,10 @@ tracks/1/path = NodePath("CanvasGroup/Graphics/Torso:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.2, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [0.0]
+"values": [0.0, -0.341722, 0.397988]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -309,10 +308,10 @@ tracks/4/path = NodePath("CanvasGroup/Graphics/Torso/LeftArm:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(-50, -22)]
+"values": [Vector2(-50, -22), Vector2(-50, -22)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -321,10 +320,10 @@ tracks/5/path = NodePath("CanvasGroup/Graphics/Torso/LeftArm:rotation")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.3, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 1.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.0, -0.693713, -1.11039, 0.440675]
+"values": [0.0, -2.07226, -1.75609, 0.864426, 0.440675]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
@@ -333,10 +332,10 @@ tracks/6/path = NodePath("CanvasGroup/Graphics/Torso/LeftArm/LeftHighArm/LeftLow
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(-6, -22)]
+"values": [Vector2(-6, -22), Vector2(-6, -22)]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
@@ -345,10 +344,10 @@ tracks/7/path = NodePath("CanvasGroup/Graphics/Torso/LeftArm/LeftHighArm/LeftLow
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.3, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 1.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.0, 1.26281, 0.243143, -0.131421]
+"values": [0.0, 1.65768, 0.55993, 0.0501657, -0.131421]
 }
 tracks/8/type = "value"
 tracks/8/imported = false
@@ -357,10 +356,10 @@ tracks/8/path = NodePath("CanvasGroup/Graphics/Torso/LeftArm/LeftHighArm/LeftLow
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(7, -19)]
+"values": [Vector2(7, -19), Vector2(7, -19)]
 }
 tracks/9/type = "value"
 tracks/9/imported = false
@@ -369,10 +368,10 @@ tracks/9/path = NodePath("CanvasGroup/Graphics/Torso/LeftArm/LeftHighArm/LeftLow
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [0.0939106, 1.02623, 0.209764]
+"values": [0.0939106, 0.582431, -0.135873, 0.594909]
 }
 tracks/10/type = "value"
 tracks/10/imported = false
@@ -393,10 +392,10 @@ tracks/11/path = NodePath("CanvasGroup/Graphics/Torso/RightArm:rotation")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.3, 0.5),
+"times": PackedFloat32Array(0, 0.2, 0.5, 1.3),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [0.0, 1.09999, -0.330956, 1.2229]
+"values": [0.0, 0.597946, 2.27833, 1.2229]
 }
 tracks/12/type = "value"
 tracks/12/imported = false
@@ -417,10 +416,10 @@ tracks/13/path = NodePath("CanvasGroup/Graphics/Torso/RightArm/RightHighArm/Righ
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.3, 0.5),
+"times": PackedFloat32Array(0, 0.2, 0.5, 1.3),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [0.0, 0.644588, -0.0956424, -0.668316]
+"values": [0.0, -0.473151, -1.74594, -0.668316]
 }
 tracks/14/type = "value"
 tracks/14/imported = false
@@ -441,10 +440,10 @@ tracks/15/path = NodePath("CanvasGroup/Graphics/Torso/RightArm/RightHighArm/Righ
 tracks/15/interp = 1
 tracks/15/loop_wrap = true
 tracks/15/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [0.0939106, 0.791623, -0.514172]
+"values": [0.0939106, -0.415809]
 }
 tracks/16/type = "method"
 tracks/16/imported = false
@@ -456,7 +455,7 @@ tracks/16/keys = {
 "times": PackedFloat32Array(0.6),
 "transitions": PackedFloat32Array(1),
 "values": [{
-"args": [],
+"args": [1],
 "method": &"attack_ended"
 }]
 }
@@ -1071,7 +1070,7 @@ tracks/16/keys = {
 "times": PackedFloat32Array(1),
 "transitions": PackedFloat32Array(1),
 "values": [{
-"args": [],
+"args": [2],
 "method": &"attack_ended"
 }]
 }
@@ -1088,13 +1087,210 @@ tracks/17/keys = {
 "values": [true, false]
 }
 
+[sub_resource type="Animation" id="Animation_xul18"]
+resource_name = "recovery_attack"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasGroup/Graphics/Torso:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasGroup/Graphics/Torso:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.6, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.397988, -0.0570152, 0.0, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CanvasGroup/Graphics/Torso/Head:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, -17)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CanvasGroup/Graphics/Torso/Head:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CanvasGroup/Graphics/Torso/LeftArm:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-50, -22), Vector2(-50, -22), Vector2(-27, -4)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("CanvasGroup/Graphics/Torso/LeftArm:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.6, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.864426, -0.147784, -0.694641, 0.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("CanvasGroup/Graphics/Torso/LeftArm/LeftHighArm/LeftLowerArm:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-6, -22)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("CanvasGroup/Graphics/Torso/LeftArm/LeftHighArm/LeftLowerArm:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.6, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0501657, -0.127487, 0.383972, 0.0]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("CanvasGroup/Graphics/Torso/LeftArm/LeftHighArm/LeftLowerArm/LeftLowerArm/Hand:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(7, -19)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("CanvasGroup/Graphics/Torso/LeftArm/LeftHighArm/LeftLowerArm/LeftLowerArm/Hand:rotation")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.6, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.594909, -0.0930058, -0.18675, 0.0939106]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("CanvasGroup/Graphics/Torso/RightArm:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(45, -10), Vector2(45, -10), Vector2(34, -3)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("CanvasGroup/Graphics/Torso/RightArm:rotation")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.6, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [2.27833, -0.144008, 0.719076, 0.0]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("CanvasGroup/Graphics/Torso/RightArm/RightHighArm/RightLowerArm:position")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(4, -22)]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("CanvasGroup/Graphics/Torso/RightArm/RightHighArm/RightLowerArm:rotation")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.6, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [-1.74594, -0.16092, -0.534071, 0.0]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("CanvasGroup/Graphics/Torso/RightArm/RightHighArm/RightLowerArm/RightLowerArm/Hand:position")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-12, -29)]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("CanvasGroup/Graphics/Torso/RightArm/RightHighArm/RightLowerArm/RightLowerArm/Hand:rotation")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.6, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [-0.415809, -0.217155, -1.27584, 0.0939106]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2p7fh"]
 _data = {
 "RESET": SubResource("Animation_kakhx"),
 "attack": SubResource("Animation_fjcqm"),
 "chase": SubResource("Animation_v57d8"),
 "idle": SubResource("Animation_jty1m"),
-"lunge": SubResource("Animation_ielvt")
+"lunge": SubResource("Animation_ielvt"),
+"recovery_attack": SubResource("Animation_xul18")
 }
 
 [sub_resource type="Animation" id="Animation_m1ajx"]
