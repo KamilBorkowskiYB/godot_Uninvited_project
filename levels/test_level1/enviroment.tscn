@@ -1,17 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://bnppgiphfgo5q"]
+[gd_scene load_steps=5 format=3 uid="uid://bnppgiphfgo5q"]
 
 [ext_resource type="PackedScene" uid="uid://b7iklrlyc5m55" path="res://levels/test_level1/test_level_1_low.tscn" id="1_4so2i"]
+[ext_resource type="Texture2D" uid="uid://cma5kmw10jghr" path="res://white_sq.png" id="2_bc8cs"]
 [ext_resource type="PackedScene" uid="uid://bkv3a0k14fqnv" path="res://Interactions/SecretArea.tscn" id="2_nvptp"]
 [ext_resource type="PackedScene" uid="uid://bsevhsmxnwj1b" path="res://objects/grabable/lamp.tscn" id="3_o8shj"]
-
-[sub_resource type="Gradient" id="Gradient_hm63i"]
-offsets = PackedFloat32Array(0.987013, 0.993506, 1)
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1, 0.12987, 0.12987, 0.12987, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_c1o86"]
-gradient = SubResource("Gradient_hm63i")
-fill = 2
-fill_from = Vector2(0.5, 0.5)
 
 [node name="Enviroment" type="Node2D"]
 
@@ -19,19 +11,18 @@ fill_from = Vector2(0.5, 0.5)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 use_parent_material = true
-color = Color(0.76662, 0.76662, 0.76662, 1)
+color = Color(0.281187, 0.281187, 0.281187, 1)
 
 [node name="AmbientDark" type="Node2D" parent="."]
 position = Vector2(84, -115)
 scale = Vector2(1.36722, 0.411714)
 
 [node name="PointLight2D" type="PointLight2D" parent="AmbientDark"]
-position = Vector2(114.1, 876.822)
-scale = Vector2(1.25662, 3.09946)
-energy = 0.5
+position = Vector2(113.734, 878.037)
+scale = Vector2(17.6567, 43.454)
+energy = 0.15
 blend_mode = 1
-texture = SubResource("GradientTexture2D_c1o86")
-texture_scale = 14.18
+texture = ExtResource("2_bc8cs")
 
 [node name="Secrets" type="Node2D" parent="."]
 
@@ -140,6 +131,21 @@ collision_mask = 7
 
 [node name="Lamp3" parent="." instance=ExtResource("3_o8shj")]
 position = Vector2(-408, 712)
+collision_layer = 0
+collision_mask = 7
+
+[node name="Lamp4" parent="." instance=ExtResource("3_o8shj")]
+position = Vector2(-5340, -223)
+collision_layer = 0
+collision_mask = 7
+
+[node name="Lamp5" parent="." instance=ExtResource("3_o8shj")]
+position = Vector2(-5814, 542)
+collision_layer = 0
+collision_mask = 7
+
+[node name="Lamp6" parent="." instance=ExtResource("3_o8shj")]
+position = Vector2(-6045, -182)
 collision_layer = 0
 collision_mask = 7
 

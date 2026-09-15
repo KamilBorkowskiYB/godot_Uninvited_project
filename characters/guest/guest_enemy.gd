@@ -300,8 +300,10 @@ func attack_lunge():
 		return
 	current_state = State.LUNGE
 	anim_move_speed_debuff = 5.0
-	if !(animation_player_top.current_animation  == "lunge"):
-		animation_player_top.play("lunge")
+	if !(animation_player_top.current_animation  == "attack"):
+		animation_player_top.play("attack")
+	#if !(animation_player_top.current_animation  == "lunge"):
+		#animation_player_top.play("lunge")
 
 
 func attack_ended(attack_type): #1-attack, 2-lunge
@@ -312,6 +314,7 @@ func attack_ended(attack_type): #1-attack, 2-lunge
 		animation_player_top.play("recovery_attack")
 		animation_player_top.queue("idle")
 	else:
+		animation_player_top.play("recovery_attack")
 		animation_player_top.play("idle")
 	animation_player_top.speed_scale = 1.0
 	animation_player_legs.stop()
