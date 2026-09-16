@@ -4,7 +4,9 @@ extends RigidBody2D
 @onready var mouse_interaction_area = $MouseRangeInteraction
 @onready var potential_double_doors = get_parent().get_parent()
 @onready var sounds = $"../Sounds"
+@onready var animation_player = $"../Sounds/AnimationPlayer"
 
+var locked = false
 var transform_to
 var isClosed = true
 var health = 100
@@ -57,6 +59,10 @@ func calc_health(damage_taken):
 
 
 func open():
+	if locked:
+		animation_player.play("open_locked")
+		play_sound("DoorLocked", 50.0, false)
+		return
 	trigger_linked_event()
 	
 	var player: CharacterBody2D = get_tree().get_first_node_in_group("player")
@@ -97,9 +103,11 @@ func trigger_linked_event():
 			trigger.trigger_event()
 
 
-func play_sound(audio_name, noise_radius):
+func play_sound(audio_name, noise_radius, interupt = true):
 	#add alerting enemies within noise_radius
 	var sound = sounds.get_node_or_null(audio_name)
+	if sound.playing == true and interupt == false:
+		return
 	sound.pitch_scale = randf_range(0.8, 1.2)
 	if sound:
 		sound.playing = true

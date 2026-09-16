@@ -1087,6 +1087,9 @@ tracks/17/keys = {
 "values": [true, false]
 }
 
+[sub_resource type="Animation" id="Animation_l4m52"]
+resource_name = "lunge_new"
+
 [sub_resource type="Animation" id="Animation_xul18"]
 resource_name = "recovery_attack"
 length = 0.6
@@ -1282,9 +1285,6 @@ tracks/15/keys = {
 "update": 0,
 "values": [-0.415809, -0.217155, -1.27584, 0.0939106]
 }
-
-[sub_resource type="Animation" id="Animation_l4m52"]
-resource_name = "lunge_new"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2p7fh"]
 _data = {

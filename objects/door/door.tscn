@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cng2o48wdswvk"]
+[gd_scene load_steps=20 format=3 uid="uid://cng2o48wdswvk"]
 
 [ext_resource type="Script" path="res://objects/door/door.gd" id="1_ntr16"]
 [ext_resource type="Script" path="res://objects/door/Door_interact.gd" id="2_1lqf1"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bmdicmqksf7an" path="res://Interactions/MainInteractionLogic/MouseRangeInteraction.tscn" id="5_y07kf"]
 [ext_resource type="AudioStream" uid="uid://cp3cs33wxcxil" path="res://objects/door/door_open.mp3" id="7_3i6i5"]
 [ext_resource type="AudioStream" uid="uid://nkn38ogftubb" path="res://objects/door/door_close.mp3" id="8_ddht8"]
+[ext_resource type="AudioStream" uid="uid://bwiq7vkws6lde" path="res://objects/door/door_locked.wav" id="9_1x7ud"]
 [ext_resource type="AudioStream" uid="uid://b2huobqtok0qv" path="res://objects/door/hit_wood.mp3" id="9_yv7ot"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oivjw"]
@@ -28,6 +29,43 @@ size = Vector2(2.97619, 26.1905)
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_v140c"]
 polygon = PackedVector2Array(-1.87964, 0.0229786, -1.87964, -0.0229786, 1.35752, -0.0229786, 1.35752, 0.0229786)
 
+[sub_resource type="Animation" id="Animation_e1hjv"]
+resource_name = "open_locked"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Door:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.0203247, 0.0, 0.020944, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_ilnvv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Door:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i6k8k"]
+_data = {
+"RESET": SubResource("Animation_ilnvv"),
+"open_locked": SubResource("Animation_e1hjv")
+}
+
 [node name="Door" type="Node2D" groups=["movable_blocks"]]
 use_parent_material = true
 script = ExtResource("1_ntr16")
@@ -43,13 +81,6 @@ freeze_mode = 1
 linear_damp = 5.0
 angular_damp = 5.0
 script = ExtResource("2_1lqf1")
-
-[node name="Sprite2D" type="Sprite2D" parent="Door"]
-texture_filter = 1
-use_parent_material = true
-scale = Vector2(0.8, 0.8)
-texture = ExtResource("3_fwstr")
-offset = Vector2(103.5, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Door"]
 position = Vector2(83.0001, 0)
@@ -79,6 +110,13 @@ shape = SubResource("RectangleShape2D_weep1")
 position = Vector2(81.5, 0)
 shape = SubResource("RectangleShape2D_hre1s")
 
+[node name="Sprite2D" type="Sprite2D" parent="Door"]
+texture_filter = 1
+use_parent_material = true
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("3_fwstr")
+offset = Vector2(103.5, 0)
+
 [node name="PinJoint2D" type="PinJoint2D" parent="."]
 position = Vector2(2, 0)
 node_a = NodePath("../Door")
@@ -91,12 +129,6 @@ position = Vector2(2, 0)
 collision_layer = 8
 collision_mask = 8
 
-[node name="Sprite2D" type="Sprite2D" parent="hindge"]
-self_modulate = Color(0, 0, 0, 1)
-use_parent_material = true
-scale = Vector2(0.4, 0.4)
-texture = ExtResource("3_gnegs")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hindge"]
 position = Vector2(-14.5, 0)
 scale = Vector2(1.68, 1.68)
@@ -105,6 +137,12 @@ shape = SubResource("RectangleShape2D_1cxt7")
 [node name="LightOccluder2D" type="LightOccluder2D" parent="hindge"]
 scale = Vector2(9.57632, -565.743)
 occluder = SubResource("OccluderPolygon2D_v140c")
+
+[node name="Sprite2D" type="Sprite2D" parent="hindge"]
+self_modulate = Color(0, 0, 0, 1)
+use_parent_material = true
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("3_gnegs")
 
 [node name="Sounds" type="Node2D" parent="."]
 
@@ -116,6 +154,17 @@ bus = &"sfx"
 stream = ExtResource("8_ddht8")
 bus = &"sfx"
 
+[node name="DoorLocked" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("9_1x7ud")
+volume_db = 15.0
+bus = &"sfx"
+
 [node name="DoorHit" type="AudioStreamPlayer2D" parent="Sounds"]
 stream = ExtResource("9_yv7ot")
 bus = &"sfx"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sounds"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_i6k8k")
+}
