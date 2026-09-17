@@ -28,6 +28,7 @@ var standing_on :String = "grass"
 var pistol_unlock = 1
 var rifle_unlock = 1 #remember to update pickUp.gd with every new pick up
 var shotgun_unlock = 0 #ammo has special case for pickups
+var keys = []
 
 ##########        PLAYER NODES        ##########
 @onready var top = $Top

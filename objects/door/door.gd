@@ -7,6 +7,7 @@ var linkedOtherDim: Node2D
 @export var hidden_area_name: String
 @export var hidden_area_name_two: String
 @export var locked = false
+@export var key_name: String
 var hidden_area: Node2D
 var hidden_area_two: Node2D
 
@@ -14,6 +15,7 @@ var hidden_area_two: Node2D
 func _ready():
 	$Door.destroyed.connect(destroyed)
 	$Door.locked = locked
+	$Door.key_name = key_name
 
 func _process(_delta):
 	if linkedView != null:

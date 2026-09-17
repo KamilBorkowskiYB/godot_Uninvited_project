@@ -127,6 +127,16 @@ position = Vector2(326, 774)
 position = Vector2(-389, 827)
 item_selected = 2
 
+[node name="Key" parent="PickUps" instance=ExtResource("7_0crg7")]
+position = Vector2(-1397, -2097)
+item_selected = 6
+Key_name = "Test Key"
+
+[node name="Key2" parent="PickUps" instance=ExtResource("7_0crg7")]
+position = Vector2(-1316, -1986)
+item_selected = 6
+Key_name = "Test Key"
+
 [node name="LevelExits" type="Node2D" parent="."]
 position = Vector2(-184, -5)
 

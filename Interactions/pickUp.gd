@@ -13,8 +13,10 @@ enum items {#same as player pick ups
 	Rifle_Unlock,
 	Shotgun_Unlock,
 	Pistol_Unlock,
+	Key,
 }
 @export var item_selected: items = items.Rifle_Ammo
+@export var Key_name: String
 signal item_picked_up(is_space,item_name)
 
 func _ready():
@@ -41,6 +43,9 @@ func _ready():
 		items.Pistol_Unlock:
 			item_id = "pistol_unlock"
 			item_name = "Pistol"
+		items.Key:
+			item_id = "Key"
+			item_name = "Test Key" #<- not used, Key_name used intead
 
 func _on_interact():
 	var player: CharacterBody2D = get_tree().get_first_node_in_group("player")
@@ -57,7 +62,10 @@ func _on_interact():
 			player.WEAPONS["shotgun"]["current_ammo"] += 1
 		elif item_id == "pistol_ammo":
 			player.WEAPONS["pistol"]["current_ammo"] += 1
-		else:
+		elif item_id == "Key":
+			if !player.keys.has(Key_name):
+				player.keys.append(Key_name)
+		else: #other items, weapons
 			player.set(item_id, player.get(item_id) + 1)
 		item_picked_up.emit(1,item_name)
 		queue_free()

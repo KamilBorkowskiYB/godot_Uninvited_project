@@ -7,10 +7,12 @@ extends RigidBody2D
 @onready var animation_player = $"../Sounds/AnimationPlayer"
 
 var locked = false
+var key_name: String
 var transform_to
 var isClosed = true
 var health = 100
 signal destroyed
+signal door_locked_state(is_locked,key_name)
 
 func _ready():
 	interaction_area.interact = Callable(self,"_on_interact")
@@ -59,13 +61,19 @@ func calc_health(damage_taken):
 
 
 func open():
+	var player: CharacterBody2D = get_tree().get_first_node_in_group("player")
 	if locked:
-		animation_player.play("open_locked")
-		play_sound("DoorLocked", 50.0, false)
-		return
+		if player.keys.has(key_name):
+			door_locked_state.emit(0, key_name)
+			locked = false
+		else:
+			animation_player.play("open_locked")
+			play_sound("DoorLocked", 50.0, false)
+			door_locked_state.emit(1, key_name)
+			return
+	
 	trigger_linked_event()
 	
-	var player: CharacterBody2D = get_tree().get_first_node_in_group("player")
 	isClosed = false
 	freeze = false
 	play_sound("DoorOpen", 200)

@@ -35,7 +35,6 @@ script = ExtResource("1_2hpch")
 collision_layer = 128
 collision_mask = 2
 script = ExtResource("2_se4if")
-action_name = "Pick up"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
 shape = SubResource("RectangleShape2D_hd0jl")

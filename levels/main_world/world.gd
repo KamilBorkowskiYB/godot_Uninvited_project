@@ -94,6 +94,12 @@ func _ready():
 	for child in viewport1.get_children():
 		if child.has_signal("item_picked_up"):
 			child.item_picked_up.connect(item_picked_up)
+	#connecting signals from doors
+	viewport1 = get_node("MainLevelViewport/SubViewport/MainScene").get_child(0).get_child(0).get_child(0).get_node("Doors")
+	for child in viewport1.get_children():
+		if !child.name.contains("Double") and child.get_node("Door").has_signal("door_locked_state"):
+			child.get_node("Door").door_locked_state.connect(door_locked_state)
+	
 	
 	#connecting signals from LevelExits
 	viewport1 = get_node("MainLevelViewport/SubViewport/MainScene").get_child(0).get_node("LevelExits")
@@ -177,6 +183,15 @@ func item_picked_up(is_space,item_name):
 		$ItemsObtained/UI/Panel/Label.text = "Acquired: " + item_name
 	else:
 		$ItemsObtained/UI/Panel/Label.text = "No more space: " + item_name
+	$ItemsObtained/UI.show()
+	$ItemsObtained/UI/PickUpTimer.start()
+
+
+func door_locked_state(lock_state, key_name):
+	if lock_state == 1:
+		$ItemsObtained/UI/Panel/Label.text = "Lock, needs: " + key_name
+	else:
+		$ItemsObtained/UI/Panel/Label.text = "Opened with: " + key_name
 	$ItemsObtained/UI.show()
 	$ItemsObtained/UI/PickUpTimer.start()
 

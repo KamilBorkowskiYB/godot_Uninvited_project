@@ -335,6 +335,7 @@ rotation = -1.5708
 hidden_area_name = "Secrets/SecretArea5"
 hidden_area_name_two = "Secrets/SecretArea16"
 locked = true
+key_name = "Test Key"
 
 [node name="Door4" parent="Doors" instance=ExtResource("3_44mhx")]
 position = Vector2(-1866, -3219)
