@@ -17,6 +17,7 @@ func _ready():
 	$Door.locked = locked
 	$Door.key_name = key_name
 
+
 func _process(_delta):
 	if linkedView != null:
 		linkedView.get_node("Door").transform = $Door.transform

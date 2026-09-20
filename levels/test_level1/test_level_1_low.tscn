@@ -330,7 +330,7 @@ rotation = -1.5708
 hidden_area_name = "Secrets/SecretArea2"
 
 [node name="Door3" parent="Doors" instance=ExtResource("3_44mhx")]
-position = Vector2(-1866, -2835)
+position = Vector2(-1866, -2837)
 rotation = -1.5708
 hidden_area_name = "Secrets/SecretArea5"
 hidden_area_name_two = "Secrets/SecretArea16"
@@ -338,79 +338,79 @@ locked = true
 key_name = "Test Key"
 
 [node name="Door4" parent="Doors" instance=ExtResource("3_44mhx")]
-position = Vector2(-1866, -3219)
+position = Vector2(-1866, -3221)
 rotation = -1.5708
 hidden_area_name = "Secrets/SecretArea4"
 hidden_area_name_two = "Secrets/SecretArea16"
 
 [node name="Door5" parent="Doors" instance=ExtResource("3_44mhx")]
-position = Vector2(-3017, -3219)
+position = Vector2(-3017, -3221)
 rotation = -1.5708
 hidden_area_name = "Secrets/SecretArea4"
 hidden_area_name_two = "Secrets/SecretArea7"
 
 [node name="Door6" parent="Doors" instance=ExtResource("3_44mhx")]
-position = Vector2(-2634, -2835)
+position = Vector2(-2634, -2837)
 rotation = -1.5708
 hidden_area_name = "Secrets/SecretArea5"
 hidden_area_name_two = "Secrets/SecretArea6"
 
 [node name="Door7" parent="Doors" instance=ExtResource("3_44mhx")]
-position = Vector2(-2634, -2259)
+position = Vector2(-2634, -2261)
 rotation = -1.5708
 hidden_area_name = "Secrets/SecretArea5"
 hidden_area_name_two = "Secrets/SecretArea6"
 
 [node name="Door8" parent="Doors" instance=ExtResource("3_44mhx")]
-position = Vector2(726, -2835)
+position = Vector2(726, -2837)
 rotation = -1.5708
 hidden_area_name = "Secrets/SecretArea14"
 hidden_area_name_two = "Secrets/SecretArea16"
 
 [node name="Door9" parent="Doors" instance=ExtResource("3_44mhx")]
-position = Vector2(725, -3219)
+position = Vector2(725, -3221)
 rotation = -1.5708
 hidden_area_name = "Secrets/SecretArea15"
 hidden_area_name_two = "Secrets/SecretArea16"
 
 [node name="Door10" parent="Doors" instance=ExtResource("3_44mhx")]
-position = Vector2(1878, -2355)
+position = Vector2(1878, -2357)
 rotation = -1.5708
 hidden_area_name = "Secrets/SecretArea14"
 hidden_area_name_two = "Secrets/SecretArea13"
 
 [node name="Door11" parent="Doors" instance=ExtResource("3_44mhx")]
-position = Vector2(1985, -3112)
+position = Vector2(1986, -3112)
 hidden_area_name = "Secrets/SecretArea13"
 hidden_area_name_two = "Secrets/SecretArea15"
 
 [node name="Door12" parent="Doors" instance=ExtResource("3_44mhx")]
-position = Vector2(2081, -3496)
+position = Vector2(2082, -3496)
 hidden_area_name = "Secrets/SecretArea12"
 hidden_area_name_two = "Secrets/SecretArea15"
 
 [node name="Door13" parent="Doors" instance=ExtResource("3_44mhx")]
-position = Vector2(1409, -3496)
+position = Vector2(1410, -3496)
 hidden_area_name = "Secrets/SecretArea11"
 hidden_area_name_two = "Secrets/SecretArea15"
 
 [node name="Door14" parent="Doors" instance=ExtResource("3_44mhx")]
-position = Vector2(1025, -3496)
+position = Vector2(1026, -3496)
 hidden_area_name = "Secrets/SecretArea10"
 hidden_area_name_two = "Secrets/SecretArea15"
 
 [node name="Door15" parent="Doors" instance=ExtResource("3_44mhx")]
-position = Vector2(449, -3496)
+position = Vector2(450, -3496)
 hidden_area_name = "Secrets/SecretArea9"
 hidden_area_name_two = "Secrets/SecretArea16"
 
 [node name="Door16" parent="Doors" instance=ExtResource("3_44mhx")]
-position = Vector2(-1759, -3496)
+position = Vector2(-1758, -3496)
 hidden_area_name = "Secrets/SecretArea8"
 hidden_area_name_two = "Secrets/SecretArea16"
 
 [node name="Door17" parent="Doors" instance=ExtResource("3_44mhx")]
-position = Vector2(-2527, -3112)
+position = Vector2(-2526, -3112)
 hidden_area_name = "Secrets/SecretArea5"
 hidden_area_name_two = "Secrets/SecretArea4"
 
@@ -439,6 +439,8 @@ hidden_area_name = "Secrets/SecretArea16"
 [node name="DoubleDoor5" parent="Doors" instance=ExtResource("4_a0d8x")]
 position = Vector2(-977, -2221)
 hidden_area_name = "Secrets/SecretArea16"
+locked = true
+key_name = "Test Key"
 
 [node name="MovingBlocks" type="Node2D" parent="."]
 

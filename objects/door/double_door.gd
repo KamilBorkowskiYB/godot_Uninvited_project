@@ -6,10 +6,20 @@ extends Node2D
 @onready var Rdoor_physics = $RightDoor/Door
 @onready var Ldoor_physics = $LeftDoor/Door
 @export var hidden_area_name: String
+@export var hidden_area_name_two: String
+@export var locked = false
+@export var key_name: String
 
 func _ready():
 	Rdoor.hidden_area_name = hidden_area_name
+	Rdoor.hidden_area_name_two = hidden_area_name_two
 	Ldoor.hidden_area_name = hidden_area_name
+	Ldoor.hidden_area_name_two = hidden_area_name_two
+	
+	Rdoor.get_node("Door").locked = locked
+	Rdoor.get_node("Door").key_name = key_name
+	Ldoor.get_node("Door").locked = locked
+	Ldoor.get_node("Door").key_name = key_name
 
 
 func open_doors():

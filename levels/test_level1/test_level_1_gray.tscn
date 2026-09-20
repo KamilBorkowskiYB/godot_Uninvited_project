@@ -25,8 +25,8 @@ position = Vector2(-188.801, 259.17)
 scale = Vector2(0.739998, 1.21006)
 
 [node name="SecretArea4" parent="out_of_view_overlay/SecretsColor" instance=ExtResource("3_bw1wj")]
-position = Vector2(-2160, -3124)
-scale = Vector2(1.23333, 1.025)
+position = Vector2(-2164, -3124)
+scale = Vector2(1.225, 1.025)
 
 [node name="SecretArea5" parent="out_of_view_overlay/SecretsColor" instance=ExtResource("3_bw1wj")]
 position = Vector2(-1972, -2160)

@@ -97,8 +97,16 @@ func _ready():
 	#connecting signals from doors
 	viewport1 = get_node("MainLevelViewport/SubViewport/MainScene").get_child(0).get_child(0).get_child(0).get_node("Doors")
 	for child in viewport1.get_children():
-		if !child.name.contains("Double") and child.get_node("Door").has_signal("door_locked_state"):
-			child.get_node("Door").door_locked_state.connect(door_locked_state)
+		if child.name.contains("Double"):
+			var Rdoor = child.get_node("RightDoor").get_node("Door")
+			var Ldoor = child.get_node("LeftDoor").get_node("Door")
+			if Rdoor.has_signal("door_locked_state") and Ldoor.has_signal("door_locked_state"):
+				Rdoor.door_locked_state.connect(door_locked_state)
+				Ldoor.door_locked_state.connect(door_locked_state)
+		else:
+			var door = child.get_node("Door")
+			if door.has_signal("door_locked_state"):
+				door.door_locked_state.connect(door_locked_state)
 	
 	
 	#connecting signals from LevelExits
@@ -377,6 +385,7 @@ func connect_movable_objects_between_viewports(viewport1, viewport2, viewport3):
 			for candidate in all_movable:
 				if candidate.name == target_name and candidate.get_parent().name == node1.get_parent().name and viewport2.is_ancestor_of(candidate):
 					node2 = candidate
+					break
 			for candidate in all_movable:
 				if candidate.name == target_name and candidate.get_parent().name == node1.get_parent().name and viewport3.is_ancestor_of(candidate):
 					node3 = candidate
