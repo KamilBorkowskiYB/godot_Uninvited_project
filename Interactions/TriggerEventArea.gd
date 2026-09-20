@@ -21,7 +21,7 @@ func trigger_event():
 
 func reveal_parent():
 	var parent_name = get_parent().name
-	reveal_area.emit(parent_name)
+	reveal_area.emit(parent_name, get_parent().related_ambient_darkness)
 
 
 func pass_on_trigger():

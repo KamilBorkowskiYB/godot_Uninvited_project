@@ -342,7 +342,7 @@ func swap_dimensions():
 		connect_tilemap_to_footsteps(main_dim_seen)
 
 
-func reveal_area(secret_name: String):
+func reveal_area(secret_name: String, related_ambient_darkness:String):
 	#TILESET MUST BE NAMED JUST LIKE SECRET 
 	var viewport1 = get_node("MainLevelViewport/SubViewport/MainScene").get_child(0).get_child(0).get_node("Secrets")
 	var viewport2 = get_node("FogViewport").get_child(0).get_node("out_of_view_overlay").get_node("SecretsColor") #lights secrets   #get_node("FogViewport").get_child(0).get_child(0).get_node("Secrets")
@@ -352,17 +352,43 @@ func reveal_area(secret_name: String):
 	var node2 = viewport2.get_node(NodePath(secret_name))
 	var node3 = viewport2prim.get_node_or_null(NodePath(secret_name))
 	
+	var canvas_modulate = get_node("FogViewport").get_child(0).get_child(0).get_node("CanvasModulate")
+	var ambient_dark
+	if related_ambient_darkness != "":
+		ambient_dark = get_node("FogViewport").get_child(0).get_child(0).get_node("AmbientDark").get_node_or_null(related_ambient_darkness)
+	var scene_darkness = 1.0 / max(canvas_modulate.color.r, 0.01)
+	if ambient_dark != null:
+		scene_darkness = 1.0 / max(canvas_modulate.color.r - ambient_dark.energy, 0.01)
+	
 	var tween_timer: float = 0.4
 	var tween1 = create_tween()
-	tween1.tween_property(node1, "color:a", 0.0, tween_timer) 
+	tween1.tween_method(
+	func(value: float):
+		node1.color.a = pow(value, scene_darkness),
+		1.0,
+		0.0,
+		tween_timer
+	)
 	tween1.tween_callback(func(): node1.queue_free())
 	
 	
 	if node2:
 		var tween2 = create_tween()
 		for child in node2.find_children("*", "PointLight2D", true, false):
-			tween2.parallel().tween_property(child, "color:a", 0.0, tween_timer)
-		tween2.parallel().tween_property(node2, "color:a", 0.0, tween_timer)
+			tween2.parallel().tween_method(
+			func(value: float):
+				child.color.a = pow(value, scene_darkness),
+			1.0,
+			0.0,
+			tween_timer
+			)
+		tween2.parallel().tween_method(
+		func(value: float):
+			node2.color.a = pow(value, scene_darkness),
+		1.0,
+		0.0,
+		tween_timer
+		)
 		tween2.tween_callback(func(): node2.queue_free())
 	
 	
