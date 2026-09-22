@@ -32,8 +32,7 @@ var keys = []
 
 ##########        PLAYER NODES        ##########
 @onready var top = $Top
-#@onready var player_top_sprite = $Top/Alive
-@onready var player_top_sprite = $Top/Alive_New
+@onready var player_top_sprite = $Top/RunRotation/Alive_New_New
 @onready var bottom = $Bottom #rotates legs with top offset - like in aiming moves to the side
 @onready var legs = $Bottom/Legs #rotates legs in the direction of the walking
 @onready var ray_cast1 = top.get_node("RayCasts/RayCast2D")
@@ -56,6 +55,7 @@ var grabbed_object:RigidBody2D
 @export var can_shoot = false
 @export var can_interact = true #not used at the moment
 var move_direction = Vector2(0,0)
+@onready var sounds = $Sounds
 
 ##########        WEAPON STATS         ##########
 var WEAPONS = {
@@ -78,7 +78,8 @@ var WEAPONS = {
 			"reload": "reload_pistol",
 			"idle": "idle_pistol",
 			"aftershot": "aftershot_pistol"
-		}
+		},
+		"shoot_sound": "PistolShootSound"
 	},
 	"rifle": {
 		"frame": 39,
@@ -99,7 +100,8 @@ var WEAPONS = {
 			"reload": "reload_rifle",
 			"idle": "idle_rifle",
 			"aftershot": "aftershot_rifle"
-		}
+		},
+		"shoot_sound": "RifleShootSound"
 	},
 	"shotgun": {
 		"frame": 52,
@@ -120,7 +122,8 @@ var WEAPONS = {
 			"reload": "reload_shotgun_calm",
 			"idle": "idle_shotgun",
 			"aftershot": "aftershot_shotgun"
-		}
+		},
+		"shoot_sound": "ShotgunShootSound"
 	},
 	"default": {
 		"frame": 0,
@@ -140,7 +143,8 @@ var WEAPONS = {
 			"reload": "reload_shotgun_calm",
 			"idle": "idle_unarmed",
 			"aftershot": "aftershot_shotgun"
-		}
+		},
+		"shoot_sound": "ShotgunShootSound"
 	}
 }
 #defalut
@@ -159,6 +163,7 @@ var animation_aim = animations["aim"]
 var animation_aimed = animations["aimed"]
 var animation_reload = animations["reload"]
 var animation_aftershot = animations["aftershot"]
+var shoot_sound = current_weapon["shoot_sound"]
 
 func _ready():
 	can_shoot = false
@@ -242,7 +247,7 @@ func _process(delta):
 		if rifle_unlock > 0 and !grabbing and current_weapon_id != "rifle":
 			change_weapon("rifle")
 			weapon_info_on.emit()
-			
+	
 	if Input.is_action_just_pressed("weapon_2"):
 		if shotgun_unlock > 0 and !grabbing and current_weapon_id != "shotgun":
 			change_weapon("shotgun")
@@ -338,12 +343,11 @@ func shoot(ray_casts,ammo_type):
 		top.get_node("MuzzleFlash").show()
 		top.get_node("FlashLight").show()
 		top.get_node("MuzzleFlash/Timer").start()
-		$Sounds/ShootSound.play()
-		make_noise(1000.0, 3)
+		play_sound(shoot_sound, 1000.0, 3)
 		
 		
 		var camera = get_parent().get_node("PlayerCamera")
-		camera.start_shake(10, 0.1) 
+		camera.start_shake(10, 0.1) #change for each weapon
 		recoil = min(max_recoil, recoil + max_recoil * 0.7)
 		ammo_type -= 1
 		var shots_data = []
@@ -375,7 +379,6 @@ func shoot(ray_casts,ammo_type):
 					attack.attack_damage = damage
 					attack.attack_direction = direction
 					attack.attack_source_name = self.name
-					#ray_cast.get_collider().kill(attack)
 					ray_cast.get_collider().take_damage(attack)
 			
 			# Pass shot info to dummy player in the other dimension
@@ -459,6 +462,7 @@ func change_weapon(id):
 		damage = w["damage"]
 		recoil_focus_speed = (w["max_recoil"] - w["min_recoil"]) / w["focus_speed"]
 		recoil = w["max_recoil"] * 0.7
+		shoot_sound = w["shoot_sound"]
 		
 		animation_idle = w["anims"]["idle"]
 		animation_aim = w["anims"]["aim"]
@@ -488,25 +492,31 @@ func stop_run():
 		player_top_sprite.frame = 0;
 
 func step():
-	make_noise(300.0, 1)
+	var foot_step_radius = 300.0
+	var noise_lvl = 1
 	if standing_on == "brick":
-		$Sounds/ConcreteFootstep.pitch_scale = randf_range(0.8, 1.2)
-		$Sounds/ConcreteFootstep.play()
+		play_sound("ConcreteFootstep", foot_step_radius, noise_lvl)
 	if standing_on == "grass":
-		$Sounds/GrassFootstep.pitch_scale = randf_range(0.8, 1.2)
-		$Sounds/GrassFootstep.play()
+		play_sound("GrassFootstep", foot_step_radius, noise_lvl)
 	if standing_on == "wood":
-		$Sounds/WoodPanelFootstep.pitch_scale = randf_range(0.8, 1.2)
-		$Sounds/WoodPanelFootstep.play()
+		play_sound("WoodPanelFootstep", foot_step_radius, noise_lvl)
 	if standing_on == "marble":
-		$Sounds/MarbleFootstep.pitch_scale = randf_range(0.8, 1.2)
-		$Sounds/MarbleFootstep.play()
+		play_sound("MarbleFootstep", foot_step_radius, noise_lvl)
 	if standing_on == "glass":
-		$Sounds/GlassFootstep.pitch_scale = randf_range(0.8, 1.2)
-		$Sounds/GlassFootstep.play()
+		play_sound("GlassFootstep", foot_step_radius, noise_lvl)
+
 
 func make_noise(noise_radius, noise_lvl):
 	var listners = get_tree().get_nodes_in_group("hears_sounds")
 	for node in listners:
 		if node.has_method("investigate_noise") and global_position.distance_to(node.global_position) <= noise_radius:
 			node.investigate_noise(global_position, noise_lvl)
+
+func play_sound(audio_name, noise_radius, noise_lvl, interupt = true):
+	make_noise(noise_radius, noise_lvl)
+	var sound = sounds.get_node_or_null(audio_name)
+	if sound.playing == true and interupt == false:
+		return
+	if !audio_name.contains("Shoot"): sound.pitch_scale = randf_range(0.8, 1.2)
+	if sound:
+		sound.playing = true

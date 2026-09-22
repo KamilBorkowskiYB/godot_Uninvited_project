@@ -41,16 +41,18 @@ func _on_interact():
 
 
 func take_damage(attack: Attack):
+	play_sound("DoorHit", 200)
+	#calc_health(attack.attack_damage) #Not sure if door should be destroyed
+	if locked: return
 	if isClosed:
 		isClosed = false
 		freeze = false
 	if potential_double_doors.has_method("doors_shot"):
 		potential_double_doors.doors_shot(self, attack.attack_direction, attack.attack_damage)
-	play_sound("DoorHit", 200)
 	if attack.attack_source_name == "Player":
 		trigger_linked_event()
 	apply_central_impulse(-attack.attack_direction * 500)
-	calc_health(attack.attack_damage)
+
 
 
 func calc_health(damage_taken):
