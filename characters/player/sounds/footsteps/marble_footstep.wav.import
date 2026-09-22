@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://byh7s8fu1wg52"
-path="res://.godot/imported/marble_footstep.wav-feb0741587f26d50dbe6b83d14eece58.sample"
+path="res://.godot/imported/marble_footstep.wav-fd43caa22fd84b94d80953ce508c0467.sample"
 
 [deps]
 
-source_file="res://characters/player/sounds/marble_footstep.wav"
-dest_files=["res://.godot/imported/marble_footstep.wav-feb0741587f26d50dbe6b83d14eece58.sample"]
+source_file="res://characters/player/sounds/footsteps/marble_footstep.wav"
+dest_files=["res://.godot/imported/marble_footstep.wav-fd43caa22fd84b94d80953ce508c0467.sample"]
 
 [params]
 

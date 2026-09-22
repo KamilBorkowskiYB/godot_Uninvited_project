@@ -71,8 +71,9 @@ func _ready():
 			player.od_dim_split_light_occluders = od_light_dim_split_occluders
 			player.od_view_light = od_view_light
 	
-	##connecting tilemap to player footsteps
+	##connecting tilemap to footsteps
 	connect_tilemap_to_footsteps(viewport1.get_child(0))
+	#connect_tilemap_to_footsteps(od_viewport1.get_child(0))
 	
 	#connecting aim assist to player 
 	var aim = $WeaponSelected/AimAssist
@@ -499,15 +500,13 @@ func connect_tilemap_to_footsteps(viewport):
 	if(footnode and tilemap):
 		footnode.tilemap = tilemap
 	
-	#connecting tilemap to enemies footsteps
-	viewport = get_node("MainLevelViewport/SubViewport/MainScene").get_child(0).get_node("Enemies")
-	for child in viewport.get_children():
+	var enemies = viewport.get_node("Enemies")
+	for child in enemies.get_children():
 		if(child and tilemap):
 			child.get_node_or_null("Footsteps").get_child(0).tilemap = tilemap
 	
-	#connecting tilemap to movingblocks
-	viewport = get_node("MainLevelViewport/SubViewport/MainScene").get_child(0).get_child(0).get_child(0).get_node("MovingBlocks") #First get_child - lvl_hight, second - lvl_middium, third - lvl_low
-	for child in viewport.get_children():
+	var movables = viewport.get_child(0).get_child(0).get_node("MovingBlocks") #First get_child - lvl_hight, second - lvl_middium, third - lvl_low
+	for child in movables.get_children():
 		if(child and tilemap):
 			child.get_node_or_null("Footsteps").get_child(0).tilemap = tilemap
 

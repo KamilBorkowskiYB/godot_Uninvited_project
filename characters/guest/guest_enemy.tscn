@@ -11,8 +11,8 @@
 [ext_resource type="Script" path="res://characters/mutant/HurtBoxArea.gd" id="6_intjx"]
 [ext_resource type="AudioStream" uid="uid://71k1d45tql15" path="res://characters/zombie/monster_die.wav" id="6_l436g"]
 [ext_resource type="Script" path="res://characters/mutant/AttackArea2D.gd" id="7_fq165"]
-[ext_resource type="AudioStream" uid="uid://6pn5lbj8i2ch" path="res://characters/player/sounds/concrete_footstep.mp3" id="7_n140f"]
-[ext_resource type="AudioStream" uid="uid://baanxyc2vjxhr" path="res://characters/player/sounds/grass_footsteps.mp3" id="8_ergsx"]
+[ext_resource type="AudioStream" uid="uid://6pn5lbj8i2ch" path="res://characters/player/sounds/footsteps/concrete_footstep.mp3" id="7_n140f"]
+[ext_resource type="AudioStream" uid="uid://baanxyc2vjxhr" path="res://characters/player/sounds/footsteps/grass_footsteps.mp3" id="8_ergsx"]
 [ext_resource type="AudioStream" uid="uid://dr7bvggxwkhqw" path="res://characters/player/sounds/damage_taken.wav" id="14_3be34"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dx05a"]

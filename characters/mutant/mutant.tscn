@@ -5,8 +5,8 @@
 [ext_resource type="Script" path="res://characters/mutant/HurtBoxArea.gd" id="3_j2t8s"]
 [ext_resource type="PackedScene" uid="uid://cjgla4gkbb8u2" path="res://Interactions/footsteps.tscn" id="4_4bqlu"]
 [ext_resource type="Script" path="res://characters/mutant/AttackArea2D.gd" id="4_8i8i8"]
-[ext_resource type="AudioStream" uid="uid://6pn5lbj8i2ch" path="res://characters/player/sounds/concrete_footstep.mp3" id="5_yxhgv"]
-[ext_resource type="AudioStream" uid="uid://baanxyc2vjxhr" path="res://characters/player/sounds/grass_footsteps.mp3" id="6_i1dw6"]
+[ext_resource type="AudioStream" uid="uid://6pn5lbj8i2ch" path="res://characters/player/sounds/footsteps/concrete_footstep.mp3" id="5_yxhgv"]
+[ext_resource type="AudioStream" uid="uid://baanxyc2vjxhr" path="res://characters/player/sounds/footsteps/grass_footsteps.mp3" id="6_i1dw6"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_84btc"]
 radius = 18.0159

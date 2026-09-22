@@ -12,9 +12,8 @@ var occ_mask_1 = 1
 
 func _process(_delta):#some code could be moved into onready func if changing levels won't mess up player and dimension_border values
 	var player: CharacterBody2D = get_tree().get_first_node_in_group("player")
-	var other_dim_viewport = get_tree().root.get_node_or_null("World/OtherDimension/ODVisibilityViewport")
+	var other_dim_viewport = player.get_parent()
 	if always_visible: return
-	#var dimension_border = get_tree().get_first_node_in_group("dimension_split") #not used
 	
 	var closest_distance = INF
 	var closest_dimension_border = null

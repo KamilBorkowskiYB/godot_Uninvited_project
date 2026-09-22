@@ -6,8 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://bkm43cnbgvxrn" path="res://characters/zombie/dead_body.png" id="4_hxr4a"]
 [ext_resource type="Texture2D" uid="uid://cx53kc3c1yvij" path="res://characters/zombie/blood_splatter.png" id="5_2t6mw"]
 [ext_resource type="AudioStream" uid="uid://71k1d45tql15" path="res://characters/zombie/monster_die.wav" id="6_5uw5y"]
-[ext_resource type="AudioStream" uid="uid://6pn5lbj8i2ch" path="res://characters/player/sounds/concrete_footstep.mp3" id="7_blsuw"]
-[ext_resource type="AudioStream" uid="uid://baanxyc2vjxhr" path="res://characters/player/sounds/grass_footsteps.mp3" id="8_cmydd"]
+[ext_resource type="AudioStream" uid="uid://6pn5lbj8i2ch" path="res://characters/player/sounds/footsteps/concrete_footstep.mp3" id="7_blsuw"]
+[ext_resource type="AudioStream" uid="uid://baanxyc2vjxhr" path="res://characters/player/sounds/footsteps/grass_footsteps.mp3" id="8_cmydd"]
 [ext_resource type="PackedScene" uid="uid://cjgla4gkbb8u2" path="res://Interactions/footsteps.tscn" id="9_2ev7t"]
 [ext_resource type="PackedScene" uid="uid://b4hop5ypxtvrs" path="res://characters/water_splash.tscn" id="10_ty3dq"]
 

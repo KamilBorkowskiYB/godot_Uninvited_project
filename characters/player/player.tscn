@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=3 uid="uid://c8bitsc7ybbya"]
+[gd_scene load_steps=76 format=3 uid="uid://c8bitsc7ybbya"]
 
 [ext_resource type="Script" path="res://characters/player/player.gd" id="1_bf8ru"]
 [ext_resource type="Texture2D" uid="uid://f5sx516ofsyb" path="res://characters/player/graphic/legs.png" id="2_qgy1a"]
@@ -17,18 +17,28 @@
 [ext_resource type="Texture2D" uid="uid://dlr0xclf0f272" path="res://characters/player/graphic/sprites 5.0/arm_L.png" id="9_4s14i"]
 [ext_resource type="Texture2D" uid="uid://bospbgeryyshp" path="res://characters/player/graphic/sprites 5.0/hand_one.png" id="10_7jlag"]
 [ext_resource type="Texture2D" uid="uid://b0qytmr1grapk" path="res://characters/player/graphic/sprites 5.0/weapons/weapons.png" id="11_aeyh7"]
-[ext_resource type="AudioStream" uid="uid://6pn5lbj8i2ch" path="res://characters/player/sounds/concrete_footstep.mp3" id="12_qa0mu"]
 [ext_resource type="Texture2D" uid="uid://bnqfnayjmpmap" path="res://characters/player/graphic/sprites 5.0/weapons/shotgun_pump.png" id="12_xuust"]
-[ext_resource type="AudioStream" uid="uid://baanxyc2vjxhr" path="res://characters/player/sounds/grass_footsteps.mp3" id="13_1127d"]
 [ext_resource type="PackedScene" uid="uid://cjgla4gkbb8u2" path="res://Interactions/footsteps.tscn" id="14_xbjs0"]
 [ext_resource type="PackedScene" uid="uid://b4hop5ypxtvrs" path="res://characters/water_splash.tscn" id="15_vfyxc"]
-[ext_resource type="AudioStream" uid="uid://811q3c1e8tgi" path="res://characters/player/sounds/WoodPanelFootstep.mp3" id="22_l1tl4"]
-[ext_resource type="AudioStream" uid="uid://byh7s8fu1wg52" path="res://characters/player/sounds/marble_footstep.wav" id="23_navd7"]
-[ext_resource type="AudioStream" uid="uid://bwndx6yp80cxt" path="res://characters/player/sounds/GlassFootsteps.mp3" id="24_d3tns"]
+[ext_resource type="AudioStream" uid="uid://6pn5lbj8i2ch" path="res://characters/player/sounds/footsteps/concrete_footstep.mp3" id="19_o3teh"]
+[ext_resource type="AudioStream" uid="uid://baanxyc2vjxhr" path="res://characters/player/sounds/footsteps/grass_footsteps.mp3" id="20_mms1t"]
+[ext_resource type="AudioStream" uid="uid://811q3c1e8tgi" path="res://characters/player/sounds/footsteps/WoodPanelFootstep.mp3" id="21_2t40h"]
+[ext_resource type="AudioStream" uid="uid://byh7s8fu1wg52" path="res://characters/player/sounds/footsteps/marble_footstep.wav" id="22_o1yhp"]
+[ext_resource type="AudioStream" uid="uid://bwndx6yp80cxt" path="res://characters/player/sounds/footsteps/GlassFootsteps.mp3" id="23_d4pis"]
+[ext_resource type="AudioStream" uid="uid://dajos5gloxql4" path="res://characters/player/sounds/pistol/pistol_gunshot.wav" id="25_0jdq8"]
 [ext_resource type="AudioStream" uid="uid://dr7bvggxwkhqw" path="res://characters/player/sounds/damage_taken.wav" id="25_j8gtn"]
-[ext_resource type="AudioStream" uid="uid://dajos5gloxql4" path="res://characters/player/sounds/pistol_gunshot.wav" id="25_mevto"]
-[ext_resource type="AudioStream" uid="uid://f0xb6r2g0lmn" path="res://characters/player/sounds/rifle_gunshot.wav" id="26_ob0ml"]
-[ext_resource type="AudioStream" uid="uid://mbohyg4u4sv1" path="res://characters/player/sounds/shotgun_gunshot.wav" id="27_0q30g"]
+[ext_resource type="AudioStream" uid="uid://cbrtlh4kq2jnp" path="res://characters/player/sounds/pistol/01_slide_lock_handgun_reload_1.wav" id="26_14xrr"]
+[ext_resource type="AudioStream" uid="uid://djywlkva2bqnu" path="res://characters/player/sounds/pistol/handgun_weapon_equip.wav" id="26_c55wt"]
+[ext_resource type="AudioStream" uid="uid://f0xb6r2g0lmn" path="res://characters/player/sounds/rifle/rifle_gunshot.wav" id="27_71ufs"]
+[ext_resource type="AudioStream" uid="uid://dcxmb7bh546e4" path="res://characters/player/sounds/pistol/02_drop_the_mag_handgun_reload_1.wav" id="27_aq3ei"]
+[ext_resource type="AudioStream" uid="uid://mbohyg4u4sv1" path="res://characters/player/sounds/shotgun/shotgun_gunshot.wav" id="27_l26co"]
+[ext_resource type="AudioStream" uid="uid://l6xbqmjxfstt" path="res://characters/player/sounds/rifle/assault_rifle_weapon_equip.wav" id="28_3nwjv"]
+[ext_resource type="AudioStream" uid="uid://b7g1nq2xh85eo" path="res://characters/player/sounds/pistol/03_insert_the_mag_handgun_reload_1.wav" id="28_d55hu"]
+[ext_resource type="AudioStream" uid="uid://bxryuuc03p1a8" path="res://characters/player/sounds/shotgun/shotgun_reload_chambering.wav" id="28_wntk5"]
+[ext_resource type="AudioStream" uid="uid://d3ibo5knud5pp" path="res://characters/player/sounds/shotgun/shotgun_reload_slide_action.wav" id="29_gbc5f"]
+[ext_resource type="AudioStream" uid="uid://3yqpj64oyh5v" path="res://characters/player/sounds/shotgun/shotgun_weapon_equip.wav" id="30_l7aar"]
+[ext_resource type="AudioStream" uid="uid://b2ayrupafa7vd" path="res://characters/player/sounds/rifle/03_assault_rifle_reload_1_bolt.wav" id="31_35ybe"]
+[ext_resource type="AudioStream" uid="uid://cri33dsanonb7" path="res://characters/player/sounds/rifle/assault_rifle_mag_draw.wav" id="32_e8ifn"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_f7cyc"]
 radius = 45.0
@@ -888,9 +898,12 @@ tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.7),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.1, 0.7),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
+"args": ["ShotgunPump", 0.0, 0, true],
+"method": &"play_sound"
+}, {
 "args": [],
 "method": &"animation_end_reload"
 }]
@@ -3329,9 +3342,18 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(1.4),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.2, 0.5, 1.1, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "values": [{
+"args": ["PistolReload1", 0.0, 0, true],
+"method": &"play_sound"
+}, {
+"args": ["PistolReload2", 0.0, 0, true],
+"method": &"play_sound"
+}, {
+"args": ["PistolReload3", 0.0, 0, true],
+"method": &"play_sound"
+}, {
 "args": [],
 "method": &"animation_end_reload"
 }]
@@ -3750,9 +3772,15 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.7),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.65, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1),
 "values": [{
+"args": ["RifleReload1", 0.0, 0, true],
+"method": &"play_sound"
+}, {
+"args": ["RifleReload2", 0.0, 0, true],
+"method": &"play_sound"
+}, {
 "args": [],
 "method": &"animation_end_reload"
 }]
@@ -4009,9 +4037,15 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.7),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.65, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1),
 "values": [{
+"args": ["RifleReload1", 0.0, 0, true],
+"method": &"play_sound"
+}, {
+"args": ["RifleReload2", 0.0, 0, true],
+"method": &"play_sound"
+}, {
 "args": [],
 "method": &"animation_end_reload"
 }]
@@ -4876,9 +4910,12 @@ tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.6),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
+"args": ["ShotgunShellLoad", 0.0, 0, true],
+"method": &"play_sound"
+}, {
 "args": [],
 "method": &"animation_end_reload"
 }]
@@ -5593,23 +5630,23 @@ stream = ExtResource("8_xyryx")
 bus = &"sfx"
 
 [node name="ConcreteFootstep" type="AudioStreamPlayer" parent="Sounds"]
-stream = ExtResource("12_qa0mu")
+stream = ExtResource("19_o3teh")
 bus = &"sfx"
 
 [node name="GrassFootstep" type="AudioStreamPlayer" parent="Sounds"]
-stream = ExtResource("13_1127d")
+stream = ExtResource("20_mms1t")
 bus = &"sfx"
 
 [node name="WoodPanelFootstep" type="AudioStreamPlayer" parent="Sounds"]
-stream = ExtResource("22_l1tl4")
+stream = ExtResource("21_2t40h")
 bus = &"sfx"
 
 [node name="MarbleFootstep" type="AudioStreamPlayer" parent="Sounds"]
-stream = ExtResource("23_navd7")
+stream = ExtResource("22_o1yhp")
 bus = &"sfx"
 
 [node name="GlassFootstep" type="AudioStreamPlayer" parent="Sounds"]
-stream = ExtResource("24_d3tns")
+stream = ExtResource("23_d4pis")
 bus = &"sfx"
 
 [node name="DamageHit" type="AudioStreamPlayer" parent="Sounds"]
@@ -5617,15 +5654,55 @@ stream = ExtResource("25_j8gtn")
 bus = &"sfx"
 
 [node name="PistolShootSound" type="AudioStreamPlayer" parent="Sounds"]
-stream = ExtResource("25_mevto")
+stream = ExtResource("25_0jdq8")
+bus = &"sfx"
+
+[node name="PistolReload1" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("26_14xrr")
+bus = &"sfx"
+
+[node name="PistolReload2" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("27_aq3ei")
+bus = &"sfx"
+
+[node name="PistolReload3" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("28_d55hu")
+bus = &"sfx"
+
+[node name="PistolEquip" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("26_c55wt")
 bus = &"sfx"
 
 [node name="RifleShootSound" type="AudioStreamPlayer" parent="Sounds"]
-stream = ExtResource("26_ob0ml")
+stream = ExtResource("27_71ufs")
+bus = &"sfx"
+
+[node name="RifleReload1" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("31_35ybe")
+bus = &"sfx"
+
+[node name="RifleReload2" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("32_e8ifn")
+bus = &"sfx"
+
+[node name="RifleEquip" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("28_3nwjv")
 bus = &"sfx"
 
 [node name="ShotgunShootSound" type="AudioStreamPlayer" parent="Sounds"]
-stream = ExtResource("27_0q30g")
+stream = ExtResource("27_l26co")
+bus = &"sfx"
+
+[node name="ShotgunShellLoad" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("28_wntk5")
+bus = &"sfx"
+
+[node name="ShotgunPump" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("29_gbc5f")
+bus = &"sfx"
+
+[node name="ShotgunEquip" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("30_l7aar")
 bus = &"sfx"
 
 [node name="Footsteps" parent="." instance=ExtResource("14_xbjs0")]

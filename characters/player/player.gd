@@ -79,7 +79,8 @@ var WEAPONS = {
 			"idle": "idle_pistol",
 			"aftershot": "aftershot_pistol"
 		},
-		"shoot_sound": "PistolShootSound"
+		"shoot_sound": "PistolShootSound",
+		"equip_sound": "PistolEquip"
 	},
 	"rifle": {
 		"frame": 39,
@@ -101,7 +102,8 @@ var WEAPONS = {
 			"idle": "idle_rifle",
 			"aftershot": "aftershot_rifle"
 		},
-		"shoot_sound": "RifleShootSound"
+		"shoot_sound": "RifleShootSound",
+		"equip_sound": "RifleEquip"
 	},
 	"shotgun": {
 		"frame": 52,
@@ -123,7 +125,8 @@ var WEAPONS = {
 			"idle": "idle_shotgun",
 			"aftershot": "aftershot_shotgun"
 		},
-		"shoot_sound": "ShotgunShootSound"
+		"shoot_sound": "ShotgunShootSound",
+		"equip_sound": "ShotgunEquip"
 	},
 	"default": {
 		"frame": 0,
@@ -144,7 +147,8 @@ var WEAPONS = {
 			"idle": "idle_unarmed",
 			"aftershot": "aftershot_shotgun"
 		},
-		"shoot_sound": "ShotgunShootSound"
+		"shoot_sound": "ShotgunShootSound",
+		"equip_sound": "ShotgunEquip"
 	}
 }
 #defalut
@@ -164,6 +168,7 @@ var animation_aimed = animations["aimed"]
 var animation_reload = animations["reload"]
 var animation_aftershot = animations["aftershot"]
 var shoot_sound = current_weapon["shoot_sound"]
+var equip_sound = current_weapon["equip_sound"]
 
 func _ready():
 	can_shoot = false
@@ -247,16 +252,19 @@ func _process(delta):
 		if rifle_unlock > 0 and !grabbing and current_weapon_id != "rifle":
 			change_weapon("rifle")
 			weapon_info_on.emit()
+			play_sound(equip_sound, 0.0, 0)
 	
 	if Input.is_action_just_pressed("weapon_2"):
 		if shotgun_unlock > 0 and !grabbing and current_weapon_id != "shotgun":
 			change_weapon("shotgun")
 			weapon_info_on.emit()
+			play_sound(equip_sound, 0.0, 0)
 	
 	if Input.is_action_just_pressed("weapon_3"):
 		if pistol_unlock > 0 and !grabbing  and current_weapon_id != "pistol":
 			change_weapon("pistol")
 			weapon_info_on.emit()
+			play_sound(equip_sound, 0.0, 0)
 	
 	if Input.is_action_just_pressed("Aim"):
 		aim()
@@ -463,6 +471,7 @@ func change_weapon(id):
 		recoil_focus_speed = (w["max_recoil"] - w["min_recoil"]) / w["focus_speed"]
 		recoil = w["max_recoil"] * 0.7
 		shoot_sound = w["shoot_sound"]
+		equip_sound = w["equip_sound"]
 		
 		animation_idle = w["anims"]["idle"]
 		animation_aim = w["anims"]["aim"]
