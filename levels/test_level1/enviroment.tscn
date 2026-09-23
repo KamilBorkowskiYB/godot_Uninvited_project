@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bnppgiphfgo5q"]
+[gd_scene load_steps=6 format=3 uid="uid://bnppgiphfgo5q"]
 
 [ext_resource type="PackedScene" uid="uid://b7iklrlyc5m55" path="res://levels/test_level1/test_level_1_low.tscn" id="1_4so2i"]
 [ext_resource type="Texture2D" uid="uid://cma5kmw10jghr" path="res://white_sq.png" id="2_bc8cs"]
 [ext_resource type="PackedScene" uid="uid://bkv3a0k14fqnv" path="res://Interactions/SecretArea.tscn" id="2_nvptp"]
 [ext_resource type="PackedScene" uid="uid://bsevhsmxnwj1b" path="res://objects/grabable/lamp.tscn" id="3_o8shj"]
+[ext_resource type="PackedScene" uid="uid://shqgwjseluto" path="res://objects/light_source.tscn" id="5_1k3s7"]
 
 [node name="Enviroment" type="Node2D"]
 
@@ -137,19 +138,20 @@ position = Vector2(-408, 712)
 collision_layer = 0
 collision_mask = 7
 
-[node name="Lamp4" parent="." instance=ExtResource("3_o8shj")]
-position = Vector2(-5340, -223)
-collision_layer = 0
-collision_mask = 7
+[node name="LightSource3" parent="." instance=ExtResource("5_1k3s7")]
+z_index = -2
+position = Vector2(-5563, 273)
 
-[node name="Lamp5" parent="." instance=ExtResource("3_o8shj")]
-position = Vector2(-5814, 542)
-collision_layer = 0
-collision_mask = 7
+[node name="PointLight2D" parent="LightSource3" index="0"]
+color = Color(0.74902, 0, 0.133333, 1)
 
-[node name="Lamp6" parent="." instance=ExtResource("3_o8shj")]
-position = Vector2(-6045, -182)
-collision_layer = 0
-collision_mask = 7
+[node name="LightSource4" parent="." instance=ExtResource("5_1k3s7")]
+z_index = -2
+position = Vector2(-4945, 528)
+
+[node name="PointLight2D" parent="LightSource4" index="0"]
+color = Color(0.74902, 0, 0.133333, 1)
 
 [editable path="Secrets/SecretArea16"]
+[editable path="LightSource3"]
+[editable path="LightSource4"]

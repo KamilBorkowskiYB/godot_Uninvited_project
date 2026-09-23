@@ -1,4 +1,4 @@
-[gd_scene load_steps=76 format=3 uid="uid://c8bitsc7ybbya"]
+[gd_scene load_steps=79 format=3 uid="uid://c8bitsc7ybbya"]
 
 [ext_resource type="Script" path="res://characters/player/player.gd" id="1_bf8ru"]
 [ext_resource type="Texture2D" uid="uid://f5sx516ofsyb" path="res://characters/player/graphic/legs.png" id="2_qgy1a"]
@@ -29,6 +29,7 @@
 [ext_resource type="AudioStream" uid="uid://dr7bvggxwkhqw" path="res://characters/player/sounds/damage_taken.wav" id="25_j8gtn"]
 [ext_resource type="AudioStream" uid="uid://cbrtlh4kq2jnp" path="res://characters/player/sounds/pistol/01_slide_lock_handgun_reload_1.wav" id="26_14xrr"]
 [ext_resource type="AudioStream" uid="uid://djywlkva2bqnu" path="res://characters/player/sounds/pistol/handgun_weapon_equip.wav" id="26_c55wt"]
+[ext_resource type="AudioStream" uid="uid://c8qxq8df7to48" path="res://characters/player/sounds/pistol/handgun_tail_01.wav" id="26_dpg1x"]
 [ext_resource type="AudioStream" uid="uid://f0xb6r2g0lmn" path="res://characters/player/sounds/rifle/rifle_gunshot.wav" id="27_71ufs"]
 [ext_resource type="AudioStream" uid="uid://dcxmb7bh546e4" path="res://characters/player/sounds/pistol/02_drop_the_mag_handgun_reload_1.wav" id="27_aq3ei"]
 [ext_resource type="AudioStream" uid="uid://mbohyg4u4sv1" path="res://characters/player/sounds/shotgun/shotgun_gunshot.wav" id="27_l26co"]
@@ -39,6 +40,8 @@
 [ext_resource type="AudioStream" uid="uid://3yqpj64oyh5v" path="res://characters/player/sounds/shotgun/shotgun_weapon_equip.wav" id="30_l7aar"]
 [ext_resource type="AudioStream" uid="uid://b2ayrupafa7vd" path="res://characters/player/sounds/rifle/03_assault_rifle_reload_1_bolt.wav" id="31_35ybe"]
 [ext_resource type="AudioStream" uid="uid://cri33dsanonb7" path="res://characters/player/sounds/rifle/assault_rifle_mag_draw.wav" id="32_e8ifn"]
+[ext_resource type="AudioStream" uid="uid://dlr0ohsu4ey0y" path="res://characters/player/sounds/rifle/assault_rifle_tail_01.wav" id="32_typ2k"]
+[ext_resource type="AudioStream" uid="uid://bnnpatdo1f5w3" path="res://characters/player/sounds/shotgun/shotgun_tail_01.wav" id="37_jnyn1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_f7cyc"]
 radius = 45.0
@@ -5657,6 +5660,10 @@ bus = &"sfx"
 stream = ExtResource("25_0jdq8")
 bus = &"sfx"
 
+[node name="PistolTailShootSound" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("26_dpg1x")
+bus = &"sfx"
+
 [node name="PistolReload1" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("26_14xrr")
 bus = &"sfx"
@@ -5677,6 +5684,10 @@ bus = &"sfx"
 stream = ExtResource("27_71ufs")
 bus = &"sfx"
 
+[node name="RifleTailShootSound" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("32_typ2k")
+bus = &"sfx"
+
 [node name="RifleReload1" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("31_35ybe")
 bus = &"sfx"
@@ -5691,6 +5702,10 @@ bus = &"sfx"
 
 [node name="ShotgunShootSound" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("27_l26co")
+bus = &"sfx"
+
+[node name="ShotgunTailShootSound" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("37_jnyn1")
 bus = &"sfx"
 
 [node name="ShotgunShellLoad" type="AudioStreamPlayer" parent="Sounds"]

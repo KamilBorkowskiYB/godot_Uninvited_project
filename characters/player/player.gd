@@ -80,6 +80,7 @@ var WEAPONS = {
 			"aftershot": "aftershot_pistol"
 		},
 		"shoot_sound": "PistolShootSound",
+		"shoot_tail_sound": "PistolTailShootSound",
 		"equip_sound": "PistolEquip"
 	},
 	"rifle": {
@@ -103,6 +104,7 @@ var WEAPONS = {
 			"aftershot": "aftershot_rifle"
 		},
 		"shoot_sound": "RifleShootSound",
+		"shoot_tail_sound": "RifleTailShootSound",
 		"equip_sound": "RifleEquip"
 	},
 	"shotgun": {
@@ -126,6 +128,7 @@ var WEAPONS = {
 			"aftershot": "aftershot_shotgun"
 		},
 		"shoot_sound": "ShotgunShootSound",
+		"shoot_tail_sound": "ShotgunTailShootSound",
 		"equip_sound": "ShotgunEquip"
 	},
 	"default": {
@@ -148,6 +151,7 @@ var WEAPONS = {
 			"aftershot": "aftershot_shotgun"
 		},
 		"shoot_sound": "ShotgunShootSound",
+		"shoot_tail_sound": "ShotgunTailShootSound",
 		"equip_sound": "ShotgunEquip"
 	}
 }
@@ -168,6 +172,7 @@ var animation_aimed = animations["aimed"]
 var animation_reload = animations["reload"]
 var animation_aftershot = animations["aftershot"]
 var shoot_sound = current_weapon["shoot_sound"]
+var shoot_tail_sound = current_weapon["shoot_tail_sound"]
 var equip_sound = current_weapon["equip_sound"]
 
 func _ready():
@@ -352,6 +357,7 @@ func shoot(ray_casts,ammo_type):
 		top.get_node("FlashLight").show()
 		top.get_node("MuzzleFlash/Timer").start()
 		play_sound(shoot_sound, 1000.0, 3)
+		play_sound(shoot_tail_sound, 1000.0, 3)
 		
 		
 		var camera = get_parent().get_node("PlayerCamera")
@@ -471,6 +477,7 @@ func change_weapon(id):
 		recoil_focus_speed = (w["max_recoil"] - w["min_recoil"]) / w["focus_speed"]
 		recoil = w["max_recoil"] * 0.7
 		shoot_sound = w["shoot_sound"]
+		shoot_tail_sound = w["shoot_tail_sound"]
 		equip_sound = w["equip_sound"]
 		
 		animation_idle = w["anims"]["idle"]

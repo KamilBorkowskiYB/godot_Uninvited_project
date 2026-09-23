@@ -181,6 +181,7 @@ func _process(_delta):
 	var player: CharacterBody2D = get_tree().get_first_node_in_group("player")
 	if player != null:
 		$WeaponSelected/Control/Label.text = str(player.current_weapon["current_magazine"]) +"/"+ str(player.current_weapon["current_ammo"])
+	$Debug/FPS.text = "FPS: %d" % Engine.get_frames_per_second()
 	if Input.is_action_just_pressed("restart"):
 		restart()
 func restart():

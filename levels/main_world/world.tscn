@@ -473,7 +473,6 @@ texture = ExtResource("6_6svyg")
 offset = Vector2(0, -350)
 
 [node name="Debug" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="DebugViewVision" type="Sprite2D" parent="Debug"]
 position = Vector2(213, 130)
@@ -507,6 +506,10 @@ visible = false
 position = Vector2(1721, 633.2)
 scale = Vector2(0.2, 0.2)
 texture = SubResource("ViewportTexture_3heoh")
+
+[node name="FPS" type="Label" parent="Debug"]
+offset_right = 40.0
+offset_bottom = 23.0
 
 [connection signal="timeout" from="ItemsObtained/UI/PickUpTimer" to="ItemsObtained/UI" method="hide"]
 [connection signal="pressed" from="DeathScreen/DeathScreen/Panel/Button" to="." method="restart"]

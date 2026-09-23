@@ -1,11 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://d1oul8y1hqgln"]
+[gd_scene load_steps=9 format=3 uid="uid://d1oul8y1hqgln"]
 
 [ext_resource type="PackedScene" uid="uid://bnppgiphfgo5q" path="res://levels/test_level1/enviroment.tscn" id="1_aqhqd"]
 [ext_resource type="PackedScene" uid="uid://86mkpqtpfq1p" path="res://characters/mutant/mutant.tscn" id="4_78ckn"]
 [ext_resource type="PackedScene" uid="uid://shqgwjseluto" path="res://objects/light_source.tscn" id="4_n3l4b"]
 [ext_resource type="PackedScene" uid="uid://bf4qoj3d4egrk" path="res://characters/guest/guest_enemy.tscn" id="4_ve2pi"]
 [ext_resource type="PackedScene" uid="uid://bhvgcymlk0ibj" path="res://Interactions/pickUp.tscn" id="7_0crg7"]
+[ext_resource type="PackedScene" uid="uid://p0e2kf65ae5c" path="res://Interactions/TriggerEvent.tscn" id="7_j0gja"]
 [ext_resource type="PackedScene" uid="uid://bkwqhd3tr21xb" path="res://Interactions/SceneChange/change_scene.tscn" id="8_smc70"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l63cd"]
+size = Vector2(118, 40)
 
 [node name="Level" type="Node2D"]
 
@@ -148,3 +152,23 @@ level_mid = "res://levels/test_level2/forest_lvl_gray.tscn"
 level_low = "res://levels/test_level2/forest_lvl_low.tscn"
 player_position = Vector2(5, 420)
 level_name = "Woods"
+
+[node name="Triggers" type="Node2D" parent="."]
+
+[node name="TriggerEvent" parent="Triggers" instance=ExtResource("7_j0gja")]
+position = Vector2(-144, 1789)
+action = 2
+enemy_state = 1
+enemy_position = Vector2(-144, 1000)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Triggers/TriggerEvent"]
+shape = SubResource("RectangleShape2D_l63cd")
+
+[node name="TriggerEvent2" parent="Triggers" instance=ExtResource("7_j0gja")]
+position = Vector2(-6479, 179)
+action = 2
+enemy_state = 1
+enemy_position = Vector2(-6042, 137)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Triggers/TriggerEvent2"]
+shape = SubResource("RectangleShape2D_l63cd")
