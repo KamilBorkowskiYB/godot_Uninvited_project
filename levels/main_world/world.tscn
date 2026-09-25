@@ -473,6 +473,7 @@ texture = ExtResource("6_6svyg")
 offset = Vector2(0, -350)
 
 [node name="Debug" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="DebugViewVision" type="Sprite2D" parent="Debug"]
 position = Vector2(213, 130)

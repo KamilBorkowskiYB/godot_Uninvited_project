@@ -241,7 +241,6 @@ func _on_interact_grab():
 
 
 func _on_interact_toggle_light():
-	var player: CharacterBody2D = get_tree().get_first_node_in_group("player")
 	var light_source = get_node_or_null("LightSource")
 	var LinkedLight = linkedView.get_node_or_null("LightSource")
 	var LinkedLightBulb = linkedView.get_node_or_null("Lightbulb")

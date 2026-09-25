@@ -35,6 +35,9 @@ var health = 100
 var damage = 5
 var tween_done := false
 var sound_done := false
+var recovery_time := 0.0
+var recovery_stop_time := 0.0
+var recovery_total_time := 1.5
 
 
 func _ready():
@@ -111,11 +114,25 @@ func _physics_process(_delta):
 		
 		rot_to = move_direction.angle() + PI/2.0
 	
+	
 	if current_state == State.RECOVER:
-		rot_to = move_direction.angle() + PI/2.0
-		turn_speed = 0.3
+		recovery_time += _delta
+		if recovery_time < recovery_stop_time:
+			velocity = Vector2.ZERO
+			turn_speed = 0.0
+		else:
+			var recovery_progress = clamp((recovery_time - recovery_stop_time) / (recovery_total_time - recovery_stop_time), 0.0, 1.0)
+			anim_move_speed_debuff = lerp(0.0, 1.0, recovery_progress)
+			move_speed_debuff = floor_move_speed_debuff * anim_move_speed_debuff
+			velocity = move_speed * move_direction * move_speed_debuff
+			animation_player_legs.speed_scale = move_speed_debuff
+			animation_player_legs.play("walk")
+			move_and_slide()
+			turn_speed = lerp(0.0, 5.0, recovery_progress)
+			rot_to = move_direction.angle() + PI/2.0
 	else:
 		turn_speed = 5.0
+	
 	global_rotation = lerp_angle(
 		global_rotation,
 		rot_to,
@@ -131,7 +148,7 @@ func _physics_process(_delta):
 				attack_lunge()
 			else:
 				attack()
-		elif target.is_in_group("movable_blocks"):
+		elif target.is_in_group("movable_blocks") or target.get_parent().is_in_group("movable_blocks"):
 			if dist_to_target < 150: attack()
 
 
@@ -299,28 +316,32 @@ func attack_lunge():
 	if current_state == State.LUNGE or current_state == State.ATTACK:
 		return
 	current_state = State.LUNGE
-	anim_move_speed_debuff = 5.0
-	if !(animation_player_top.current_animation  == "attack"):
-		animation_player_top.play("attack")
-	#if !(animation_player_top.current_animation  == "lunge"):
-		#animation_player_top.play("lunge")
+	anim_move_speed_debuff = 5.5
+	if !(animation_player_top.current_animation  == "lunge_new"):
+		animation_player_top.play("lunge_new")
 
 
 func attack_ended(attack_type): #1-attack, 2-lunge
 	#Recovery
 	velocity = Vector2.ZERO
 	current_state = State.RECOVER
+	recovery_time = 0.0
 	if attack_type == 1:
 		animation_player_top.play("recovery_attack")
 		animation_player_top.queue("idle")
+		recovery_stop_time = 0.0
+		recovery_total_time = 1.5
 	else:
 		animation_player_top.play("recovery_attack")
-		animation_player_top.play("idle")
+		animation_player_top.queue("idle")
+		recovery_stop_time = 1.0
+		recovery_total_time = 2.5
+		animation_player_legs.stop()
 	animation_player_top.speed_scale = 1.0
-	animation_player_legs.stop()
-	anim_move_speed_debuff = 1.0
-	await get_tree().create_timer(2.0).timeout
+	anim_move_speed_debuff = 0.0
+	await get_tree().create_timer(recovery_total_time).timeout
 	
+	anim_move_speed_debuff = 1.0
 	current_state = State.IDLE
 	player_spoted()
 

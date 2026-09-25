@@ -25,7 +25,7 @@ func trigger_event():
 		TriggerAction.PASS_ON:
 			pass_on_trigger()
 		TriggerAction.SPAWN_ENEMIES:
-			spawn_enemies(enemy, enemy_state, enemy_position, enemy_rotation)
+			call_deferred("spawn_enemies",enemy, enemy_state, enemy_position, enemy_rotation)
 	queue_free()
 
 
@@ -42,21 +42,22 @@ func play_cutscene():
 	pass
 
 
-func spawn_enemies(enemy_type, enemy_state, enemy_pos, enemy_rot):
-	var enemy
+func spawn_enemies(enemy_type, start_state, enemy_pos, enemy_rot):
+	var enemy_scene
 	var state
 	match enemy_type:
 		Enemies.GUEST:
-			enemy = guest
+			enemy_scene = guest
 		Enemies.PACIENT:
-			enemy = guest # change in the future
-	match enemy_state:
+			enemy_scene = guest # change in the future
+	match start_state:
 		EnemiesStates.IDLE:
 			state = 1
 		EnemiesStates.CHASE:
 			state = 0
-	var enemy_instance = enemy.instantiate()
+	var enemy_instance = enemy_scene.instantiate()
 	enemy_instance.position = enemy_pos
 	enemy_instance.rotation = enemy_rot
+	
 	get_parent().get_parent().get_node("Enemies").add_child(enemy_instance)
 	if state == 0: enemy_instance.player_spoted()
