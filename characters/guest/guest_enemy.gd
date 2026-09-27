@@ -153,7 +153,14 @@ func _physics_process(_delta):
 
 
 func take_damage(attack_info: Attack):
-	$Sounds/DamageTaken.play()
+	if dead:
+		return
+	if randi_range(0, 1) == 0:
+		if $Sounds/DamageTaken2.playing == false and $Sounds/DamageTaken.playing == false:
+			$Sounds/DamageTaken.play()
+	else:
+		if $Sounds/DamageTaken2.playing == false and $Sounds/DamageTaken.playing == false:
+			$Sounds/DamageTaken2.play()
 	health -= attack_info.attack_damage
 	lost_sight_time = 0.0
 	player_spoted()
@@ -169,6 +176,10 @@ func kill(_attack: Attack):
 			weak_points[i].queue_free()
 	dead = true
 	
+	if $Sounds/DamageTaken.playing:
+		$Sounds/DamageTaken.playing = false
+	if $Sounds/DamageTaken2.playing:
+		$Sounds/DamageTaken2.playing = false
 	$Sounds/DeathSound.play()
 	start_death_effect()
 	$CollisionShape2D.disabled = true

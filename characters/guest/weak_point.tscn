@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://drtyrflnj08vn"]
+[gd_scene load_steps=7 format=3 uid="uid://drtyrflnj08vn"]
 
 [ext_resource type="Texture2D" uid="uid://bpt4jmnoatubq" path="res://characters/guest/weakpoint.png" id="1_j34wp"]
 [ext_resource type="Script" path="res://characters/guest/weak_point.gd" id="1_kcu7l"]
+[ext_resource type="AudioStream" uid="uid://b34u5oq63x2p6" path="res://characters/guest/weak_point.mp3" id="3_darh3"]
+[ext_resource type="AudioStream" uid="uid://dgo5ilm5nl6wj" path="res://characters/guest/Blood_squirt.mp3" id="4_lr33h"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hio27"]
 radius = 19.44
@@ -36,3 +38,14 @@ initial_velocity_max = 191.39
 scale_amount_max = 5.78
 scale_amount_curve = SubResource("Curve_plnwe")
 color = Color(0.950309, 0.550053, 0.287181, 1)
+
+[node name="DamageTaken" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_darh3")
+volume_db = 10.0
+max_distance = 3000.0
+bus = &"sfx"
+
+[node name="DamageTaken2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_lr33h")
+volume_db = 7.0
+bus = &"sfx"

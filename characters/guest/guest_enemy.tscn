@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://bf4qoj3d4egrk"]
+[gd_scene load_steps=34 format=3 uid="uid://bf4qoj3d4egrk"]
 
 [ext_resource type="Script" path="res://characters/guest/guest_enemy.gd" id="1_l1ot1"]
 [ext_resource type="Texture2D" uid="uid://dy4befcrs41er" path="res://characters/guest/guest_atlas.png" id="1_waigw"]
@@ -9,11 +9,13 @@
 [ext_resource type="PackedScene" uid="uid://b4hop5ypxtvrs" path="res://characters/water_splash.tscn" id="5_jme3m"]
 [ext_resource type="PackedScene" uid="uid://drtyrflnj08vn" path="res://characters/guest/weak_point.tscn" id="5_pjtur"]
 [ext_resource type="Script" path="res://characters/mutant/HurtBoxArea.gd" id="6_intjx"]
-[ext_resource type="AudioStream" uid="uid://71k1d45tql15" path="res://characters/zombie/monster_die.wav" id="6_l436g"]
 [ext_resource type="Script" path="res://characters/mutant/AttackArea2D.gd" id="7_fq165"]
 [ext_resource type="AudioStream" uid="uid://6pn5lbj8i2ch" path="res://characters/player/sounds/footsteps/concrete_footstep.mp3" id="7_n140f"]
 [ext_resource type="AudioStream" uid="uid://baanxyc2vjxhr" path="res://characters/player/sounds/footsteps/grass_footsteps.mp3" id="8_ergsx"]
-[ext_resource type="AudioStream" uid="uid://dr7bvggxwkhqw" path="res://characters/player/sounds/damage_taken.wav" id="14_3be34"]
+[ext_resource type="AudioStream" uid="uid://c7l8ihs2eukfp" path="res://characters/guest/Die.mp3" id="11_kxrah"]
+[ext_resource type="AudioStream" uid="uid://ow4gq6kk4har" path="res://characters/guest/Groan1.mp3" id="14_0htaf"]
+[ext_resource type="AudioStream" uid="uid://b2384pkegf5pw" path="res://characters/guest/Groan2.mp3" id="15_vayw5"]
+[ext_resource type="AudioStream" uid="uid://daraa5xm6qu5d" path="res://characters/guest/Swoosh.mp3" id="16_xh5oc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dx05a"]
 radius = 59.0
@@ -249,6 +251,18 @@ tracks/16/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("Sounds/Hit:playing")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_fjcqm"]
 resource_name = "attack"
@@ -470,6 +484,18 @@ tracks/17/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
+}
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("Sounds/Hit:playing")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_v57d8"]
@@ -1307,6 +1333,18 @@ tracks/17/keys = {
 "update": 1,
 "values": [true, false]
 }
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("Sounds/Hit:playing")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_xul18"]
 resource_name = "recovery_attack"
@@ -2075,7 +2113,8 @@ radius = 60.0
 [node name="Sounds" type="Node2D" parent="."]
 
 [node name="DeathSound" type="AudioStreamPlayer2D" parent="Sounds"]
-stream = ExtResource("6_l436g")
+stream = ExtResource("11_kxrah")
+volume_db = 4.0
 bus = &"sfx"
 
 [node name="ConcreteFootstep" type="AudioStreamPlayer2D" parent="Sounds"]
@@ -2087,8 +2126,33 @@ stream = ExtResource("8_ergsx")
 bus = &"sfx"
 
 [node name="DamageTaken" type="AudioStreamPlayer2D" parent="Sounds"]
-stream = ExtResource("14_3be34")
-max_distance = 500.0
+stream = ExtResource("14_0htaf")
+volume_db = 7.0
+bus = &"sfx"
+
+[node name="DamageTaken2" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("15_vayw5")
+volume_db = 7.0
+bus = &"sfx"
+
+[node name="IdleBark" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("15_vayw5")
+volume_db = 1.5
+bus = &"sfx"
+
+[node name="AggroBark" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("15_vayw5")
+volume_db = 1.5
+bus = &"sfx"
+
+[node name="AggroBark2" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("15_vayw5")
+volume_db = 1.5
+bus = &"sfx"
+
+[node name="Hit" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("16_xh5oc")
+volume_db = 2.5
 bus = &"sfx"
 
 [connection signal="body_entered" from="CanvasGroup/Graphics/Torso/LeftArm/LeftHighArm/LeftLowerArm/LeftLowerArm/Hand/AttackArea" to="CanvasGroup/Graphics/Torso/LeftArm/LeftHighArm/LeftLowerArm/LeftLowerArm/Hand/AttackArea" method="_on_body_entered"]
