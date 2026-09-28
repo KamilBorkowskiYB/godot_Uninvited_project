@@ -23,7 +23,6 @@ high = true
 grabable = true
 
 [node name="BlockSprite" parent="." index="0"]
-texture_filter = 1
 scale = Vector2(2, 2)
 
 [node name="LightOccluder2D" parent="BlockSprite" index="0"]

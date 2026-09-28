@@ -393,6 +393,7 @@ func shoot(ray_casts,ammo_type):
 					attack.attack_damage = damage
 					attack.attack_direction = direction
 					attack.attack_source_name = self.name
+					attack.attack_impact_position = ray_cast.get_collision_point()
 					ray_cast.get_collider().take_damage(attack)
 			
 			# Pass shot info to dummy player in the other dimension

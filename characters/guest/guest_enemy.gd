@@ -11,6 +11,8 @@ extends CharacterBody2D
 @onready var navigation_agent = $NavigationAgent2D
 @onready var attack_area = $CanvasGroup/Graphics/Torso/LeftArm/LeftHighArm/LeftLowerArm/LeftLowerArm/Hand/AttackArea
 var dead = false
+var blood_splater = load("res://characters/guest/blood_splater1.png")
+var blood_pool = load("res://characters/guest/blood_splater2.png")
 @export var push_force = 10.0
 @export var investigation_time = 5.0
 @export var LOST_AGRO_DELAY := 3.0
@@ -90,6 +92,11 @@ func _physics_process(_delta):
 		if lost_sight_time >= LOST_AGRO_DELAY:
 			player_lost()
 	if current_state == State.CHASE or current_state == State.RECOVER:
+		var distance_to_player := global_position.distance_to(player.global_position)
+		if distance_to_player <= 120.0:
+			move_speed = 0
+		else:
+			move_speed = 100
 		if navigation_agent.target_position.distance_to(player.global_position) > 16.0:
 			navigation_agent.target_position = player.global_position
 		var next_point = navigation_agent.get_next_path_position()
@@ -155,6 +162,8 @@ func _physics_process(_delta):
 func take_damage(attack_info: Attack):
 	if dead:
 		return
+	#spawn_blood(attack_info.attack_direction)
+	spawn_blood(attack_info.attack_direction, attack_info.attack_impact_position)
 	if randi_range(0, 1) == 0:
 		if $Sounds/DamageTaken2.playing == false and $Sounds/DamageTaken.playing == false:
 			$Sounds/DamageTaken.play()
@@ -171,6 +180,10 @@ func take_damage(attack_info: Attack):
 func kill(_attack: Attack):
 	if dead:
 		return
+	spawn_corpse()
+	spawn_corpse()
+	spawn_corpse()
+	
 	for i in range(0, keep_count):
 		if is_instance_valid(weak_points[i]):
 			weak_points[i].queue_free()
@@ -403,3 +416,75 @@ func on_sound_done():
 func check_death_cleanup():
 	if tween_done and sound_done:
 		queue_free()
+
+
+
+func spawn_blood(direction, impact_position):
+	var blood := Sprite2D.new()
+	blood.texture = blood_splater
+	blood.global_position = impact_position
+	blood.scale = Vector2(0.2, 0.2)
+	blood.rotation = randf_range(0.0, 180.0)
+	blood.z_index = -1
+	blood.hframes = 2
+	blood.frame = randi_range(0, 1)
+	
+	get_parent().add_child(blood)
+	var distance := randf_range(150.0, 240.0)
+	var target_position = blood.global_position - direction.rotated(randf_range(-0.5, 0.5)) * distance
+	
+	var space_state := get_world_2d().direct_space_state
+	var query := PhysicsRayQueryParameters2D.create(
+		blood.global_position,
+		target_position
+	)
+	# If high block will collide with blood, then so will enemies
+	query.collision_mask = 1 | 4 | 8
+	var result := space_state.intersect_ray(query)
+	if result:
+		var wall_distance := blood.global_position.distance_to(result.position)
+		var target_distance := blood.global_position.distance_to(target_position)
+		if wall_distance < target_distance:
+			target_position = result.position
+	
+	var target_scale = randf_range(0.6, 1.3)
+	
+	var tween := create_tween()
+	tween.set_parallel(true)
+	
+	tween.tween_property(
+		blood,
+		"global_position",
+		target_position,
+		0.4
+	).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN)
+	
+	tween.tween_property(
+		blood,
+		"scale",
+		Vector2(target_scale,target_scale),
+		0.6
+	).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN)
+	
+	tween.chain().tween_interval(1.0)
+
+
+func spawn_corpse():
+	var blood := Sprite2D.new()
+	blood.texture = blood_pool
+	var position_offset := Vector2(randf_range(-50.0, 50.0), randf_range(-50.0, 50.0))
+	blood.global_position = global_position + position_offset
+	blood.scale = Vector2(0.2, 0.2)
+	blood.rotation = randf_range(0.0, 180.0)
+	blood.z_index = -1
+	
+	get_parent().add_child(blood)
+	
+	var target_scale = randf_range(1.0, 1.5)
+	var tween := create_tween()
+	tween.tween_property(
+		blood,
+		"scale",
+		Vector2(target_scale,target_scale),
+		1.5
+	).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
