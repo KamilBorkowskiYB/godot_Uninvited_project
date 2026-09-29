@@ -14,15 +14,15 @@ var dead = false
 var blood_splater = load("res://characters/guest/blood_splater1.png")
 var blood_pool = load("res://characters/guest/blood_splater2.png")
 @export var push_force = 10.0
-@export var investigation_time = 5.0
-@export var LOST_AGRO_DELAY := 3.0
+@export var investigation_time = 5.0 # how long walks to investigate
+@export var LOST_AGRO_DELAY := 3.0 # agro time
 var move_direction = Vector2(0,0)
 var standing_on :String = "grass"
 var floor_move_speed_debuff = 1.0
 var anim_move_speed_debuff = 1.0
 var move_speed_debuff = floor_move_speed_debuff * anim_move_speed_debuff
 var weak_points = []
-var keep_count
+#var keep_count
 enum State { CHASE, IDLE, ATTACK, LUNGE, DEAD, WALK, RECOVER }
 var current_state: State = State.IDLE  
 enum Return_State { RETURN_TO_ORIGIN, HANG_AROUND}
@@ -45,15 +45,11 @@ var recovery_total_time := 1.5
 func _ready():
 	connect_signals_bodyparts_recursive(self)
 	find_weak_points(self)
-	keep_count = randi_range(3, 5)
-	weak_points.shuffle()
-	for i in range(keep_count, weak_points.size()):
-		weak_points[i].queue_free()
-	for i in range(0, keep_count):
-		var s = randf_range(0.7, 1.3)
-		weak_points[i].scale = Vector2(s, s)
-		weak_points[i].show()
+	
+	for i in range(0, weak_points.size()):
 		weak_points[i].got_shot.connect(take_damage)
+		if weak_points[i].visible == false:
+			weak_points[i].queue_free()
 	
 	animation_player_top.play("idle")
 	animation_player_legs.play("walk")
@@ -185,7 +181,7 @@ func kill(_attack: Attack):
 	spawn_corpse()
 	spawn_corpse()
 	
-	for i in range(0, keep_count):
+	for i in range(0, weak_points.size()):
 		if is_instance_valid(weak_points[i]):
 			weak_points[i].queue_free()
 	dead = true

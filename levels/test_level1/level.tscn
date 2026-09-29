@@ -25,6 +25,7 @@ rotation = -3.12884
 [node name="guest_enemy" parent="Enemies" instance=ExtResource("4_ve2pi")]
 position = Vector2(962, 981)
 rotation = -2.15863
+investigation_time = 2.0
 
 [node name="guest_enemy2" parent="Enemies" instance=ExtResource("4_ve2pi")]
 position = Vector2(873, 413)
