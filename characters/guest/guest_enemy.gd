@@ -54,7 +54,10 @@ func _ready():
 		weak_points[i].scale = Vector2(s, s)
 		weak_points[i].show()
 		weak_points[i].got_shot.connect(take_damage)
+	
 	animation_player_top.play("idle")
+	animation_player_legs.play("walk")
+	
 	$Sounds/DeathSound.finished.connect(on_sound_done)
 	
 	walk_timer = Timer.new()
@@ -68,7 +71,7 @@ func _ready():
 func _physics_process(_delta):
 	if dead:
 		animation_player_top.stop()
-		animation_player_legs.stop()
+		animation_player_legs.speed_scale = 0.0
 		return
 	if standing_on == "water":
 		floor_move_speed_debuff = 0.3
@@ -113,7 +116,7 @@ func _physics_process(_delta):
 			set_idle()
 		
 		velocity = move_speed * move_direction * move_speed_debuff
-		move_and_slide()
+		if move_speed != 0: move_and_slide()
 		for i in get_slide_collision_count():
 			var c = get_slide_collision(i)
 			if c.get_collider() is RigidBody2D:
@@ -129,17 +132,16 @@ func _physics_process(_delta):
 			turn_speed = 0.0
 		else:
 			var recovery_progress = clamp((recovery_time - recovery_stop_time) / (recovery_total_time - recovery_stop_time), 0.0, 1.0)
-			anim_move_speed_debuff = lerp(0.0, 1.0, recovery_progress)
+			anim_move_speed_debuff = lerp(0.0, 2.2, recovery_progress) #2.2 is the basic anim speed
 			move_speed_debuff = floor_move_speed_debuff * anim_move_speed_debuff
 			velocity = move_speed * move_direction * move_speed_debuff
-			animation_player_legs.speed_scale = move_speed_debuff
-			animation_player_legs.play("walk")
-			move_and_slide()
+			if move_speed != 0: move_and_slide()
 			turn_speed = lerp(0.0, 5.0, recovery_progress)
 			rot_to = move_direction.angle() + PI/2.0
 	else:
 		turn_speed = 5.0
 	
+	animation_player_legs.speed_scale = velocity.length() / 220 #220 is the basic speed
 	global_rotation = lerp_angle(
 		global_rotation,
 		rot_to,
@@ -162,7 +164,6 @@ func _physics_process(_delta):
 func take_damage(attack_info: Attack):
 	if dead:
 		return
-	#spawn_blood(attack_info.attack_direction)
 	spawn_blood(attack_info.attack_direction, attack_info.attack_impact_position)
 	if randi_range(0, 1) == 0:
 		if $Sounds/DamageTaken2.playing == false and $Sounds/DamageTaken.playing == false:
@@ -222,8 +223,6 @@ func player_spoted():
 	if animation_player_top.current_animation != "chase":
 		animation_player_top.play("chase")
 	animation_player_top.speed_scale = 1.3
-	animation_player_legs.speed_scale = 1.0
-	animation_player_legs.play("walk")
 	anim_move_speed_debuff = 2.2
 
 
@@ -244,7 +243,7 @@ func set_idle():
 	current_state = State.IDLE
 	animation_player_top.play("idle")
 	animation_player_top.speed_scale = 1.0
-	animation_player_legs.stop()
+	velocity = Vector2.ZERO
 	anim_move_speed_debuff = 1.0
 
 
@@ -260,8 +259,6 @@ func walk_to(destination, persistent):
 	walk_to_pos = destination
 	animation_player_top.play("idle")
 	animation_player_top.speed_scale = 1.0
-	animation_player_legs.play("walk")
-	animation_player_legs.speed_scale = 0.7
 	anim_move_speed_debuff = 1.0
 
 var return_timer: SceneTreeTimer
@@ -360,7 +357,6 @@ func attack_ended(attack_type): #1-attack, 2-lunge
 		animation_player_top.queue("idle")
 		recovery_stop_time = 1.0
 		recovery_total_time = 2.5
-		animation_player_legs.stop()
 	animation_player_top.speed_scale = 1.0
 	anim_move_speed_debuff = 0.0
 	await get_tree().create_timer(recovery_total_time).timeout
