@@ -26,23 +26,32 @@ rotation = -3.12884
 position = Vector2(962, 981)
 rotation = -2.15863
 investigation_time = 2.0
+selected_weak_points = Array[NodePath]([NodePath("CanvasGroup/Graphics/Torso/RightArm/RightHighArm/RightLowerArm/WeakPoint"), NodePath("CanvasGroup/Graphics/Torso/LeftArm/LeftHighArm/LeftLowerArm/WeakPoint"), NodePath("CanvasGroup/Graphics/Torso/LeftArm/WeakPoint2"), NodePath("CanvasGroup/Graphics/Torso/LeftArm/LeftHighArm/LeftLowerArm/WeakPoint2")])
+weak_point_scales = Array[float]([1.16282, 1.17165, 1.05679, 1.24401])
 
 [node name="guest_enemy2" parent="Enemies" instance=ExtResource("4_ve2pi")]
 position = Vector2(873, 413)
 rotation = 0.554071
+selected_weak_points = Array[NodePath]([NodePath("CanvasGroup/Graphics/Torso/LeftArm/LeftHighArm/LeftLowerArm/WeakPoint3"), NodePath("CanvasGroup/Graphics/Torso/WeakPoint2"), NodePath("CanvasGroup/Graphics/Torso/WeakPoint5"), NodePath("CanvasGroup/Graphics/Torso/WeakPoint4"), NodePath("CanvasGroup/Graphics/Torso/WeakPoint")])
+weak_point_scales = Array[float]([0.854805, 1.23406, 1.25032, 1.17345, 1.13814])
 
 [node name="guest_enemy3" parent="Enemies" instance=ExtResource("4_ve2pi")]
 position = Vector2(-1059, 611)
 rotation = 2.40725
+selected_weak_points = Array[NodePath]([NodePath("CanvasGroup/Graphics/Torso/RightArm/RightHighArm/RightLowerArm/WeakPoint3"), NodePath("CanvasGroup/Graphics/Torso/WeakPoint"), NodePath("CanvasGroup/Graphics/Torso/LeftArm/LeftHighArm/LeftLowerArm/WeakPoint"), NodePath("CanvasGroup/Graphics/Torso/RightArm/WeakPoint")])
+weak_point_scales = Array[float]([1.21151, 1.08414, 1.29762, 1.00198])
 
 [node name="guest_enemy4" parent="Enemies" instance=ExtResource("4_ve2pi")]
 position = Vector2(-4176, -478)
 rotation = 0.0277243
+weak_point_scales = Array[float]([0.878535, 0.978851, 0.892653, 0.909186])
 
 [node name="guest_enemy5" parent="Enemies" instance=ExtResource("4_ve2pi")]
 position = Vector2(-5968, -53)
 rotation = -1.87713
 LOST_AGRO_DELAY = 300.0
+selected_weak_points = Array[NodePath]([NodePath("CanvasGroup/Graphics/Torso/LeftArm/WeakPoint"), NodePath("CanvasGroup/Graphics/Torso/RightArm/RightHighArm/RightLowerArm/WeakPoint"), NodePath("CanvasGroup/Graphics/Torso/Head/WeakPoint"), NodePath("CanvasGroup/Graphics/Torso/WeakPoint"), NodePath("CanvasGroup/Graphics/Torso/RightArm/WeakPoint")])
+weak_point_scales = Array[float]([0.917531, 0.782998, 1.0579, 0.786618, 1.01289])
 
 [node name="LightSource" parent="." instance=ExtResource("4_n3l4b")]
 z_index = -2

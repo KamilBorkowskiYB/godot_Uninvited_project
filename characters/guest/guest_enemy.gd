@@ -1,6 +1,17 @@
+@tool
 extends CharacterBody2D
 
-
+@export var randomize_weak_points: bool = false:
+	set(value):
+		randomize_weak_points = false
+		
+		if value:
+			randomize_points()
+@export var hide_all: bool = false:
+	set(value):
+		hide_all = false
+		if value:
+			hide_all_weak_points()
 @export var move_speed = 100
 @onready var graphics = $CanvasGroup/Graphics
 @onready var animation_player_top = $AnimationPlayerTop
@@ -21,8 +32,9 @@ var standing_on :String = "grass"
 var floor_move_speed_debuff = 1.0
 var anim_move_speed_debuff = 1.0
 var move_speed_debuff = floor_move_speed_debuff * anim_move_speed_debuff
-var weak_points = []
-#var keep_count
+@export var selected_weak_points: Array[NodePath] = []
+@export var weak_point_scales: Array[float] = []
+var weak_points: Array[Node] = []
 enum State { CHASE, IDLE, ATTACK, LUNGE, DEAD, WALK, RECOVER }
 var current_state: State = State.IDLE  
 enum Return_State { RETURN_TO_ORIGIN, HANG_AROUND}
@@ -33,7 +45,7 @@ var investigating := false
 @onready var rot_to = global_rotation
 var lost_sight_time := 0.0
 var turn_speed := 5.0
-var health = 100
+@export var health = 100
 var damage = 5
 var tween_done := false
 var sound_done := false
@@ -43,13 +55,25 @@ var recovery_total_time := 1.5
 
 
 func _ready():
+	if Engine.is_editor_hint():
+		return
 	connect_signals_bodyparts_recursive(self)
-	find_weak_points(self)
+	weak_points = []
+	find_weak_points(self, weak_points)
 	
 	for i in range(0, weak_points.size()):
 		weak_points[i].got_shot.connect(take_damage)
-		if weak_points[i].visible == false:
+		if !selected_weak_points.has(get_path_to(weak_points[i])):
 			weak_points[i].queue_free()
+			
+	for i in range(selected_weak_points.size()):
+		var weak_point = get_node_or_null(selected_weak_points[i])
+		if weak_point:
+			weak_point.show()
+			weak_point.scale = Vector2(
+				weak_point_scales[i],
+				weak_point_scales[i]
+			)
 	
 	animation_player_top.play("idle")
 	animation_player_legs.play("walk")
@@ -65,6 +89,8 @@ func _ready():
 
 
 func _physics_process(_delta):
+	if Engine.is_editor_hint():
+		return
 	if dead:
 		animation_player_top.stop()
 		animation_player_legs.speed_scale = 0.0
@@ -196,11 +222,11 @@ func kill(_attack: Attack):
 	z_index = -1
 
 
-func find_weak_points(node: Node):
-	for child in node.get_children():
-		if child.is_in_group("weak_point"):
-			weak_points.append(child)
-		find_weak_points(child)
+#func find_weak_points(node: Node):
+	#for child in node.get_children():
+		#if child.is_in_group("weak_point"):
+			#weak_points.append(child)
+		#find_weak_points(child)
 
 
 func step():
@@ -480,3 +506,36 @@ func spawn_corpse():
 		Vector2(target_scale,target_scale),
 		1.5
 	).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN_OUT)
+
+
+func randomize_points():
+	weak_points = []
+	selected_weak_points = []
+	weak_point_scales = []
+	var weak_points_count = randi_range(3, 5)
+	find_weak_points(self, weak_points)
+	
+	weak_points.shuffle()
+	for i in range(weak_points_count, weak_points.size()):
+		weak_points[i].hide()
+		
+	for i in range(0, weak_points_count):
+		var s = randf_range(0.7, 1.3)
+		weak_points[i].scale = Vector2(s, s)
+		weak_points[i].show()
+		selected_weak_points.append(get_path_to(weak_points[i]))
+		weak_point_scales.append(s)
+
+
+func hide_all_weak_points():
+	weak_points = []
+	selected_weak_points = []
+	find_weak_points(self, weak_points)
+	for i in range(0, weak_points.size()):
+		weak_points[i].hide()
+
+func find_weak_points(node: Node, result: Array[Node]):
+	for child in node.get_children():
+		if child.is_in_group("weak_point"):
+			result.append(child)
+		find_weak_points(child, result)

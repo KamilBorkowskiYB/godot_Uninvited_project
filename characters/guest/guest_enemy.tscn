@@ -1,9 +1,8 @@
-[gd_scene load_steps=35 format=3 uid="uid://bf4qoj3d4egrk"]
+[gd_scene load_steps=34 format=3 uid="uid://bf4qoj3d4egrk"]
 
 [ext_resource type="Script" path="res://characters/guest/guest_enemy.gd" id="1_l1ot1"]
 [ext_resource type="Texture2D" uid="uid://dy4befcrs41er" path="res://characters/guest/guest_atlas.png" id="1_waigw"]
 [ext_resource type="Shader" path="res://shaders/pixel_explosion.gdshader" id="2_jhtc3"]
-[ext_resource type="Script" path="res://characters/guest/WeakPointsManager.gd" id="2_t3ysg"]
 [ext_resource type="PackedScene" uid="uid://cjgla4gkbb8u2" path="res://Interactions/footsteps.tscn" id="3_jw3op"]
 [ext_resource type="Texture2D" uid="uid://f5sx516ofsyb" path="res://characters/player/graphic/legs.png" id="3_wwoh1"]
 [ext_resource type="Texture2D" uid="uid://c52fuv8m14np1" path="res://characters/player/graphic/pelvis.png" id="4_0jtiv"]
@@ -1782,9 +1781,8 @@ collision_layer = 4
 collision_mask = 15
 motion_mode = 1
 script = ExtResource("1_l1ot1")
-
-[node name="WeakPointsManager" type="Node2D" parent="."]
-script = ExtResource("2_t3ysg")
+selected_weak_points = null
+weak_point_scales = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708
@@ -1872,12 +1870,12 @@ region_rect = Rect2(209, 253, 58, 61)
 [node name="WeakPoint" parent="CanvasGroup/Graphics/Torso/Head" instance=ExtResource("5_pjtur")]
 visible = false
 position = Vector2(8, -18)
-scale = Vector2(1.22315, 1.22315)
+scale = Vector2(1.05603, 1.05603)
 
 [node name="WeakPoint2" parent="CanvasGroup/Graphics/Torso/Head" instance=ExtResource("5_pjtur")]
 visible = false
 position = Vector2(-18, -19)
-scale = Vector2(1.29648, 1.29648)
+scale = Vector2(0.88068, 0.88068)
 
 [node name="LeftArm" type="Node2D" parent="CanvasGroup/Graphics/Torso"]
 position = Vector2(-50, -22)
@@ -1926,17 +1924,17 @@ shape = SubResource("CircleShape2D_us0sc")
 [node name="WeakPoint" parent="CanvasGroup/Graphics/Torso/LeftArm/LeftHighArm/LeftLowerArm" instance=ExtResource("5_pjtur")]
 visible = false
 position = Vector2(22.9778, -18.0682)
-scale = Vector2(0.917099, 0.917099)
+scale = Vector2(0.826696, 0.826696)
 
 [node name="WeakPoint2" parent="CanvasGroup/Graphics/Torso/LeftArm/LeftHighArm/LeftLowerArm" instance=ExtResource("5_pjtur")]
 visible = false
 position = Vector2(-10.7086, -9.22355)
-scale = Vector2(0.990216, 0.990216)
+scale = Vector2(1.21436, 1.21436)
 
 [node name="WeakPoint3" parent="CanvasGroup/Graphics/Torso/LeftArm/LeftHighArm/LeftLowerArm" instance=ExtResource("5_pjtur")]
 visible = false
 position = Vector2(11.2346, -45.3829)
-scale = Vector2(0.811332, 0.811332)
+scale = Vector2(0.714278, 0.714278)
 
 [node name="HurtBoxArea" type="Area2D" parent="CanvasGroup/Graphics/Torso/LeftArm/LeftHighArm/LeftLowerArm"]
 position = Vector2(-19.7366, 13.0362)
@@ -1953,12 +1951,12 @@ shape = SubResource("CapsuleShape2D_ajbsa")
 [node name="WeakPoint" parent="CanvasGroup/Graphics/Torso/LeftArm" instance=ExtResource("5_pjtur")]
 visible = false
 position = Vector2(-11.0271, 6.35638)
-scale = Vector2(1.13402, 1.13402)
+scale = Vector2(1.24764, 1.24764)
 
 [node name="WeakPoint2" parent="CanvasGroup/Graphics/Torso/LeftArm" instance=ExtResource("5_pjtur")]
 visible = false
 position = Vector2(7.78448, -28.9724)
-scale = Vector2(1.27167, 1.27167)
+scale = Vector2(0.932221, 0.932221)
 
 [node name="HurtBoxArea" type="Area2D" parent="CanvasGroup/Graphics/Torso/LeftArm"]
 position = Vector2(-5.07454, 26.5942)
@@ -2009,17 +2007,17 @@ region_rect = Rect2(240, 151, 45, 57)
 [node name="WeakPoint" parent="CanvasGroup/Graphics/Torso/RightArm/RightHighArm/RightLowerArm" instance=ExtResource("5_pjtur")]
 visible = false
 position = Vector2(-5.464, -56.62)
-scale = Vector2(1.17897, 1.17897)
+scale = Vector2(1.29309, 1.29309)
 
 [node name="WeakPoint2" parent="CanvasGroup/Graphics/Torso/RightArm/RightHighArm/RightLowerArm" instance=ExtResource("5_pjtur")]
 visible = false
 position = Vector2(10.8765, -22.0804)
-scale = Vector2(0.787542, 0.787542)
+scale = Vector2(1.06889, 1.06889)
 
 [node name="WeakPoint3" parent="CanvasGroup/Graphics/Torso/RightArm/RightHighArm/RightLowerArm" instance=ExtResource("5_pjtur")]
 visible = false
 position = Vector2(-18.9323, -27.3181)
-scale = Vector2(0.824664, 0.824664)
+scale = Vector2(1.16246, 1.16246)
 
 [node name="HurtBoxArea" type="Area2D" parent="CanvasGroup/Graphics/Torso/RightArm/RightHighArm/RightLowerArm"]
 position = Vector2(-4.10034, 11.9886)
@@ -2036,17 +2034,17 @@ shape = SubResource("CapsuleShape2D_mm0gy")
 [node name="WeakPoint" parent="CanvasGroup/Graphics/Torso/RightArm" instance=ExtResource("5_pjtur")]
 visible = false
 position = Vector2(21.8976, -35.0641)
-scale = Vector2(1.22492, 1.22492)
+scale = Vector2(1.29066, 1.29066)
 
 [node name="WeakPoint2" parent="CanvasGroup/Graphics/Torso/RightArm" instance=ExtResource("5_pjtur")]
 visible = false
 position = Vector2(16.96, 2.89134)
-scale = Vector2(0.974152, 0.974152)
+scale = Vector2(0.915363, 0.915363)
 
 [node name="WeakPoint3" parent="CanvasGroup/Graphics/Torso/RightArm" instance=ExtResource("5_pjtur")]
 visible = false
 position = Vector2(-8.66957, -22.4686)
-scale = Vector2(0.763257, 0.763257)
+scale = Vector2(1.2635, 1.2635)
 
 [node name="HurtBoxArea" type="Area2D" parent="CanvasGroup/Graphics/Torso/RightArm"]
 position = Vector2(-9.59905, 16.8777)
@@ -2063,27 +2061,27 @@ shape = SubResource("CapsuleShape2D_mm0gy")
 [node name="WeakPoint" parent="CanvasGroup/Graphics/Torso" instance=ExtResource("5_pjtur")]
 visible = false
 position = Vector2(-32, 19)
-scale = Vector2(0.847141, 0.847141)
+scale = Vector2(1.19357, 1.19357)
 
 [node name="WeakPoint2" parent="CanvasGroup/Graphics/Torso" instance=ExtResource("5_pjtur")]
 visible = false
 position = Vector2(43, 12)
-scale = Vector2(0.705315, 0.705315)
+scale = Vector2(1.11209, 1.11209)
 
 [node name="WeakPoint3" parent="CanvasGroup/Graphics/Torso" instance=ExtResource("5_pjtur")]
 visible = false
 position = Vector2(5, 25)
-scale = Vector2(0.986679, 0.986679)
+scale = Vector2(0.958669, 0.958669)
 
 [node name="WeakPoint4" parent="CanvasGroup/Graphics/Torso" instance=ExtResource("5_pjtur")]
 visible = false
 position = Vector2(23, -24)
-scale = Vector2(1.05088, 1.05088)
+scale = Vector2(0.928408, 0.928408)
 
 [node name="WeakPoint5" parent="CanvasGroup/Graphics/Torso" instance=ExtResource("5_pjtur")]
 visible = false
 position = Vector2(-28, -25)
-scale = Vector2(0.761481, 0.761481)
+scale = Vector2(0.988043, 0.988043)
 
 [node name="HurtBoxArea" type="Area2D" parent="CanvasGroup/Graphics/Torso"]
 position = Vector2(-39, -16)
