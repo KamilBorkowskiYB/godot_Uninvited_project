@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://bf4qoj3d4egrk"]
+[gd_scene load_steps=35 format=3 uid="uid://bf4qoj3d4egrk"]
 
 [ext_resource type="Script" path="res://characters/guest/guest_enemy.gd" id="1_l1ot1"]
 [ext_resource type="Texture2D" uid="uid://dy4befcrs41er" path="res://characters/guest/guest_atlas.png" id="1_waigw"]
@@ -15,6 +15,7 @@
 [ext_resource type="AudioStream" uid="uid://c7l8ihs2eukfp" path="res://characters/guest/Die.mp3" id="11_kxrah"]
 [ext_resource type="AudioStream" uid="uid://ow4gq6kk4har" path="res://characters/guest/Groan1.mp3" id="14_0htaf"]
 [ext_resource type="AudioStream" uid="uid://b2384pkegf5pw" path="res://characters/guest/Groan2.mp3" id="15_vayw5"]
+[ext_resource type="AudioStream" uid="uid://nrnalrjppskj" path="res://characters/guest/Hit.mp3" id="16_na3yr"]
 [ext_resource type="AudioStream" uid="uid://daraa5xm6qu5d" path="res://characters/guest/Swoosh.mp3" id="16_xh5oc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dx05a"]
@@ -1781,8 +1782,6 @@ collision_layer = 4
 collision_mask = 15
 motion_mode = 1
 script = ExtResource("1_l1ot1")
-selected_weak_points = null
-weak_point_scales = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708
@@ -2155,18 +2154,20 @@ stream = ExtResource("15_vayw5")
 volume_db = 7.0
 bus = &"sfx"
 
+[node name="DamageTaken3" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("16_na3yr")
+volume_db = 7.0
+bus = &"sfx"
+
 [node name="IdleBark" type="AudioStreamPlayer2D" parent="Sounds"]
-stream = ExtResource("15_vayw5")
 volume_db = 1.5
 bus = &"sfx"
 
 [node name="AggroBark" type="AudioStreamPlayer2D" parent="Sounds"]
-stream = ExtResource("15_vayw5")
 volume_db = 1.5
 bus = &"sfx"
 
 [node name="AggroBark2" type="AudioStreamPlayer2D" parent="Sounds"]
-stream = ExtResource("15_vayw5")
 volume_db = 1.5
 bus = &"sfx"
 

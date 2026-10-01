@@ -187,6 +187,7 @@ func take_damage(attack_info: Attack):
 	if dead:
 		return
 	spawn_blood(attack_info.attack_direction, attack_info.attack_impact_position)
+	#$Sounds/DamageTaken3.play()
 	if randi_range(0, 1) == 0:
 		if $Sounds/DamageTaken2.playing == false and $Sounds/DamageTaken.playing == false:
 			$Sounds/DamageTaken.play()
@@ -222,12 +223,10 @@ func kill(_attack: Attack):
 	z_index = -1
 
 
-#func find_weak_points(node: Node):
-	#for child in node.get_children():
-		#if child.is_in_group("weak_point"):
-			#weak_points.append(child)
-		#find_weak_points(child)
-
+func connect_tilemap():
+	if get_parent().get_parent().get_child(0).get_child(0).get_node("Tilemap").get_child_count() > 0:
+		var tilemap = get_parent().get_parent().get_child(0).get_child(0).get_node("Tilemap").get_child(0)
+		self.get_node_or_null("Footsteps").get_child(0).tilemap = tilemap
 
 func step():
 	if standing_on == "brick":

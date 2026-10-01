@@ -26,8 +26,8 @@ rotation = -3.12884
 position = Vector2(962, 981)
 rotation = -2.15863
 investigation_time = 2.0
-selected_weak_points = Array[NodePath]([NodePath("CanvasGroup/Graphics/Torso/RightArm/RightHighArm/RightLowerArm/WeakPoint"), NodePath("CanvasGroup/Graphics/Torso/LeftArm/LeftHighArm/LeftLowerArm/WeakPoint"), NodePath("CanvasGroup/Graphics/Torso/LeftArm/WeakPoint2"), NodePath("CanvasGroup/Graphics/Torso/LeftArm/LeftHighArm/LeftLowerArm/WeakPoint2")])
-weak_point_scales = Array[float]([1.16282, 1.17165, 1.05679, 1.24401])
+selected_weak_points = Array[NodePath]([NodePath("CanvasGroup/Graphics/Torso/WeakPoint4"), NodePath("CanvasGroup/Graphics/Torso/LeftArm/LeftHighArm/LeftLowerArm/WeakPoint"), NodePath("CanvasGroup/Graphics/Torso/Head/WeakPoint2"), NodePath("CanvasGroup/Graphics/Torso/LeftArm/WeakPoint"), NodePath("CanvasGroup/Graphics/Torso/WeakPoint")])
+weak_point_scales = Array[float]([0.971775, 0.832841, 0.925952, 0.880728, 1.17834])
 
 [node name="guest_enemy2" parent="Enemies" instance=ExtResource("4_ve2pi")]
 position = Vector2(873, 413)
@@ -45,13 +45,6 @@ weak_point_scales = Array[float]([1.21151, 1.08414, 1.29762, 1.00198])
 position = Vector2(-4176, -478)
 rotation = 0.0277243
 weak_point_scales = Array[float]([0.878535, 0.978851, 0.892653, 0.909186])
-
-[node name="guest_enemy5" parent="Enemies" instance=ExtResource("4_ve2pi")]
-position = Vector2(-5968, -53)
-rotation = -1.87713
-LOST_AGRO_DELAY = 300.0
-selected_weak_points = Array[NodePath]([NodePath("CanvasGroup/Graphics/Torso/LeftArm/WeakPoint"), NodePath("CanvasGroup/Graphics/Torso/RightArm/RightHighArm/RightLowerArm/WeakPoint"), NodePath("CanvasGroup/Graphics/Torso/Head/WeakPoint"), NodePath("CanvasGroup/Graphics/Torso/WeakPoint"), NodePath("CanvasGroup/Graphics/Torso/RightArm/WeakPoint")])
-weak_point_scales = Array[float]([0.917531, 0.782998, 1.0579, 0.786618, 1.01289])
 
 [node name="LightSource" parent="." instance=ExtResource("4_n3l4b")]
 z_index = -2
@@ -165,20 +158,32 @@ level_name = "Woods"
 
 [node name="Triggers" type="Node2D" parent="."]
 
-[node name="TriggerEvent" parent="Triggers" instance=ExtResource("7_j0gja")]
+[node name="TriggerEvent" parent="Triggers" node_paths=PackedStringArray("enemy_instance") instance=ExtResource("7_j0gja")]
 position = Vector2(-144, 1789)
 action = 2
 enemy_state = 1
-enemy_position = Vector2(-144, 1000)
+enemy_instance = NodePath("GuestEnemy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Triggers/TriggerEvent"]
 shape = SubResource("RectangleShape2D_l63cd")
 
-[node name="TriggerEvent2" parent="Triggers" instance=ExtResource("7_j0gja")]
+[node name="GuestEnemy" parent="Triggers/TriggerEvent" instance=ExtResource("4_ve2pi")]
+position = Vector2(-17, -759)
+rotation = 3.03972
+selected_weak_points = Array[NodePath]([NodePath("CanvasGroup/Graphics/Torso/WeakPoint5"), NodePath("CanvasGroup/Graphics/Torso/RightArm/RightHighArm/RightLowerArm/WeakPoint3"), NodePath("CanvasGroup/Graphics/Torso/Head/WeakPoint"), NodePath("CanvasGroup/Graphics/Torso/RightArm/RightHighArm/RightLowerArm/WeakPoint")])
+weak_point_scales = Array[float]([1.05364, 0.959575, 0.911049, 0.877939])
+
+[node name="TriggerEvent2" parent="Triggers" node_paths=PackedStringArray("enemy_instance") instance=ExtResource("7_j0gja")]
 position = Vector2(-6479, 179)
 action = 2
 enemy_state = 1
-enemy_position = Vector2(-6042, 137)
+enemy_instance = NodePath("GuestEnemy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Triggers/TriggerEvent2"]
 shape = SubResource("RectangleShape2D_l63cd")
+
+[node name="GuestEnemy" parent="Triggers/TriggerEvent2" instance=ExtResource("4_ve2pi")]
+position = Vector2(461, -127)
+rotation = -2.36953
+selected_weak_points = Array[NodePath]([NodePath("CanvasGroup/Graphics/Torso/Head/WeakPoint"), NodePath("CanvasGroup/Graphics/Torso/LeftArm/LeftHighArm/LeftLowerArm/WeakPoint"), NodePath("CanvasGroup/Graphics/Torso/RightArm/RightHighArm/RightLowerArm/WeakPoint3")])
+weak_point_scales = Array[float]([1.26835, 1.03462, 1.01435])
