@@ -22,6 +22,7 @@ extends CharacterBody2D
 @onready var navigation_agent = $NavigationAgent2D
 @onready var attack_area = $CanvasGroup/Graphics/Torso/LeftArm/LeftHighArm/LeftLowerArm/LeftLowerArm/Hand/AttackArea
 var dead = false
+signal died
 var blood_splater = load("res://characters/guest/blood_splater1.png")
 var blood_pool = load("res://characters/guest/blood_splater2.png")
 @export var push_force = 10.0
@@ -212,6 +213,7 @@ func kill(_attack: Attack):
 		if is_instance_valid(weak_points[i]):
 			weak_points[i].queue_free()
 	dead = true
+	died.emit()
 	
 	if $Sounds/DamageTaken.playing:
 		$Sounds/DamageTaken.playing = false

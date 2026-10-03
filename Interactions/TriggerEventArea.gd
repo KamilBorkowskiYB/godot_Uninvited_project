@@ -5,7 +5,8 @@ signal reveal_area
 enum TriggerAction {
 	REVEAL_PARENT,
 	PASS_ON,
-	SPAWN_ENEMIES
+	SPAWN_ENEMIES,
+	TOGGLE_SPAWNER
 }
 
 enum Enemies {
@@ -31,6 +32,7 @@ enum EnemiesStates {
 @export var enemy_state: EnemiesStates = EnemiesStates.IDLE
 @export var enemy_instance: CharacterBody2D
 var enemy_global_transform: Transform2D
+@export var trigger_node: Node2D
 
 func _ready():
 	if Engine.is_editor_hint():
@@ -58,6 +60,9 @@ func trigger_event():
 	
 		TriggerAction.SPAWN_ENEMIES:
 			call_deferred("spawn_enemies")
+		
+		TriggerAction.TOGGLE_SPAWNER:
+			toggle_spawner()
 	
 	queue_free()
 
@@ -76,6 +81,11 @@ func pass_on_trigger():
 
 func play_cutscene():
 	pass
+
+
+func toggle_spawner():
+	if trigger_node.has_method("toggle_active"):
+		trigger_node.toggle_active()
 
 
 func spawn_enemies():

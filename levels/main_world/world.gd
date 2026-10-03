@@ -269,14 +269,10 @@ func swap_dimensions():
 	var viewport1 = get_node("MainLevelViewport/SubViewport/MainScene")
 	var main_dim_seen = viewport1.get_child(0)
 	#viewports2 are animeted in the above tween
-	var viewport3 = get_node("VisibilityViewport")
 	var od_viewport1 = get_node_or_null("OtherDimension/SubLevelViewport/ODSeenViewport")
 	var other_dim_seen = od_viewport1.get_child(0)
-	var od_viewport3 = get_node_or_null("OtherDimension/ODVisibilityViewport")
 	
-	var viewport_dim_split = get_node_or_null("OtherDimension/DimensionsParser")
 	var viewport_dim_split_occluders = get_node_or_null("OtherDimension/DimensionsParserOccluders")
-	var od_viewport_dim_split = get_node_or_null("OtherDimension/ODDimensionsParser")
 	var od_viewport_dim_split_occluders = get_node_or_null("OtherDimension/ODDimensionsParserOccluders")
 	
 	var player: CharacterBody2D = get_tree().get_first_node_in_group("player")

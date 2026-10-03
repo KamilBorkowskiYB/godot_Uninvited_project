@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://d1oul8y1hqgln"]
+[gd_scene load_steps=11 format=3 uid="uid://d1oul8y1hqgln"]
 
 [ext_resource type="PackedScene" uid="uid://bnppgiphfgo5q" path="res://levels/test_level1/enviroment.tscn" id="1_aqhqd"]
 [ext_resource type="PackedScene" uid="uid://86mkpqtpfq1p" path="res://characters/mutant/mutant.tscn" id="4_78ckn"]
@@ -6,10 +6,14 @@
 [ext_resource type="PackedScene" uid="uid://bf4qoj3d4egrk" path="res://characters/guest/guest_enemy.tscn" id="4_ve2pi"]
 [ext_resource type="PackedScene" uid="uid://bhvgcymlk0ibj" path="res://Interactions/pickUp.tscn" id="7_0crg7"]
 [ext_resource type="PackedScene" uid="uid://p0e2kf65ae5c" path="res://Interactions/TriggerEvent.tscn" id="7_j0gja"]
+[ext_resource type="PackedScene" uid="uid://siv6odu6yllb" path="res://Interactions/Spawner/spawner.tscn" id="8_ksqdw"]
 [ext_resource type="PackedScene" uid="uid://bkwqhd3tr21xb" path="res://Interactions/SceneChange/change_scene.tscn" id="8_smc70"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l63cd"]
 size = Vector2(118, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uen5p"]
+size = Vector2(206, 236)
 
 [node name="Level" type="Node2D"]
 
@@ -187,3 +191,15 @@ position = Vector2(461, -127)
 rotation = -2.36953
 selected_weak_points = Array[NodePath]([NodePath("CanvasGroup/Graphics/Torso/Head/WeakPoint"), NodePath("CanvasGroup/Graphics/Torso/LeftArm/LeftHighArm/LeftLowerArm/WeakPoint"), NodePath("CanvasGroup/Graphics/Torso/RightArm/RightHighArm/RightLowerArm/WeakPoint3")])
 weak_point_scales = Array[float]([1.26835, 1.03462, 1.01435])
+
+[node name="Spawner" parent="Triggers" instance=ExtResource("8_ksqdw")]
+position = Vector2(-824, 1554)
+active = false
+
+[node name="TriggerEvent3" parent="Triggers" node_paths=PackedStringArray("trigger_node") instance=ExtResource("7_j0gja")]
+position = Vector2(-1593, 1490)
+action = 3
+trigger_node = NodePath("../Spawner")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Triggers/TriggerEvent3"]
+shape = SubResource("RectangleShape2D_uen5p")
