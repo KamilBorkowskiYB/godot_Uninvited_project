@@ -21,10 +21,12 @@ collision_mask = 3
 
 [node name="ParapetSprite" type="Sprite2D" parent="."]
 self_modulate = Color(0, 0, 0, 1)
+z_index = 4
 scale = Vector2(2.5, 1)
 texture = ExtResource("1_4c2an")
 
 [node name="GlassSprite" type="Sprite2D" parent="."]
+z_index = 6
 texture_filter = 1
 texture = ExtResource("2_froq1")
 hframes = 3
@@ -53,11 +55,10 @@ bus = &"sfx"
 stream = ExtResource("5_ybwfk")
 bus = &"sfx"
 
-[node name="ShatteredGlass" type="Node2D" parent="."]
+[node name="ShatteredGlass" type="Node2D" parent="." groups=["decals"]]
 visible = false
 
 [node name="shattered_glass" type="Sprite2D" parent="ShatteredGlass"]
-z_index = -1
 texture_filter = 1
 position = Vector2(-77, -67)
 rotation = 0.247938

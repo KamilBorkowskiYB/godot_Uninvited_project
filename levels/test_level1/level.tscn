@@ -40,7 +40,7 @@ selected_weak_points = Array[NodePath]([NodePath("CanvasGroup/Graphics/Torso/Lef
 weak_point_scales = Array[float]([0.854805, 1.23406, 1.25032, 1.17345, 1.13814])
 
 [node name="guest_enemy3" parent="Enemies" instance=ExtResource("4_ve2pi")]
-position = Vector2(-1059, 611)
+position = Vector2(716, -2561)
 rotation = 2.40725
 selected_weak_points = Array[NodePath]([NodePath("CanvasGroup/Graphics/Torso/RightArm/RightHighArm/RightLowerArm/WeakPoint3"), NodePath("CanvasGroup/Graphics/Torso/WeakPoint"), NodePath("CanvasGroup/Graphics/Torso/LeftArm/LeftHighArm/LeftLowerArm/WeakPoint"), NodePath("CanvasGroup/Graphics/Torso/RightArm/WeakPoint")])
 weak_point_scales = Array[float]([1.21151, 1.08414, 1.29762, 1.00198])

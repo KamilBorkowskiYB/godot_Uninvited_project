@@ -29,13 +29,11 @@ func play_sound(audio_player: AudioStreamPlayer2D):
 	sound.max_distance = audio_player.max_distance
 	sound.attenuation = audio_player.attenuation
 	sound.panning_strength = audio_player.panning_strength
-	sound.global_position = global_position
 	var ancestor := get_parent()
 	while ancestor and not ancestor is CharacterBody2D:
 		ancestor = ancestor.get_parent()
 	if ancestor:
 		ancestor.add_child(sound)
-	else:
-		push_warning("Could not find CharacterBody2D ancestor for sound")
+	sound.global_position = global_position
 	sound.finished.connect(sound.queue_free)
 	sound.play()

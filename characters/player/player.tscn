@@ -5395,7 +5395,7 @@ script = ExtResource("1_bf8ru")
 can_shoot = true
 
 [node name="Bottom" type="Node2D" parent="."]
-z_index = -1
+z_index = 1
 position = Vector2(0, 4.76837e-07)
 
 [node name="Legs" type="Node2D" parent="Bottom"]
@@ -5448,6 +5448,7 @@ texture = ExtResource("3_0tow6")
 shape = SubResource("CircleShape2D_f7cyc")
 
 [node name="Top" type="Node2D" parent="."]
+z_index = 5
 
 [node name="RunRotation" type="Node2D" parent="Top"]
 

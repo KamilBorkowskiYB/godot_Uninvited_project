@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://d32q58d334dfd" path="res://objects/floor/floor.tscn" id="2_b38ae"]
 [ext_resource type="PackedScene" uid="uid://cxiu2kws8f1xm" path="res://objects/staticBlock.tscn" id="3_skg3l"]
 
-[node name="StaircaseMarbleLower" type="Node2D"]
+[node name="StaircaseMarbleLower" type="Node2D" groups=["decals"]]
 z_index = -1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

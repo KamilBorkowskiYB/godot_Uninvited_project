@@ -15,6 +15,7 @@ _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [node name="FountainMarble" type="StaticBody2D" groups=["navigation_group"]]
+z_index = 4
 collision_layer = 4
 collision_mask = 15
 

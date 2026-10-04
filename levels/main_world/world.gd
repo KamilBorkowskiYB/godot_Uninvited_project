@@ -172,7 +172,7 @@ func _ready():
 	if player_camera == null: player_camera = od_viewport1.get_node("PlayerCamera")
 	player_camera._ready()
 	
-	#set tilemap z order to -12 in fogvp to show objects on top of overlay
+	#set tilemap and declas z order to lower value in fogvp to show overlay floor above normal walls
 	set_tilemap_z_order(viewport2)
 	set_tilemap_z_order(od_viewport2)
 
@@ -499,7 +499,7 @@ func connect_tilemap_to_footsteps(viewport):
 	
 	var enemies = viewport.get_node("Enemies")
 	for child in enemies.get_children():
-		if(child and tilemap):
+		if(child and tilemap and child.get_node_or_null("Footsteps")):
 			child.get_node_or_null("Footsteps").get_child(0).tilemap = tilemap
 	
 	var movables = viewport.get_child(0).get_child(0).get_node("MovingBlocks") #First get_child - lvl_hight, second - lvl_middium, third - lvl_low
@@ -510,4 +510,9 @@ func connect_tilemap_to_footsteps(viewport):
 
 func set_tilemap_z_order(viewport):
 	var tilemap_in_lvl_low = viewport.get_child(0).get_child(0).get_child(0).get_node_or_null("Tilemap").get_child(0)
-	tilemap_in_lvl_low.z_index = -12 #if overlay doesn't cover make sure overlay is on is max on -1 layer than the one covered
+	tilemap_in_lvl_low.z_index = -14 #if overlay doesn't cover make sure overlay is on is max on -1 layer than the one covered
+	
+	var decals = get_tree().get_nodes_in_group("decals")
+	for decal in decals:
+		if is_instance_valid(decal) and viewport.is_ancestor_of(decal):
+			decal.z_index -= 14

@@ -39,13 +39,15 @@ func _ready():
 	if high:
 		$".".set_collision_layer_value(2, true)
 		$".".set_collision_layer_value(3, false)
+		$".".z_index = 6
 	else:
 		$".".set_collision_layer_value(2, false)
 		$".".set_collision_layer_value(3, true)
+		$".".z_index = 4
 		light_occ.set_occluder_light_mask(2)
 	if hide_light_occ:
 		light_occ.occluder_light_mask = 0
-		
+
 
 func _process(_delta):
 	if linkedView != null:
