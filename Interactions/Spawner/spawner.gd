@@ -20,8 +20,8 @@ func create_guest():
 	new_enemy.died.connect(spawn_died)
 	
 	var enemies_node = get_parent().get_parent().get_node_or_null("Enemies")
-	enemies_node.add_child(new_enemy)
 	new_enemy.global_transform = self.global_transform
+	enemies_node.add_child(new_enemy)
 	new_enemy.connect_tilemap()
 	new_enemy.show()
 	

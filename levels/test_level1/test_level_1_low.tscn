@@ -469,6 +469,11 @@ position = Vector2(30, 56)
 collision_layer = 0
 collision_mask = 7
 
+[node name="CreateSmall5" parent="MovingBlocks" instance=ExtResource("5_syhhd")]
+position = Vector2(-1345, 1419)
+collision_layer = 0
+collision_mask = 7
+
 [node name="CreateBig" parent="MovingBlocks" instance=ExtResource("6_qey61")]
 position = Vector2(41, -214)
 collision_layer = 0

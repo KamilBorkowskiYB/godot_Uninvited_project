@@ -16,6 +16,7 @@ func kill(attack: Attack):
 	play_sound($DamageTaken2)
 	got_shot.emit(attack)
 
+
 func take_damage(attack: Attack):
 	kill(attack)
 

@@ -50,6 +50,12 @@ position = Vector2(-4176, -478)
 rotation = 0.0277243
 weak_point_scales = Array[float]([0.878535, 0.978851, 0.892653, 0.909186])
 
+[node name="guest_enemy5" parent="Enemies" instance=ExtResource("4_ve2pi")]
+position = Vector2(-1139, 628)
+rotation = 2.36518
+selected_weak_points = Array[NodePath]([NodePath("CanvasGroup/Graphics/Torso/RightArm/RightHighArm/RightLowerArm/WeakPoint"), NodePath("CanvasGroup/Graphics/Torso/RightArm/WeakPoint"), NodePath("CanvasGroup/Graphics/Torso/WeakPoint2"), NodePath("CanvasGroup/Graphics/Torso/WeakPoint")])
+weak_point_scales = Array[float]([0.98639, 0.797469, 1.09286, 0.987148])
+
 [node name="LightSource" parent="." instance=ExtResource("4_n3l4b")]
 z_index = -2
 position = Vector2(557, 993)
@@ -197,7 +203,7 @@ position = Vector2(-824, 1554)
 active = false
 
 [node name="TriggerEvent3" parent="Triggers" node_paths=PackedStringArray("trigger_node") instance=ExtResource("7_j0gja")]
-position = Vector2(-1593, 1490)
+position = Vector2(-1349, 1417)
 action = 3
 trigger_node = NodePath("../Spawner")
 

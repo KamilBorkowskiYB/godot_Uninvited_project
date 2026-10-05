@@ -63,9 +63,15 @@ func _ready():
 	find_weak_points(self, weak_points)
 	
 	for i in range(0, weak_points.size()):
-		weak_points[i].got_shot.connect(take_damage)
+		weak_points[i].got_shot.connect(weak_point_shot)
 		if !selected_weak_points.has(get_path_to(weak_points[i])):
-			weak_points[i].queue_free()
+			weak_points[i].monitoring = false
+			weak_points[i].monitorable = false
+			weak_points[i].collision_layer = 0
+			weak_points[i].collision_mask = 0
+			weak_points[i].hide()
+			
+			#weak_points[i].queue_free()
 			
 	for i in range(selected_weak_points.size()):
 		var weak_point = get_node_or_null(selected_weak_points[i])
@@ -540,3 +546,31 @@ func find_weak_points(node: Node, result: Array[Node]):
 		if child.is_in_group("weak_point"):
 			result.append(child)
 		find_weak_points(child, result)
+
+
+func weak_point_shot(attack_info: Attack):
+	print("weakpoint shot")
+	take_damage(attack_info)
+	activate_new_weak_point()
+
+
+func activate_new_weak_point():
+	weak_points = []
+	find_weak_points(self, weak_points)
+	weak_points.shuffle()
+	
+	if weak_points[0]:
+		weak_points[0].monitoring = true
+		weak_points[0].monitorable = true
+		weak_points[0].collision_layer = 1
+		weak_points[0].collision_mask = 1
+		weak_points[0].scale = Vector2(0.0, 0.0)
+		var tween := create_tween()
+		var s = randf_range(0.7, 1.3)
+		tween.tween_property(
+			weak_points[0],
+			"scale",
+			Vector2(s,s),
+			1.0
+		).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN_OUT)
+		weak_points[0].show()

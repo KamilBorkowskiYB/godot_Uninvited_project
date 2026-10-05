@@ -3,8 +3,8 @@ extends Area2D
 signal got_hit_head(attack: Attack)
 var hit_sound = load("res://characters/guest/Blood_squirt.mp3")
 
-func kill(attack: Attack):#func not used
-	pass
+#func kill(attack: Attack):#func not used
+	#pass
 
 func take_damage(attack: Attack):
 	var sound = AudioStreamPlayer2D.new()
