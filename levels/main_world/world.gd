@@ -1,8 +1,29 @@
+@tool
 extends Node2D
 
-#@onready var player: CharacterBody2D = get_tree().get_first_node_in_group("player")
+@export_dir var main_level_scenes_folder: String = "":
+	set(value):
+		main_level_scenes_folder = value
+		find_main_scene_variants()
+
+var main_scene_low: PackedScene
+var main_scene_mid: PackedScene
+var main_scene_high: PackedScene
+
+@export_dir var other_level_scenes_folder: String = "":
+	set(value):
+		other_level_scenes_folder = value
+		find_other_scene_variants()
+
+var other_scene_low: PackedScene
+var other_scene_mid: PackedScene
+var other_scene_high: PackedScene
+
 
 func _ready():
+	if Engine.is_editor_hint():
+		return
+	
 	var viewport1 = get_node("MainLevelViewport/SubViewport")
 	var viewport2 = get_node("FogViewport")
 	var viewport3 = get_node("VisibilityViewport")
@@ -178,6 +199,8 @@ func _ready():
 
 
 func _process(_delta):
+	if Engine.is_editor_hint():
+		return
 	var player: CharacterBody2D = get_tree().get_first_node_in_group("player")
 	if player != null:
 		$WeaponSelected/Control/Label.text = str(player.current_weapon["current_magazine"]) +"/"+ str(player.current_weapon["current_ammo"])
@@ -516,3 +539,87 @@ func set_tilemap_z_order(viewport):
 	for decal in decals:
 		if is_instance_valid(decal) and viewport.is_ancestor_of(decal):
 			decal.z_index -= 14
+
+#================================ EDITOR ======================================
+func find_main_scene_variants():
+	main_scene_low = null
+	main_scene_mid = null
+	main_scene_high = null
+	if main_level_scenes_folder.is_empty():
+		return
+	if not DirAccess.dir_exists_absolute(main_level_scenes_folder):
+		push_warning("Folder nie istnieje: " + main_level_scenes_folder)
+		return
+	var dir = DirAccess.open(main_level_scenes_folder)
+	if dir == null:
+		push_warning("Nie można otworzyć folderu: " + main_level_scenes_folder)
+		return
+	dir.list_dir_begin()
+	var file_name = dir.get_next()
+	while file_name != "":
+		if not dir.current_is_dir():
+			if file_name.ends_with(".tscn"):
+				var scene_path = main_level_scenes_folder.path_join(file_name)
+				if file_name.ends_with("_low.tscn"):
+					main_scene_low = load(scene_path)
+				elif file_name.ends_with("_gray.tscn"):
+					main_scene_mid = load(scene_path)
+				elif file_name.ends_with("_high.tscn"):
+					main_scene_high = load(scene_path)
+		file_name = dir.get_next()
+	
+	dir.list_dir_end()
+	notify_property_list_changed()
+
+
+func find_other_scene_variants():
+	other_scene_low = null
+	other_scene_mid = null
+	other_scene_high = null
+	if other_level_scenes_folder.is_empty():
+		return
+	if not DirAccess.dir_exists_absolute(other_level_scenes_folder):
+		push_warning("Folder nie istnieje: " + other_level_scenes_folder)
+		return
+	var dir = DirAccess.open(other_level_scenes_folder)
+	if dir == null:
+		push_warning("Nie można otworzyć folderu: " + other_level_scenes_folder)
+		return
+	dir.list_dir_begin()
+	var file_name = dir.get_next()
+	while file_name != "":
+		if not dir.current_is_dir():
+			if file_name.ends_with(".tscn"):
+				var scene_path = other_level_scenes_folder.path_join(file_name)
+				if file_name.ends_with("_low.tscn"):
+					other_scene_low = load(scene_path)
+				elif file_name.ends_with("_gray.tscn"):
+					other_scene_mid = load(scene_path)
+				elif file_name.ends_with("_high.tscn"):
+					other_scene_high = load(scene_path)
+		file_name = dir.get_next()
+	
+	dir.list_dir_end()
+	notify_property_list_changed()
+	
+	#replacing scene tree
+	var main_viewport = get_node("OtherDimension/SubLevelViewport/ODSeenViewport")
+	replace_level_in_scene(main_viewport, other_scene_high)
+	var fog_viewport = get_node("OtherDimension/ODFogViewport")
+	replace_level_in_scene(fog_viewport, other_scene_mid)
+	var vis_viewport = get_node("OtherDimension/ODVisibilityViewport")
+	replace_level_in_scene(vis_viewport, other_scene_low)
+	var dim_pars_viewport = get_node("OtherDimension/ODDimensionsParser")
+	replace_level_in_scene(dim_pars_viewport, other_scene_low)
+	var dim_pars_occ_viewport = get_node("OtherDimension/ODDimensionsParserOccluders")
+	replace_level_in_scene(dim_pars_occ_viewport, other_scene_low)
+
+func replace_level_in_scene(viewport, new_level_scene):
+	var old_level
+	var new_level
+	old_level = viewport.get_child(0)
+	viewport.remove_child(old_level)
+	old_level.queue_free()
+	new_level = new_level_scene.instantiate()
+	viewport.add_child(new_level)
+	viewport.move_child(new_level, 0)

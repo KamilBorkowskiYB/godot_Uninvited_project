@@ -1,13 +1,13 @@
 [gd_scene load_steps=11 format=3 uid="uid://d1oul8y1hqgln"]
 
-[ext_resource type="PackedScene" uid="uid://bnppgiphfgo5q" path="res://levels/test_level1/enviroment.tscn" id="1_aqhqd"]
-[ext_resource type="PackedScene" uid="uid://86mkpqtpfq1p" path="res://characters/mutant/mutant.tscn" id="4_78ckn"]
-[ext_resource type="PackedScene" uid="uid://shqgwjseluto" path="res://objects/light_source.tscn" id="4_n3l4b"]
-[ext_resource type="PackedScene" uid="uid://bf4qoj3d4egrk" path="res://characters/guest/guest_enemy.tscn" id="4_ve2pi"]
-[ext_resource type="PackedScene" uid="uid://bhvgcymlk0ibj" path="res://Interactions/pickUp.tscn" id="7_0crg7"]
-[ext_resource type="PackedScene" uid="uid://p0e2kf65ae5c" path="res://Interactions/TriggerEvent.tscn" id="7_j0gja"]
-[ext_resource type="PackedScene" uid="uid://siv6odu6yllb" path="res://Interactions/Spawner/spawner.tscn" id="8_ksqdw"]
-[ext_resource type="PackedScene" uid="uid://bkwqhd3tr21xb" path="res://Interactions/SceneChange/change_scene.tscn" id="8_smc70"]
+[ext_resource type="PackedScene" uid="uid://bnppgiphfgo5q" path="res://levels/test_level1/test_level_1_mid.tscn" id="1_6o4ac"]
+[ext_resource type="PackedScene" uid="uid://86mkpqtpfq1p" path="res://characters/mutant/mutant.tscn" id="2_x04wu"]
+[ext_resource type="PackedScene" uid="uid://bf4qoj3d4egrk" path="res://characters/guest/guest_enemy.tscn" id="3_4lamd"]
+[ext_resource type="PackedScene" uid="uid://shqgwjseluto" path="res://objects/light_source.tscn" id="4_x28aj"]
+[ext_resource type="PackedScene" uid="uid://bhvgcymlk0ibj" path="res://Interactions/pickUp.tscn" id="5_jpuu2"]
+[ext_resource type="PackedScene" uid="uid://bkwqhd3tr21xb" path="res://Interactions/SceneChange/change_scene.tscn" id="6_skiqt"]
+[ext_resource type="PackedScene" uid="uid://p0e2kf65ae5c" path="res://Interactions/TriggerEvent.tscn" id="7_d7nri"]
+[ext_resource type="PackedScene" uid="uid://siv6odu6yllb" path="res://Interactions/Spawner/spawner.tscn" id="8_14vwu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l63cd"]
 size = Vector2(118, 40)
@@ -17,139 +17,139 @@ size = Vector2(206, 236)
 
 [node name="Level" type="Node2D"]
 
-[node name="Enviroment" parent="." instance=ExtResource("1_aqhqd")]
+[node name="Enviroment" parent="." instance=ExtResource("1_6o4ac")]
 
 [node name="Enemies" type="Node2D" parent="."]
 position = Vector2(4, 5)
 
-[node name="Mutant" parent="Enemies" instance=ExtResource("4_78ckn")]
+[node name="Mutant" parent="Enemies" instance=ExtResource("2_x04wu")]
 position = Vector2(1414, -378)
 rotation = -3.12884
 
-[node name="guest_enemy" parent="Enemies" instance=ExtResource("4_ve2pi")]
+[node name="guest_enemy" parent="Enemies" instance=ExtResource("3_4lamd")]
 position = Vector2(962, 981)
 rotation = -2.15863
 investigation_time = 2.0
 selected_weak_points = Array[NodePath]([NodePath("CanvasGroup/Graphics/Torso/WeakPoint4"), NodePath("CanvasGroup/Graphics/Torso/LeftArm/LeftHighArm/LeftLowerArm/WeakPoint"), NodePath("CanvasGroup/Graphics/Torso/Head/WeakPoint2"), NodePath("CanvasGroup/Graphics/Torso/LeftArm/WeakPoint"), NodePath("CanvasGroup/Graphics/Torso/WeakPoint")])
 weak_point_scales = Array[float]([0.971775, 0.832841, 0.925952, 0.880728, 1.17834])
 
-[node name="guest_enemy2" parent="Enemies" instance=ExtResource("4_ve2pi")]
+[node name="guest_enemy2" parent="Enemies" instance=ExtResource("3_4lamd")]
 position = Vector2(873, 413)
 rotation = 0.554071
 selected_weak_points = Array[NodePath]([NodePath("CanvasGroup/Graphics/Torso/LeftArm/LeftHighArm/LeftLowerArm/WeakPoint3"), NodePath("CanvasGroup/Graphics/Torso/WeakPoint2"), NodePath("CanvasGroup/Graphics/Torso/WeakPoint5"), NodePath("CanvasGroup/Graphics/Torso/WeakPoint4"), NodePath("CanvasGroup/Graphics/Torso/WeakPoint")])
 weak_point_scales = Array[float]([0.854805, 1.23406, 1.25032, 1.17345, 1.13814])
 
-[node name="guest_enemy3" parent="Enemies" instance=ExtResource("4_ve2pi")]
+[node name="guest_enemy3" parent="Enemies" instance=ExtResource("3_4lamd")]
 position = Vector2(716, -2561)
 rotation = 2.40725
 selected_weak_points = Array[NodePath]([NodePath("CanvasGroup/Graphics/Torso/RightArm/RightHighArm/RightLowerArm/WeakPoint3"), NodePath("CanvasGroup/Graphics/Torso/WeakPoint"), NodePath("CanvasGroup/Graphics/Torso/LeftArm/LeftHighArm/LeftLowerArm/WeakPoint"), NodePath("CanvasGroup/Graphics/Torso/RightArm/WeakPoint")])
 weak_point_scales = Array[float]([1.21151, 1.08414, 1.29762, 1.00198])
 
-[node name="guest_enemy4" parent="Enemies" instance=ExtResource("4_ve2pi")]
+[node name="guest_enemy4" parent="Enemies" instance=ExtResource("3_4lamd")]
 position = Vector2(-4176, -478)
 rotation = 0.0277243
 weak_point_scales = Array[float]([0.878535, 0.978851, 0.892653, 0.909186])
 
-[node name="guest_enemy5" parent="Enemies" instance=ExtResource("4_ve2pi")]
+[node name="guest_enemy5" parent="Enemies" instance=ExtResource("3_4lamd")]
 position = Vector2(-1139, 628)
 rotation = 2.36518
 selected_weak_points = Array[NodePath]([NodePath("CanvasGroup/Graphics/Torso/RightArm/RightHighArm/RightLowerArm/WeakPoint"), NodePath("CanvasGroup/Graphics/Torso/RightArm/WeakPoint"), NodePath("CanvasGroup/Graphics/Torso/WeakPoint2"), NodePath("CanvasGroup/Graphics/Torso/WeakPoint")])
 weak_point_scales = Array[float]([0.98639, 0.797469, 1.09286, 0.987148])
 
-[node name="LightSource" parent="." instance=ExtResource("4_n3l4b")]
+[node name="LightSource" parent="." instance=ExtResource("4_x28aj")]
 z_index = -2
 position = Vector2(557, 993)
 
-[node name="LightSource3" parent="." instance=ExtResource("4_n3l4b")]
+[node name="LightSource3" parent="." instance=ExtResource("4_x28aj")]
 z_index = -2
 position = Vector2(-715, 605)
 
 [node name="PickUps" type="Node2D" parent="."]
 position = Vector2(-82, -66)
 
-[node name="PickUp" parent="PickUps" instance=ExtResource("7_0crg7")]
+[node name="PickUp" parent="PickUps" instance=ExtResource("5_jpuu2")]
 position = Vector2(-294, 356)
 item_selected = 4
 
-[node name="ShotgunShells" parent="PickUps" instance=ExtResource("7_0crg7")]
+[node name="ShotgunShells" parent="PickUps" instance=ExtResource("5_jpuu2")]
 position = Vector2(726, 161)
 item_selected = 1
 
-[node name="ShotgunShells2" parent="PickUps" instance=ExtResource("7_0crg7")]
+[node name="ShotgunShells2" parent="PickUps" instance=ExtResource("5_jpuu2")]
 position = Vector2(424, 1050)
 item_selected = 1
 
-[node name="ShotgunShells3" parent="PickUps" instance=ExtResource("7_0crg7")]
+[node name="ShotgunShells3" parent="PickUps" instance=ExtResource("5_jpuu2")]
 position = Vector2(424, 1050)
 item_selected = 1
 
-[node name="ShotgunShells4" parent="PickUps" instance=ExtResource("7_0crg7")]
+[node name="ShotgunShells4" parent="PickUps" instance=ExtResource("5_jpuu2")]
 position = Vector2(424, 1050)
 item_selected = 1
 
-[node name="ShotgunShells5" parent="PickUps" instance=ExtResource("7_0crg7")]
+[node name="ShotgunShells5" parent="PickUps" instance=ExtResource("5_jpuu2")]
 position = Vector2(424, 1050)
 item_selected = 1
 
-[node name="ShotgunShells6" parent="PickUps" instance=ExtResource("7_0crg7")]
+[node name="ShotgunShells6" parent="PickUps" instance=ExtResource("5_jpuu2")]
 position = Vector2(424, 1050)
 item_selected = 1
 
-[node name="ShotgunShells7" parent="PickUps" instance=ExtResource("7_0crg7")]
+[node name="ShotgunShells7" parent="PickUps" instance=ExtResource("5_jpuu2")]
 position = Vector2(424, 1050)
 item_selected = 1
 
-[node name="ShotgunShells8" parent="PickUps" instance=ExtResource("7_0crg7")]
+[node name="ShotgunShells8" parent="PickUps" instance=ExtResource("5_jpuu2")]
 position = Vector2(424, 1050)
 item_selected = 1
 
-[node name="ShotgunShells9" parent="PickUps" instance=ExtResource("7_0crg7")]
+[node name="ShotgunShells9" parent="PickUps" instance=ExtResource("5_jpuu2")]
 position = Vector2(-4859, -174)
 item_selected = 1
 
-[node name="PickUp3" parent="PickUps" instance=ExtResource("7_0crg7")]
+[node name="PickUp3" parent="PickUps" instance=ExtResource("5_jpuu2")]
 position = Vector2(326, 774)
 
-[node name="PickUp4" parent="PickUps" instance=ExtResource("7_0crg7")]
+[node name="PickUp4" parent="PickUps" instance=ExtResource("5_jpuu2")]
 position = Vector2(326, 774)
 
-[node name="PickUp5" parent="PickUps" instance=ExtResource("7_0crg7")]
+[node name="PickUp5" parent="PickUps" instance=ExtResource("5_jpuu2")]
 position = Vector2(326, 774)
 
-[node name="PickUp6" parent="PickUps" instance=ExtResource("7_0crg7")]
+[node name="PickUp6" parent="PickUps" instance=ExtResource("5_jpuu2")]
 position = Vector2(326, 774)
 
-[node name="PickUp7" parent="PickUps" instance=ExtResource("7_0crg7")]
+[node name="PickUp7" parent="PickUps" instance=ExtResource("5_jpuu2")]
 position = Vector2(326, 774)
 
-[node name="PickUp8" parent="PickUps" instance=ExtResource("7_0crg7")]
+[node name="PickUp8" parent="PickUps" instance=ExtResource("5_jpuu2")]
 position = Vector2(326, 774)
 
-[node name="PickUp9" parent="PickUps" instance=ExtResource("7_0crg7")]
+[node name="PickUp9" parent="PickUps" instance=ExtResource("5_jpuu2")]
 position = Vector2(326, 774)
 
-[node name="PickUp10" parent="PickUps" instance=ExtResource("7_0crg7")]
+[node name="PickUp10" parent="PickUps" instance=ExtResource("5_jpuu2")]
 position = Vector2(326, 774)
 
-[node name="PickUp11" parent="PickUps" instance=ExtResource("7_0crg7")]
+[node name="PickUp11" parent="PickUps" instance=ExtResource("5_jpuu2")]
 position = Vector2(326, 774)
 
-[node name="PickUp12" parent="PickUps" instance=ExtResource("7_0crg7")]
+[node name="PickUp12" parent="PickUps" instance=ExtResource("5_jpuu2")]
 position = Vector2(326, 774)
 
-[node name="PickUp13" parent="PickUps" instance=ExtResource("7_0crg7")]
+[node name="PickUp13" parent="PickUps" instance=ExtResource("5_jpuu2")]
 position = Vector2(326, 774)
 
-[node name="PickUp14" parent="PickUps" instance=ExtResource("7_0crg7")]
+[node name="PickUp14" parent="PickUps" instance=ExtResource("5_jpuu2")]
 position = Vector2(-389, 827)
 item_selected = 2
 
-[node name="Key" parent="PickUps" instance=ExtResource("7_0crg7")]
+[node name="Key" parent="PickUps" instance=ExtResource("5_jpuu2")]
 position = Vector2(-1397, -2097)
 item_selected = 6
 Key_name = "Test Key"
 
-[node name="Key2" parent="PickUps" instance=ExtResource("7_0crg7")]
+[node name="Key2" parent="PickUps" instance=ExtResource("5_jpuu2")]
 position = Vector2(-1316, -1986)
 item_selected = 6
 Key_name = "Test Key"
@@ -157,7 +157,7 @@ Key_name = "Test Key"
 [node name="LevelExits" type="Node2D" parent="."]
 position = Vector2(-184, -5)
 
-[node name="change_scene" parent="LevelExits" instance=ExtResource("8_smc70")]
+[node name="change_scene" parent="LevelExits" instance=ExtResource("6_skiqt")]
 position = Vector2(1649, 1246)
 scale = Vector2(1.72, 5.48)
 level_high = "res://levels/test_level2/forest_lvl_high.tscn"
@@ -168,7 +168,7 @@ level_name = "Woods"
 
 [node name="Triggers" type="Node2D" parent="."]
 
-[node name="TriggerEvent" parent="Triggers" node_paths=PackedStringArray("enemy_instance") instance=ExtResource("7_j0gja")]
+[node name="TriggerEvent" parent="Triggers" node_paths=PackedStringArray("enemy_instance") instance=ExtResource("7_d7nri")]
 position = Vector2(-144, 1789)
 action = 2
 enemy_state = 1
@@ -177,13 +177,13 @@ enemy_instance = NodePath("GuestEnemy")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Triggers/TriggerEvent"]
 shape = SubResource("RectangleShape2D_l63cd")
 
-[node name="GuestEnemy" parent="Triggers/TriggerEvent" instance=ExtResource("4_ve2pi")]
+[node name="GuestEnemy" parent="Triggers/TriggerEvent" instance=ExtResource("3_4lamd")]
 position = Vector2(-17, -759)
 rotation = 3.03972
 selected_weak_points = Array[NodePath]([NodePath("CanvasGroup/Graphics/Torso/WeakPoint5"), NodePath("CanvasGroup/Graphics/Torso/RightArm/RightHighArm/RightLowerArm/WeakPoint3"), NodePath("CanvasGroup/Graphics/Torso/Head/WeakPoint"), NodePath("CanvasGroup/Graphics/Torso/RightArm/RightHighArm/RightLowerArm/WeakPoint")])
 weak_point_scales = Array[float]([1.05364, 0.959575, 0.911049, 0.877939])
 
-[node name="TriggerEvent2" parent="Triggers" node_paths=PackedStringArray("enemy_instance") instance=ExtResource("7_j0gja")]
+[node name="TriggerEvent2" parent="Triggers" node_paths=PackedStringArray("enemy_instance") instance=ExtResource("7_d7nri")]
 position = Vector2(-6479, 179)
 action = 2
 enemy_state = 1
@@ -192,17 +192,17 @@ enemy_instance = NodePath("GuestEnemy")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Triggers/TriggerEvent2"]
 shape = SubResource("RectangleShape2D_l63cd")
 
-[node name="GuestEnemy" parent="Triggers/TriggerEvent2" instance=ExtResource("4_ve2pi")]
+[node name="GuestEnemy" parent="Triggers/TriggerEvent2" instance=ExtResource("3_4lamd")]
 position = Vector2(461, -127)
 rotation = -2.36953
 selected_weak_points = Array[NodePath]([NodePath("CanvasGroup/Graphics/Torso/Head/WeakPoint"), NodePath("CanvasGroup/Graphics/Torso/LeftArm/LeftHighArm/LeftLowerArm/WeakPoint"), NodePath("CanvasGroup/Graphics/Torso/RightArm/RightHighArm/RightLowerArm/WeakPoint3")])
 weak_point_scales = Array[float]([1.26835, 1.03462, 1.01435])
 
-[node name="Spawner" parent="Triggers" instance=ExtResource("8_ksqdw")]
+[node name="Spawner" parent="Triggers" instance=ExtResource("8_14vwu")]
 position = Vector2(-824, 1554)
 active = false
 
-[node name="TriggerEvent3" parent="Triggers" node_paths=PackedStringArray("trigger_node") instance=ExtResource("7_j0gja")]
+[node name="TriggerEvent3" parent="Triggers" node_paths=PackedStringArray("trigger_node") instance=ExtResource("7_d7nri")]
 position = Vector2(-1349, 1417)
 action = 3
 trigger_node = NodePath("../Spawner")

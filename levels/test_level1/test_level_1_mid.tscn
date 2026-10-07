@@ -1,14 +1,14 @@
 [gd_scene load_steps=6 format=3 uid="uid://bnppgiphfgo5q"]
 
-[ext_resource type="PackedScene" uid="uid://b7iklrlyc5m55" path="res://levels/test_level1/test_level_1_low.tscn" id="1_4so2i"]
-[ext_resource type="Texture2D" uid="uid://cma5kmw10jghr" path="res://white_sq.png" id="2_bc8cs"]
-[ext_resource type="PackedScene" uid="uid://bkv3a0k14fqnv" path="res://Interactions/SecretArea.tscn" id="2_nvptp"]
-[ext_resource type="PackedScene" uid="uid://bsevhsmxnwj1b" path="res://objects/grabable/lamp.tscn" id="3_o8shj"]
-[ext_resource type="PackedScene" uid="uid://shqgwjseluto" path="res://objects/light_source.tscn" id="5_1k3s7"]
+[ext_resource type="PackedScene" uid="uid://b7iklrlyc5m55" path="res://levels/test_level1/test_level_1_low.tscn" id="1_dbjv1"]
+[ext_resource type="Texture2D" uid="uid://cma5kmw10jghr" path="res://white_sq.png" id="2_2nxr6"]
+[ext_resource type="PackedScene" uid="uid://bkv3a0k14fqnv" path="res://Interactions/SecretArea.tscn" id="3_bkshk"]
+[ext_resource type="PackedScene" uid="uid://bsevhsmxnwj1b" path="res://objects/grabable/lamp.tscn" id="4_xqg6e"]
+[ext_resource type="PackedScene" uid="uid://shqgwjseluto" path="res://objects/light_source.tscn" id="5_gofo3"]
 
 [node name="Enviroment" type="Node2D"]
 
-[node name="test_level1_low" parent="." instance=ExtResource("1_4so2i")]
+[node name="test_level1_low" parent="." instance=ExtResource("1_dbjv1")]
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 use_parent_material = true
@@ -23,129 +23,129 @@ position = Vector2(113.734, 878.037)
 scale = Vector2(17.6567, 43.454)
 energy = 0.15
 blend_mode = 1
-texture = ExtResource("2_bc8cs")
+texture = ExtResource("2_2nxr6")
 
 [node name="Secrets" type="Node2D" parent="."]
 
-[node name="SecretArea" parent="Secrets" instance=ExtResource("2_nvptp")]
+[node name="SecretArea" parent="Secrets" instance=ExtResource("3_bkshk")]
 visible = false
 position = Vector2(587.199, -41.3406)
 scale = Vector2(0.9, 0.634707)
 related_ambient_darkness = "SmallHouse"
 
-[node name="SecretArea2" parent="Secrets" instance=ExtResource("2_nvptp")]
+[node name="SecretArea2" parent="Secrets" instance=ExtResource("3_bkshk")]
 visible = false
 position = Vector2(579.199, 526.659)
 scale = Vector2(0.888333, 0.584)
 related_ambient_darkness = "SmallHouse"
 
-[node name="SecretArea3" parent="Secrets" instance=ExtResource("2_nvptp")]
+[node name="SecretArea3" parent="Secrets" instance=ExtResource("3_bkshk")]
 visible = false
 position = Vector2(-188.801, 246.659)
 scale = Vector2(0.739998, 1.184)
 related_ambient_darkness = "SmallHouse"
 
-[node name="SecretArea4" parent="Secrets" instance=ExtResource("2_nvptp")]
+[node name="SecretArea4" parent="Secrets" instance=ExtResource("3_bkshk")]
 visible = false
 position = Vector2(-2160, -3124)
 scale = Vector2(1.23333, 1.025)
 
-[node name="SecretArea5" parent="Secrets" instance=ExtResource("2_nvptp")]
+[node name="SecretArea5" parent="Secrets" instance=ExtResource("3_bkshk")]
 visible = false
 position = Vector2(-1972, -2160)
 scale = Vector2(0.825, 1.03333)
 
-[node name="SecretArea6" parent="Secrets" instance=ExtResource("2_nvptp")]
+[node name="SecretArea6" parent="Secrets" instance=ExtResource("3_bkshk")]
 visible = false
 position = Vector2(-2836, -2165)
 scale = Vector2(1.025, 1.03958)
 
-[node name="SecretArea7" parent="Secrets" instance=ExtResource("2_nvptp")]
+[node name="SecretArea7" parent="Secrets" instance=ExtResource("3_bkshk")]
 visible = false
 position = Vector2(-3030, -3127.5)
 scale = Vector2(0.629167, 1.01771)
 
-[node name="SecretArea8" parent="Secrets" instance=ExtResource("2_nvptp")]
+[node name="SecretArea8" parent="Secrets" instance=ExtResource("3_bkshk")]
 visible = false
 position = Vector2(-1200, -3312)
 scale = Vector2(0.814583, 0.616667)
 
-[node name="SecretArea9" parent="Secrets" instance=ExtResource("2_nvptp")]
+[node name="SecretArea9" parent="Secrets" instance=ExtResource("3_bkshk")]
 visible = false
 position = Vector2(619.5, -3312)
 scale = Vector2(0.807292, 0.616667)
 
-[node name="SecretArea10" parent="Secrets" instance=ExtResource("2_nvptp")]
+[node name="SecretArea10" parent="Secrets" instance=ExtResource("3_bkshk")]
 visible = false
 position = Vector2(1296, -3312)
 scale = Vector2(0.6, 0.616667)
 
-[node name="SecretArea11" parent="Secrets" instance=ExtResource("2_nvptp")]
+[node name="SecretArea11" parent="Secrets" instance=ExtResource("3_bkshk")]
 visible = false
 position = Vector2(1776, -3312)
 scale = Vector2(0.416667, 0.616667)
 
-[node name="SecretArea12" parent="Secrets" instance=ExtResource("2_nvptp")]
+[node name="SecretArea12" parent="Secrets" instance=ExtResource("3_bkshk")]
 visible = false
 position = Vector2(2356, -3312)
 scale = Vector2(0.791667, 0.616667)
 
-[node name="SecretArea13" parent="Secrets" instance=ExtResource("2_nvptp")]
+[node name="SecretArea13" parent="Secrets" instance=ExtResource("3_bkshk")]
 visible = false
 position = Vector2(2444, -2162)
 scale = Vector2(0.608333, 1.02083)
 
-[node name="SecretArea14" parent="Secrets" instance=ExtResource("2_nvptp")]
+[node name="SecretArea14" parent="Secrets" instance=ExtResource("3_bkshk")]
 visible = false
 position = Vector2(1584, -2162)
 scale = Vector2(1.23333, 1.02083)
 
-[node name="SecretArea15" parent="Secrets" instance=ExtResource("2_nvptp")]
+[node name="SecretArea15" parent="Secrets" instance=ExtResource("3_bkshk")]
 visible = false
 position = Vector2(1872, -2832)
 scale = Vector2(1.83333, 0.416667)
 
-[node name="SecretArea16" parent="Secrets" instance=ExtResource("2_nvptp")]
+[node name="SecretArea16" parent="Secrets" instance=ExtResource("3_bkshk")]
 visible = false
 position = Vector2(-288, -2398)
 scale = Vector2(2.8, 1.32917)
 
-[node name="SecretArea17" parent="Secrets/SecretArea16" instance=ExtResource("2_nvptp")]
+[node name="SecretArea17" parent="Secrets/SecretArea16" instance=ExtResource("3_bkshk")]
 position = Vector2(395.714, 646.269)
 scale = Vector2(0.151786, 0.393417)
 
-[node name="SecretArea18" parent="Secrets/SecretArea16" instance=ExtResource("2_nvptp")]
+[node name="SecretArea18" parent="Secrets/SecretArea16" instance=ExtResource("3_bkshk")]
 position = Vector2(-394.286, 646.269)
 scale = Vector2(0.151786, 0.393417)
 
-[node name="SecretArea17" parent="Secrets" instance=ExtResource("2_nvptp")]
+[node name="SecretArea17" parent="Secrets" instance=ExtResource("3_bkshk")]
 visible = false
 position = Vector2(-5064, 304)
 scale = Vector2(0.466666, 0.3)
 
-[node name="Lamp" parent="." instance=ExtResource("3_o8shj")]
+[node name="Lamp" parent="." instance=ExtResource("4_xqg6e")]
 position = Vector2(693, 592)
 collision_layer = 0
 collision_mask = 7
 
-[node name="Lamp2" parent="." instance=ExtResource("3_o8shj")]
+[node name="Lamp2" parent="." instance=ExtResource("4_xqg6e")]
 position = Vector2(21, 712)
 collision_layer = 0
 collision_mask = 7
 
-[node name="Lamp3" parent="." instance=ExtResource("3_o8shj")]
+[node name="Lamp3" parent="." instance=ExtResource("4_xqg6e")]
 position = Vector2(-408, 712)
 collision_layer = 0
 collision_mask = 7
 
-[node name="LightSource3" parent="." instance=ExtResource("5_1k3s7")]
+[node name="LightSource3" parent="." instance=ExtResource("5_gofo3")]
 z_index = -2
 position = Vector2(-5563, 273)
 
 [node name="PointLight2D" parent="LightSource3" index="0"]
 color = Color(0.74902, 0, 0.133333, 1)
 
-[node name="LightSource4" parent="." instance=ExtResource("5_1k3s7")]
+[node name="LightSource4" parent="." instance=ExtResource("5_gofo3")]
 z_index = -2
 position = Vector2(-4945, 528)
 

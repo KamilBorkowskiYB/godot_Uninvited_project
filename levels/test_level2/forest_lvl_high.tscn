@@ -29,7 +29,7 @@ position = Vector2(1070, -344)
 [node name="change_scene" parent="LevelExits" index="0" instance=ExtResource("4_05syw")]
 position = Vector2(514, -1356)
 scale = Vector2(2.32, 1.88)
-level_high = "res://levels/test_level1/level.tscn"
+level_high = "res://levels/test_level1/test_level_1_high.tscn"
 level_mid = "res://levels/test_level1/test_level_1_gray.tscn"
 level_low = "res://levels/test_level1/test_level_1_low.tscn"
 player_position = Vector2(800, 350)
