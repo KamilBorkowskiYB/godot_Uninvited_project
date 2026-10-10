@@ -120,7 +120,7 @@ func _process(_delta):
 	
 	#hide dim occ on objects on the same side of the dim portal as player
 	if dim_occ_viewport and dim_occ_viewport.is_ancestor_of(self):
-		if player_side * self_side > 0:
+		if player_side * self_side > 0 and high:
 			light_occ.occluder_light_mask = 257# 1 and 9
 		else:
 			light_occ.occluder_light_mask = 1

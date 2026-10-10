@@ -4,7 +4,8 @@ extends Node2D
 @export_dir var main_level_scenes_folder: String = "":
 	set(value):
 		main_level_scenes_folder = value
-		find_main_scene_variants()
+		if Engine.is_editor_hint():
+			find_main_scene_variants()
 
 var main_scene_low: PackedScene
 var main_scene_mid: PackedScene
@@ -13,7 +14,8 @@ var main_scene_high: PackedScene
 @export_dir var other_level_scenes_folder: String = "":
 	set(value):
 		other_level_scenes_folder = value
-		find_other_scene_variants()
+		if Engine.is_editor_hint():
+			find_other_scene_variants()
 
 var other_scene_low: PackedScene
 var other_scene_mid: PackedScene
@@ -614,12 +616,21 @@ func find_other_scene_variants():
 	var dim_pars_occ_viewport = get_node("OtherDimension/ODDimensionsParserOccluders")
 	replace_level_in_scene(dim_pars_occ_viewport, other_scene_low)
 
+
 func replace_level_in_scene(viewport, new_level_scene):
+	if new_level_scene == null:
+		return
 	var old_level
 	var new_level
 	old_level = viewport.get_child(0)
-	viewport.remove_child(old_level)
-	old_level.queue_free()
+	if old_level.name.contains("gray") or old_level.name.contains("high") or old_level.name.contains("low"):
+		viewport.remove_child(old_level)
+		old_level.queue_free()
 	new_level = new_level_scene.instantiate()
 	viewport.add_child(new_level)
 	viewport.move_child(new_level, 0)
+	new_level.owner = get_tree().edited_scene_root
+	if old_level.name.contains("low") and !viewport.name.contains("Occluders"):
+		var shader_material = ShaderMaterial.new()
+		shader_material.shader = preload("res://shaders/visibilityMapShader.gdshader")
+		new_level.material = shader_material

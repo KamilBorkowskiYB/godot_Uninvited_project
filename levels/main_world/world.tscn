@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://dbs8dbmepbxnh"]
+[gd_scene load_steps=47 format=3 uid="uid://dbs8dbmepbxnh"]
 
 [ext_resource type="Script" path="res://levels/main_world/world.gd" id="1_eb6ap"]
 [ext_resource type="Shader" path="res://shaders/maskView.gdshader" id="2_hpucc"]
@@ -115,17 +115,23 @@ light_mode = 1
 [sub_resource type="ViewportTexture" id="ViewportTexture_8ptiq"]
 viewport_path = NodePath("VisibilityViewport")
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_sn8e7"]
+viewport_path = NodePath("OtherDimension/DimensionsParser")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_m0nsu"]
+viewport_path = NodePath("OtherDimension/DimensionsParserOccluders")
+
 [sub_resource type="ViewportTexture" id="ViewportTexture_bsdqd"]
 viewport_path = NodePath("OtherDimension/ODDimensionsParser")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_m0nsu"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_14jg0"]
 viewport_path = NodePath("OtherDimension/ODDimensionsParserOccluders")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_36kmu"]
 viewport_path = NodePath("OtherDimension/SubLevelViewport/ODSeenViewport")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_h0pcv"]
-viewport_path = NodePath("OtherDimension/ODVisibilityViewport")
+viewport_path = NodePath("OtherDimension/ODFogViewport")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_3heoh"]
 viewport_path = NodePath("OtherDimension/ODVisibilityViewport")
@@ -473,7 +479,6 @@ texture = ExtResource("6_6svyg")
 offset = Vector2(0, -350)
 
 [node name="Debug" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="DebugViewVision" type="Sprite2D" parent="Debug"]
 position = Vector2(213, 130)
@@ -483,27 +488,34 @@ texture = SubResource("ViewportTexture_8ptiq")
 [node name="DebbugDimensionParser" type="Sprite2D" parent="Debug"]
 position = Vector2(213, 362)
 scale = Vector2(0.2, 0.2)
-texture = SubResource("ViewportTexture_bsdqd")
+texture = SubResource("ViewportTexture_sn8e7")
 
 [node name="DebbugDimensionParser2" type="Sprite2D" parent="Debug"]
 position = Vector2(213, 642)
 scale = Vector2(0.2, 0.2)
 texture = SubResource("ViewportTexture_m0nsu")
 
+[node name="DebbugDimensionParser3" type="Sprite2D" parent="Debug"]
+position = Vector2(1356.2, 362)
+scale = Vector2(0.2, 0.2)
+texture = SubResource("ViewportTexture_bsdqd")
+
+[node name="DebbugDimensionParser4" type="Sprite2D" parent="Debug"]
+position = Vector2(1356.2, 633)
+scale = Vector2(0.2, 0.2)
+texture = SubResource("ViewportTexture_14jg0")
+
 [node name="DebbugODHigh" type="Sprite2D" parent="Debug"]
-visible = false
 position = Vector2(1721, 125.2)
 scale = Vector2(0.2, 0.2)
 texture = SubResource("ViewportTexture_36kmu")
 
 [node name="DebbugODMid" type="Sprite2D" parent="Debug"]
-visible = false
 position = Vector2(1721, 375.2)
 scale = Vector2(0.2, 0.2)
 texture = SubResource("ViewportTexture_h0pcv")
 
 [node name="DebbugODLow" type="Sprite2D" parent="Debug"]
-visible = false
 position = Vector2(1721, 633.2)
 scale = Vector2(0.2, 0.2)
 texture = SubResource("ViewportTexture_3heoh")
