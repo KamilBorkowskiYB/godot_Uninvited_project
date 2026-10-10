@@ -212,7 +212,7 @@ physics_object_picking = true
 canvas_cull_mask = 4294966399
 render_target_update_mode = 4
 
-[node name="OD_test_level_high" type="Node2D" parent="OtherDimension/SubLevelViewport/ODSeenViewport" instance=ExtResource("9_g4b45")]
+[node name="OD_test_level_high" parent="OtherDimension/SubLevelViewport/ODSeenViewport" instance=ExtResource("9_g4b45")]
 
 [node name="Camera2D" type="Camera2D" parent="OtherDimension/SubLevelViewport/ODSeenViewport"]
 
@@ -222,7 +222,7 @@ render_target_update_mode = 4
 transparent_bg = true
 handle_input_locally = false
 
-[node name="OD_test_level_gray" type="Node2D" parent="OtherDimension/ODFogViewport" instance=ExtResource("9_wea03")]
+[node name="OD_test_level_gray" parent="OtherDimension/ODFogViewport" instance=ExtResource("9_wea03")]
 
 [node name="Camera2D" type="Camera2D" parent="OtherDimension/ODFogViewport"]
 
@@ -230,7 +230,7 @@ handle_input_locally = false
 transparent_bg = true
 handle_input_locally = false
 
-[node name="OD_test_level_low" type="Node2D" parent="OtherDimension/ODVisibilityViewport" instance=ExtResource("10_avuqo")]
+[node name="OD_test_level_low" parent="OtherDimension/ODVisibilityViewport" instance=ExtResource("10_avuqo")]
 material = SubResource("ShaderMaterial_0w4xu")
 
 [node name="ViewLight" type="PointLight2D" parent="OtherDimension/ODVisibilityViewport"]
@@ -292,7 +292,7 @@ texture = SubResource("GradientTexture2D_ifk28")
 transparent_bg = true
 handle_input_locally = false
 
-[node name="OD_test_level_low" type="Node2D" parent="OtherDimension/ODDimensionsParser" instance=ExtResource("10_avuqo")]
+[node name="OD_test_level_low" parent="OtherDimension/ODDimensionsParser" instance=ExtResource("10_avuqo")]
 material = SubResource("ShaderMaterial_fxqq8")
 
 [node name="ViewDimensionLight" type="PointLight2D" parent="OtherDimension/ODDimensionsParser"]
@@ -309,7 +309,7 @@ texture_scale = 15.0
 transparent_bg = true
 handle_input_locally = false
 
-[node name="OD_test_level_low" type="Node2D" parent="OtherDimension/ODDimensionsParserOccluders" instance=ExtResource("10_avuqo")]
+[node name="OD_test_level_low" parent="OtherDimension/ODDimensionsParserOccluders" instance=ExtResource("10_avuqo")]
 material = SubResource("ShaderMaterial_uhsie")
 
 [node name="ViewDimensionLight" type="PointLight2D" parent="OtherDimension/ODDimensionsParserOccluders"]

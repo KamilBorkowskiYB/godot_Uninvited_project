@@ -572,6 +572,8 @@ func find_main_scene_variants():
 	
 	dir.list_dir_end()
 	notify_property_list_changed()
+	
+	$MainLevelViewport/SubViewport/MainScene.main_scene_level = main_scene_high
 
 
 func find_other_scene_variants():
