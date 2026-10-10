@@ -630,7 +630,7 @@ func replace_level_in_scene(viewport, new_level_scene):
 	viewport.add_child(new_level)
 	viewport.move_child(new_level, 0)
 	new_level.owner = get_tree().edited_scene_root
-	if old_level.name.contains("low") and !viewport.name.contains("Occluders"):
+	if old_level.name.contains("low"):
 		var shader_material = ShaderMaterial.new()
 		shader_material.shader = preload("res://shaders/visibilityMapShader.gdshader")
 		new_level.material = shader_material

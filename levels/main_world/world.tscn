@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://dbs8dbmepbxnh"]
+[gd_scene load_steps=49 format=3 uid="uid://dbs8dbmepbxnh"]
 
 [ext_resource type="Script" path="res://levels/main_world/world.gd" id="1_eb6ap"]
 [ext_resource type="Shader" path="res://shaders/maskView.gdshader" id="2_hpucc"]
@@ -84,7 +84,7 @@ shader_parameter/od_mask_texture = SubResource("ViewportTexture_2wtyu")
 shader_parameter/od_seen = SubResource("ViewportTexture_lebl6")
 shader_parameter/od_unseen = SubResource("ViewportTexture_7exbx")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_la02u"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0w4xu"]
 shader = ExtResource("4_thh5m")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_d736h"]
@@ -102,6 +102,12 @@ height = 256
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.862385, 0.178899)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fxqq8"]
+shader = ExtResource("4_thh5m")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uhsie"]
+shader = ExtResource("4_thh5m")
 
 [sub_resource type="Theme" id="Theme_1ss4e"]
 default_font_size = 26
@@ -138,6 +144,7 @@ viewport_path = NodePath("OtherDimension/ODVisibilityViewport")
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_eb6ap")
+other_level_scenes_folder = "res://levels/test_level_other_dimension1"
 
 [node name="MainLevelViewport" type="SubViewportContainer" parent="."]
 material = SubResource("ShaderMaterial_qgts6")
@@ -205,7 +212,7 @@ physics_object_picking = true
 canvas_cull_mask = 4294966399
 render_target_update_mode = 4
 
-[node name="OD_test_level_high" parent="OtherDimension/SubLevelViewport/ODSeenViewport" instance=ExtResource("9_g4b45")]
+[node name="OD_test_level_high" type="Node2D" parent="OtherDimension/SubLevelViewport/ODSeenViewport" instance=ExtResource("9_g4b45")]
 
 [node name="Camera2D" type="Camera2D" parent="OtherDimension/SubLevelViewport/ODSeenViewport"]
 
@@ -215,7 +222,7 @@ render_target_update_mode = 4
 transparent_bg = true
 handle_input_locally = false
 
-[node name="OD_test_level_gray" parent="OtherDimension/ODFogViewport" instance=ExtResource("9_wea03")]
+[node name="OD_test_level_gray" type="Node2D" parent="OtherDimension/ODFogViewport" instance=ExtResource("9_wea03")]
 
 [node name="Camera2D" type="Camera2D" parent="OtherDimension/ODFogViewport"]
 
@@ -223,8 +230,8 @@ handle_input_locally = false
 transparent_bg = true
 handle_input_locally = false
 
-[node name="OD_test_level_low" parent="OtherDimension/ODVisibilityViewport" instance=ExtResource("10_avuqo")]
-material = SubResource("ShaderMaterial_la02u")
+[node name="OD_test_level_low" type="Node2D" parent="OtherDimension/ODVisibilityViewport" instance=ExtResource("10_avuqo")]
+material = SubResource("ShaderMaterial_0w4xu")
 
 [node name="ViewLight" type="PointLight2D" parent="OtherDimension/ODVisibilityViewport"]
 scale = Vector2(1.5, 1.5)
@@ -285,8 +292,8 @@ texture = SubResource("GradientTexture2D_ifk28")
 transparent_bg = true
 handle_input_locally = false
 
-[node name="OD_test_level_low" parent="OtherDimension/ODDimensionsParser" instance=ExtResource("10_avuqo")]
-material = SubResource("ShaderMaterial_la02u")
+[node name="OD_test_level_low" type="Node2D" parent="OtherDimension/ODDimensionsParser" instance=ExtResource("10_avuqo")]
+material = SubResource("ShaderMaterial_fxqq8")
 
 [node name="ViewDimensionLight" type="PointLight2D" parent="OtherDimension/ODDimensionsParser"]
 scale = Vector2(1.5, 1.5)
@@ -302,8 +309,8 @@ texture_scale = 15.0
 transparent_bg = true
 handle_input_locally = false
 
-[node name="OD_test_level_low" parent="OtherDimension/ODDimensionsParserOccluders" instance=ExtResource("10_avuqo")]
-material = SubResource("ShaderMaterial_la02u")
+[node name="OD_test_level_low" type="Node2D" parent="OtherDimension/ODDimensionsParserOccluders" instance=ExtResource("10_avuqo")]
+material = SubResource("ShaderMaterial_uhsie")
 
 [node name="ViewDimensionLight" type="PointLight2D" parent="OtherDimension/ODDimensionsParserOccluders"]
 scale = Vector2(1.5, 1.5)
@@ -479,6 +486,7 @@ texture = ExtResource("6_6svyg")
 offset = Vector2(0, -350)
 
 [node name="Debug" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="DebugViewVision" type="Sprite2D" parent="Debug"]
 position = Vector2(213, 130)
