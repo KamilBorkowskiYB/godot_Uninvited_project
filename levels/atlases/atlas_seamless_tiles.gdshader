@@ -77,6 +77,7 @@ void fragment() {
 		
 		// Water overlay on tiles with #1f10bd
 		mask_color = vec3(0.7412, 0.0627, 0.0627);
+		original_alpha = COLOR.a;
 		mix_amount = float(distance(COLOR.rgb, mask_color) < 0.01);
 		
 		if (mix_amount > 0.0) {
@@ -90,9 +91,11 @@ void fragment() {
 		
 		if (combined_noise > water_threshold) {
 				COLOR = mix(COLOR, vec4(water_color, 1.0), 1.0);
+				COLOR.a = original_alpha;
 			}
 			else{
 				COLOR = mix(COLOR, vec4(water_color2, 1.0), 1.0);
+				COLOR.a = original_alpha;
 			}
 		}
 	} 

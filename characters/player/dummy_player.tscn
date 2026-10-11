@@ -5061,6 +5061,7 @@ script = ExtResource("1_annop")
 position = Vector2(0, 4.76837e-07)
 
 [node name="Legs" type="Node2D" parent="Bottom"]
+z_index = 1
 scale = Vector2(1.8, 2.2)
 
 [node name="LegL" type="Node2D" parent="Bottom/Legs"]
@@ -5110,6 +5111,7 @@ texture = ExtResource("2_1owwl")
 shape = SubResource("CircleShape2D_q1053")
 
 [node name="Top" type="Node2D" parent="."]
+z_index = 5
 
 [node name="MuzzleFlash" type="Sprite2D" parent="Top"]
 visible = false

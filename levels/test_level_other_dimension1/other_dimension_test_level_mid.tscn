@@ -9,3 +9,6 @@
 
 [node name="preset_level_low" parent="." index="1"]
 visible = false
+
+[node name="CanvasModulate" parent="." index="2"]
+color = Color(0.282353, 0.282353, 0.282353, 1)
