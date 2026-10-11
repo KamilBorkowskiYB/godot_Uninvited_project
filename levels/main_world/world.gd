@@ -1,11 +1,14 @@
 @tool
 extends Node2D
 
+var initialization_finished := false
 @export_dir var main_level_scenes_folder: String = "":
 	set(value):
 		main_level_scenes_folder = value
+		if not initialization_finished:
+			return
 		if Engine.is_editor_hint():
-			find_main_scene_variants()
+			find_main_scene_variants.call_deferred()
 
 var main_scene_low: PackedScene
 var main_scene_mid: PackedScene
@@ -14,6 +17,8 @@ var main_scene_high: PackedScene
 @export_dir var other_level_scenes_folder: String = "":
 	set(value):
 		other_level_scenes_folder = value
+		if not initialization_finished:
+			return
 		if Engine.is_editor_hint():
 			find_other_scene_variants()
 
@@ -24,6 +29,7 @@ var other_scene_high: PackedScene
 
 func _ready():
 	if Engine.is_editor_hint():
+		initialization_finished = true
 		return
 	
 	var viewport1 = get_node("MainLevelViewport/SubViewport")
@@ -569,48 +575,18 @@ func find_main_scene_variants():
 				elif file_name.ends_with("_high.tscn"):
 					main_scene_high = load(scene_path)
 		file_name = dir.get_next()
-	
 	dir.list_dir_end()
 	notify_property_list_changed()
 	
-	#$MainLevelViewport/SubViewport/MainScene.main_scene_level = main_scene_high
-	replace_main_scene_level()
-
-
-func replace_main_scene_level():
-	# 1. Pobieramy ścieżkę do oryginalnego pliku .tscn
-	var scene_path = "res://levels/main_world/main_scene.tscn"
-	var main_scene_level: PackedScene = load(scene_path)
-	
-	if scene_path.is_empty():
-		print("Ten PackedScene nie jest jeszcze zapisany w pliku!")
-		return
-	# 2. Tworzymy instancję sceny w pamięci (poza głównym drzewem edytora)
-	var root_node = main_scene_level.instantiate()
-	# 3. Modyfikujemy strukturę (dodajemy ikonę)
-	var icon = load("res://icon.svg")
-	var sprite := Sprite2D.new()
-	sprite.name = "TestIcon"
-	sprite.texture = icon
-	root_node.add_child(sprite)
-	
-	# Ważne: owner dla nowego elementu musi wskazywać na korzeń tej ładowanej sceny
-	sprite.owner = root_node 
-	# 4. Pakujemy zmodyfikowany węzeł z powrotem do PackedScene
-	var packed_scene = PackedScene.new()
-	var error = packed_scene.pack(root_node)
-	
-	if error == OK:
-		# 5. Zapisujemy plik na dysku (nadpisujemy oryginał)
-		ResourceSaver.save(packed_scene, scene_path)
-		print("Zapisano zmiany do pliku źródłowego: ", scene_path)
-		
-		# Opcjonalnie: odświeżamy zasób, aby edytor zauważył zmianę
-		main_scene_level = load(scene_path)
-	else:
-		print("Błąd podczas pakowania sceny!")
-	# 6. Sprzątamy obiekt z pamięci operacyjnej
-	root_node.queue_free()
+	#replacing scene tree
+	var fog_viewport = get_node_or_null("FogViewport")
+	replace_level_in_scene(fog_viewport, main_scene_mid)
+	var vis_viewport = get_node_or_null("VisibilityViewport")
+	replace_level_in_scene(vis_viewport, main_scene_low)
+	var dim_pars_viewport = get_node_or_null("OtherDimension/DimensionsParser")
+	replace_level_in_scene(dim_pars_viewport, main_scene_low)
+	var dim_pars_occ_viewport = get_node_or_null("OtherDimension/DimensionsParserOccluders")
+	replace_level_in_scene(dim_pars_occ_viewport, main_scene_low)
 
 
 func find_other_scene_variants():
@@ -644,20 +620,20 @@ func find_other_scene_variants():
 	notify_property_list_changed()
 	
 	#replacing scene tree
-	var main_viewport = get_node("OtherDimension/SubLevelViewport/ODSeenViewport")
+	var main_viewport = get_node_or_null("OtherDimension/SubLevelViewport/ODSeenViewport")
 	replace_level_in_scene(main_viewport, other_scene_high)
-	var fog_viewport = get_node("OtherDimension/ODFogViewport")
+	var fog_viewport = get_node_or_null("OtherDimension/ODFogViewport")
 	replace_level_in_scene(fog_viewport, other_scene_mid)
-	var vis_viewport = get_node("OtherDimension/ODVisibilityViewport")
+	var vis_viewport = get_node_or_null("OtherDimension/ODVisibilityViewport")
 	replace_level_in_scene(vis_viewport, other_scene_low)
-	var dim_pars_viewport = get_node("OtherDimension/ODDimensionsParser")
+	var dim_pars_viewport = get_node_or_null("OtherDimension/ODDimensionsParser")
 	replace_level_in_scene(dim_pars_viewport, other_scene_low)
-	var dim_pars_occ_viewport = get_node("OtherDimension/ODDimensionsParserOccluders")
+	var dim_pars_occ_viewport = get_node_or_null("OtherDimension/ODDimensionsParserOccluders")
 	replace_level_in_scene(dim_pars_occ_viewport, other_scene_low)
 
 
 func replace_level_in_scene(viewport, new_level_scene):
-	if new_level_scene == null:
+	if new_level_scene == null or viewport == null:
 		return
 	var old_level
 	var new_level

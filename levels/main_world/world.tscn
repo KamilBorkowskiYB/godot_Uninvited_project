@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://dbs8dbmepbxnh"]
+[gd_scene load_steps=50 format=3 uid="uid://dbs8dbmepbxnh"]
 
 [ext_resource type="Script" path="res://levels/main_world/world.gd" id="1_eb6ap"]
 [ext_resource type="Shader" path="res://shaders/maskView.gdshader" id="2_hpucc"]
@@ -48,7 +48,7 @@ shader_parameter/od_mask_texture = SubResource("ViewportTexture_s1qdr")
 shader_parameter/od_seen = SubResource("ViewportTexture_qw7fn")
 shader_parameter/od_unseen = SubResource("ViewportTexture_nhp0d")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_nmqhj"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_54f7a"]
 shader = ExtResource("4_thh5m")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_infs1"]
@@ -84,10 +84,10 @@ shader_parameter/od_mask_texture = SubResource("ViewportTexture_2wtyu")
 shader_parameter/od_seen = SubResource("ViewportTexture_lebl6")
 shader_parameter/od_unseen = SubResource("ViewportTexture_7exbx")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_0w4xu"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xu32q"]
 shader = ExtResource("4_thh5m")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_d736h"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_12ph1"]
 shader = ExtResource("4_thh5m")
 
 [sub_resource type="Gradient" id="Gradient_nf34r"]
@@ -103,10 +103,13 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.862385, 0.178899)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_fxqq8"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6rnr0"]
 shader = ExtResource("4_thh5m")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_uhsie"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fldkq"]
+shader = ExtResource("4_thh5m")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_raxad"]
 shader = ExtResource("4_thh5m")
 
 [sub_resource type="Theme" id="Theme_1ss4e"]
@@ -144,6 +147,7 @@ viewport_path = NodePath("OtherDimension/ODVisibilityViewport")
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_eb6ap")
+main_level_scenes_folder = "res://levels/test_level1"
 other_level_scenes_folder = "res://levels/test_level_other_dimension1"
 
 [node name="MainLevelViewport" type="SubViewportContainer" parent="."]
@@ -168,7 +172,7 @@ handle_input_locally = false
 size = Vector2i(1152, 648)
 render_target_update_mode = 4
 
-[node name="test_level_1_gray" parent="FogViewport" instance=ExtResource("6_76trs")]
+[node name="test_level_1_gray" type="Node2D" parent="FogViewport" instance=ExtResource("6_76trs")]
 
 [node name="Camera2D" type="Camera2D" parent="FogViewport"]
 
@@ -178,8 +182,8 @@ handle_input_locally = false
 size = Vector2i(1152, 648)
 render_target_update_mode = 4
 
-[node name="test_level1_low" parent="VisibilityViewport" instance=ExtResource("8_apxvq")]
-material = SubResource("ShaderMaterial_nmqhj")
+[node name="test_level1_low" type="Node2D" parent="VisibilityViewport" groups=["level_low"] instance=ExtResource("8_apxvq")]
+material = SubResource("ShaderMaterial_54f7a")
 
 [node name="ViewLight" type="PointLight2D" parent="VisibilityViewport"]
 scale = Vector2(1.5, 1.5)
@@ -231,7 +235,7 @@ transparent_bg = true
 handle_input_locally = false
 
 [node name="OD_test_level_low" parent="OtherDimension/ODVisibilityViewport" instance=ExtResource("10_avuqo")]
-material = SubResource("ShaderMaterial_0w4xu")
+material = SubResource("ShaderMaterial_xu32q")
 
 [node name="ViewLight" type="PointLight2D" parent="OtherDimension/ODVisibilityViewport"]
 scale = Vector2(1.5, 1.5)
@@ -252,8 +256,8 @@ texture_scale = 0.45
 transparent_bg = true
 handle_input_locally = false
 
-[node name="test_level1_low" parent="OtherDimension/DimensionsParser" instance=ExtResource("8_apxvq")]
-material = SubResource("ShaderMaterial_d736h")
+[node name="test_level1_low" type="Node2D" parent="OtherDimension/DimensionsParser" groups=["level_low"] instance=ExtResource("8_apxvq")]
+material = SubResource("ShaderMaterial_12ph1")
 
 [node name="ViewDimensionLight" type="PointLight2D" parent="OtherDimension/DimensionsParser"]
 scale = Vector2(1.5, 1.5)
@@ -269,8 +273,8 @@ texture_scale = 15.0
 transparent_bg = true
 handle_input_locally = false
 
-[node name="test_level1_low" parent="OtherDimension/DimensionsParserOccluders" instance=ExtResource("8_apxvq")]
-material = SubResource("ShaderMaterial_d736h")
+[node name="test_level1_low" type="Node2D" parent="OtherDimension/DimensionsParserOccluders" groups=["level_low"] instance=ExtResource("8_apxvq")]
+material = SubResource("ShaderMaterial_6rnr0")
 
 [node name="ViewDimensionLight" type="PointLight2D" parent="OtherDimension/DimensionsParserOccluders"]
 scale = Vector2(1.5, 1.5)
@@ -293,7 +297,7 @@ transparent_bg = true
 handle_input_locally = false
 
 [node name="OD_test_level_low" parent="OtherDimension/ODDimensionsParser" instance=ExtResource("10_avuqo")]
-material = SubResource("ShaderMaterial_fxqq8")
+material = SubResource("ShaderMaterial_fldkq")
 
 [node name="ViewDimensionLight" type="PointLight2D" parent="OtherDimension/ODDimensionsParser"]
 scale = Vector2(1.5, 1.5)
@@ -310,7 +314,7 @@ transparent_bg = true
 handle_input_locally = false
 
 [node name="OD_test_level_low" parent="OtherDimension/ODDimensionsParserOccluders" instance=ExtResource("10_avuqo")]
-material = SubResource("ShaderMaterial_uhsie")
+material = SubResource("ShaderMaterial_raxad")
 
 [node name="ViewDimensionLight" type="PointLight2D" parent="OtherDimension/ODDimensionsParserOccluders"]
 scale = Vector2(1.5, 1.5)

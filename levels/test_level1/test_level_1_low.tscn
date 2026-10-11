@@ -451,28 +451,18 @@ collision_mask = 7
 
 [node name="CreateSmall" parent="MovingBlocks" instance=ExtResource("5_syhhd")]
 position = Vector2(-155, 927)
-collision_layer = 0
-collision_mask = 7
 
 [node name="CreateSmall2" parent="MovingBlocks" instance=ExtResource("5_syhhd")]
 position = Vector2(-374, 293)
-collision_layer = 0
-collision_mask = 7
 
 [node name="CreateSmall3" parent="MovingBlocks" instance=ExtResource("5_syhhd")]
 position = Vector2(-74, -13)
-collision_layer = 0
-collision_mask = 7
 
 [node name="CreateSmall4" parent="MovingBlocks" instance=ExtResource("5_syhhd")]
 position = Vector2(30, 56)
-collision_layer = 0
-collision_mask = 7
 
 [node name="CreateSmall5" parent="MovingBlocks" instance=ExtResource("5_syhhd")]
 position = Vector2(-1345, 1419)
-collision_layer = 0
-collision_mask = 7
 
 [node name="CreateBig" parent="MovingBlocks" instance=ExtResource("6_qey61")]
 position = Vector2(41, -214)
