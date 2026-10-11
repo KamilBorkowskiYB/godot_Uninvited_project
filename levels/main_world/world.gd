@@ -573,7 +573,44 @@ func find_main_scene_variants():
 	dir.list_dir_end()
 	notify_property_list_changed()
 	
-	$MainLevelViewport/SubViewport/MainScene.main_scene_level = main_scene_high
+	#$MainLevelViewport/SubViewport/MainScene.main_scene_level = main_scene_high
+	replace_main_scene_level()
+
+
+func replace_main_scene_level():
+	# 1. Pobieramy ścieżkę do oryginalnego pliku .tscn
+	var scene_path = "res://levels/main_world/main_scene.tscn"
+	var main_scene_level: PackedScene = load(scene_path)
+	
+	if scene_path.is_empty():
+		print("Ten PackedScene nie jest jeszcze zapisany w pliku!")
+		return
+	# 2. Tworzymy instancję sceny w pamięci (poza głównym drzewem edytora)
+	var root_node = main_scene_level.instantiate()
+	# 3. Modyfikujemy strukturę (dodajemy ikonę)
+	var icon = load("res://icon.svg")
+	var sprite := Sprite2D.new()
+	sprite.name = "TestIcon"
+	sprite.texture = icon
+	root_node.add_child(sprite)
+	
+	# Ważne: owner dla nowego elementu musi wskazywać na korzeń tej ładowanej sceny
+	sprite.owner = root_node 
+	# 4. Pakujemy zmodyfikowany węzeł z powrotem do PackedScene
+	var packed_scene = PackedScene.new()
+	var error = packed_scene.pack(root_node)
+	
+	if error == OK:
+		# 5. Zapisujemy plik na dysku (nadpisujemy oryginał)
+		ResourceSaver.save(packed_scene, scene_path)
+		print("Zapisano zmiany do pliku źródłowego: ", scene_path)
+		
+		# Opcjonalnie: odświeżamy zasób, aby edytor zauważył zmianę
+		main_scene_level = load(scene_path)
+	else:
+		print("Błąd podczas pakowania sceny!")
+	# 6. Sprzątamy obiekt z pamięci operacyjnej
+	root_node.queue_free()
 
 
 func find_other_scene_variants():
