@@ -7,8 +7,9 @@
 
 [node name="MainScene" type="Node2D"]
 script = ExtResource("1_lprf7")
+main_level_scenes_folder = "res://levels/test_level1"
 
-[node name="test_level_1_high" parent="." instance=ExtResource("1_eiecu")]
+[node name="test_level_1_high" type="Node2D" parent="." instance=ExtResource("1_eiecu")]
 
 [node name="Player" parent="." instance=ExtResource("2_lksa6")]
 position = Vector2(-8680, -368)
