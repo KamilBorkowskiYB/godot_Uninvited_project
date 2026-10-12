@@ -216,7 +216,7 @@ position = Vector2(-1408, -6768)
 rotation = 1.5708
 
 [node name="StaircaseMarbleHigh" parent="Static/Setpieces" index="0" instance=ExtResource("2_kr5li")]
-position = Vector2(-288, -3376)
+position = Vector2(-304, -3393)
 
 [node name="DimensionSplit" parent="Static/DimensionSplits" index="0" instance=ExtResource("2_l0i62")]
 position = Vector2(1300, 2083)
@@ -249,7 +249,7 @@ vis_from_right_or_bottom = false
 always_visible = true
 
 [node name="DimensionSplit4" parent="Static/DimensionSplits" index="6" instance=ExtResource("2_l0i62")]
-position = Vector2(-474, -3201)
+position = Vector2(-490, -3218)
 scale = Vector2(2.2, 0.854)
 has_door = false
 
