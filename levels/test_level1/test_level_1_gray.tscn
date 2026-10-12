@@ -11,6 +11,7 @@
 [node name="out_of_view_overlay" type="Node2D" parent="."]
 
 [node name="SecretsColor" type="Node2D" parent="out_of_view_overlay"]
+position = Vector2(-10, -11)
 
 [node name="SecretArea" parent="out_of_view_overlay/SecretsColor" instance=ExtResource("3_bw1wj")]
 position = Vector2(587.199, -41.3406)

@@ -14,205 +14,205 @@
 [node name="Windows" type="Node2D" parent="Static/Walls" index="0"]
 
 [node name="window" parent="Static/Walls/Windows" index="0" instance=ExtResource("2_0rihb")]
-position = Vector2(-1296, -1296)
+position = Vector2(-1296, -1312)
 
 [node name="window2" parent="Static/Walls/Windows" index="1" instance=ExtResource("2_0rihb")]
-position = Vector2(-912, -1296)
+position = Vector2(-912, -1312)
 
 [node name="window3" parent="Static/Walls/Windows" index="2" instance=ExtResource("2_0rihb")]
-position = Vector2(-528, -1296)
+position = Vector2(-528, -1312)
 
 [node name="window4" parent="Static/Walls/Windows" index="3" instance=ExtResource("2_0rihb")]
-position = Vector2(-48, -1296)
+position = Vector2(-48, -1312)
 
 [node name="window5" parent="Static/Walls/Windows" index="4" instance=ExtResource("2_0rihb")]
-position = Vector2(336, -1296)
+position = Vector2(336, -1312)
 
 [node name="window6" parent="Static/Walls/Windows" index="5" instance=ExtResource("2_0rihb")]
-position = Vector2(720, -1296)
+position = Vector2(720, -1312)
 
 [node name="window7" parent="Static/Walls/Windows" index="6" instance=ExtResource("2_0rihb")]
-position = Vector2(1296, -1680)
+position = Vector2(1296, -1696)
 
 [node name="window8" parent="Static/Walls/Windows" index="7" instance=ExtResource("2_0rihb")]
-position = Vector2(1680, -1680)
+position = Vector2(1680, -1696)
 
 [node name="window9" parent="Static/Walls/Windows" index="8" instance=ExtResource("2_0rihb")]
-position = Vector2(2064, -1680)
+position = Vector2(2064, -1696)
 
 [node name="window10" parent="Static/Walls/Windows" index="9" instance=ExtResource("2_0rihb")]
-position = Vector2(2448, -1680)
+position = Vector2(2448, -1696)
 
 [node name="window11" parent="Static/Walls/Windows" index="10" instance=ExtResource("2_0rihb")]
-position = Vector2(2544, -3600)
+position = Vector2(2544, -3616)
 
 [node name="window12" parent="Static/Walls/Windows" index="11" instance=ExtResource("2_0rihb")]
-position = Vector2(2160, -3600)
+position = Vector2(2160, -3616)
 
 [node name="window13" parent="Static/Walls/Windows" index="12" instance=ExtResource("2_0rihb")]
-position = Vector2(1776, -3600)
+position = Vector2(1776, -3616)
 
 [node name="window14" parent="Static/Walls/Windows" index="13" instance=ExtResource("2_0rihb")]
-position = Vector2(1296, -3600)
+position = Vector2(1296, -3616)
 
 [node name="window15" parent="Static/Walls/Windows" index="14" instance=ExtResource("2_0rihb")]
-position = Vector2(816, -3600)
+position = Vector2(816, -3616)
 
 [node name="window16" parent="Static/Walls/Windows" index="15" instance=ExtResource("2_0rihb")]
-position = Vector2(-1392, -3600)
+position = Vector2(-1392, -3616)
 
 [node name="window17" parent="Static/Walls/Windows" index="16" instance=ExtResource("2_0rihb")]
-position = Vector2(-1776, -3600)
+position = Vector2(-1776, -3616)
 
 [node name="window18" parent="Static/Walls/Windows" index="17" instance=ExtResource("2_0rihb")]
-position = Vector2(-2160, -3600)
+position = Vector2(-2160, -3616)
 
 [node name="window19" parent="Static/Walls/Windows" index="18" instance=ExtResource("2_0rihb")]
-position = Vector2(-2544, -3600)
+position = Vector2(-2544, -3616)
 
 [node name="window58" parent="Static/Walls/Windows" index="19" instance=ExtResource("2_0rihb")]
-position = Vector2(-3024, -3600)
+position = Vector2(-3024, -3616)
 
 [node name="window20" parent="Static/Walls/Windows" index="20" instance=ExtResource("2_0rihb")]
-position = Vector2(-1776, -1680)
+position = Vector2(-1776, -1696)
 
 [node name="window21" parent="Static/Walls/Windows" index="21" instance=ExtResource("2_0rihb")]
-position = Vector2(-2160, -1680)
+position = Vector2(-2160, -1696)
 
 [node name="window22" parent="Static/Walls/Windows" index="22" instance=ExtResource("2_0rihb")]
-position = Vector2(-3024, -1680)
+position = Vector2(-3024, -1696)
 
 [node name="window57" parent="Static/Walls/Windows" index="23" instance=ExtResource("2_0rihb")]
-position = Vector2(-2640, -1680)
+position = Vector2(-2640, -1696)
 
 [node name="window23" parent="Static/Walls/Windows" index="24" instance=ExtResource("2_0rihb")]
-position = Vector2(-1200, -7056)
+position = Vector2(-1200, -7072)
 
 [node name="window24" parent="Static/Walls/Windows" index="25" instance=ExtResource("2_0rihb")]
-position = Vector2(-912, -7056)
+position = Vector2(-912, -7072)
 
 [node name="window25" parent="Static/Walls/Windows" index="26" instance=ExtResource("2_0rihb")]
-position = Vector2(-528, -7056)
+position = Vector2(-528, -7072)
 
 [node name="window26" parent="Static/Walls/Windows" index="27" instance=ExtResource("2_0rihb")]
-position = Vector2(-48, -7056)
+position = Vector2(-48, -7072)
 
 [node name="window27" parent="Static/Walls/Windows" index="28" instance=ExtResource("2_0rihb")]
-position = Vector2(336, -7056)
+position = Vector2(336, -7072)
 
 [node name="window28" parent="Static/Walls/Windows" index="29" instance=ExtResource("2_0rihb")]
-position = Vector2(624, -7056)
+position = Vector2(624, -7072)
 
 [node name="window29" parent="Static/Walls/Windows" index="30" instance=ExtResource("2_0rihb")]
-position = Vector2(816, -6768)
+position = Vector2(800, -6768)
 rotation = 1.5708
 
 [node name="window30" parent="Static/Walls/Windows" index="31" instance=ExtResource("2_0rihb")]
-position = Vector2(816, -6384)
+position = Vector2(800, -6384)
 rotation = 1.5708
 
 [node name="window31" parent="Static/Walls/Windows" index="32" instance=ExtResource("2_0rihb")]
-position = Vector2(1008, -5808)
+position = Vector2(992, -5808)
 rotation = 1.5708
 
 [node name="window32" parent="Static/Walls/Windows" index="33" instance=ExtResource("2_0rihb")]
-position = Vector2(1008, -5424)
+position = Vector2(992, -5424)
 rotation = 1.5708
 
 [node name="window33" parent="Static/Walls/Windows" index="34" instance=ExtResource("2_0rihb")]
-position = Vector2(1008, -5040)
+position = Vector2(992, -5040)
 rotation = 1.5708
 
 [node name="window34" parent="Static/Walls/Windows" index="35" instance=ExtResource("2_0rihb")]
-position = Vector2(624, -4560)
+position = Vector2(608, -4560)
 rotation = 1.5708
 
 [node name="window35" parent="Static/Walls/Windows" index="36" instance=ExtResource("2_0rihb")]
-position = Vector2(624, -4176)
+position = Vector2(608, -4176)
 rotation = 1.5708
 
 [node name="window36" parent="Static/Walls/Windows" index="37" instance=ExtResource("2_0rihb")]
-position = Vector2(624, -3792)
+position = Vector2(608, -3792)
 rotation = 1.5708
 
 [node name="window37" parent="Static/Walls/Windows" index="38" instance=ExtResource("2_0rihb")]
-position = Vector2(2736, -3312)
+position = Vector2(2720, -3312)
 rotation = 1.5708
 
 [node name="window38" parent="Static/Walls/Windows" index="39" instance=ExtResource("2_0rihb")]
-position = Vector2(2736, -2832)
+position = Vector2(2720, -2832)
 rotation = 1.5708
 
 [node name="window39" parent="Static/Walls/Windows" index="40" instance=ExtResource("2_0rihb")]
-position = Vector2(2736, -2352)
+position = Vector2(2720, -2352)
 rotation = 1.5708
 
 [node name="window40" parent="Static/Walls/Windows" index="41" instance=ExtResource("2_0rihb")]
-position = Vector2(2736, -1968)
+position = Vector2(2720, -1968)
 rotation = 1.5708
 
 [node name="window41" parent="Static/Walls/Windows" index="42" instance=ExtResource("2_0rihb")]
-position = Vector2(-3312, -1968)
+position = Vector2(-3328, -1968)
 rotation = 1.5708
 
 [node name="window42" parent="Static/Walls/Windows" index="43" instance=ExtResource("2_0rihb")]
-position = Vector2(-3312, -2352)
+position = Vector2(-3328, -2352)
 rotation = 1.5708
 
 [node name="window43" parent="Static/Walls/Windows" index="44" instance=ExtResource("2_0rihb")]
-position = Vector2(-3312, -2928)
+position = Vector2(-3328, -2928)
 rotation = 1.5708
 
 [node name="window44" parent="Static/Walls/Windows" index="45" instance=ExtResource("2_0rihb")]
-position = Vector2(-3312, -3312)
+position = Vector2(-3328, -3312)
 rotation = 1.5708
 
 [node name="window45" parent="Static/Walls/Windows" index="46" instance=ExtResource("2_0rihb")]
-position = Vector2(-1200, -3792)
+position = Vector2(-1216, -3792)
 rotation = 1.5708
 
 [node name="window46" parent="Static/Walls/Windows" index="47" instance=ExtResource("2_0rihb")]
-position = Vector2(-1200, -4176)
+position = Vector2(-1216, -4176)
 rotation = 1.5708
 
 [node name="window47" parent="Static/Walls/Windows" index="48" instance=ExtResource("2_0rihb")]
-position = Vector2(-816, -4176)
+position = Vector2(-832, -4176)
 rotation = 1.5708
 
 [node name="window48" parent="Static/Walls/Windows" index="49" instance=ExtResource("2_0rihb")]
-position = Vector2(-816, -4560)
+position = Vector2(-832, -4560)
 rotation = 1.5708
 
 [node name="window49" parent="Static/Walls/Windows" index="50" instance=ExtResource("2_0rihb")]
-position = Vector2(-1200, -4560)
+position = Vector2(-1216, -4560)
 rotation = 1.5708
 
 [node name="window50" parent="Static/Walls/Windows" index="51" instance=ExtResource("2_0rihb")]
-position = Vector2(240, -4560)
+position = Vector2(224, -4560)
 rotation = 1.5708
 
 [node name="window51" parent="Static/Walls/Windows" index="52" instance=ExtResource("2_0rihb")]
-position = Vector2(240, -4176)
+position = Vector2(224, -4176)
 rotation = 1.5708
 
 [node name="window52" parent="Static/Walls/Windows" index="53" instance=ExtResource("2_0rihb")]
-position = Vector2(-1584, -5040)
+position = Vector2(-1600, -5040)
 rotation = 1.5708
 
 [node name="window53" parent="Static/Walls/Windows" index="54" instance=ExtResource("2_0rihb")]
-position = Vector2(-1584, -5424)
+position = Vector2(-1600, -5424)
 rotation = 1.5708
 
 [node name="window54" parent="Static/Walls/Windows" index="55" instance=ExtResource("2_0rihb")]
-position = Vector2(-1584, -5808)
+position = Vector2(-1600, -5808)
 rotation = 1.5708
 
 [node name="window55" parent="Static/Walls/Windows" index="56" instance=ExtResource("2_0rihb")]
-position = Vector2(-1392, -6384)
+position = Vector2(-1408, -6384)
 rotation = 1.5708
 
 [node name="window56" parent="Static/Walls/Windows" index="57" instance=ExtResource("2_0rihb")]
-position = Vector2(-1392, -6768)
+position = Vector2(-1408, -6768)
 rotation = 1.5708
 
 [node name="StaircaseMarbleHigh" parent="Static/Setpieces" index="0" instance=ExtResource("2_kr5li")]

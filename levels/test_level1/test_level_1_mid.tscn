@@ -19,8 +19,8 @@ position = Vector2(84, -115)
 scale = Vector2(1.36722, 0.411714)
 
 [node name="SmallHouse" type="PointLight2D" parent="AmbientDark"]
-position = Vector2(113.734, 878.037)
-scale = Vector2(17.6567, 43.454)
+position = Vector2(106.42, 835.531)
+scale = Vector2(17.5653, 43.7956)
 energy = 0.15
 blend_mode = 1
 texture = ExtResource("2_2nxr6")
@@ -29,19 +29,19 @@ texture = ExtResource("2_2nxr6")
 
 [node name="SecretArea" parent="Secrets" instance=ExtResource("3_bkshk")]
 visible = false
-position = Vector2(587.199, -41.3406)
+position = Vector2(581.199, -52.3406)
 scale = Vector2(0.9, 0.634707)
 related_ambient_darkness = "SmallHouse"
 
 [node name="SecretArea2" parent="Secrets" instance=ExtResource("3_bkshk")]
 visible = false
-position = Vector2(579.199, 526.659)
+position = Vector2(573.199, 515.659)
 scale = Vector2(0.888333, 0.584)
 related_ambient_darkness = "SmallHouse"
 
 [node name="SecretArea3" parent="Secrets" instance=ExtResource("3_bkshk")]
 visible = false
-position = Vector2(-188.801, 246.659)
+position = Vector2(-194.801, 235.659)
 scale = Vector2(0.739998, 1.184)
 related_ambient_darkness = "SmallHouse"
 

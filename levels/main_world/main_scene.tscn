@@ -9,7 +9,7 @@
 [node name="test_level_1_high" parent="." instance=ExtResource("1_eiecu")]
 
 [node name="Player" parent="." instance=ExtResource("2_lksa6")]
-position = Vector2(-8414, -759)
+position = Vector2(-8680, -368)
 
 [node name="PlayerCamera" type="Camera2D" parent="."]
 script = ExtResource("3_f3dea")
