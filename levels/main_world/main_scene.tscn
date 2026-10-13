@@ -1,18 +1,18 @@
 [gd_scene load_steps=5 format=3 uid="uid://dronghrmiipwt"]
 
-[ext_resource type="PackedScene" uid="uid://d1oul8y1hqgln" path="res://levels/test_level1/test_level_1_high.tscn" id="1_eiecu"]
 [ext_resource type="Script" path="res://levels/main_world/main_scene.gd" id="1_lprf7"]
+[ext_resource type="PackedScene" uid="uid://d2oxm52c484o7" path="res://levels/chase_level/chase_level_high.tscn" id="2_a8a7y"]
 [ext_resource type="PackedScene" uid="uid://c8bitsc7ybbya" path="res://characters/player/player.tscn" id="2_lksa6"]
 [ext_resource type="Script" path="res://characters/player/Camera2D.gd" id="3_f3dea"]
 
 [node name="MainScene" type="Node2D"]
 script = ExtResource("1_lprf7")
-main_level_scenes_folder = "res://levels/test_level1"
+main_level_scenes_folder = "res://levels/chase_level"
 
-[node name="test_level_1_high" type="Node2D" parent="." instance=ExtResource("1_eiecu")]
+[node name="chase_level_high" parent="." instance=ExtResource("2_a8a7y")]
 
 [node name="Player" parent="." instance=ExtResource("2_lksa6")]
-position = Vector2(-917, -2098)
+position = Vector2(3007, 225)
 
 [node name="PlayerCamera" type="Camera2D" parent="."]
 script = ExtResource("3_f3dea")

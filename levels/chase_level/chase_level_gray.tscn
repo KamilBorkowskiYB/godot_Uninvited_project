@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dfk3b0e6pi80w"]
+
+[ext_resource type="PackedScene" uid="uid://68vxx7afs0bf" path="res://levels/preset_level/preset_level_gray.tscn" id="1_4xus7"]
+[ext_resource type="PackedScene" uid="uid://3yjqme404mws" path="res://levels/chase_level/chase_level_mid.tscn" id="2_0gjmt"]
+
+[node name="chase_level_gray" instance=ExtResource("1_4xus7")]
+
+[node name="chase_level_mid" parent="." index="0" instance=ExtResource("2_0gjmt")]
+
+[node name="preset_level_mid" parent="." index="1"]
+visible = false

@@ -1,0 +1,99 @@
+[gd_scene load_steps=9 format=3 uid="uid://d2oxm52c484o7"]
+
+[ext_resource type="PackedScene" uid="uid://ns4xmysl2wm" path="res://levels/preset_level/preset_level_high.tscn" id="1_04ewg"]
+[ext_resource type="PackedScene" uid="uid://3yjqme404mws" path="res://levels/chase_level/chase_level_mid.tscn" id="2_l0sjk"]
+[ext_resource type="PackedScene" uid="uid://bhvgcymlk0ibj" path="res://Interactions/pickUp.tscn" id="3_higxm"]
+[ext_resource type="PackedScene" uid="uid://p0e2kf65ae5c" path="res://Interactions/TriggerEvent.tscn" id="3_l8bnu"]
+[ext_resource type="PackedScene" uid="uid://bf4qoj3d4egrk" path="res://characters/guest/guest_enemy.tscn" id="4_2fhpn"]
+[ext_resource type="PackedScene" uid="uid://siv6odu6yllb" path="res://Interactions/Spawner/spawner.tscn" id="6_aoejv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hdnwi"]
+size = Vector2(266, 424)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hvtpq"]
+size = Vector2(1210, 244)
+
+[node name="chase_level_high" instance=ExtResource("1_04ewg")]
+
+[node name="chase_level_mid" parent="." index="0" instance=ExtResource("2_l0sjk")]
+
+[node name="preset_level_mid" parent="." index="1"]
+visible = false
+
+[node name="PickUp" parent="PickUps" index="0" instance=ExtResource("3_higxm")]
+position = Vector2(802, 78)
+item_selected = 4
+
+[node name="PickUp2" parent="PickUps" index="1" instance=ExtResource("3_higxm")]
+position = Vector2(3123, -1691)
+item_selected = 6
+Key_name = "chase_hut_key"
+
+[node name="Shells" parent="PickUps" index="2" instance=ExtResource("3_higxm")]
+position = Vector2(634, -1019)
+item_selected = 1
+
+[node name="Shells2" parent="PickUps" index="3" instance=ExtResource("3_higxm")]
+position = Vector2(634, -1019)
+item_selected = 1
+
+[node name="Shells3" parent="PickUps" index="4" instance=ExtResource("3_higxm")]
+position = Vector2(634, -1019)
+item_selected = 1
+
+[node name="Shells4" parent="PickUps" index="5" instance=ExtResource("3_higxm")]
+position = Vector2(634, -1019)
+item_selected = 1
+
+[node name="TriggerEvent" parent="Triggers" index="0" node_paths=PackedStringArray("enemy_instance") instance=ExtResource("3_l8bnu")]
+position = Vector2(2999, 170)
+action = 2
+enemy_state = 1
+enemy_instance = NodePath("GuestEnemy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Triggers/TriggerEvent" index="0"]
+position = Vector2(-810, 43)
+shape = SubResource("RectangleShape2D_hdnwi")
+
+[node name="GuestEnemy" parent="Triggers/TriggerEvent" index="1" instance=ExtResource("4_2fhpn")]
+position = Vector2(246, 30)
+rotation = -1.61394
+LOST_AGRO_DELAY = 10.0
+selected_weak_points = Array[NodePath]([NodePath("CanvasGroup/Graphics/Torso/RightArm/WeakPoint2"), NodePath("CanvasGroup/Graphics/Torso/WeakPoint2"), NodePath("CanvasGroup/Graphics/Torso/WeakPoint5"), NodePath("CanvasGroup/Graphics/Torso/LeftArm/LeftHighArm/LeftLowerArm/WeakPoint2"), NodePath("CanvasGroup/Graphics/Torso/LeftArm/WeakPoint")])
+weak_point_scales = Array[float]([0.793638, 1.0166, 0.782701, 0.827099, 0.907389])
+
+[node name="Spawner" parent="Triggers" index="1" instance=ExtResource("6_aoejv")]
+position = Vector2(51, -270)
+active = false
+
+[node name="Spawner2" parent="Triggers" index="2" instance=ExtResource("6_aoejv")]
+position = Vector2(2048, -273)
+active = false
+
+[node name="Spawner3" parent="Triggers" index="3" instance=ExtResource("6_aoejv")]
+position = Vector2(-800, -625)
+active = false
+
+[node name="TriggerEvent2" parent="Triggers" index="4" node_paths=PackedStringArray("trigger_node") instance=ExtResource("3_l8bnu")]
+position = Vector2(1107, -1211)
+action = 3
+trigger_node = NodePath("../Spawner")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Triggers/TriggerEvent2" index="0"]
+shape = SubResource("RectangleShape2D_hvtpq")
+
+[node name="TriggerEvent3" parent="Triggers" index="5" node_paths=PackedStringArray("trigger_node") instance=ExtResource("3_l8bnu")]
+position = Vector2(1107, -1211)
+action = 3
+trigger_node = NodePath("../Spawner2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Triggers/TriggerEvent3" index="0"]
+shape = SubResource("RectangleShape2D_hvtpq")
+
+[node name="TriggerEvent4" parent="Triggers" index="6" node_paths=PackedStringArray("trigger_node") instance=ExtResource("3_l8bnu")]
+position = Vector2(1107, -1211)
+action = 3
+trigger_node = NodePath("../Spawner3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Triggers/TriggerEvent4" index="0"]
+shape = SubResource("RectangleShape2D_hvtpq")
