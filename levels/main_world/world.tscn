@@ -172,7 +172,7 @@ handle_input_locally = false
 size = Vector2i(1152, 648)
 render_target_update_mode = 4
 
-[node name="chase_level_gray" type="Node2D" parent="FogViewport" instance=ExtResource("4_hwoc3")]
+[node name="chase_level_gray" parent="FogViewport" instance=ExtResource("4_hwoc3")]
 
 [node name="Camera2D" type="Camera2D" parent="FogViewport"]
 
@@ -182,7 +182,7 @@ handle_input_locally = false
 size = Vector2i(1152, 648)
 render_target_update_mode = 4
 
-[node name="chase_level_low" type="Node2D" parent="VisibilityViewport" instance=ExtResource("5_mist1")]
+[node name="chase_level_low" parent="VisibilityViewport" instance=ExtResource("5_mist1")]
 material = SubResource("ShaderMaterial_kfbnd")
 
 [node name="ViewLight" type="PointLight2D" parent="VisibilityViewport"]
@@ -256,7 +256,7 @@ texture_scale = 0.45
 transparent_bg = true
 handle_input_locally = false
 
-[node name="chase_level_low" type="Node2D" parent="OtherDimension/DimensionsParser" instance=ExtResource("5_mist1")]
+[node name="chase_level_low" parent="OtherDimension/DimensionsParser" instance=ExtResource("5_mist1")]
 material = SubResource("ShaderMaterial_ihmjo")
 
 [node name="ViewDimensionLight" type="PointLight2D" parent="OtherDimension/DimensionsParser"]
@@ -273,7 +273,7 @@ texture_scale = 15.0
 transparent_bg = true
 handle_input_locally = false
 
-[node name="chase_level_low" type="Node2D" parent="OtherDimension/DimensionsParserOccluders" instance=ExtResource("5_mist1")]
+[node name="chase_level_low" parent="OtherDimension/DimensionsParserOccluders" instance=ExtResource("5_mist1")]
 material = SubResource("ShaderMaterial_awdwx")
 
 [node name="ViewDimensionLight" type="PointLight2D" parent="OtherDimension/DimensionsParserOccluders"]

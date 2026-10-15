@@ -1,4 +1,4 @@
-[gd_scene load_steps=78 format=3 uid="uid://c33j86e6f8mi7"]
+[gd_scene load_steps=79 format=3 uid="uid://c33j86e6f8mi7"]
 
 [ext_resource type="Texture2D" uid="uid://bjr3ejsaqdpfr" path="res://levels/atlases/atlas1.png" id="1_acdnv"]
 [ext_resource type="Shader" path="res://levels/atlases/atlas_seamless_tiles.gdshader" id="1_woa2i"]
@@ -52,6 +52,8 @@ shader_parameter/hedge_texture = ExtResource("2_1d38y")
 shader_parameter/blockout_texture = ExtResource("2_mv8we")
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_lp50f"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_y0204"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_r1tnm"]
 
@@ -226,10 +228,16 @@ texture_region_size = Vector2i(48, 48)
 7:1/0/terrains_peering_bit/left_side = 7
 7:1/0/custom_data_0 = "grass"
 8:1/0 = 0
+8:1/0/terrain_set = 0
+8:1/0/terrain = 7
+8:1/0/probability = 0.0
 8:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 8:1/0/physics_layer_0/angular_velocity = 0.0
 8:1/0/physics_layer_1/linear_velocity = Vector2(0, 0)
 8:1/0/physics_layer_1/angular_velocity = 0.0
+8:1/0/physics_layer_1/polygon_0/points = PackedVector2Array(-24, 24, -24, -24, -7.2, -24, -7.2, 24)
+8:1/0/terrains_peering_bit/bottom_side = 7
+8:1/0/terrains_peering_bit/top_side = 7
 8:1/0/custom_data_0 = "brick"
 9:1/0 = 0
 9:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
@@ -312,6 +320,7 @@ texture_region_size = Vector2i(48, 48)
 1:3/0/physics_layer_1/angular_velocity = 0.0
 1:3/0/custom_data_0 = "brick"
 2:3/0 = 0
+2:3/0/occlusion_layer_0/polygon = SubResource("OccluderPolygon2D_y0204")
 2:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 2:3/0/physics_layer_0/angular_velocity = 0.0
 2:3/0/physics_layer_1/linear_velocity = Vector2(0, 0)
@@ -563,6 +572,17 @@ texture_region_size = Vector2i(48, 48)
 7:0/0/physics_layer_1/angular_velocity = 0.0
 7:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(24, -24, -9.6, -24, -9.6, -7.2, 24, -7.2)
 7:0/0/terrains_peering_bit/right_side = 7
+8:0/0 = 0
+8:0/0/terrain_set = 0
+8:0/0/terrain = 7
+8:0/0/probability = 0.0
+8:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+8:0/0/physics_layer_0/angular_velocity = 0.0
+8:0/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+8:0/0/physics_layer_1/angular_velocity = 0.0
+8:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(24, -24, -24, -24, -24, -7.2, 24, -7.2)
+8:0/0/terrains_peering_bit/right_side = 7
+8:0/0/terrains_peering_bit/left_side = 7
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_q5p0c"]
 polygon = PackedVector2Array(-4, -24, 4, -24, 0, -16, 12, -4, 24, -4, 24, 4, 16, 4, 4, 4, -4, 0, 0, -8, -8, -12)

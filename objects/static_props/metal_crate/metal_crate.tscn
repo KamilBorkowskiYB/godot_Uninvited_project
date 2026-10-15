@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://dttq10805eori"]
+
+[ext_resource type="Texture2D" uid="uid://c1ini2cegb4af" path="res://objects/static_props/metal_crate/metal_crate.png" id="1_dl8ac"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pr4y6"]
+size = Vector2(128, 128)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_j3amy"]
+polygon = PackedVector2Array(64, -64, 64, 64, -64, 64, -64, -64)
+
+[node name="MetalCrate" type="StaticBody2D" groups=["navigation_group"]]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(2, 2)
+texture = ExtResource("1_dl8ac")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_pr4y6")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_j3amy")
